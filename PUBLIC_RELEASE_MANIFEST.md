@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `10032b9c9b7ff8c0b5765aa3597d0b882292844f`
-- Input commit timestamp: `2026-07-19T06:04:18-04:00`
+- Input commit: `d92af51ae8a0cbdcd992085507929d22d15f8f8a`
+- Input commit timestamp: `2026-07-19T06:13:31-04:00`
 - Payload files: 176
-- Payload bytes: 35027705
-- Canonical SHA-256 release digest: `9935d20d7c4afc8abcfc1bbf583430bcd489f1909c5e00e8eb05b4d9084bfd3f`
+- Payload bytes: 35027853
+- Canonical SHA-256 release digest: `8e9459efa420306abf7842f30a87d97be368d600e92200a94daef56e350bb27c`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -15,10 +15,10 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28499 | `fda4a08fab1cc9974286d81e267c1b73ea2d7d934de0ce84bf3bf43527f0848c` |
+| ASSET_PROVENANCE.json | 28499 | `45321a4942687f6d08f0465d9f7c54008f3e11e37bee540c9bc5b1f00ab79835` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `ccf2de55aff3b9239a825dc14b0b5df66e3b5361226da14323478125dc47241a` |
+| PRIVACY_AUDIT.md | 615 | `85fc95e22cbdf2c2212c6812f2f732fc89352c90ada0908a191ada573627894c` |
 | README.md | 5050 | `6510ed7f04060604dfad93a6cb50a062df8889ea92b953d2adf233dc21ff18aa` |
 | README.zh-CN.md | 4654 | `6087777eaf1613805036bdf1a604b3d25332b3371fd5e6ddac0fa8bc78c8bfd6` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
@@ -109,7 +109,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2 | 712624 | `7969256b7a754de51b5bc2a96dec68c44bcc1208dcc4f642bf995e5b0d3e48c3` |
 | public/fonts/sarasa-term-sc/OFL.txt | 4814 | `0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa` |
 | public/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf | 25537492 | `9bf0d0379d1e95be1b6f558a5eba994968cfa5eb13b6cf826393aeedfac80aaa` |
-| scripts/capture-visual-qa.mjs | 84270 | `d3d2b409df4ad293e3e7e75952bcb7f6cead5cdd5748df16f04636d1658a3f22` |
+| scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
 | scripts/public-data.mjs | 4730 | `2c6cb105b0c68552fa1ab2f0b4d82bfbe1519b7d39f2e6e32da97ec1264c271f` |
 | scripts/public-release-config.mjs | 3089 | `a9ec398abb99910722c54cfb5f1885b67b6294e61eda55c5e7c20355c8372b3e` |

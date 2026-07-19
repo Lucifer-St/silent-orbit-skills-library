@@ -1655,6 +1655,7 @@ async function assertMobileLibraryContextNavigation() {
 
 async function assertReducedMotion() {
   await setViewport(viewports[0]);
+  const initialReducedMotion = await evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches");
   await cdp("Emulation.setEmulatedMedia", {
     features: [{ name: "prefers-reduced-motion", value: "reduce" }],
   });
@@ -1691,7 +1692,7 @@ async function assertReducedMotion() {
   await resetToConsole("desktop restored-motion");
   await assertPage(
     "reduced-motion media state restored",
-    "!matchMedia('(prefers-reduced-motion: reduce)').matches",
+    `matchMedia('(prefers-reduced-motion: reduce)').matches === ${JSON.stringify(initialReducedMotion)}`,
   );
 }
 
