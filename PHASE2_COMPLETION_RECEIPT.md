@@ -1,12 +1,12 @@
 # Phase 2 completion receipt
 
 - Phase 2 status: GO
-- Input commit: `99288fc9d69d449b05c2440251be5ac2726188df`
-- Input commit timestamp: `2026-07-19T05:56:09-04:00`
-- Canonical release digest: `ce58fa4b1f37ba2a5b9d163b9bd61a5534e14188e944ddc1a61024a662f0ec5c`
-- JSON manifest SHA-256: `76e587ac5b3dec63b673275c6bc2f7bd3d269dae9840f0f072e52e77c9234faf`
-- Markdown manifest SHA-256: `e816c7d04fb988440fa12f9676058474a6148358f6c082c81697d9b95366c9cd`
-- Payload: 176 files / 35027333 bytes
+- Input commit: `10032b9c9b7ff8c0b5765aa3597d0b882292844f`
+- Input commit timestamp: `2026-07-19T06:04:18-04:00`
+- Canonical release digest: `9935d20d7c4afc8abcfc1bbf583430bcd489f1909c5e00e8eb05b4d9084bfd3f`
+- JSON manifest SHA-256: `5469bb033c4da534dba3e98af887aa1cee6090c1af823acd71486800f3588b01`
+- Markdown manifest SHA-256: `b6ff820be2a4184a70579d827c8bf6664ef1ecb995f68fc690901e3b41da9795`
+- Payload: 176 files / 35027705 bytes
 - Production bundles: `index-CLfJ5DLy.css`, `index-DEFgJuOu.js`
 
 ## Fresh-RC verification

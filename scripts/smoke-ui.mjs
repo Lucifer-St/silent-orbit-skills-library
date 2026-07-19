@@ -957,14 +957,22 @@ try {
       history.replaceState({ ...state, __smokeSentinel: 'transition-console' }, '');
 
       const descriptor = Object.getOwnPropertyDescriptor(document, 'startViewTransition');
+      const mediaDescriptor = Object.getOwnPropertyDescriptor(window, 'matchMedia');
       let restored = false;
       const restore = () => {
         if (restored) return;
         restored = true;
         if (descriptor) Object.defineProperty(document, 'startViewTransition', descriptor);
         else delete document.startViewTransition;
+        if (mediaDescriptor) Object.defineProperty(window, 'matchMedia', mediaDescriptor);
+        else delete window.matchMedia;
       };
 
+      Object.defineProperty(window, 'matchMedia', {
+        configurable: true,
+        writable: true,
+        value: () => ({ matches: false }),
+      });
       Object.defineProperty(document, 'startViewTransition', {
         configurable: true,
         writable: true,

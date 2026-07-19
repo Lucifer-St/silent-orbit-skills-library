@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `99288fc9d69d449b05c2440251be5ac2726188df`
-- Input commit timestamp: `2026-07-19T05:56:09-04:00`
+- Input commit: `10032b9c9b7ff8c0b5765aa3597d0b882292844f`
+- Input commit timestamp: `2026-07-19T06:04:18-04:00`
 - Payload files: 176
-- Payload bytes: 35027333
-- Canonical SHA-256 release digest: `ce58fa4b1f37ba2a5b9d163b9bd61a5534e14188e944ddc1a61024a662f0ec5c`
+- Payload bytes: 35027705
+- Canonical SHA-256 release digest: `9935d20d7c4afc8abcfc1bbf583430bcd489f1909c5e00e8eb05b4d9084bfd3f`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -15,10 +15,10 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28499 | `78f41dcde73f4bb283ef337df46777c5270031404ddfa1c2c7ba31876ca86b5e` |
+| ASSET_PROVENANCE.json | 28499 | `fda4a08fab1cc9974286d81e267c1b73ea2d7d934de0ce84bf3bf43527f0848c` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `dd6e1c3be6c6cc9ba0151893eeac1fa0d2a4a6fd41fc7ceeb6d73df6fa169b0f` |
+| PRIVACY_AUDIT.md | 615 | `ccf2de55aff3b9239a825dc14b0b5df66e3b5361226da14323478125dc47241a` |
 | README.md | 5050 | `6510ed7f04060604dfad93a6cb50a062df8889ea92b953d2adf233dc21ff18aa` |
 | README.zh-CN.md | 4654 | `6087777eaf1613805036bdf1a604b3d25332b3371fd5e6ddac0fa8bc78c8bfd6` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
@@ -113,7 +113,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
 | scripts/public-data.mjs | 4730 | `2c6cb105b0c68552fa1ab2f0b4d82bfbe1519b7d39f2e6e32da97ec1264c271f` |
 | scripts/public-release-config.mjs | 3089 | `a9ec398abb99910722c54cfb5f1885b67b6294e61eda55c5e7c20355c8372b3e` |
-| scripts/smoke-ui.mjs | 101091 | `c8f5256d06a1cccc61b000bfe437cb880c3d7a5a478b954544480daccbb7ba22` |
+| scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
 | scripts/sync-data.mjs | 3897 | `14f42e32fa2ca5810ce892b474023eb13a8e142e6823f2121943c0d718735f8c` |
 | scripts/tests/font-assets.test.mjs | 1909 | `21b4617bef69d005614a1292f070db31cec2373d821b30be4261084d59f6fea7` |
 | scripts/tests/i18n-metadata.test.mjs | 5651 | `48d72ad4d65ae1e08913b70a89f2b3ae08103fd7aaf71746c69236d5fc6ced53` |
