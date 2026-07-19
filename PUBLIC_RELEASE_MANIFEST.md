@@ -1,23 +1,24 @@
 # Public release manifest
 
-- Input commit: `0ca7e26dab80a66d9033a44e764e8ae2410ad497`
-- Input commit timestamp: `2026-07-19T05:10:12-04:00`
-- Payload files: 175
-- Payload bytes: 35043416
-- Canonical SHA-256 release digest: `7d598386ab960a8735a5f6d9bfa9966f75c33c20381f7f2f7f97f5924364fc6b`
+- Input commit: `80d18e8769d8b51a60eb0cfe324365d7c0cd7d39`
+- Input commit timestamp: `2026-07-19T05:20:10-04:00`
+- Payload files: 176
+- Payload bytes: 35043978
+- Canonical SHA-256 release digest: `76579b88647c41e6cb22cd5c9768b608ad6e13a8b807e6e90dc32e8d12ff1736`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
+| .gitattributes | 60 | `029df443822ea757f9007414a69274f704736cf1c18f3baabf6e3a81f0b247b9` |
 | .github/workflows/public-release-gate.yml | 1311 | `94d14645d18a04c5d006a6ad2b5831308dc0b9a8a552938612b98d4b591f7ad0` |
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28499 | `4430cc8055b3408ad82161d946ed8221046882d827b8eb3de7180efded96788f` |
+| ASSET_PROVENANCE.json | 28499 | `55f4080ec03d73f4db5c29709535c30d7649731a464c33830bacc762953a6b17` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `d348f34e0dd3a51f6211bb708827b743edc29e9f8b5d023613a97a07a88d9c83` |
+| PRIVACY_AUDIT.md | 615 | `01511031142b0b847adc9c475c7b1b92e69acb8d3ea56e9efb6d243cd101d0d4` |
 | README.md | 5050 | `6510ed7f04060604dfad93a6cb50a062df8889ea92b953d2adf233dc21ff18aa` |
 | README.zh-CN.md | 4654 | `6087777eaf1613805036bdf1a604b3d25332b3371fd5e6ddac0fa8bc78c8bfd6` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
@@ -124,7 +125,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/sync-data.test.mjs | 975 | `2f9251efd6e6fd09f4d1e0ec07ac4ed4cd15efaac52d0d895595f833181431b8` |
 | scripts/validate-data.mjs | 14717 | `cba9d1cade858db9fd05c418a97e84371ab5435137d351c70191f0bd32ab9caa` |
 | scripts/validate-public-assets.mjs | 6081 | `1ac9db7e7acac8b88aad6b626fe4825efc29875b1f5ac333182cd9de6402d24e` |
-| scripts/validate-public-release.mjs | 15842 | `ee3454894a06801b4c1f89a4247a52aac0aa664558fa8c96ae43a0940a4d2607` |
+| scripts/validate-public-release.mjs | 16344 | `5b41e3ae3804bf31f137deff6a1a0ff47fd16b7d0fa28f4d2d41e1f64a6087f9` |
 | scripts/validate-readme.mjs | 3672 | `8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3` |
 | src/App.tsx | 27101 | `fc2b60f31e77a711aa697adf6c7a1c7bffcfebebd956a55b58b7ffe6d7193b82` |
 | src/components/CosmosAsset.tsx | 554 | `9d9350bff0fb25f0c12ba5a81b8cbe0010b86c53d6bf01157e73c7c69dbb00af` |

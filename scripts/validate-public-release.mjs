@@ -19,6 +19,7 @@ const generatedRoots = new Set([
 ]);
 const requiredFiles = [
   ".github/workflows/public-release-gate.yml",
+  ".gitattributes",
   ".gitignore",
   ".node-version",
   "assets/readme/architecture.svg",
@@ -290,6 +291,21 @@ function assertWorkflowContract(rootDir) {
   }
 }
 
+function assertGitAttributesContract(rootDir) {
+  const attributes = fs.readFileSync(path.join(rootDir, ".gitattributes"), "utf8");
+  const requiredRules = [
+    "* text=auto eol=lf",
+    "*.png binary",
+    "*.ttf binary",
+    "*.woff2 binary",
+  ];
+  for (const rule of requiredRules) {
+    if (!attributes.split(/\r?\n/).includes(rule)) {
+      throw new Error(`.gitattributes is missing the cross-platform rule: ${rule}`);
+    }
+  }
+}
+
 export function validatePublicRelease(rootDir = projectDir, { repositoryAware = false } = {}) {
   const resolvedRoot = path.resolve(rootDir);
   if (!fs.statSync(resolvedRoot, { throwIfNoEntry: false })?.isDirectory()) {
@@ -300,6 +316,7 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   const manifest = assertManifest(resolvedRoot, { repositoryAware });
   assertDataBoundary(resolvedRoot);
   assertPackageContract(resolvedRoot);
+  assertGitAttributesContract(resolvedRoot);
   assertPrivacyAndSecrets(resolvedRoot, { repositoryAware });
   assertWorkflowContract(resolvedRoot);
   const assets = validatePublicAssets(resolvedRoot);
