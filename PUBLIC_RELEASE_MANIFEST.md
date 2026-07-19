@@ -1,31 +1,36 @@
 # Public release manifest
 
-- Input commit: `d92af51ae8a0cbdcd992085507929d22d15f8f8a`
-- Input commit timestamp: `2026-07-19T06:13:31-04:00`
-- Payload files: 176
-- Payload bytes: 35027853
-- Canonical SHA-256 release digest: `8e9459efa420306abf7842f30a87d97be368d600e92200a94daef56e350bb27c`
+- Input commit: `98e0d422b707e7a6883f77dfbe44431772a3670c`
+- Input commit timestamp: `2026-07-19T17:21:14-04:00`
+- Payload files: 186
+- Payload bytes: 8965928
+- Canonical SHA-256 release digest: `1724f11f2eb837ba8f294e5702ec0f5eca99518d5ed21b534e651c090bf7d252`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
 | .gitattributes | 90 | `600a53b758fef81512d7b71bf00993e6302dfb87a7459025d135fe1271d2bef4` |
+| .github/ISSUE_TEMPLATE/bug_report.yml | 1678 | `59036c1300bc7c4cc6897c063008029dfb9306e60d46e7ae24dbb8c514617b32` |
+| .github/ISSUE_TEMPLATE/experience_feedback.yml | 1813 | `a71d42f7110929da00ed90ca0ec1cd30dd7835bce5768082449fb8e25052cc68` |
 | .github/workflows/public-release-gate.yml | 1311 | `94d14645d18a04c5d006a6ad2b5831308dc0b9a8a552938612b98d4b591f7ad0` |
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28499 | `45321a4942687f6d08f0465d9f7c54008f3e11e37bee540c9bc5b1f00ab79835` |
+| ASSET_PROVENANCE.json | 28893 | `3621d269097f84024b6eff3c0a6488fab47e227a0a59721bb5d06356539e6bbb` |
+| BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
+| BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `85fc95e22cbdf2c2212c6812f2f732fc89352c90ada0908a191ada573627894c` |
-| README.md | 5050 | `6510ed7f04060604dfad93a6cb50a062df8889ea92b953d2adf233dc21ff18aa` |
-| README.zh-CN.md | 4654 | `6087777eaf1613805036bdf1a604b3d25332b3371fd5e6ddac0fa8bc78c8bfd6` |
+| PRIVACY_AUDIT.md | 615 | `6f4e3049e0fbb33cc0d934f00a70956e7529c0143e3134f4e5fefc59528007f6` |
+| README.md | 5373 | `7413c9d3ad2653d2b868179eb84e22ba1da833d97b4a577e5782f03374ae8438` |
+| README.zh-CN.md | 4937 | `8ba1668caf184cc4c02c835c3072d4eb1bda335b1889c1e9a6970a7ebf256768` |
+| RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
 | THIRD_PARTY_NOTICES.md | 12733 | `0278189a19539080ef8eee8b5bcfe17f08cdfe2aced7148183a496f87e0ab2cb` |
-| assets/readme/architecture.svg | 3333 | `1c34b0a54c150dcc83ea40a566eed1eb2c0a2e128481704465392bab0e7303ea` |
+| assets/readme/architecture.svg | 3382 | `78133db091033f81a0684bfcc893421bbcad02549471722503abc37a0d37607a` |
 | assets/readme/catalog.png | 64801 | `9391ae0410a3831bc8013296d9d240355fdeb49d3bae933aa74c0205293929b9` |
-| assets/readme/hero.svg | 2311 | `f42d034f7830052a071976c0dd57a0057235b6c9ffc09d633e6bb72833dffd41` |
+| assets/readme/hero.svg | 2346 | `6354bf8f38404b75de74f7478ec734409de0bbf719857b72e57be382885433f1` |
 | assets/readme/home.png | 491746 | `1e14389cf95473a90f0edb63e23bad9457a49f93ffa1fd5ce09c0c95f654457e` |
 | assets/readme/inspector.png | 153507 | `b003b8a53925a6c53221c2c25555d8c93821e37bba52b056162275ca767db887` |
 | assets/readme/mobile-inspector.png | 48707 | `1bd97ebcdb5f105824657f90a9e3c2eaf68471bb1796c1ccd18f27c0314af6ee` |
@@ -33,15 +38,17 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | data/category-units.json | 11341 | `72930536858f37b5245ea96b0ff6bceafb8687c18d7775e447636cb32b17a268` |
 | data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
 | data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
-| data/maintenance-status.json | 753 | `2b0543eef6171a0c30bf40464ce04449df070f280af05c18307c3d79773d13d3` |
+| data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
 | data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
 | data/relations.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| index.html | 358 | `5d25ba91da78ed872671f015df8e55a78e014c16a37e7e03c4d2815eb3c61779` |
-| package-lock.json | 59555 | `9a4c3408584dac450df653c0db5f5457084025140ccd7b87fde6770f2d1f9016` |
-| package.json | 1989 | `22b6cad939fbca4473dd5edce27a36905be130f4f6c0c76fc8fc374bc4d5343d` |
+| index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
+| netlify.toml | 1374 | `2f61be7e545ea6fa80cc9dfa50bac85cc5f9940605053fe7472dc212ceaed82d` |
+| package-lock.json | 59569 | `5ec509cac2c74c16102627af405df9f17b55c2272501f307eaa5f551a070add9` |
+| package.json | 2101 | `c079d4fd415e4c9a3ad2208100d0a804a697c4bd30aac4e8d2be4f877e4d7f39` |
+| public/assets/branding/favicon.svg | 575 | `59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8` |
 | public/assets/cosmos/celestial/01-cratered-planet.png | 1811 | `fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488` |
 | public/assets/cosmos/celestial/02-ringed-planet.png | 850 | `00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a` |
 | public/assets/cosmos/celestial/04-banded-gas-giant.png | 1638 | `ea74886c5dc9d0757caca9d49b68f8791885d52b2f7057744a8f7cf2bf5f9f1c` |
@@ -98,36 +105,39 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/data/category-units.json | 11341 | `72930536858f37b5245ea96b0ff6bceafb8687c18d7775e447636cb32b17a268` |
 | public/data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
 | public/data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
-| public/data/maintenance-status.json | 753 | `2b0543eef6171a0c30bf40464ce04449df070f280af05c18307c3d79773d13d3` |
+| public/data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
 | public/data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
 | public/data/relations.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | public/data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | public/data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | public/data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| public/fonts/README.md | 659 | `0564e6af27026aa5121642c841e551e1c2684635d642b71c8c184b62742d35ad` |
+| public/fonts/README.md | 879 | `77368fecb695cb8b5c008c92cce704c187d813337941b078d4fede50ce50eb1b` |
 | public/fonts/fusion-pixel/OFL.txt | 4514 | `9291281eaa1275afe06285d010362c175efcf8766a37c9bac274a770550fe4fc` |
-| public/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2 | 712624 | `7969256b7a754de51b5bc2a96dec68c44bcc1208dcc4f642bf995e5b0d3e48c3` |
+| public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2 | 22344 | `3b265cb64eaba39252704a290aac551fa7884bea6af57c97ac153a4c46c8dc09` |
 | public/fonts/sarasa-term-sc/OFL.txt | 4814 | `0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa` |
-| public/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf | 25537492 | `9bf0d0379d1e95be1b6f558a5eba994968cfa5eb13b6cf826393aeedfac80aaa` |
+| public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2 | 138904 | `63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4` |
+| public/robots.txt | 93 | `596f6653b8fb445482b0044dceaddabb14b8d57ae18db0f4c78d20eb50911d87` |
+| public/sitemap.xml | 290 | `cedfd1b8098a479d6a14b73d4467e5305b70567f3aab537a5728e66f3a153ec3` |
 | scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
-| scripts/public-data.mjs | 4730 | `2c6cb105b0c68552fa1ab2f0b4d82bfbe1519b7d39f2e6e32da97ec1264c271f` |
-| scripts/public-release-config.mjs | 3089 | `a9ec398abb99910722c54cfb5f1885b67b6294e61eda55c5e7c20355c8372b3e` |
+| scripts/public-data.mjs | 4984 | `168d3de0c97120056b37bd9d810fee6380af14c0501f69c1a5cac4559614a565` |
+| scripts/public-release-config.mjs | 3360 | `c3ec9315ee4565ca5d7752d96a0825ed4b0dba63d03022737b026bc7faa9cf19` |
 | scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
 | scripts/sync-data.mjs | 3897 | `14f42e32fa2ca5810ce892b474023eb13a8e142e6823f2121943c0d718735f8c` |
-| scripts/tests/font-assets.test.mjs | 1909 | `21b4617bef69d005614a1292f070db31cec2373d821b30be4261084d59f6fea7` |
+| scripts/tests/font-assets.test.mjs | 2230 | `c2d8c72b096cd2eaf2d3c2955f4465e2e367d70bf44c680793b9331e82802354` |
 | scripts/tests/i18n-metadata.test.mjs | 5651 | `48d72ad4d65ae1e08913b70a89f2b3ae08103fd7aaf71746c69236d5fc6ced53` |
 | scripts/tests/orbit-layout.test.mjs | 12962 | `376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
-| scripts/tests/public-data.test.mjs | 1967 | `b3dc9a8631097a216282f276f18f8d1db879d6b5d9c6e125b8b2bb3d80b5e6ce` |
-| scripts/tests/public-maintenance.test.mjs | 1063 | `4d36b9041006e8182d3fac2996e07972c9c30e329408cc8b47b45801e5690930` |
+| scripts/tests/public-data.test.mjs | 2545 | `262cc12e739090c0ce1527b4677a06f7d30b953f2eeabbaca2666095c52643cf` |
+| scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
+| scripts/tests/site-release.test.mjs | 6019 | `f4fe86d401aff0d3b5c1ad4ee8091c6cf2ea19ebe717ecc0eabf489fd9e9b165` |
 | scripts/tests/skill-search.test.mjs | 4809 | `591d27b5d91119dbf24b575edf2fa363136d314462bbb2702aa3bf5b99babe2b` |
 | scripts/tests/sync-data.test.mjs | 948 | `b388085933d62c89e70e9772ccf041597df451715b1257b9bb3be935e5407451` |
-| scripts/validate-data.mjs | 14458 | `752d1872429d73dd1bf84f6236afe053c3a9c20f9ae330ad1cf2024c785b4365` |
-| scripts/validate-public-assets.mjs | 5969 | `4785ad758ef135cb14e347544c52d1219192d0fa547fb5b08dce97363cd0925c` |
-| scripts/validate-public-release.mjs | 16198 | `adfb7f12d5b7c722f9958d64816e3bb91849d21621eabad108cd78f1d67fde72` |
+| scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
+| scripts/validate-public-assets.mjs | 5968 | `7697324bb371e83a2a91eff125e81c72bd9510dcaa3a5eb7b5a9805ec91b24db` |
+| scripts/validate-public-release.mjs | 16446 | `4656db7f5dc7011a7c2d1524c8767eb8bd4d0c76cc9d116663aaf1a488a849d6` |
 | scripts/validate-readme.mjs | 3672 | `8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3` |
-| src/App.tsx | 26435 | `9010e68a768fc9e6f3552e627429c213809a6e1721806ee17519680173c9d4a1` |
+| src/App.tsx | 27400 | `7148594631b0d479378fabb3f2c18b5ed20ac6818de7edc1e685bc10046f4c05` |
 | src/components/CosmosAsset.tsx | 531 | `1721d7f182ef2a8ed7960e018eae66ec27601dccf1948c44948c559ea7b0d492` |
 | src/components/badges/StarSkillMarker.tsx | 415 | `5d83c913966ce34891427bf5cc303e9cf3f74612aff03cf49e31c52cbcf803fb` |
 | src/components/catalog/AbilityUnitCard.tsx | 2465 | `95a6735929b02718b99aba0c34e0f8ed0049e137615d5082f55d38816c94052e` |
@@ -159,7 +169,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/components/orbit/SilentOrbitPage.tsx | 4531 | `25d38f56da3f0fca1f8814eeeb92b60855e7da7f98043384dc8d9272916a137e` |
 | src/components/orbit/SkillAsteroid.tsx | 1231 | `fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857` |
 | src/data/indexes.ts | 3129 | `1d9907cc3066111a280de6d548ee0238401568ebf6af1ea821317e2507933b06` |
-| src/generated/data.generated.ts | 106565 | `07c43fb53a1dd51fcd2f0050ff58326a215fd60248ea8cd853934aacd3970911` |
+| src/generated/data.generated.ts | 106838 | `fa4bce8bc7375df27fadc257e959b6114fcbd67cccf7e2040e8a937bcb07979c` |
 | src/hooks/useOrbitSurface.ts | 4573 | `75fc2964bbc196e8e1f953fc31041dfe7f31a9f71fd2bb065378f1b64c10a148` |
 | src/hooks/usePersonalOutcomes.ts | 4166 | `b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d` |
 | src/i18n/LocaleContext.tsx | 7202 | `0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51` |
@@ -175,14 +185,14 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/lib/skillSearch.ts | 4333 | `7081416ca0e6dd6a5f058321de801bb9ecf0db8c3e6f5829ffb14d8561070a2c` |
 | src/main.tsx | 560 | `0c4695db3b14ae0148042bada5f61748d5ea4545e915cdbf50655f6c193f63d8` |
 | src/styles.css | 33365 | `1943f0c7fb702daa64877b9d0e04f1ea3a1df5213d40600fcd5fde2bca172936` |
-| src/styles/console.css | 23335 | `564f1613075e7ca958920754af507de066332179286e02283142739f8ccf6ea5` |
-| src/styles/fonts.css | 1166 | `f906cce15530c3412595683d14123d3f01196b4df04dab5503019553ca641455` |
+| src/styles/console.css | 24066 | `f5785949f10e653dc5b98f11f2618c6e79f4950245082778e2332a41efe55aa9` |
+| src/styles/fonts.css | 1179 | `821964ce5d47e815198bd8f969f487e3ef194235c54877da879f0fd332d34af7` |
 | src/styles/history.css | 7100 | `54bc1fe1e76c5d1cd418506231e711c1f0f923609a91a01ca104445ea6a9f842` |
 | src/styles/librarian.css | 13491 | `05e37df8f3335a925641ed229ae1fa4662323e82de8ff48e26eee736f44e337a` |
 | src/styles/one-bit.css | 884 | `99c7b5b6f240c113792155d101fc48df7762b57aec7ba28c69b5f7c6494c4346` |
 | src/styles/orbit.css | 18235 | `05e9f4377c77735074d3c6224f86c102143ab62840aa69d53e2483d1672bf2f4` |
 | src/styles/responsive.css | 7282 | `46b51792df0e5f6d7715c8ea3fc5cf17926b5a1e2f939060048ad0c81874a134` |
-| src/types.ts | 7170 | `6dad49fe40573ab00b18b3607e12c154bf0f064b4dc4e140f07a07c01e37b407` |
+| src/types.ts | 7438 | `32e642947e84f222ee8bdeb9a3eb514d34c31cc06d2a303cafa308b914548748` |
 | src/types/view-transitions.d.ts | 270 | `31941eba1a962e7c2780cf1fab631e6cfd79e2885914ff0a3be5505a3da79107` |
 | tsconfig.json | 524 | `9665597ba397119a137d724b8987ad6584f84a987aef5cd3d481ad52eedda218` |
-| vite.config.ts | 642 | `f610177aea55a1555576549e5b69922543522457a48407f63c9d1339e0516f43` |
+| vite.config.ts | 1229 | `4b93ab9a09b3343d22db8ce0ce68632786a15d6fd1a33f69068ebcf8be69fd3d` |

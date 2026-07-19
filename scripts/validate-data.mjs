@@ -216,6 +216,11 @@ assert(maintenanceStatus.schemaVersion === 1, "maintenance-status.json schemaVer
 assert(maintenanceStatus.privacy === "sanitized", "maintenance-status.json must be explicitly sanitized.");
 assert(/^\d{4}-\d{2}-\d{2}$/.test(maintenanceStatus.snapshotDate ?? ""), "maintenance-status.json needs a YYYY-MM-DD snapshotDate.");
 assert(maintenanceStatus.catalogSkills === skills.length, "maintenance-status.json catalogSkills must match skills.json.");
+assert(maintenanceStatus.publicationHandoff?.productionAuthority === "public-github-main", "maintenance-status.json Production authority must be Public GitHub main.");
+assert(maintenanceStatus.publicationHandoff?.publicRepository === "Lucifer-St/silent-orbit-skills-library", "maintenance-status.json needs the designated Public repository.");
+assert(maintenanceStatus.publicationHandoff?.requiredCheck === "release-gate", "maintenance-status.json needs the release-gate handoff.");
+assert(maintenanceStatus.publicationHandoff?.deployProvider === "netlify", "maintenance-status.json needs the Netlify deploy provider.");
+assert(maintenanceStatus.publicationHandoff?.directPrivateProductionDeploy === false, "maintenance-status.json must forbid direct Private Production deploys.");
 if (flatPublicLayout) {
   assert(Number.isInteger(maintenanceStatus.publicGlobalSkills) && maintenanceStatus.publicGlobalSkills > 0, "maintenance-status.json needs a positive sanitized publicGlobalSkills count.");
 } else {

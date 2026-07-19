@@ -107,6 +107,13 @@ export interface MaintenanceStatusRecord {
   readonly privacy: "sanitized";
   readonly catalogSkills: number;
   readonly publicGlobalSkills: number;
+  readonly publicationHandoff: {
+    readonly productionAuthority: "public-github-main";
+    readonly publicRepository: string;
+    readonly requiredCheck: "release-gate";
+    readonly deployProvider: "netlify";
+    readonly directPrivateProductionDeploy: false;
+  };
   readonly channels: readonly MaintenanceChannelRecord[];
   readonly handoffPrompt: LocalizedText;
 }

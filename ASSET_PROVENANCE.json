@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "d92af51ae8a0cbdcd992085507929d22d15f8f8a",
-  "inputCommitTimestamp": "2026-07-19T06:13:31-04:00",
+  "inputCommit": "98e0d422b707e7a6883f77dfbe44431772a3670c",
+  "inputCommitTimestamp": "2026-07-19T17:21:14-04:00",
   "visualAssetPolicy": "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.",
   "assets": [
     {
       "path": "assets/readme/architecture.svg",
-      "bytes": 3333,
-      "sha256": "1c34b0a54c150dcc83ea40a566eed1eb2c0a2e128481704465392bab0e7303ea",
+      "bytes": 3382,
+      "sha256": "78133db091033f81a0684bfcc893421bbcad02549471722503abc37a0d37607a",
       "origin": "project-readme-visual",
       "source": "Phase 3 project-native README SVG derived from the product's monochrome orbit hierarchy.",
       "license": "Project visual asset policy"
@@ -25,8 +25,8 @@
     },
     {
       "path": "assets/readme/hero.svg",
-      "bytes": 2311,
-      "sha256": "f42d034f7830052a071976c0dd57a0057235b6c9ffc09d633e6bb72833dffd41",
+      "bytes": 2346,
+      "sha256": "6354bf8f38404b75de74f7478ec734409de0bbf719857b72e57be382885433f1",
       "origin": "project-readme-visual",
       "source": "Phase 3 project-native README SVG derived from the product's monochrome orbit hierarchy.",
       "license": "Project visual asset policy"
@@ -76,593 +76,601 @@
       "c2paEmbedded": false
     },
     {
+      "path": "public/assets/branding/favicon.svg",
+      "bytes": 575,
+      "sha256": "59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8",
+      "origin": "project-native-vector",
+      "source": "Project-native one-bit orbit mark created for the Phase 4A public website favicon.",
+      "license": "Project visual asset policy"
+    },
+    {
       "path": "public/assets/cosmos/celestial/01-cratered-planet.png",
       "bytes": 1811,
       "sha256": "fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/02-ringed-planet.png",
       "bytes": 850,
       "sha256": "00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/04-banded-gas-giant.png",
       "bytes": 1638,
       "sha256": "ea74886c5dc9d0757caca9d49b68f8791885d52b2f7057744a8f7cf2bf5f9f1c",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/05-half-lit-moon.png",
       "bytes": 1340,
       "sha256": "edd94b634e7234e500e6e646f0ded51a68ee8f25d2ce8b70eb1fcd4ba04873c6",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/06-fractured-moon.png",
       "bytes": 1768,
       "sha256": "51938db293b75431c391c85bff35d6dcc97d81ed6ffcfd37cdb41bc94641591f",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/07-twin-moons.png",
       "bytes": 1120,
       "sha256": "d31a1425542c062ccfb413ae7944d5c4a47cbb0a4dec8946c8258c279f6c559d",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/08-dust-trail-moon.png",
       "bytes": 405,
       "sha256": "7e73fca9e42579b65f5318f962fdb53040e16a76bea6b9dd365280ae96c097dd",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/09-comet.png",
       "bytes": 651,
       "sha256": "49ab2e89897b43a06a40e13a680177fba7105d7c56422334a2646bf199c25c91",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/10-asteroid-cluster.png",
       "bytes": 1046,
       "sha256": "65836ea0b82d083ca5fa2b748ebefe78f159a35de6c382262fb8e05a3d160f5d",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/11-incomplete-orbital-ring.png",
       "bytes": 481,
       "sha256": "57f6fcaab6b074db23803ccd59e500093e87136d52e8fb3bdcfecb69a4a6de53",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/12-planet-with-moon.png",
       "bytes": 1240,
       "sha256": "961f76abfdf24391f0988cd765f86f7bc58f7c5a91ea4fb4ac769547159f5b47",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/13-dark-corona-star.png",
       "bytes": 1160,
       "sha256": "8ec04b9ed3bb639c220899900143122ebc2b8a8379c40217c81e9fc7dad7944c",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/14-pulsar.png",
       "bytes": 629,
       "sha256": "25bfdedaefc0f700cae13463996d32a0d6bd13504489ca8ce1c04262d640ad65",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/15-nebula-knot.png",
       "bytes": 1172,
       "sha256": "6781d98ab49e2229abb936a623f7d66e6a4a95c5a3ed0a3ca7f20695ebfab8c2",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/celestial/16-quiet-accretion-ring.png",
       "bytes": 857,
       "sha256": "14b80f66b2881dbd9bf8d1c22196a2a4e6b03c83a28b70e3bb08606419424561",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/environments/01-dead-corona-terminal-v01.png",
       "bytes": 429026,
       "sha256": "f66f2e504fc015bb2662b6f1f073312100817123be7cc6bc36f6a39f286c0a21",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/03-orphan-moon-tide-v01.png",
       "bytes": 400104,
       "sha256": "fdd9280eb82116a1bca5d54fbe51ba77f45d5b758c9cfe4b63b8674376b30a61",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/04-spent-comet-archive-v01.png",
       "bytes": 355226,
       "sha256": "38f20b66d8351d3ee5f01ef838832e3efdf5436caa542b9798178e98980e2ef8",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/05-abandoned-listening-array-v01.png",
       "bytes": 841751,
       "sha256": "a4bfc5772ad414817772e9c0cf1e42c002dff1be14c32296cadae4ce70b4dfae",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/06-severed-orbital-elevator-v01.png",
       "bytes": 416713,
       "sha256": "db51f0914f4ede7084029117157895c5b0b7f24a94e779b80e9fd993e4bdabd0",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/07-buried-archive-vault-v01.png",
       "bytes": 452670,
       "sha256": "d9f8e1e1e3aa7e3c01c472d84880f6865d64935f2f5dabbbb2cfff8fa2c6f1bd",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/08-drift-lighthouse-v01.png",
       "bytes": 366253,
       "sha256": "bda86f58af8a58f994b4708f9efe43cd86785228bb1fb1b3edc42c4b1b63b531",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/10-failed-beacon-procession-v01.png",
       "bytes": 349874,
       "sha256": "cf50f135e8a92d523aabeba13a4d92fbdda4b8a89196a63b8f647b5011066cfc",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/11-gravity-lens-ghost-v01.png",
       "bytes": 847351,
       "sha256": "73b88f495ec3a7253873b4466441b569a0cd679a98a69d293194b29167f00d8e",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/15-far-side-signal-garden-v01.png",
       "bytes": 426730,
       "sha256": "fab158117df7c8cfe59ed344ec8611db9874e195d31c91021a78afff9096bf4c",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/16-sleeping-ring-station-v01.png",
       "bytes": 384203,
       "sha256": "0fa1338ce036abf537addc29513ca744a298a0465dbe2e98bfba0bf7ee001f27",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/environments/lost-relay-v01.png",
       "bytes": 838139,
       "sha256": "c976dd3bd2131234053171a66ab42c6495d8ed339ece6c02957913f8ee042cca",
-      "width": 1672,
-      "height": 941,
-      "c2paEmbedded": true,
       "origin": "built-in-imagegen",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1672,
+      "height": 941,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/cosmos/icons/07-external-source.png",
       "bytes": 292,
       "sha256": "6dcd9e9bad40103d149d1fe61879310fa924822600f195f94cc7fa88f98940a4",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/08-verified.png",
       "bytes": 398,
       "sha256": "0ff7f8c584797659689aaa953131e26087801f700ae83b4919d8d154942523bd",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/09-private-local.png",
       "bytes": 386,
       "sha256": "0d1921694e9f63de707caa8d807b96cdfcd465e8b207c8157794c7311f0c320d",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/11-skill-spark.png",
       "bytes": 374,
       "sha256": "0a78a3f854e1779999ea4922fbb93cfa7076f47cea5a9361b7a6bc1c0cd42894",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/14-recorded-outcome.png",
       "bytes": 375,
       "sha256": "c4c3d0b22d64e9973a89a58a45310d8234bc07abae41e40651292bf9d0bc6785",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/15-export.png",
       "bytes": 278,
       "sha256": "5d6d4d0ccd1841411ecd5109e58e45e464b94e968dbd025f0d0d1f5b0c85acb4",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/icons/16-import.png",
       "bytes": 280,
       "sha256": "c4a74d55c538aa2fce61fae0aa581a958463dcf9ad6355de8f750bf81f6dda8b",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/01-observatory-dome.png",
       "bytes": 1804,
       "sha256": "474920282847b1f48479c7a7e0eab84bb661743199284a05cd035e493474a6ff",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/03-archive-beacon.png",
       "bytes": 959,
       "sha256": "f79dbe7d0e2ffdf57fca34a41bd29fc8fd3e364e0ae2f9038fe72efdbc411e1b",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/07-satellite.png",
       "bytes": 1294,
       "sha256": "eb9a845f29258198f4b3d2d8e7893049658e0586b85d3ad42edeecf82a129b56",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/08-deep-space-probe.png",
       "bytes": 1153,
       "sha256": "b0097916823cad6899905319cc37d8b077e6b95191d1b2f0355d63451b438227",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/09-silent-monolith.png",
       "bytes": 879,
       "sha256": "cdcf7e90281bf979ef11620c30723871f43e2fa1063082cf0a28534d7e6c8d06",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/10-incomplete-orbital-gate.png",
       "bytes": 1068,
       "sha256": "7daaf2b042fb60f585c0b99f3c810938e12b4f554809456662ada663f86085ff",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/11-data-vault-capsule.png",
       "bytes": 1204,
       "sha256": "82f34aac6cdd7900858e7e9f2eed1acc3b7b3dfb5f97ca826c155a1f7b84853f",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/15-ruined-telescope.png",
       "bytes": 1712,
       "sha256": "e667f3533ae7cbfe00aa25c7c0b62cdb5cb8c5cfdcbd9c8b815574167f306711",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/relics/16-archive-obelisk.png",
       "bytes": 1284,
       "sha256": "3555ab648b59798691cfd16f47e2a31478871ee11951cd2caa8ddd4d7f60a62f",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/05-transmission-waves.png",
       "bytes": 534,
       "sha256": "4d273b1e292a948b08764b4e4aaf989a5ce0f33caf530ae0405b89bebe365fa2",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/06-beacon-star.png",
       "bytes": 437,
       "sha256": "2c092b98c6447c330cbdfa3cc33c65cb7aa7aef0a507bbba13b842bdd46d49c2",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/08-gravity-lensing-arc.png",
       "bytes": 328,
       "sha256": "4c7c24ee7ee3e23edec04fe2883520b36f1298e0df86f0de5743e16313b0989d",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/11-signal-loss-mark.png",
       "bytes": 379,
       "sha256": "6d46a4807174eff2d26d3e8647368a01365a96f216ce2d5e29742c88869e38b1",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/12-parallax-cluster.png",
       "bytes": 377,
       "sha256": "7cef417f9c50fd305099114dda5eb1c3be5ed99d6e579ea323eca1704f501f24",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/cosmos/signals/16-fading-data-echo.png",
       "bytes": 310,
       "sha256": "6586c240b57c73b6aa3e13101dac3dca0754760d376f3f1cba7cc00545d2806a",
-      "width": 128,
-      "height": 128,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen-plus-local-one-bit-processing",
       "source": "Project art provenance record and verified runtime selection.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 128,
+      "height": 128,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/galaxy-horizon-drift-v3.png",
       "bytes": 791339,
       "sha256": "d7178b2819782310498bbe363c6ecd787a7a792bba0c64d2e758b43d479bb1a9",
-      "width": 1586,
-      "height": 992,
-      "c2paEmbedded": true,
       "origin": "curated-project-visual",
       "source": "Project-curated runtime horizon visual; retained under the project visual asset policy.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 1586,
+      "height": 992,
+      "c2paEmbedded": true
     },
     {
       "path": "public/assets/system-ecliptic-a.png",
       "bytes": 260,
       "sha256": "c691b61d6002d40961f6c750d02374b716b192cd4e3ef5ddfdb1d79033d1950d",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen",
       "source": "Project ImageGen generation, then manually cropped and thresholded to a one-bit 64px system marker.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/system-ecliptic-b.png",
       "bytes": 217,
       "sha256": "605e52962215f2fddfa103608035b244e8d0791c5aa34b5fe3b3be3002f50f68",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen",
       "source": "Project ImageGen generation, then manually cropped and thresholded to a one-bit 64px system marker.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
       "path": "public/assets/system-ecliptic-c.png",
       "bytes": 229,
       "sha256": "a2e160a31670c2e37c6c3ba580e1f086f72390a23a4c55964041f17148f72e91",
-      "width": 64,
-      "height": 64,
-      "c2paEmbedded": false,
       "origin": "built-in-imagegen",
       "source": "Project ImageGen generation, then manually cropped and thresholded to a one-bit 64px system marker.",
-      "license": "Project visual asset policy"
+      "license": "Project visual asset policy",
+      "width": 64,
+      "height": 64,
+      "c2paEmbedded": false
     },
     {
-      "path": "public/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2",
-      "bytes": 712624,
-      "sha256": "7969256b7a754de51b5bc2a96dec68c44bcc1208dcc4f642bf995e5b0d3e48c3",
-      "origin": "Fusion Pixel Font 2026.07.01",
+      "path": "public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2",
+      "bytes": 22344,
+      "sha256": "3b265cb64eaba39252704a290aac551fa7884bea6af57c97ac153a4c46c8dc09",
+      "origin": "Fusion Pixel Font 2026.07.01 web subset",
       "source": "https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.07.01",
       "license": "SIL Open Font License 1.1"
     },
@@ -683,10 +691,10 @@
       "license": "SIL Open Font License 1.1"
     },
     {
-      "path": "public/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf",
-      "bytes": 25537492,
-      "sha256": "9bf0d0379d1e95be1b6f558a5eba994968cfa5eb13b6cf826393aeedfac80aaa",
-      "origin": "Sarasa Gothic v1.0.40",
+      "path": "public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2",
+      "bytes": 138904,
+      "sha256": "63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4",
+      "origin": "Sarasa Gothic v1.0.40 web subset",
       "source": "https://github.com/be5invis/Sarasa-Gothic/releases/tag/v1.0.40",
       "license": "SIL Open Font License 1.1"
     }

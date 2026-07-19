@@ -28,7 +28,16 @@ test("public data removes local-only Skills and every dangling reference", () =>
       { source: { type: "skill", id: "public" }, target: { type: "category", id: "A" } },
     ],
     skillDetails: [{ skill: "private" }, { skill: "public" }],
-    maintenanceStatus: { privacy: "sanitized" },
+    maintenanceStatus: {
+      privacy: "sanitized",
+      publicationHandoff: {
+        productionAuthority: "public-github-main",
+        publicRepository: "Lucifer-St/silent-orbit-skills-library",
+        requiredCheck: "release-gate",
+        deployProvider: "netlify",
+        directPrivateProductionDeploy: false,
+      },
+    },
   });
 
   assert.deepEqual(result.skills.map((skill) => skill.name), ["public"]);
@@ -40,4 +49,11 @@ test("public data removes local-only Skills and every dangling reference", () =>
   assert.deepEqual(result.starredSkills, []);
   assert.equal(result.relations.length, 1);
   assert.deepEqual(result.skillDetails.map((detail) => detail.skill), ["public"]);
+  assert.deepEqual(result.maintenanceStatus.publicationHandoff, {
+    productionAuthority: "public-github-main",
+    publicRepository: "Lucifer-St/silent-orbit-skills-library",
+    requiredCheck: "release-gate",
+    deployProvider: "netlify",
+    directPrivateProductionDeploy: false,
+  });
 });

@@ -158,11 +158,52 @@
 
 .maintenance-summary,
 .maintenance-channels,
+.maintenance-publication,
 .maintenance-handoff {
   border: var(--one-pixel);
   display: grid;
   gap: 16px;
   padding: 16px;
+}
+
+.publication-chain {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.publication-chain li {
+  border: var(--one-pixel);
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.publication-chain li:not(:last-child)::after {
+  content: "→";
+  margin-left: 6px;
+}
+
+.publication-authority {
+  font-family: var(--font-mono);
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 720px) {
+  .publication-chain {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-chain li:not(:last-child)::after {
+    content: "↓";
+  }
 }
 
 .maintenance-metrics,

@@ -132,6 +132,13 @@ export function buildPublicReleaseData(input) {
       privacy: "sanitized",
       catalogSkills: skills.length,
       publicGlobalSkills: filtered.maintenanceStatus.publicGlobalSkills,
+      publicationHandoff: pickDefined(filtered.maintenanceStatus.publicationHandoff ?? {}, [
+        "productionAuthority",
+        "publicRepository",
+        "requiredCheck",
+        "deployProvider",
+        "directPrivateProductionDeploy",
+      ]),
       channels: (filtered.maintenanceStatus.channels ?? []).map((channel) => pickDefined(channel, [
         "id",
         "state",

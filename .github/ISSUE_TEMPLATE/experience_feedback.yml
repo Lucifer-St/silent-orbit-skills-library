@@ -1,0 +1,62 @@
+name: Experience Feedback
+description: Share confusion, delight, and future ideas from the Silent Orbit public beta.
+title: "[Beta experience]: "
+labels: ["experience-feedback", "public-beta"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for testing. Do not include secrets, private prompts, private memories, machine paths, or account information."
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, device, viewport, and language tested
+    validations:
+      required: true
+  - type: textarea
+    id: understanding
+    attributes:
+      label: In one sentence, what is Silent Orbit?
+    validations:
+      required: true
+  - type: textarea
+    id: hierarchy
+    attributes:
+      label: How did you understand System, Library, and Skill?
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: What was most confusing?
+    validations:
+      required: true
+  - type: textarea
+    id: liked
+    attributes:
+      label: What did you like most?
+    validations:
+      required: true
+  - type: textarea
+    id: click
+    attributes:
+      label: What did you most want to click?
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Classification
+      options:
+        - "P1 — important function was hard to find or mobile use was blocked"
+        - "P2 — non-blocking detail, copy, or visual issue"
+        - "Idea — future suggestion"
+    validations:
+      required: true
+  - type: checkboxes
+    id: paths
+    attributes:
+      label: Tasks completed
+      options:
+        - label: Searched for a concrete goal and opened a Skill.
+        - label: Switched between English and Chinese.
+        - label: Completed a core path on mobile or a narrow viewport.

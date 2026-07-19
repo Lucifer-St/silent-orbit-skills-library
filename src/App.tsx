@@ -603,6 +603,24 @@ function MaintenancePage() {
         </div>
       </section>
 
+      <section className="maintenance-publication" aria-labelledby="maintenance-publication-title">
+        <div className="section-heading">
+          <h2 id="maintenance-publication-title">{text("唯一正式发布链", "Single Production Chain")}</h2>
+          <p>{text("Private source 不直接覆盖 Production", "Private source never deploys directly to Production")}</p>
+        </div>
+        <ol className="publication-chain" aria-label={text("正式发布顺序", "Production publication order")}>
+          <li>PRIVATE SOURCE</li>
+          <li>PUBLIC EXPORT</li>
+          <li>GITHUB MAIN</li>
+          <li>RELEASE-GATE</li>
+          <li>NETLIFY</li>
+        </ol>
+        <p className="publication-authority">
+          {text("生产权威", "Production authority")}: <strong>{maintenanceStatus.publicationHandoff.productionAuthority}</strong>
+          {" · "}{maintenanceStatus.publicationHandoff.publicRepository}
+        </p>
+      </section>
+
       <section className="maintenance-handoff" aria-labelledby="maintenance-handoff-title">
         <div className="maintenance-handoff-copy">
           <TerminalSquare size={20} />

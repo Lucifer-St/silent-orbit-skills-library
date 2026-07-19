@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report a reproducible P0, P1, or P2 problem in the Silent Orbit public beta.
+title: "[Bug]: "
+labels: ["bug", "public-beta"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for testing. Remove secrets, private prompts, private memories, machine paths, and account information before submitting."
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - "P0 — privacy, availability, public data, or core-flow failure"
+        - "P1 — discovery, mobile usability, or materially misleading behavior"
+        - "P2 — non-blocking detail, copy, or visual issue"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, version, device, and viewport
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL tested
+      placeholder: https://silent-orbit-skills-library.netlify.app/
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Open…\n2. Search…\n3. Observe…"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and privacy-safe evidence
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed secrets, private prompts, private memories, machine paths, and account information.
+          required: true

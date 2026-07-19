@@ -1,6 +1,6 @@
 {
   "name": "silent-orbit-skills-library",
-  "version": "0.4.0",
+  "version": "0.9.0-beta.1",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,8 @@
     "test:sync": "node --test scripts/tests/sync-data.test.mjs",
     "test:public-data": "node --test scripts/tests/public-data.test.mjs",
     "test:maintenance": "node --test scripts/tests/public-maintenance.test.mjs",
-    "test:mvp": "npm run test:orbit && npm run test:search && npm run test:outcomes && npm run test:fonts && npm run test:metadata && npm run test:sync && npm run test:public-data && npm run test:maintenance",
+    "test:site-release": "node --test scripts/tests/site-release.test.mjs",
+    "test:mvp": "npm run test:orbit && npm run test:search && npm run test:outcomes && npm run test:fonts && npm run test:metadata && npm run test:sync && npm run test:public-data && npm run test:maintenance && npm run test:site-release",
     "validate:assets": "node scripts/validate-public-assets.mjs --root .",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:public-release": "node scripts/validate-public-release.mjs --root .",

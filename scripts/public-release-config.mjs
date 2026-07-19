@@ -14,6 +14,7 @@ export const dataFileMap = Object.freeze({
 
 export const publicSourceFiles = Object.freeze([
   "index.html",
+  "netlify.toml",
   "package-lock.json",
   "tsconfig.json",
   "vite.config.ts",
@@ -37,10 +38,15 @@ export const publicScriptFiles = Object.freeze([
   "tests/public-data.test.mjs",
   "tests/public-maintenance.test.mjs",
   "tests/skill-search.test.mjs",
+  "tests/site-release.test.mjs",
   "tests/sync-data.test.mjs",
 ]);
 
 export const extraVisualAssetProvenance = Object.freeze({
+  "public/assets/branding/favicon.svg": {
+    origin: "project-native-vector",
+    source: "Project-native one-bit orbit mark created for the Phase 4A public website favicon.",
+  },
   "public/assets/galaxy-horizon-drift-v3.png": {
     origin: "curated-project-visual",
     source: "Project-curated runtime horizon visual; retained under the project visual asset policy.",
@@ -60,8 +66,8 @@ export const extraVisualAssetProvenance = Object.freeze({
 });
 
 export const fontProvenance = Object.freeze({
-  "public/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2": {
-    origin: "Fusion Pixel Font 2026.07.01",
+  "public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2": {
+    origin: "Fusion Pixel Font 2026.07.01 web subset",
     source: "https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.07.01",
     license: "SIL Open Font License 1.1",
   },
@@ -70,8 +76,8 @@ export const fontProvenance = Object.freeze({
     source: "https://raw.githubusercontent.com/TakWolf/fusion-pixel-font/2026.07.01/LICENSE-OFL",
     license: "SIL Open Font License 1.1",
   },
-  "public/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf": {
-    origin: "Sarasa Gothic v1.0.40",
+  "public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2": {
+    origin: "Sarasa Gothic v1.0.40 web subset",
     source: "https://github.com/be5invis/Sarasa-Gothic/releases/tag/v1.0.40",
     license: "SIL Open Font License 1.1",
   },

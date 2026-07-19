@@ -19,6 +19,8 @@ const generatedRoots = new Set([
 ]);
 const requiredFiles = [
   ".github/workflows/public-release-gate.yml",
+  ".github/ISSUE_TEMPLATE/bug_report.yml",
+  ".github/ISSUE_TEMPLATE/experience_feedback.yml",
   ".gitattributes",
   ".gitignore",
   ".node-version",
@@ -31,6 +33,8 @@ const requiredFiles = [
   "assets/readme/social-preview.png",
   "ASSET_LICENSE.md",
   "ASSET_PROVENANCE.json",
+  "BETA_FEEDBACK_TEMPLATE.md",
+  "BETA_TESTING.md",
   "CONTRIBUTING.md",
   "LICENSE",
   "PHASE2_COMPLETION_RECEIPT.md",
@@ -39,13 +43,17 @@ const requiredFiles = [
   "PUBLIC_RELEASE_MANIFEST.md",
   "README.md",
   "README.zh-CN.md",
+  "RELEASE_NOTES_v0.9.0-beta.1.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "index.html",
+  "netlify.toml",
   "package-lock.json",
   "package.json",
   "tsconfig.json",
   "vite.config.ts",
+  "public/robots.txt",
+  "public/sitemap.xml",
 ];
 const textExtensions = new Set([
   "", ".css", ".html", ".js", ".json", ".md", ".mjs", ".toml", ".ts", ".tsx", ".txt", ".yaml", ".yml",

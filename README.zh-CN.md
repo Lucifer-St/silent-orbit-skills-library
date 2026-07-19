@@ -72,6 +72,14 @@ npm run dev
 
 生产构建输出到 `dist/`。
 
+## Public Beta
+
+- [Beta 测试任务](./BETA_TESTING.md)
+- [Beta 反馈模板](./BETA_FEEDBACK_TEMPLATE.md)
+- GitHub 已提供可复现 Bug 与体验反馈的 Issue Forms。
+
+Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍是外部 Beta 覆盖项。
+
 ## 验证发布包
 
 ```powershell

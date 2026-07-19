@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://silent-orbit-skills-library.netlify.app/sitemap.xml
