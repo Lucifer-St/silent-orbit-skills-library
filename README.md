@@ -72,6 +72,14 @@ npm run dev
 
 The development server runs locally. The production build is written to `dist/`.
 
+## Public beta
+
+- [Beta testing guide](./BETA_TESTING.md)
+- [Beta feedback template](./BETA_FEEDBACK_TEMPLATE.md)
+- GitHub issue forms are available for reproducible bugs and experience feedback.
+
+The public beta uses no third-party analytics, cookies, or behavior tracking. Safari remains an external beta coverage item.
+
 ## Verify the release
 
 ```powershell

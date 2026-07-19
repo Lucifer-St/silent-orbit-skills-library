@@ -19,5 +19,10 @@ test("public maintenance status is a sanitized handoff surface", () => {
   assert.ok(status.channels.length > 0);
   assert.equal(typeof status.handoffPrompt?.["zh-CN"], "string");
   assert.equal(typeof status.handoffPrompt?.["en-US"], "string");
+  assert.equal(status.publicationHandoff?.productionAuthority, "public-github-main");
+  assert.equal(status.publicationHandoff?.publicRepository, "Lucifer-St/silent-orbit-skills-library");
+  assert.equal(status.publicationHandoff?.requiredCheck, "release-gate");
+  assert.equal(status.publicationHandoff?.deployProvider, "netlify");
+  assert.equal(status.publicationHandoff?.directPrivateProductionDeploy, false);
   assert.doesNotMatch(serialized, /[A-Za-z]:\\Users\\|\/Users\/|"task_count"\s*:|"visibility"\s*:\s*"local-only"/);
 });

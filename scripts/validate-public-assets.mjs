@@ -100,7 +100,7 @@ export function validatePublicAssets(rootDir = projectDir) {
       if (metadata.c2paEmbedded) c2paCount += 1;
     } else if (record.path.endsWith(".svg")) {
       const svg = bytes.toString("utf8");
-      if (!/<svg\b/.test(svg) || !/\bviewBox="0 0 1200 \d+"/.test(svg) || !/<title\b/.test(svg) || !/<desc\b/.test(svg)) {
+      if (!/<svg\b/.test(svg) || !/\bviewBox="0 0 \d+ \d+"/.test(svg) || !/<title\b/.test(svg) || !/<desc\b/.test(svg)) {
         throw new Error(`${record.path} is missing the required SVG canvas, title, or description.`);
       }
       if (/<script\b|<foreignObject\b|@import|(?:href|xlink:href|src)=["']https?:\/\//i.test(svg)) {

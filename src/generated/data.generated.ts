@@ -3094,6 +3094,13 @@ export const appData = {
     "privacy": "sanitized",
     "catalogSkills": 142,
     "publicGlobalSkills": 22,
+    "publicationHandoff": {
+      "productionAuthority": "public-github-main",
+      "publicRepository": "Lucifer-St/silent-orbit-skills-library",
+      "requiredCheck": "release-gate",
+      "deployProvider": "netlify",
+      "directPrivateProductionDeploy": false
+    },
     "channels": [
       {
         "id": "source-managed-global",

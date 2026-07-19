@@ -1,13 +1,13 @@
 @font-face {
   font-family: "AgentPixel";
-  src: url("/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2") format("woff2");
+  src: url("/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "AgentReading";
-  src: url("/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf") format("truetype");
+  src: url("/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
 }

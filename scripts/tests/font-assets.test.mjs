@@ -10,8 +10,8 @@ const appRoot = path.resolve(
 );
 
 const fontAssets = [
-  "public/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2",
-  "public/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf",
+  "public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2",
+  "public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2",
 ];
 
 const licenseAssets = [
@@ -26,10 +26,17 @@ test("self-hosts the required font and license assets", async () => {
   }
 });
 
-test("font binaries are larger than 100 KB", async () => {
+test("font subsets contain more than placeholder payloads", async () => {
   for (const relativePath of fontAssets) {
     const asset = await stat(path.join(appRoot, relativePath));
-    assert.ok(asset.size > 100 * 1024, `${relativePath} is unexpectedly small`);
+    assert.ok(asset.size > 10 * 1024, `${relativePath} is unexpectedly small`);
+  }
+});
+
+test("the web fonts are bounded subsets rather than full source fonts", async () => {
+  for (const relativePath of fontAssets) {
+    const subset = await stat(path.join(appRoot, relativePath));
+    assert.ok(subset.size < 5 * 1024 * 1024, `${relativePath} must remain below 5 MB`);
   }
 });
 
