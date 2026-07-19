@@ -295,9 +295,9 @@ function assertGitAttributesContract(rootDir) {
   const attributes = fs.readFileSync(path.join(rootDir, ".gitattributes"), "utf8");
   const requiredRules = [
     "* text=auto eol=lf",
-    "*.png binary",
-    "*.ttf binary",
-    "*.woff2 binary",
+    "assets/readme/** binary",
+    "public/assets/** binary",
+    "public/fonts/** binary",
   ];
   for (const rule of requiredRules) {
     if (!attributes.split(/\r?\n/).includes(rule)) {

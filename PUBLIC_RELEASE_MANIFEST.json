@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "80d18e8769d8b51a60eb0cfe324365d7c0cd7d39",
-  "inputCommitTimestamp": "2026-07-19T05:20:10-04:00",
+  "inputCommit": "bd3176d0ffb8695aa628eff4ffbb3d840fee569e",
+  "inputCommitTimestamp": "2026-07-19T05:25:54-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "76579b88647c41e6cb22cd5c9768b608ad6e13a8b807e6e90dc32e8d12ff1736",
+  "releaseDigest": "7809b867da5e05a55ba7153f3d36d58b9bd4c0aa30dc4912a2b5c1354a8e6899",
   "fileCount": 176,
-  "totalBytes": 35043978,
+  "totalBytes": 35044038,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -14,8 +14,8 @@
   "files": [
     {
       "path": ".gitattributes",
-      "bytes": 60,
-      "sha256": "029df443822ea757f9007414a69274f704736cf1c18f3baabf6e3a81f0b247b9"
+      "bytes": 90,
+      "sha256": "600a53b758fef81512d7b71bf00993e6302dfb87a7459025d135fe1271d2bef4"
     },
     {
       "path": ".github/workflows/public-release-gate.yml",
@@ -40,7 +40,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 28499,
-      "sha256": "55f4080ec03d73f4db5c29709535c30d7649731a464c33830bacc762953a6b17"
+      "sha256": "48309f3897a5481b08d81d91e2ae310a69a4ffb89f182105223671fa1065ace8"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -55,7 +55,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "01511031142b0b847adc9c475c7b1b92e69acb8d3ea56e9efb6d243cd101d0d4"
+      "sha256": "26d8f4249032357ead3a0a62bc40e2d3160cbd39ee74b248ac38767c74599d44"
     },
     {
       "path": "README.md",
@@ -589,8 +589,8 @@
     },
     {
       "path": "scripts/validate-public-release.mjs",
-      "bytes": 16344,
-      "sha256": "5b41e3ae3804bf31f137deff6a1a0ff47fd16b7d0fa28f4d2d41e1f64a6087f9"
+      "bytes": 16374,
+      "sha256": "b1bc535be1602271df9c91f5eca95dd3e114bc480660c1ba4a0a17b292c741e1"
     },
     {
       "path": "scripts/validate-readme.mjs",
