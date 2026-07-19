@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "bd3176d0ffb8695aa628eff4ffbb3d840fee569e",
-  "inputCommitTimestamp": "2026-07-19T05:25:54-04:00",
+  "inputCommit": "5e0cb80270fde2d077bb81fb0b8df7ea74425393",
+  "inputCommitTimestamp": "2026-07-19T05:49:28-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "7809b867da5e05a55ba7153f3d36d58b9bd4c0aa30dc4912a2b5c1354a8e6899",
+  "releaseDigest": "7d280a6287479fd64d894db71237ed885e3f0f9736cdedeb65d0792760426b00",
   "fileCount": 176,
-  "totalBytes": 35044038,
+  "totalBytes": 35044107,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -40,7 +40,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 28499,
-      "sha256": "48309f3897a5481b08d81d91e2ae310a69a4ffb89f182105223671fa1065ace8"
+      "sha256": "08da5aa8e48f16dbc3cb73133b38af3660e5715b772ce9cdb829ce691ffbe299"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -55,7 +55,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "26d8f4249032357ead3a0a62bc40e2d3160cbd39ee74b248ac38767c74599d44"
+      "sha256": "e43538767284b48ed2d03a73aef19f52c1147ae4b9df5181fb5a527ac2e65b5d"
     },
     {
       "path": "README.md",
@@ -589,8 +589,8 @@
     },
     {
       "path": "scripts/validate-public-release.mjs",
-      "bytes": 16374,
-      "sha256": "b1bc535be1602271df9c91f5eca95dd3e114bc480660c1ba4a0a17b292c741e1"
+      "bytes": 16443,
+      "sha256": "de8122b6951208fd7163df7555d232fb349283ac7c25e74a7ede0f631a5db73d"
     },
     {
       "path": "scripts/validate-readme.mjs",

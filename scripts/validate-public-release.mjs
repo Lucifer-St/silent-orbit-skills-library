@@ -69,6 +69,7 @@ function walk(rootDir, relativeDir = "", { includeGenerated = false, repositoryA
       if (entry.isSymbolicLink()) throw new Error(`Symbolic links are forbidden: ${relativePath}`);
       if (entry.isDirectory()) {
         if (!relativeDir && repositoryAware && entry.name === ".git") return [];
+        if (!relativeDir && entry.name === "node_modules") return [];
         if (!includeGenerated && !relativeDir && generatedRoots.has(entry.name)) return [];
         return walk(rootDir, relativePath, { includeGenerated, repositoryAware });
       }
