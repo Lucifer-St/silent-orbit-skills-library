@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `98e0d422b707e7a6883f77dfbe44431772a3670c`
-- Input commit timestamp: `2026-07-19T17:21:14-04:00`
+- Input commit: `10f294743982682e7260bd969301b137f8429d74`
+- Input commit timestamp: `2026-07-19T18:05:30-04:00`
 - Payload files: 186
 - Payload bytes: 8965928
-- Canonical SHA-256 release digest: `1724f11f2eb837ba8f294e5702ec0f5eca99518d5ed21b534e651c090bf7d252`
+- Canonical SHA-256 release digest: `4f0866cf9bda320407fefe01b061b979f38b80033afd7afc0d2915de4fa9a53e`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,12 +17,12 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28893 | `3621d269097f84024b6eff3c0a6488fab47e227a0a59721bb5d06356539e6bbb` |
+| ASSET_PROVENANCE.json | 28893 | `99273c851d53e52aa53388b8897563a8afd4743daa47d8238f0398b0a8ec6fae` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `6f4e3049e0fbb33cc0d934f00a70956e7529c0143e3134f4e5fefc59528007f6` |
+| PRIVACY_AUDIT.md | 615 | `bfff01631c55c206d14056f53e16e40eb4aba0bb05cb96e0747156fd09171808` |
 | README.md | 5373 | `7413c9d3ad2653d2b868179eb84e22ba1da833d97b4a577e5782f03374ae8438` |
 | README.zh-CN.md | 4937 | `8ba1668caf184cc4c02c835c3072d4eb1bda335b1889c1e9a6970a7ebf256768` |
 | RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
@@ -45,7 +45,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
-| netlify.toml | 1374 | `2f61be7e545ea6fa80cc9dfa50bac85cc5f9940605053fe7472dc212ceaed82d` |
+| netlify.toml | 1374 | `7f62629ada55e2d98bbb9232cca49e43be6a391f10f264009bc0c33817fc434e` |
 | package-lock.json | 59569 | `5ec509cac2c74c16102627af405df9f17b55c2272501f307eaa5f551a070add9` |
 | package.json | 2101 | `c079d4fd415e4c9a3ad2208100d0a804a697c4bd30aac4e8d2be4f877e4d7f39` |
 | public/assets/branding/favicon.svg | 575 | `59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8` |

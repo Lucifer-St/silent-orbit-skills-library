@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "98e0d422b707e7a6883f77dfbe44431772a3670c",
-  "inputCommitTimestamp": "2026-07-19T17:21:14-04:00",
+  "inputCommit": "10f294743982682e7260bd969301b137f8429d74",
+  "inputCommitTimestamp": "2026-07-19T18:05:30-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "1724f11f2eb837ba8f294e5702ec0f5eca99518d5ed21b534e651c090bf7d252",
+  "releaseDigest": "4f0866cf9bda320407fefe01b061b979f38b80033afd7afc0d2915de4fa9a53e",
   "fileCount": 186,
   "totalBytes": 8965928,
   "excludedControlFiles": [
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 28893,
-      "sha256": "3621d269097f84024b6eff3c0a6488fab47e227a0a59721bb5d06356539e6bbb"
+      "sha256": "99273c851d53e52aa53388b8897563a8afd4743daa47d8238f0398b0a8ec6fae"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -75,7 +75,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "6f4e3049e0fbb33cc0d934f00a70956e7529c0143e3134f4e5fefc59528007f6"
+      "sha256": "bfff01631c55c206d14056f53e16e40eb4aba0bb05cb96e0747156fd09171808"
     },
     {
       "path": "README.md",
@@ -190,7 +190,7 @@
     {
       "path": "netlify.toml",
       "bytes": 1374,
-      "sha256": "2f61be7e545ea6fa80cc9dfa50bac85cc5f9940605053fe7472dc212ceaed82d"
+      "sha256": "7f62629ada55e2d98bbb9232cca49e43be6a391f10f264009bc0c33817fc434e"
     },
     {
       "path": "package-lock.json",
