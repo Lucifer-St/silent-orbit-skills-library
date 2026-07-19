@@ -1,0 +1,41 @@
+{
+  "name": "silent-orbit-skills-library",
+  "version": "0.4.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "sync:data": "node scripts/sync-data.mjs",
+    "test:orbit": "node --test scripts/tests/orbit-layout.test.mjs",
+    "test:outcomes": "node --test scripts/tests/outcome-policy.test.mjs",
+    "test:search": "node --test scripts/tests/skill-search.test.mjs",
+    "test:fonts": "node --test scripts/tests/font-assets.test.mjs",
+    "test:metadata": "node --test scripts/tests/i18n-metadata.test.mjs",
+    "test:sync": "node --test scripts/tests/sync-data.test.mjs",
+    "test:public-data": "node --test scripts/tests/public-data.test.mjs",
+    "test:maintenance": "node --test scripts/tests/public-maintenance.test.mjs",
+    "test:mvp": "npm run test:orbit && npm run test:search && npm run test:outcomes && npm run test:fonts && npm run test:metadata && npm run test:sync && npm run test:public-data && npm run test:maintenance",
+    "validate:assets": "node scripts/validate-public-assets.mjs --root .",
+    "validate:data": "node scripts/validate-data.mjs",
+    "validate:public-release": "node scripts/validate-public-release.mjs --root .",
+    "validate:public-repository": "node scripts/validate-public-release.mjs --root . --repository-aware",
+    "validate:readme": "node scripts/validate-readme.mjs --root .",
+    "smoke:ui": "npm run build && node scripts/smoke-ui.mjs",
+    "qa:visual": "npm run build && node scripts/capture-visual-qa.mjs",
+    "dev": "npm run validate:data && npm run sync:data && vite --host 127.0.0.1",
+    "build": "npm run validate:data && npm run sync:data && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.0"
+  }
+}

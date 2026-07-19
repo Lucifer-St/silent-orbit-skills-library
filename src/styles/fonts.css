@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "AgentPixel";
+  src: url("/fonts/fusion-pixel/fusion-pixel-12px-proportional.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "AgentReading";
+  src: url("/fonts/sarasa-term-sc/sarasa-term-sc-regular.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400;
+}
+
+:root {
+  --font-pixel: "AgentPixel", "Microsoft YaHei UI", sans-serif;
+  --font-reading: "AgentReading", "Microsoft YaHei UI", sans-serif;
+  --font-display: var(--font-pixel);
+}
+
+[data-pixel-label],
+.pixel-label,
+.console-brand,
+.topnav,
+button,
+input,
+select {
+  font-family: var(--font-pixel);
+}
+
+.page-header h1,
+.section-heading h2,
+.catalog-category-copy strong,
+.function-rail-item strong,
+.drawer h2,
+.drawer h3,
+.history-empty strong,
+.outcome-composer h2 {
+  font-family: var(--font-display);
+  font-synthesis: none;
+}
+
+p,
+.skill-description,
+.skill-row-desc,
+.inspector-copy,
+.outcome-note {
+  font-family: var(--font-reading);
+}
+
+:lang(zh-CN) {
+  letter-spacing: 0;
+}
+
+:lang(zh-CN) .page-header h1,
+:lang(zh-CN) .section-heading h2,
+:lang(zh-CN) .drawer h2,
+:lang(zh-CN) .drawer h3 {
+  line-height: 1.32;
+}

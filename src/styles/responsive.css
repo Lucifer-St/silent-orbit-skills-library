@@ -1,0 +1,341 @@
+.orbit-mobile-context-nav {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .console-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .function-rail {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: var(--one-pixel);
+  }
+
+  .console-home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .silent-orbit-portal {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 620px) {
+  .console-topbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .agent-console:not(.is-librarian-home) .topnav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .agent-console:not(.is-librarian-home) .nav-button {
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 6px;
+  }
+
+  .agent-console:not(.is-librarian-home) .language-toggle {
+    min-width: 0;
+  }
+
+  [data-page="private"] > .skill-list .skill-row {
+    grid-template-columns: 1fr;
+  }
+
+  .agent-console .console-brand,
+  .agent-console .nav-button,
+  .agent-console .ghost-button,
+  .agent-console .toggle-button,
+  .agent-console .primary-button,
+  .agent-console .function-rail-item,
+  .agent-console .command-search input,
+  .agent-console .command-filter-row select {
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .function-rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .function-rail-item {
+    flex: 0 0 190px;
+    min-width: 190px;
+    scroll-snap-align: start;
+  }
+
+  .console-workspace {
+    padding: 10px;
+  }
+
+  .command-filter-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .standalone-skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .standalone-skill-card {
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .silent-orbit-portal {
+    min-height: 260px;
+  }
+
+  .celestial-system {
+    min-width: 54px;
+    padding-inline: 2px;
+  }
+
+  .celestial-system strong,
+  .celestial-system small {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .celestial-system[data-active="true"] strong,
+  .celestial-system[data-active="true"] small,
+  .celestial-system:hover strong,
+  .celestial-system:hover small,
+  .celestial-system:focus-visible strong,
+  .celestial-system:focus-visible small {
+    opacity: 1;
+  }
+
+  .silent-orbit-page[data-view-mode="category"] .celestial-system[data-active="true"] .system-copy {
+    margin-top: 48px;
+  }
+
+  .silent-orbit-page[data-view-mode="library"] .celestial-system[data-active="true"] {
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    padding: 0;
+    background: transparent;
+    color: var(--signal);
+  }
+
+  .silent-orbit-page[data-view-mode="library"] .celestial-system[data-active="true"] strong,
+  .silent-orbit-page[data-view-mode="library"] .celestial-system[data-active="true"] small {
+    display: none;
+  }
+
+  .skill-asteroid {
+    left: var(--mobile-skill-left) !important;
+    top: var(--mobile-skill-top) !important;
+  }
+
+  .library-moon,
+  .skill-asteroid {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  .library-moon:not(:hover):not(:focus-visible):not([aria-pressed="true"]),
+  .skill-asteroid:not(:hover):not(:focus-visible) {
+    width: calc(44.5px / var(--orbit-scale));
+    min-width: calc(44.5px / var(--orbit-scale));
+    height: calc(44.5px / var(--orbit-scale));
+    min-height: calc(44.5px / var(--orbit-scale));
+  }
+
+  .silent-orbit-page[data-view-mode="library"]
+    .library-moon:not([aria-pressed="true"]) {
+    display: none;
+  }
+
+  .silent-orbit-page[data-view-mode="category"]
+    .celestial-system:not([data-active="true"]) {
+    display: none;
+  }
+
+  .silent-orbit-page[data-view-mode="library"] .celestial-system,
+  .silent-orbit-page[data-view-mode="search"] .celestial-system {
+    display: none;
+  }
+
+  .orbit-mobile-context-nav {
+    position: absolute;
+    inset: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) auto max(8px, env(safe-area-inset-left));
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    background: var(--void);
+    scrollbar-width: thin;
+  }
+
+  .orbit-mobile-context-nav button {
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: var(--one-pixel);
+    border-radius: 0;
+    background: var(--void);
+    color: var(--signal);
+    padding: 8px 10px;
+    font-family: var(--font-pixel);
+    white-space: nowrap;
+  }
+
+  .orbit-mobile-context-nav button small {
+    color: inherit;
+    font: inherit;
+    font-size: 9px;
+  }
+
+  .orbit-mobile-context-nav button[aria-current="page"] {
+    border-style: solid;
+    background: var(--void);
+    color: var(--signal);
+    outline: 1px dashed var(--signal);
+    outline-offset: -5px;
+  }
+
+  .library-moon {
+    border-color: transparent;
+  }
+
+  .library-moon,
+  .skill-asteroid {
+    display: grid;
+    place-items: center;
+    border: 0;
+  }
+
+  .system-cosmos-asset,
+  .library-moon .library-cosmos-asset,
+  .library-moon .moon-copy,
+  .skill-asteroid .skill-cosmos-asset,
+  .skill-asteroid .asteroid-label,
+  .orbit-focus-frame,
+  .orbit-relic-landmark {
+    display: none;
+  }
+
+  .celestial-system::before {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    transform: translateX(-50%);
+    background: currentColor;
+    content: "";
+  }
+
+  .library-moon::before,
+  .skill-asteroid::before {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: currentColor;
+    content: "";
+  }
+
+  .skill-asteroid:hover::before,
+  .skill-asteroid:focus-visible::before {
+    display: none;
+  }
+
+  .library-moon[aria-pressed="true"]::before {
+    width: 7px;
+    height: 7px;
+    outline: 1px dotted var(--signal);
+    outline-offset: 5px;
+  }
+
+  .library-moon[aria-pressed="true"] {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .library-moon:hover,
+  .library-moon:focus-visible,
+  .library-moon[aria-pressed="true"],
+  .skill-asteroid:hover,
+  .skill-asteroid:focus-visible {
+    min-height: 44px;
+  }
+
+  .orbit-controls [role="group"] {
+    grid-template-columns: 44px 48px 44px;
+  }
+
+  .drawer button,
+  .drawer a[href] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .drawer a[href] {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .orbit-controls {
+    height: calc(60px + env(safe-area-inset-top));
+    min-height: 60px;
+    padding: env(safe-area-inset-top) max(8px, env(safe-area-inset-right)) 0 max(8px, env(safe-area-inset-left));
+  }
+
+  .orbit-scene {
+    inset-block-start: calc(60px + env(safe-area-inset-top));
+  }
+
+  .orbit-star-field circle:nth-child(n + 9) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .orbit-star,
+  .silent-orbit-preview * {
+    animation: none !important;
+  }
+
+  .orbit-world,
+  .librarian-page .librarian-galaxy-portal,
+  .librarian-page .silent-orbit-preview,
+  .ranked-skill-constellation,
+  .ranked-skill-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}

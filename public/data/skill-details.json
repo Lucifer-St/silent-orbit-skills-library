@@ -1,0 +1,62 @@
+[
+  {
+    "skill": "skill-installer",
+    "author": "OpenAI",
+    "sourceSummary": "从 Codex 中按名称、目录或 GitHub URL 安装 curated 或 experimental skills。",
+    "sourceUrl": "https://github.com/openai/skills",
+    "examples": [
+      {
+        "title": "OpenAI skills repository",
+        "url": "https://github.com/openai/skills"
+      }
+    ]
+  },
+  {
+    "skill": "find-skills",
+    "author": "OpenAI",
+    "sourceSummary": "浏览用于 Codex 分发的 skill 目录，了解可发现和使用的能力。",
+    "sourceUrl": "https://github.com/openai/skills",
+    "examples": [
+      {
+        "title": "Browse the OpenAI skills catalog",
+        "url": "https://github.com/openai/skills"
+      }
+    ]
+  },
+  {
+    "skill": "skill-creator",
+    "author": "OpenAI",
+    "sourceSummary": "按结构、初始化、编辑、验证和迭代流程创建或更新 Codex skill。",
+    "sourceUrl": "https://github.com/openai/skills",
+    "examples": [
+      {
+        "title": "OpenAI skill examples",
+        "url": "https://github.com/openai/skills"
+      }
+    ]
+  },
+  {
+    "skill": "html-ppt",
+    "author": "lewislulu",
+    "sourceSummary": "使用静态 HTML、CSS 和 JavaScript 构建可在浏览器中预览的演示文稿。",
+    "sourceUrl": "https://github.com/lewislulu/html-ppt-skill",
+    "examples": [
+      {
+        "title": "HTML PPT skill examples",
+        "url": "https://github.com/lewislulu/html-ppt-skill"
+      }
+    ]
+  },
+  {
+    "skill": "humanizer-zh",
+    "author": "mzlogin",
+    "sourceSummary": "依据中文文案排版规范统一空格、标点和中英文混排。",
+    "sourceUrl": "https://github.com/mzlogin/chinese-copywriting-guidelines",
+    "examples": [
+      {
+        "title": "Chinese copywriting guidelines",
+        "url": "https://github.com/mzlogin/chinese-copywriting-guidelines"
+      }
+    ]
+  }
+]

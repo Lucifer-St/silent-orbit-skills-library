@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.qa-output/
+.qa-evidence/
+.chrome-smoke-profile/
+.chrome-visual-qa-profile/
+.preview.pid
+qa-*.png

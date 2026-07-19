@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Silent Orbit Skills Library</title>
+  <desc id="desc">A local-first bilingual atlas for searching and navigating AI capabilities by system, library, and skill.</desc>
+  <rect width="1200" height="360" rx="2" fill="#050505"/>
+  <path d="M0 1h1200M0 359h1200" stroke="#4A4A4A"/>
+  <g transform="translate(64 52)" fill="#F3F0E8">
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="3">LOCAL-FIRST / BILINGUAL / STATIC</text>
+    <text x="0" y="82" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">SILENT ORBIT</text>
+    <text x="0" y="136" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" letter-spacing="4">SKILLS LIBRARY</text>
+    <text x="0" y="196" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" fill="#A4A4A4">Search by intent. Navigate by system. Keep outcomes local.</text>
+    <g transform="translate(0 246)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+      <rect width="156" height="34" fill="none" stroke="#4A4A4A"/>
+      <text x="16" y="22">REACT + TYPESCRIPT</text>
+      <rect x="168" width="112" height="34" fill="none" stroke="#4A4A4A"/>
+      <text x="184" y="22">PRIVACY-FIRST</text>
+    </g>
+  </g>
+  <g transform="translate(955 180)" fill="none">
+    <ellipse rx="182" ry="118" stroke="#2F2F2F"/>
+    <ellipse rx="132" ry="84" stroke="#4A4A4A" stroke-dasharray="3 8"/>
+    <ellipse rx="78" ry="48" stroke="#777"/>
+    <circle r="19" fill="#F3F0E8"/>
+    <circle cx="-126" cy="-68" r="8" fill="#F3F0E8"/>
+    <circle cx="101" cy="-52" r="6" fill="#A4A4A4"/>
+    <circle cx="154" cy="64" r="5" fill="#F3F0E8"/>
+    <circle cx="-52" cy="76" r="4" fill="#A4A4A4"/>
+    <path d="M-155 64l309-128M-126-68L101-52" stroke="#242424"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#F3F0E8">
+    <text x="915" y="142">SYSTEM</text>
+    <text x="805" y="102">LIBRARY</text>
+    <text x="1082" y="122">SKILL</text>
+    <text x="1086" y="274">OUTCOME</text>
+  </g>
+</svg>

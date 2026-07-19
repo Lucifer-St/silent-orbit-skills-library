@@ -1,0 +1,64 @@
+name: Public Release Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release-gate:
+    name: release-gate
+    runs-on: windows-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Check out the public release
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install pinned dependencies
+        run: npm ci
+
+      - name: Validate public data
+        run: npm run validate:data
+
+      - name: Validate public assets
+        run: npm run validate:assets
+
+      - name: Validate repository contract
+        run: npm run validate:public-repository
+
+      - name: Validate README
+        run: npm run validate:readme
+
+      - name: Run domain tests
+        run: npm run test:mvp
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      - name: Browser smoke
+        run: npm run smoke:ui
+
+      - name: Visual QA
+        run: npm run qa:visual
+
+      - name: Revalidate after generated checks
+        run: |
+          npm run validate:public-repository
+          npm run validate:readme
+
+      - name: Reject tracked-file drift
+        run: git diff --exit-code

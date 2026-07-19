@@ -1,0 +1,33 @@
+:root { --void:#050505; --signal:#f2f1e9; --one-pixel:1px solid var(--signal); color:var(--signal); background:var(--void); }
+body { background:var(--void); color:var(--signal); font-family:var(--font-reading); }
+button,input,select { color:inherit; font-family:var(--font-pixel); }
+:focus-visible { outline:1px dashed var(--signal); outline-offset:4px; }
+
+code,
+.fengxue-ascii {
+  font-family: "Cascadia Mono", "AgentReading", "Microsoft YaHei UI", monospace;
+}
+
+.brand-mark,
+.pixel-label,
+.start-copy h1,
+.pixel-os-copy h1,
+.page-header h1,
+.pixel-map-header strong,
+.map-breadcrumb button,
+.zoom-controls button,
+.mini-map-label,
+.zone-node-meta,
+.station-icon,
+.station-count,
+.star-skill-marker,
+.map-mini-button,
+.map-selection-label strong,
+.category-card strong,
+.unit-kind {
+  font-family: var(--font-pixel);
+}
+
+.library-focus-panel p {
+  font-family: var(--font-reading);
+}

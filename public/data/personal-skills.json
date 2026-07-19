@@ -1,0 +1,50 @@
+[
+  {
+    "name": "aihot",
+    "description": "用于查询和整理中文 AI 资讯。想看今日热点、模型发布、产品动态或一周 AI 新闻时，直接点名它。",
+    "trigger": "$aihot",
+    "category": "个人知识库与本地工具",
+    "library_key": "personal:deck",
+    "library_title": "个人常用",
+    "repo": null,
+    "repo_url": null,
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "用于查询和整理中文 AI 资讯。想看今日热点、模型发布、产品动态或一周 AI 新闻时，直接点名它。",
+      "en-US": "Queries and organizes Chinese-language AI news, including daily headlines, model releases, product updates, and weekly roundups."
+    }
+  },
+  {
+    "name": "fengxue",
+    "description": "用于风雪公开身份相关的语气、视觉语言与主持人式内容产出。",
+    "trigger": "$fengxue",
+    "category": "个人知识库与本地工具",
+    "library_key": "personal:deck",
+    "library_title": "个人常用",
+    "repo": null,
+    "repo_url": null,
+    "origin": "creator",
+    "visibility": "creator-showcase",
+    "description_i18n": {
+      "zh-CN": "用于风雪公开身份相关的语气、视觉语言与主持人式内容产出。",
+      "en-US": "Creates public-facing Fengxue voice, visual identity, and host-style content."
+    }
+  },
+  {
+    "name": "fengxue-ai-weekly",
+    "description": "用于制作风雪 AI 周报，从资讯筛选、中文编辑到可发布网页形成完整交付。",
+    "trigger": "$fengxue-ai-weekly",
+    "category": "产品与前端开发",
+    "library_key": "personal:deck",
+    "library_title": "个人常用",
+    "repo": null,
+    "repo_url": null,
+    "origin": "creator",
+    "visibility": "creator-showcase",
+    "description_i18n": {
+      "zh-CN": "用于制作风雪 AI 周报，从资讯筛选、中文编辑到可发布网页形成完整交付。",
+      "en-US": "Produces the Fengxue AI Weekly from source selection and Chinese editing through a publishable web deliverable."
+    }
+  }
+]

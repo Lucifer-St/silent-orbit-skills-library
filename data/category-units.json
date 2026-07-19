@@ -1,0 +1,499 @@
+[
+  {
+    "category": "个人知识库与本地工具",
+    "skill_count": 7,
+    "units": [
+      {
+        "type": "library",
+        "title": "obsidian",
+        "kind": "本地库",
+        "skill_count": 4,
+        "skills": [
+          "obsidian-markdown",
+          "obsidian-vault",
+          "obsidian-bases",
+          "obsidian-cli"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "windows-workstation-baseline",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "windows-workstation-baseline"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: computer-use",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "computer-use"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "interview-prep",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "interview-prep"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "产品与前端开发",
+    "skill_count": 12,
+    "units": [
+      {
+        "type": "library",
+        "title": "Plugin: build-web-apps",
+        "kind": "插件包",
+        "skill_count": 4,
+        "skills": [
+          "frontend-testing-debugging",
+          "frontend-app-builder",
+          "react-best-practices",
+          "stripe-best-practices"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: hyperframes",
+        "kind": "插件包",
+        "skill_count": 5,
+        "skills": [
+          "gsap",
+          "hyperframes",
+          "hyperframes-cli",
+          "hyperframes-registry",
+          "website-to-hyperframes"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "html",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "html"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "html-diagram",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "html-diagram"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "html-plan",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "html-plan"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "协作平台与发布",
+    "skill_count": 62,
+    "units": [
+      {
+        "type": "library",
+        "title": "Plugin: github",
+        "kind": "插件包",
+        "skill_count": 4,
+        "skills": [
+          "github",
+          "gh-address-comments",
+          "gh-fix-ci",
+          "yeet"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: sales",
+        "kind": "插件包",
+        "skill_count": 18,
+        "skills": [
+          "review-forecast",
+          "review-rep-call-trends",
+          "analyze-account-signals",
+          "apollo",
+          "build-business-case",
+          "build-competitive-brief",
+          "enrich-company-and-contact-data",
+          "find-customer-quotes",
+          "find-key-internal-sources",
+          "follow-up-after-call",
+          "get-rep-call-feedback",
+          "hubspot",
+          "plan-deal-strategy",
+          "prepare-for-meeting",
+          "prioritize-accounts",
+          "sales-company-research",
+          "salesforce",
+          "zoominfo"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: creative-production",
+        "kind": "插件包",
+        "skill_count": 9,
+        "skills": [
+          "ads-explorer",
+          "explore",
+          "generative-polish",
+          "logo-explorer",
+          "moodboard-explorer",
+          "offer-explorer",
+          "positioning-explorer",
+          "scene-explorer",
+          "shot-explorer"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: openai-developers",
+        "kind": "插件包",
+        "skill_count": 5,
+        "skills": [
+          "agents-sdk",
+          "build-chatgpt-app",
+          "chatgpt-app-submission",
+          "openai-api-troubleshooting",
+          "openai-platform-api-key"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: gmail",
+        "kind": "插件包",
+        "skill_count": 2,
+        "skills": [
+          "gmail",
+          "gmail-inbox-triage"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: google-drive",
+        "kind": "插件包",
+        "skill_count": 5,
+        "skills": [
+          "google-docs",
+          "google-drive",
+          "google-drive-comments",
+          "google-sheets",
+          "google-slides"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "interview-me",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "interview-me"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: netlify",
+        "kind": "插件包",
+        "skill_count": 12,
+        "skills": [
+          "netlify-ai-gateway",
+          "netlify-blobs",
+          "netlify-caching",
+          "netlify-cli-and-deploy",
+          "netlify-config",
+          "netlify-deploy",
+          "netlify-edge-functions",
+          "netlify-forms",
+          "netlify-frameworks",
+          "netlify-functions",
+          "netlify-identity",
+          "netlify-image-cdn"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: notion",
+        "kind": "插件包",
+        "skill_count": 4,
+        "skills": [
+          "notion-knowledge-capture",
+          "notion-meeting-intelligence",
+          "notion-research-documentation",
+          "notion-spec-to-implementation"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "screenshot",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "screenshot"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: spreadsheets",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "Spreadsheets"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "工程质量与安全",
+    "skill_count": 1,
+    "units": [
+      {
+        "type": "skill",
+        "title": "security-best-practices",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "security-best-practices"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "效率与元工作流",
+    "skill_count": 3,
+    "units": [
+      {
+        "type": "library",
+        "title": "openai/skills",
+        "kind": "GitHub repo",
+        "skill_count": 3,
+        "skills": [
+          "find-skills",
+          "skill-creator",
+          "skill-installer"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "数据分析与研究",
+    "skill_count": 18,
+    "units": [
+      {
+        "type": "library",
+        "title": "Plugin: data-analytics",
+        "kind": "插件包",
+        "skill_count": 17,
+        "skills": [
+          "report-to-pdf",
+          "analyze-data-quality",
+          "build-dashboard",
+          "build-report",
+          "create-data-context",
+          "design-kpis",
+          "gather-business-context",
+          "index",
+          "jupyter-notebooks",
+          "kpi-reporting",
+          "market-sizing",
+          "metric-diagnostics",
+          "product-business-analysis",
+          "report-to-google-doc",
+          "report-to-google-slides",
+          "validate-data",
+          "visualize-data"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "jupyter-notebook",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "jupyter-notebook"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "文档与办公",
+    "skill_count": 6,
+    "units": [
+      {
+        "type": "library",
+        "title": "mzlogin/chinese-copywriting-guidelines",
+        "kind": "GitHub repo",
+        "skill_count": 1,
+        "skills": [
+          "humanizer-zh"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "lewislulu/html-ppt-skill",
+        "kind": "GitHub repo",
+        "skill_count": 1,
+        "skills": [
+          "html-ppt"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: documents",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "documents"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: presentations",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "Presentations"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: template-creator",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "template-creator"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "transcribe",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "transcribe"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "浏览器与自动化",
+    "skill_count": 2,
+    "units": [
+      {
+        "type": "library",
+        "title": "Plugin: chrome",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "control-chrome"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: browser",
+        "kind": "插件包",
+        "skill_count": 1,
+        "skills": [
+          "control-in-app-browser"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "设计与创意生产",
+    "skill_count": 28,
+    "units": [
+      {
+        "type": "library",
+        "title": "Plugin: figma",
+        "kind": "插件包",
+        "skill_count": 11,
+        "skills": [
+          "figma-code-connect",
+          "figma-create-new-file",
+          "figma-generate-design",
+          "figma-generate-diagram",
+          "figma-generate-library",
+          "figma-implement-motion",
+          "figma-swiftui",
+          "figma-use",
+          "figma-use-figjam",
+          "figma-use-motion",
+          "figma-use-slides"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: product-design",
+        "kind": "插件包",
+        "skill_count": 9,
+        "skills": [
+          "audit",
+          "design-qa",
+          "get-context",
+          "ideate",
+          "prototype",
+          "research",
+          "share",
+          "url-to-code",
+          "user-context"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Plugin: canva",
+        "kind": "插件包",
+        "skill_count": 3,
+        "skills": [
+          "canva-branded-presentation",
+          "canva-resize-for-all-social-media",
+          "canva-translate-design"
+        ]
+      },
+      {
+        "type": "library",
+        "title": "Codex System Skills",
+        "kind": "系统库",
+        "skill_count": 3,
+        "skills": [
+          "imagegen",
+          "openai-docs",
+          "plugin-creator"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "web-design-guidelines",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "web-design-guidelines"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "beautify-github-readme",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "beautify-github-readme"
+        ]
+      }
+    ]
+  }
+]

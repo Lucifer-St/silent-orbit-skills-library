@@ -1,0 +1,671 @@
+.agent-console.is-librarian-home {
+  --void: #000;
+  --signal: #fff;
+  --ink: #fff;
+  --muted: #a4a49d;
+  --line: #e9e8e0;
+  --soft-line: #555650;
+  min-height: 100dvh;
+  background: #000;
+  color: var(--signal);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22);
+}
+
+.agent-console.is-librarian-home .console-topbar {
+  min-height: 51px;
+  padding: 6px clamp(16px, 2vw, 28px);
+  border-bottom-color: rgba(233, 232, 224, 0.38);
+}
+
+.agent-console.is-librarian-home .console-brand {
+  min-height: 34px;
+  color: var(--signal);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.agent-console.is-librarian-home .topnav {
+  gap: 3px;
+}
+
+.agent-console.is-librarian-home .nav-button[data-nav-label="LIBRARIAN"] {
+  display: none;
+}
+
+.agent-console.is-librarian-home .nav-button {
+  min-height: 34px;
+  border-color: transparent;
+  background: transparent;
+  padding: 6px 9px;
+  color: var(--signal);
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.agent-console.is-librarian-home .nav-button:hover,
+.agent-console.is-librarian-home .nav-button:focus-visible,
+.agent-console.is-librarian-home .nav-button.active {
+  border-color: rgba(233, 232, 224, 0.32);
+  background: transparent;
+  color: var(--signal);
+  opacity: 1;
+}
+
+.librarian-workspace {
+  min-width: 0;
+  background: var(--void);
+}
+
+.librarian-page {
+  width: min(1480px, calc(100% - 28px));
+  min-height: calc(100dvh - 51px);
+  margin: 0 auto;
+  padding: 22px 0 16px;
+  background: var(--void);
+  color: var(--signal);
+}
+
+.librarian-search-shell {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: min(560px, 68%);
+  margin: 0 auto 5px;
+}
+
+.librarian-motto,
+.librarian-search-foot,
+.librarian-results-heading,
+.ranked-order,
+.ranked-meta,
+.librarian-empty {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.08em;
+}
+
+.librarian-motto {
+  display: none;
+}
+
+.librarian-search {
+  width: 100%;
+  border: 1px solid rgba(233, 232, 224, 0.5);
+  padding: 0 11px;
+}
+
+.librarian-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.librarian-search-row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.librarian-search input {
+  min-width: 0;
+  height: 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--signal);
+  font-family: var(--font-reading);
+  font-size: 14px;
+}
+
+.librarian-search input::placeholder {
+  color: var(--signal);
+  opacity: 0.7;
+}
+
+.librarian-search input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.librarian-search input:focus-visible {
+  outline: 1px dashed var(--signal);
+  outline-offset: 3px;
+}
+
+.librarian-submit,
+.librarian-clear {
+  min-height: 32px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0 5px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.librarian-submit {
+  border-left: 1px dotted rgba(233, 232, 224, 0.38);
+  padding-left: 12px;
+}
+
+.librarian-submit:hover,
+.librarian-submit:focus-visible,
+.librarian-clear:hover,
+.librarian-clear:focus-visible {
+  background: transparent;
+  color: var(--signal);
+  outline: 1px dashed var(--signal);
+  outline-offset: 1px;
+}
+
+.librarian-search-foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  min-height: 18px;
+  font-size: 8px;
+  opacity: 0.52;
+}
+
+.librarian-page .librarian-galaxy-portal {
+  min-height: clamp(530px, calc(100dvh - 154px), 690px);
+  width: 100%;
+  border: 0;
+  border-top: 1px dotted rgba(233, 232, 224, 0.36);
+  border-bottom: 1px dotted rgba(233, 232, 224, 0.36);
+  background: var(--void);
+  padding: 11px 8px 9px;
+  color: var(--signal);
+  transition: min-height 420ms cubic-bezier(0.2, 0.75, 0.22, 1);
+}
+
+.librarian-page .portal-status {
+  width: calc(100% - 18px);
+  justify-self: center;
+  border-top: 1px dotted rgba(233, 232, 224, 0.28);
+  padding-top: 9px;
+  font-size: 9px;
+  text-align: center;
+  opacity: 0.64;
+}
+
+.librarian-page .portal-map {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  max-height: 610px;
+  transform: none;
+  transform-origin: center;
+  transition: transform 520ms cubic-bezier(0.2, 0.75, 0.22, 1);
+}
+
+.librarian-page .silent-orbit-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  color: var(--signal);
+  transform: none;
+}
+
+.librarian-page .portal-galaxy-asset {
+  opacity: .86;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.librarian-page .portal-catalog-traces {
+  display: none;
+}
+
+.librarian-page .portal-system-star {
+  fill: currentColor;
+  stroke: none;
+}
+
+.librarian-page .portal-system-visual {
+  opacity: .52;
+  image-rendering: pixelated;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 180ms cubic-bezier(.2, .75, .22, 1);
+}
+
+.librarian-page .portal-system-index,
+.librarian-page .portal-system-name,
+.librarian-page .portal-system-count {
+  fill: currentColor;
+  stroke: none;
+  font-family: var(--font-pixel);
+  letter-spacing: 0.03em;
+}
+
+.librarian-page .portal-system-index {
+  font-size: 1.55px;
+}
+
+.librarian-page .portal-system-name {
+  font-family: var(--font-reading);
+  font-size: 1.65px;
+}
+
+.librarian-page .portal-system-count {
+  font-size: 1.25px;
+  opacity: 0.58;
+}
+
+.librarian-page .portal-system-star,
+.librarian-page .portal-system-star .portal-system-count {
+  transition: opacity 180ms ease;
+}
+
+.librarian-page .portal-system-star[data-active="true"] {
+  opacity: 1;
+}
+
+.librarian-page .portal-system-star[data-active="true"] .portal-system-visual {
+  opacity: 1;
+  transform: scale(1.45);
+}
+
+.librarian-page .portal-system-star[data-active="true"] .portal-system-count {
+  opacity: .88;
+}
+
+.portal-system-actions {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.portal-system-hit {
+  position: absolute;
+  width: clamp(96px, 8.8vw, 128px);
+  height: clamp(96px, 8.8vw, 128px);
+  transform: translate(-50%, -50%);
+  clip-path: circle(50%);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--signal);
+  pointer-events: auto;
+  cursor: pointer;
+  outline: 0;
+}
+
+.portal-system-hit:hover,
+.portal-system-hit:focus-visible {
+  transform: translate(-50%, -50%);
+  background: transparent;
+  color: var(--signal);
+  outline: 0;
+  box-shadow: none;
+}
+
+.librarian-page.is-searching .librarian-galaxy-portal {
+  min-height: 150px;
+}
+
+.librarian-page.is-searching .portal-map {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 430px;
+  min-height: 430px;
+  transform: translate(-50%, -50%) scale(1.24, 0.2);
+}
+
+.librarian-page.is-searching .portal-status {
+  display: none;
+}
+
+.librarian-page.is-searching .portal-system-actions {
+  display: none;
+}
+
+.librarian-results {
+  margin-top: 18px;
+}
+
+.librarian-results-heading {
+  margin: 0 0 12px;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.librarian-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ranked-skill-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 60px auto minmax(36px, auto) 1fr;
+  gap: 10px;
+  min-width: 0;
+  min-height: 224px;
+  border: 1px dotted rgba(233, 232, 224, 0.48);
+  border-radius: 0;
+  background: var(--void);
+  color: var(--signal);
+  padding: 14px;
+  text-align: left;
+  animation: librarian-card-in var(--motion-ui) ease both;
+}
+
+.ranked-skill-constellation {
+  width: 100%;
+  height: 60px;
+  color: currentColor;
+  pointer-events: none;
+}
+
+.ranked-skill-constellation path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.75;
+  stroke-dasharray: 1.5 1.2;
+}
+
+.ranked-skill-constellation circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.ranked-skill-card:nth-child(2) { animation-delay: 45ms; }
+.ranked-skill-card:nth-child(3) { animation-delay: 90ms; }
+
+.ranked-skill-card:hover,
+.ranked-skill-card:focus-visible {
+  border-style: solid;
+  background: var(--void);
+  color: var(--signal);
+  outline: 1px dashed rgba(233, 232, 224, 0.6);
+  outline-offset: 3px;
+}
+
+.ranked-order { font-size: 11px; }
+
+.ranked-skill-card strong {
+  overflow: hidden;
+  font-family: var(--font-pixel);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranked-description {
+  display: -webkit-box;
+  overflow: hidden;
+  font-family: var(--font-reading);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.ranked-meta {
+  display: grid;
+  align-self: end;
+  gap: 5px;
+  min-width: 0;
+  font-size: 9px;
+  border-top: 1px dotted rgba(233, 232, 224, .34);
+  padding-top: 9px;
+}
+
+.ranked-meta span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.librarian-empty {
+  border: 1px dotted var(--signal);
+  margin: 0;
+  padding: 28px;
+  font-size: 11px;
+  text-align: center;
+}
+
+@keyframes librarian-card-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+@media (max-width: 760px) {
+  .agent-console.is-librarian-home .console-topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    min-height: 57px;
+    padding: 5px 9px;
+  }
+
+  .agent-console.is-librarian-home .console-brand {
+    justify-self: start;
+    min-height: 44px;
+  }
+
+  .agent-console.is-librarian-home .topnav {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: end;
+  }
+
+  .agent-console.is-librarian-home .nav-button {
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  .agent-console.is-librarian-home .nav-button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .librarian-page {
+    width: calc(100% - 16px);
+    min-height: calc(100dvh - 57px);
+    padding: 10px 0 9px;
+  }
+
+  .librarian-search-shell {
+    width: 100%;
+    margin-bottom: 3px;
+  }
+
+  .librarian-search-row {
+    min-height: 44px;
+  }
+
+  .librarian-search input {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .librarian-submit,
+  .librarian-clear {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .librarian-search-foot {
+    min-height: 16px;
+    font-size: 7px;
+  }
+
+  .librarian-page .librarian-galaxy-portal {
+    min-height: max(584px, calc(100dvh - 144px));
+    padding-inline: 2px;
+  }
+
+  .librarian-page .portal-map {
+    height: clamp(490px, calc(100dvh - 220px), 620px);
+    min-height: 490px;
+    max-height: 620px;
+    transform: scale(1.12) rotate(-4deg);
+  }
+
+  .librarian-page.is-searching .librarian-galaxy-portal {
+    min-height: 108px;
+  }
+
+  .librarian-page.is-searching .portal-map {
+    height: 290px;
+    min-height: 290px;
+    max-height: 290px;
+    transform: translate(-50%, -50%) scale(1.34, 0.25);
+  }
+
+  .librarian-result-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ranked-skill-card { min-height: 200px; }
+
+  .ranked-description,
+  .ranked-meta span {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    overflow-wrap: normal;
+    letter-spacing: normal;
+  }
+
+  .ranked-meta { letter-spacing: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .librarian-page .librarian-galaxy-portal,
+  .librarian-page .portal-map,
+  .portal-galaxy-asset,
+  .portal-system-hit,
+  .portal-system-star,
+  .portal-system-visual,
+  .ranked-skill-card {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .ranked-skill-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Compact A-directed homepage: dense universe, quiet interface. */
+.agent-console.is-librarian-home .console-topbar {
+  min-height: 47px;
+  padding-block: 4px;
+}
+
+.librarian-page {
+  min-height: calc(100dvh - 47px);
+  padding: 10px 0 8px;
+}
+
+@media (min-width: 761px) {
+  .librarian-page.is-idle {
+    padding-top: clamp(36px, 4.5vh, 56px);
+  }
+
+  .librarian-page.is-idle .librarian-galaxy-portal {
+    overflow: visible;
+  }
+
+  .librarian-page.is-idle .portal-map {
+    background: var(--void) url("/assets/galaxy-horizon-drift-v3.png") center bottom / cover no-repeat;
+  }
+
+  .librarian-page.is-idle .portal-galaxy-asset {
+    opacity: 0;
+  }
+}
+
+.librarian-search-shell {
+  width: min(540px, 64%);
+  margin-bottom: 0;
+}
+
+.librarian-page .librarian-galaxy-portal {
+  min-height: clamp(500px, calc(100dvh - 126px), 610px);
+  border-top: 0;
+  padding-top: 4px;
+}
+
+.librarian-page .portal-map {
+  height: clamp(430px, calc(100dvh - 240px), 560px);
+  min-height: 430px;
+  max-height: 560px;
+}
+
+@media (min-width: 761px) and (min-height: 820px) {
+  .librarian-page.is-idle {
+    padding-top: clamp(48px, 6vh, 72px);
+  }
+
+  .librarian-page.is-idle .librarian-search-shell {
+    margin-bottom: clamp(52px, 6.5vh, 76px);
+  }
+}
+
+@media (max-width: 760px) {
+  .agent-console.is-librarian-home .console-topbar {
+    min-height: 55px;
+  }
+
+  .librarian-page {
+    min-height: calc(100dvh - 55px);
+    padding-top: 7px;
+  }
+
+  .librarian-search-shell {
+    width: 100%;
+  }
+
+  .librarian-page .librarian-galaxy-portal {
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 6px;
+  }
+
+  .librarian-page .portal-map {
+    height: clamp(360px, calc(100dvh - 390px), 430px);
+    min-height: 360px;
+    max-height: 430px;
+    transform: scale(1.1) rotate(-2deg);
+  }
+
+  .librarian-page .portal-system-index {
+    font-size: 2px;
+  }
+
+  .librarian-page .portal-system-name {
+    font-size: 2.25px;
+  }
+
+  .librarian-page .portal-system-count {
+    font-size: 1.65px;
+  }
+
+  .librarian-page .portal-status {
+    padding-top: 5px;
+  }
+}

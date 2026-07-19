@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-07-17",
+  "privacy": "sanitized",
+  "catalogSkills": 142,
+  "publicGlobalSkills": 22,
+  "channels": [
+    {
+      "id": "source-managed-global",
+      "state": "current",
+      "checkedSources": 1,
+      "execution": "local-codex"
+    },
+    {
+      "id": "plugins",
+      "state": "external",
+      "execution": "local-codex"
+    },
+    {
+      "id": "system",
+      "state": "system-managed",
+      "execution": "codex-runtime"
+    }
+  ],
+  "handoffPrompt": {
+    "zh-CN": "使用 $skills-library-maintenance 检查所有 Skill 更新，先展示计划，不要直接更新。",
+    "en-US": "Use $skills-library-maintenance to check all Skill updates and show the plan before changing anything."
+  }
+}

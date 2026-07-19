@@ -1,0 +1,700 @@
+[
+  {
+    "key": "personal:deck",
+    "title": "个人常用",
+    "kind": "personal",
+    "kind_label": "个人精选",
+    "source_label": "个人工作流精选",
+    "source_url": "",
+    "description": "集中收纳长期使用的自建与第三方 Skills。origin 说明创作来源，visibility 说明公开边界，两者互不混用。",
+    "skills": [
+      "fengxue",
+      "aihot",
+      "fengxue-ai-weekly"
+    ],
+    "repos": [],
+    "plugins": [],
+    "categories": [
+      "个人知识库与本地工具",
+      "产品与前端开发"
+    ],
+    "primary_category": "个人知识库与本地工具"
+  },
+  {
+    "key": "repo:openai/skills",
+    "title": "openai/skills",
+    "kind": "repo",
+    "kind_label": "GitHub repo",
+    "source_label": "openai/skills",
+    "source_url": "https://github.com/openai/skills",
+    "description": "来自 `openai/skills` 的 skills。优先按这个来源库理解它们的共同边界，再进入单个 skill。",
+    "skills": [
+      "find-skills",
+      "skill-creator",
+      "skill-installer"
+    ],
+    "repos": [
+      "openai/skills"
+    ],
+    "plugins": [],
+    "categories": [
+      "协作平台与发布",
+      "效率与元工作流"
+    ],
+    "primary_category": "效率与元工作流"
+  },
+  {
+    "key": "repo:lewislulu/html-ppt-skill",
+    "title": "lewislulu/html-ppt-skill",
+    "kind": "repo",
+    "kind_label": "GitHub repo",
+    "source_label": "lewislulu/html-ppt-skill",
+    "source_url": "https://github.com/lewislulu/html-ppt-skill",
+    "description": "来自 `lewislulu/html-ppt-skill` 的 skills。优先按这个来源库理解它们的共同边界，再进入单个 skill。",
+    "skills": [
+      "html-ppt"
+    ],
+    "repos": [
+      "lewislulu/html-ppt-skill"
+    ],
+    "plugins": [],
+    "categories": [
+      "文档与办公"
+    ],
+    "primary_category": "文档与办公"
+  },
+  {
+    "key": "repo:mzlogin/chinese-copywriting-guidelines",
+    "title": "mzlogin/chinese-copywriting-guidelines",
+    "kind": "repo",
+    "kind_label": "GitHub repo",
+    "source_label": "mzlogin/chinese-copywriting-guidelines",
+    "source_url": "https://github.com/mzlogin/chinese-copywriting-guidelines",
+    "description": "来自 `mzlogin/chinese-copywriting-guidelines` 的 skills。优先按这个来源库理解它们的共同边界，再进入单个 skill。",
+    "skills": [
+      "humanizer-zh"
+    ],
+    "repos": [
+      "mzlogin/chinese-copywriting-guidelines"
+    ],
+    "plugins": [],
+    "categories": [
+      "文档与办公"
+    ],
+    "primary_category": "文档与办公"
+  },
+  {
+    "key": "plugin:sales",
+    "title": "Plugin: sales",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "sales",
+    "source_url": "",
+    "description": "由 `sales` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "review-forecast",
+      "review-rep-call-trends",
+      "analyze-account-signals",
+      "apollo",
+      "build-business-case",
+      "build-competitive-brief",
+      "enrich-company-and-contact-data",
+      "find-customer-quotes",
+      "find-key-internal-sources",
+      "follow-up-after-call",
+      "get-rep-call-feedback",
+      "hubspot",
+      "plan-deal-strategy",
+      "prepare-for-meeting",
+      "prioritize-accounts",
+      "sales-company-research",
+      "salesforce",
+      "zoominfo"
+    ],
+    "repos": [],
+    "plugins": [
+      "sales"
+    ],
+    "categories": [
+      "个人知识库与本地工具",
+      "产品与前端开发",
+      "其他专项能力",
+      "协作平台与发布",
+      "工程质量与安全",
+      "数据分析与研究"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:data-analytics",
+    "title": "Plugin: data-analytics",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "data-analytics",
+    "source_url": "",
+    "description": "由 `data-analytics` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "report-to-pdf",
+      "analyze-data-quality",
+      "build-dashboard",
+      "build-report",
+      "create-data-context",
+      "design-kpis",
+      "gather-business-context",
+      "index",
+      "jupyter-notebooks",
+      "kpi-reporting",
+      "market-sizing",
+      "metric-diagnostics",
+      "product-business-analysis",
+      "report-to-google-doc",
+      "report-to-google-slides",
+      "validate-data",
+      "visualize-data"
+    ],
+    "repos": [],
+    "plugins": [
+      "data-analytics"
+    ],
+    "categories": [
+      "协作平台与发布",
+      "效率与元工作流",
+      "数据分析与研究"
+    ],
+    "primary_category": "数据分析与研究"
+  },
+  {
+    "key": "plugin:netlify",
+    "title": "Plugin: netlify",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "netlify",
+    "source_url": "",
+    "description": "由 `netlify` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "netlify-ai-gateway",
+      "netlify-blobs",
+      "netlify-caching",
+      "netlify-cli-and-deploy",
+      "netlify-config",
+      "netlify-deploy",
+      "netlify-edge-functions",
+      "netlify-forms",
+      "netlify-frameworks",
+      "netlify-functions",
+      "netlify-identity",
+      "netlify-image-cdn"
+    ],
+    "repos": [],
+    "plugins": [
+      "netlify"
+    ],
+    "categories": [
+      "产品与前端开发",
+      "协作平台与发布"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:figma",
+    "title": "Plugin: figma",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "figma",
+    "source_url": "",
+    "description": "由 `figma` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "figma-code-connect",
+      "figma-create-new-file",
+      "figma-generate-design",
+      "figma-generate-diagram",
+      "figma-generate-library",
+      "figma-implement-motion",
+      "figma-swiftui",
+      "figma-use",
+      "figma-use-figjam",
+      "figma-use-motion",
+      "figma-use-slides"
+    ],
+    "repos": [],
+    "plugins": [
+      "figma"
+    ],
+    "categories": [
+      "效率与元工作流",
+      "设计与创意生产"
+    ],
+    "primary_category": "设计与创意生产"
+  },
+  {
+    "key": "plugin:creative-production",
+    "title": "Plugin: creative-production",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "creative-production",
+    "source_url": "",
+    "description": "由 `creative-production` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "ads-explorer",
+      "explore",
+      "generative-polish",
+      "logo-explorer",
+      "moodboard-explorer",
+      "offer-explorer",
+      "positioning-explorer",
+      "scene-explorer",
+      "shot-explorer"
+    ],
+    "repos": [],
+    "plugins": [
+      "creative-production"
+    ],
+    "categories": [
+      "产品与前端开发",
+      "其他专项能力",
+      "协作平台与发布",
+      "设计与创意生产"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:product-design",
+    "title": "Plugin: product-design",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "product-design",
+    "source_url": "",
+    "description": "由 `product-design` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "audit",
+      "design-qa",
+      "get-context",
+      "ideate",
+      "prototype",
+      "research",
+      "share",
+      "url-to-code",
+      "user-context"
+    ],
+    "repos": [],
+    "plugins": [
+      "product-design"
+    ],
+    "categories": [
+      "协作平台与发布",
+      "效率与元工作流",
+      "浏览器与自动化",
+      "设计与创意生产"
+    ],
+    "primary_category": "设计与创意生产"
+  },
+  {
+    "key": "plugin:google-drive",
+    "title": "Plugin: google-drive",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "google-drive",
+    "source_url": "",
+    "description": "由 `google-drive` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "google-docs",
+      "google-drive",
+      "google-drive-comments",
+      "google-sheets",
+      "google-slides"
+    ],
+    "repos": [],
+    "plugins": [
+      "google-drive"
+    ],
+    "categories": [
+      "协作平台与发布",
+      "文档与办公"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:hyperframes",
+    "title": "Plugin: hyperframes",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "hyperframes",
+    "source_url": "",
+    "description": "由 `hyperframes` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "gsap",
+      "hyperframes",
+      "hyperframes-cli",
+      "hyperframes-registry",
+      "website-to-hyperframes"
+    ],
+    "repos": [],
+    "plugins": [
+      "hyperframes"
+    ],
+    "categories": [
+      "产品与前端开发",
+      "设计与创意生产"
+    ],
+    "primary_category": "产品与前端开发"
+  },
+  {
+    "key": "plugin:openai-developers",
+    "title": "Plugin: openai-developers",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "openai-developers",
+    "source_url": "",
+    "description": "由 `openai-developers` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "agents-sdk",
+      "build-chatgpt-app",
+      "chatgpt-app-submission",
+      "openai-api-troubleshooting",
+      "openai-platform-api-key"
+    ],
+    "repos": [],
+    "plugins": [
+      "openai-developers"
+    ],
+    "categories": [
+      "产品与前端开发",
+      "协作平台与发布",
+      "工程质量与安全",
+      "效率与元工作流"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:build-web-apps",
+    "title": "Plugin: build-web-apps",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "build-web-apps",
+    "source_url": "",
+    "description": "由 `build-web-apps` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "frontend-testing-debugging",
+      "frontend-app-builder",
+      "react-best-practices",
+      "stripe-best-practices"
+    ],
+    "repos": [],
+    "plugins": [
+      "build-web-apps"
+    ],
+    "categories": [
+      "产品与前端开发",
+      "浏览器与自动化",
+      "设计与创意生产"
+    ],
+    "primary_category": "产品与前端开发"
+  },
+  {
+    "key": "plugin:github",
+    "title": "Plugin: github",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "github",
+    "source_url": "",
+    "description": "由 `github` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "github",
+      "gh-address-comments",
+      "gh-fix-ci",
+      "yeet"
+    ],
+    "repos": [],
+    "plugins": [
+      "github"
+    ],
+    "categories": [
+      "协作平台与发布"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:notion",
+    "title": "Plugin: notion",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "notion",
+    "source_url": "",
+    "description": "由 `notion` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "notion-knowledge-capture",
+      "notion-meeting-intelligence",
+      "notion-research-documentation",
+      "notion-spec-to-implementation"
+    ],
+    "repos": [],
+    "plugins": [
+      "notion"
+    ],
+    "categories": [
+      "协作平台与发布"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:canva",
+    "title": "Plugin: canva",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "canva",
+    "source_url": "",
+    "description": "由 `canva` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "canva-branded-presentation",
+      "canva-resize-for-all-social-media",
+      "canva-translate-design"
+    ],
+    "repos": [],
+    "plugins": [
+      "canva"
+    ],
+    "categories": [
+      "设计与创意生产"
+    ],
+    "primary_category": "设计与创意生产"
+  },
+  {
+    "key": "plugin:gmail",
+    "title": "Plugin: gmail",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "gmail",
+    "source_url": "",
+    "description": "由 `gmail` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "gmail",
+      "gmail-inbox-triage"
+    ],
+    "repos": [],
+    "plugins": [
+      "gmail"
+    ],
+    "categories": [
+      "协作平台与发布"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:browser",
+    "title": "Plugin: browser",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "browser",
+    "source_url": "",
+    "description": "由 `browser` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "control-in-app-browser"
+    ],
+    "repos": [],
+    "plugins": [
+      "browser"
+    ],
+    "categories": [
+      "浏览器与自动化"
+    ],
+    "primary_category": "浏览器与自动化"
+  },
+  {
+    "key": "plugin:chrome",
+    "title": "Plugin: chrome",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "chrome",
+    "source_url": "",
+    "description": "由 `chrome` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "control-chrome"
+    ],
+    "repos": [],
+    "plugins": [
+      "chrome"
+    ],
+    "categories": [
+      "浏览器与自动化"
+    ],
+    "primary_category": "浏览器与自动化"
+  },
+  {
+    "key": "plugin:computer-use",
+    "title": "Plugin: computer-use",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "computer-use",
+    "source_url": "",
+    "description": "由 `computer-use` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "computer-use"
+    ],
+    "repos": [],
+    "plugins": [
+      "computer-use"
+    ],
+    "categories": [
+      "个人知识库与本地工具"
+    ],
+    "primary_category": "个人知识库与本地工具"
+  },
+  {
+    "key": "plugin:documents",
+    "title": "Plugin: documents",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "documents",
+    "source_url": "",
+    "description": "由 `documents` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "documents"
+    ],
+    "repos": [],
+    "plugins": [
+      "documents"
+    ],
+    "categories": [
+      "文档与办公"
+    ],
+    "primary_category": "文档与办公"
+  },
+  {
+    "key": "plugin:presentations",
+    "title": "Plugin: presentations",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "presentations",
+    "source_url": "",
+    "description": "由 `presentations` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "Presentations"
+    ],
+    "repos": [],
+    "plugins": [
+      "presentations"
+    ],
+    "categories": [
+      "文档与办公"
+    ],
+    "primary_category": "文档与办公"
+  },
+  {
+    "key": "plugin:spreadsheets",
+    "title": "Plugin: spreadsheets",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "spreadsheets",
+    "source_url": "",
+    "description": "由 `spreadsheets` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "Spreadsheets"
+    ],
+    "repos": [],
+    "plugins": [
+      "spreadsheets"
+    ],
+    "categories": [
+      "协作平台与发布"
+    ],
+    "primary_category": "协作平台与发布"
+  },
+  {
+    "key": "plugin:template-creator",
+    "title": "Plugin: template-creator",
+    "kind": "plugin",
+    "kind_label": "插件",
+    "source_label": "template-creator",
+    "source_url": "",
+    "description": "由 `template-creator` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
+    "skills": [
+      "template-creator"
+    ],
+    "repos": [],
+    "plugins": [
+      "template-creator"
+    ],
+    "categories": [
+      "文档与办公"
+    ],
+    "primary_category": "文档与办公"
+  },
+  {
+    "key": "system:codex-system",
+    "title": "Codex System Skills",
+    "kind": "system",
+    "kind_label": "系统",
+    "source_label": ".system",
+    "source_url": "",
+    "description": "Codex 系统内置 skills，优先作为基础能力入口理解。",
+    "skills": [
+      "imagegen",
+      "openai-docs",
+      "plugin-creator"
+    ],
+    "repos": [],
+    "plugins": [],
+    "categories": [
+      "产品与前端开发",
+      "数据分析与研究",
+      "设计与创意生产"
+    ],
+    "primary_category": "设计与创意生产"
+  },
+  {
+    "key": "local:global",
+    "title": "global",
+    "kind": "local",
+    "kind_label": "本地",
+    "source_label": "global",
+    "source_url": "",
+    "description": "本地来源 `global` 下发现的 skills。",
+    "skills": [
+      "windows-workstation-baseline",
+      "security-best-practices",
+      "html",
+      "html-diagram",
+      "html-plan",
+      "interview-me",
+      "interview-prep",
+      "jupyter-notebook",
+      "screenshot",
+      "transcribe",
+      "web-design-guidelines",
+      "beautify-github-readme"
+    ],
+    "repos": [],
+    "plugins": [],
+    "categories": [
+      "个人知识库与本地工具",
+      "工程质量与安全",
+      "产品与前端开发",
+      "协作平台与发布",
+      "数据分析与研究",
+      "文档与办公",
+      "设计与创意生产"
+    ],
+    "primary_category": "工程质量与安全"
+  },
+  {
+    "key": "local:obsidian",
+    "title": "obsidian",
+    "kind": "local",
+    "kind_label": "本地",
+    "source_label": "obsidian",
+    "source_url": "",
+    "description": "本地来源 `obsidian` 下发现的 skills。",
+    "skills": [
+      "obsidian-markdown",
+      "obsidian-vault",
+      "obsidian-bases",
+      "obsidian-cli"
+    ],
+    "repos": [],
+    "plugins": [],
+    "categories": [
+      "个人知识库与本地工具"
+    ],
+    "primary_category": "个人知识库与本地工具"
+  }
+]

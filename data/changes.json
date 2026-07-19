@@ -1,0 +1,49 @@
+[
+  {
+    "id": "baseline-v0",
+    "date": "2026-07-09",
+    "type": "snapshot",
+    "title": "Agent OS Index v0 baseline",
+    "summary": "Initial maintained snapshot for 246 skills, 34 libraries, and 10 functional categories.",
+    "title_i18n": {
+      "zh-CN": "Agent OS Index v0 基线",
+      "en-US": "Agent OS Index v0 baseline"
+    },
+    "summary_i18n": {
+      "zh-CN": "首个受维护的数据快照，包含 246 个 Skills、34 个能力库与 10 个功能分类。",
+      "en-US": "Initial maintained snapshot for 246 Skills, 34 libraries, and 10 functional categories."
+    }
+  },
+  {
+    "id": "global-skill-cleanup-2026-07-10",
+    "date": "2026-07-10",
+    "type": "cleanup",
+    "title": "同步全局 Skills 瘦身结果",
+    "summary": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
+    "title_i18n": {
+      "zh-CN": "同步全局 Skills 瘦身结果",
+      "en-US": "Synced the global Skills cleanup"
+    },
+    "summary_i18n": {
+      "zh-CN": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
+      "en-US": "Removed 104 global/user Skill index entries from approved-skill-cleanup-manifest-2026-07-10.json; retained plugin- and system-managed capabilities; kept qwen-code on disk but outside the active Codex surface; and cleared the stale bailian-cli lock record."
+    }
+  },
+  {
+    "id": "beautify-github-readme-2026-07-17T23-43-56-279Z-published",
+    "date": "2026-07-17",
+    "type": "published",
+    "title": "Published beautify-github-readme to the Skills Library",
+    "summary": "beautify-github-readme was added to the local Skills Library and its sanitized public Netlify catalog.",
+    "title_i18n": {
+      "zh-CN": "beautify-github-readme 已进入 Skills Library",
+      "en-US": "Published beautify-github-readme to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "beautify-github-readme 已加入本地 Skills Library，并以净化后的公开字段同步至 Netlify 目录。",
+      "en-US": "beautify-github-readme was added to the local Skills Library and its sanitized public Netlify catalog."
+    },
+    "skill": "beautify-github-readme",
+    "visibility": "public"
+  }
+]
