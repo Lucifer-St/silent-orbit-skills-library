@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "da832374cf1f79ec640fd131cfbcc9640a1a7ecc",
-  "inputCommitTimestamp": "2026-07-21T16:21:10-04:00",
+  "inputCommit": "1bea076e09cb76cde18421eb30084b8b51314d05",
+  "inputCommitTimestamp": "2026-07-21T19:40:17-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "f46785fb9763c92ecc1cbb9f5e04780d75b4416043189c1fe4167e749126adb4",
-  "fileCount": 236,
-  "totalBytes": 11044513,
+  "releaseDigest": "ea23b75d1638d0bea2226fa6035c1715d22d0f255295e06df49696e65eba297b",
+  "fileCount": 238,
+  "totalBytes": 11055151,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "f826feafbdb72f505d97934d3d2783596c0ab11308f05ccd3af05f47a410eb7c"
+      "sha256": "138dcfe194b8d737e61f0c6cb4bf96bbe46577c0af6006be6799fa3fdd6d12a0"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -68,6 +68,16 @@
       "sha256": "5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e"
     },
     {
+      "path": "GENERATOR_QUICKSTART.md",
+      "bytes": 4022,
+      "sha256": "23819a5fcd08abbf3c7b6ca439682b928b27311956568231f390ba24bb2c41a8"
+    },
+    {
+      "path": "GENERATOR_QUICKSTART.zh-CN.md",
+      "bytes": 3807,
+      "sha256": "131d85c2e0d89e0d84a4bc673d4e74350c99f40c353162a5ec6098200c4497fc"
+    },
+    {
       "path": "LICENSE",
       "bytes": 1064,
       "sha256": "4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8"
@@ -75,22 +85,22 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "4a3afb0fb7fb8905527505fdd627599b4a54aca0d3e97d38d00018b156550085"
+      "sha256": "dfdcb21bada362fe1e41814c70d645befbd505d34027a7a05777fb7b710403f7"
     },
     {
       "path": "README.md",
-      "bytes": 6449,
-      "sha256": "3c5158810c085f975cc0f7e775163ef5d05179d6e513992642f0af3f8165c7bb"
+      "bytes": 6939,
+      "sha256": "b336c150b2bae307842024f87f9d585e659ab659bbc18d7fc31b30c4b2df8726"
     },
     {
       "path": "README.zh-CN.md",
-      "bytes": 5870,
-      "sha256": "d5ea807ddd321429c36d94740ee89e0f87d3cae4362d5a1ea116efde30c1e0c4"
+      "bytes": 6354,
+      "sha256": "2ef65784cc35e8e4d50654078ff1b5d4315de33af1d60c8f18b8d9b083024f01"
     },
     {
       "path": "RELEASE_NOTES_v0.9.0-beta.1.md",
-      "bytes": 2780,
-      "sha256": "9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054"
+      "bytes": 3260,
+      "sha256": "77bee2ead23d044a835a81084e29577e6a0b45c2ca54c0f93e057f7a57cf45e6"
     },
     {
       "path": "SECURITY.md",
@@ -244,8 +254,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 3334,
-      "sha256": "82f0a886754e98a149277cf5163838b9862c5980e7ff48fd8e7c9e8c2fcab799"
+      "bytes": 3402,
+      "sha256": "7f376b82e0022711c662c7c605edb7f4650ff734befb817cfdb8ce7dd287b5e1"
     },
     {
       "path": "public/assets/branding/favicon.svg",
@@ -804,8 +814,8 @@
     },
     {
       "path": "scripts/validate-readme.mjs",
-      "bytes": 3672,
-      "sha256": "8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3"
+      "bytes": 4959,
+      "sha256": "db96d63fbd89c3400287258d0b31cb6d36e87eedeb949329808366e915e97ce3"
     },
     {
       "path": "skills/build-skill-cosmos/SKILL.md",

@@ -8,6 +8,7 @@ https://silent-orbit-skills-library.netlify.app/
 
 ## What is included
 
+- The pre-release `silent-orbit` CLI and the bundled `build-skill-cosmos` Agent Skill, with a verified tarball install path and bilingual first-use guide.
 - Deterministic English and Chinese search across 142 public-safe Skill records.
 - System → Library → Skill navigation, Catalog exploration, and a detailed Skill Inspector.
 - A one-bit interactive orbit view with keyboard, reduced-motion, and narrow-screen support.
@@ -15,6 +16,10 @@ https://silent-orbit-skills-library.netlify.app/
 - Public-safe creator showcases for `fengxue` and `fengxue-ai-weekly`.
 
 The final catalog contains 142 Skills, 9 functional Systems, and 28 Libraries.
+
+The 44-Skill NVIDIA Alpha is a fixed independent acceptance fixture and Deploy Preview only. The Git-connected Production build continues to use the current 142-Skill Silent Orbit catalog.
+
+See [Generator Quickstart](./GENERATOR_QUICKSTART.md) for artifact verification, installation, review, generation, and doctor checks.
 
 ## Governance and privacy
 

@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `da832374cf1f79ec640fd131cfbcc9640a1a7ecc`
-- Input commit timestamp: `2026-07-21T16:21:10-04:00`
-- Payload files: 236
-- Payload bytes: 11044513
-- Canonical SHA-256 release digest: `f46785fb9763c92ecc1cbb9f5e04780d75b4416043189c1fe4167e749126adb4`
+- Input commit: `1bea076e09cb76cde18421eb30084b8b51314d05`
+- Input commit timestamp: `2026-07-21T19:40:17-04:00`
+- Payload files: 238
+- Payload bytes: 11055151
+- Canonical SHA-256 release digest: `ea23b75d1638d0bea2226fa6035c1715d22d0f255295e06df49696e65eba297b`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,15 +17,17 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `f826feafbdb72f505d97934d3d2783596c0ab11308f05ccd3af05f47a410eb7c` |
+| ASSET_PROVENANCE.json | 31108 | `138dcfe194b8d737e61f0c6cb4bf96bbe46577c0af6006be6799fa3fdd6d12a0` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
+| GENERATOR_QUICKSTART.md | 4022 | `23819a5fcd08abbf3c7b6ca439682b928b27311956568231f390ba24bb2c41a8` |
+| GENERATOR_QUICKSTART.zh-CN.md | 3807 | `131d85c2e0d89e0d84a4bc673d4e74350c99f40c353162a5ec6098200c4497fc` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `4a3afb0fb7fb8905527505fdd627599b4a54aca0d3e97d38d00018b156550085` |
-| README.md | 6449 | `3c5158810c085f975cc0f7e775163ef5d05179d6e513992642f0af3f8165c7bb` |
-| README.zh-CN.md | 5870 | `d5ea807ddd321429c36d94740ee89e0f87d3cae4362d5a1ea116efde30c1e0c4` |
-| RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
+| PRIVACY_AUDIT.md | 615 | `dfdcb21bada362fe1e41814c70d645befbd505d34027a7a05777fb7b710403f7` |
+| README.md | 6939 | `b336c150b2bae307842024f87f9d585e659ab659bbc18d7fc31b30c4b2df8726` |
+| README.zh-CN.md | 6354 | `2ef65784cc35e8e4d50654078ff1b5d4315de33af1d60c8f18b8d9b083024f01` |
+| RELEASE_NOTES_v0.9.0-beta.1.md | 3260 | `77bee2ead23d044a835a81084e29577e6a0b45c2ca54c0f93e057f7a57cf45e6` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
 | THIRD_PARTY_NOTICES.md | 13368 | `335d5b8add3d9ce33e4cb9c26ca0ad99ca11be3cba882220b0bde53222cda9c3` |
 | alpha/phase1e/alpha-receipt.json | 2436 | `b5be1d86c1e3303fc5c1a48fbc5c00f546e07f49c994c11451926671db1983c4` |
@@ -56,7 +58,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
 | netlify.toml | 1388 | `e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543` |
 | package-lock.json | 59644 | `aaf3bb72323c79812b621b1ac9c41c2dca4d887e0cea31c8af9b13a704a0c5a0` |
-| package.json | 3334 | `82f0a886754e98a149277cf5163838b9862c5980e7ff48fd8e7c9e8c2fcab799` |
+| package.json | 3402 | `7f376b82e0022711c662c7c605edb7f4650ff734befb817cfdb8ce7dd287b5e1` |
 | public/assets/branding/favicon.svg | 584 | `617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea` |
 | public/assets/cosmos/celestial/01-cratered-planet.png | 1811 | `fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488` |
 | public/assets/cosmos/celestial/02-ringed-planet.png | 850 | `00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a` |
@@ -168,7 +170,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/validate-generator-contracts.mjs | 2082 | `59b178e2389d52872605e3ff9b14705f98062a0030dcae3466639b955d09158e` |
 | scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
 | scripts/validate-public-release.mjs | 16489 | `f6997decb32fcbde0096e780f422bab98a0b73a92be4482b68538d6b90b44fc4` |
-| scripts/validate-readme.mjs | 3672 | `8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3` |
+| scripts/validate-readme.mjs | 4959 | `db96d63fbd89c3400287258d0b31cb6d36e87eedeb949329808366e915e97ce3` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
 | skills/build-skill-cosmos/agents/openai.yaml | 248 | `d685c42774faa837bbe23ecc9e9e7fae8b522f8c760f46a529c77e628835c347` |
 | skills/build-skill-cosmos/references/cli-contract.md | 2845 | `7d8f1529005af052fb98cec35c0222709aa4331b48338659f3ffbd25541ff99a` |

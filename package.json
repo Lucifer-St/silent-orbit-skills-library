@@ -19,6 +19,8 @@
     "templates/silent-orbit-v1",
     "templates/reference-index-v1",
     "alpha/phase1e",
+    "GENERATOR_QUICKSTART.md",
+    "GENERATOR_QUICKSTART.zh-CN.md",
     "skills/build-skill-cosmos"
   ],
   "scripts": {
