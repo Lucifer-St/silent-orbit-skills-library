@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/analysis-overrides.v1.schema.json",
+  "title": "AnalysisOverridesV1",
+  "description": "Reviewable governance, taxonomy, metadata, and collection overrides applied after read-only discovery.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "taxonomy", "governance", "skillOverrides", "libraryOverrides", "collections"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewCategory", "categories"],
+      "properties": {
+        "reviewCategory": { "$ref": "#/$defs/categoryLabel" },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "name", "terms"],
+            "properties": {
+              "key": { "$ref": "#/$defs/key" },
+              "name": { "$ref": "#/$defs/text" },
+              "terms": { "$ref": "#/$defs/stringList" }
+            }
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sourceKey", "name"],
+        "properties": {
+          "sourceKey": { "$ref": "#/$defs/key" },
+          "name": { "$ref": "#/$defs/text" },
+          "origin": { "enum": ["third-party", "creator", "system", "unknown"] },
+          "visibility": { "enum": ["public", "creator-showcase", "local-only", "review-required"] }
+        },
+        "anyOf": [{ "required": ["origin"] }, { "required": ["visibility"] }]
+      }
+    },
+    "skillOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["selector"],
+        "properties": {
+          "selector": { "$ref": "#/$defs/selector" },
+          "description": { "type": "string" },
+          "trigger": { "type": "string" },
+          "categoryKeys": { "$ref": "#/$defs/stringList" },
+          "primaryCategoryKey": { "$ref": "#/$defs/key" }
+        }
+      }
+    },
+    "libraryOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceKey": { "$ref": "#/$defs/key" },
+          "sourceId": { "$ref": "#/$defs/text" },
+          "title": { "$ref": "#/$defs/text" },
+          "kind": { "$ref": "#/$defs/key" },
+          "description": { "type": "string" }
+        },
+        "oneOf": [{ "required": ["sourceKey"] }, { "required": ["sourceId"] }]
+      }
+    },
+    "collections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "kind", "title", "skills"],
+        "properties": {
+          "key": { "$ref": "#/$defs/key" },
+          "kind": { "enum": ["personal-deck", "curated"] },
+          "title": { "$ref": "#/$defs/text" },
+          "skills": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/selector" } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "key": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "text": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+    "categoryLabel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "name"],
+      "properties": { "key": { "$ref": "#/$defs/key" }, "name": { "$ref": "#/$defs/text" } }
+    },
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "sourceKey": { "$ref": "#/$defs/key" },
+        "sourceId": { "$ref": "#/$defs/text" },
+        "name": { "$ref": "#/$defs/text" }
+      },
+      "not": { "required": ["sourceKey", "sourceId"] }
+    }
+  }
+}

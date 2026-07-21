@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/inventory-snapshot.v1.schema.json",
+  "title": "InventorySnapshotV1",
+  "description": "Sanitized, provider-neutral result of one or more read-only Skill source scans.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "snapshotId", "projectId", "generatedAt", "privacy", "sources", "items", "diagnostics", "summary"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "snapshotId": { "$ref": "#/$defs/id" },
+    "projectId": { "$ref": "#/$defs/id" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "privacy": { "const": "sanitized" },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/skill" }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/diagnostic" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sources", "items", "warnings", "errors"],
+      "properties": {
+        "sources": { "type": "integer", "minimum": 0 },
+        "items": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "errors": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "providerKind", "label", "scanState", "capabilities"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "providerKind": { "$ref": "#/$defs/id" },
+        "label": { "$ref": "#/$defs/id" },
+        "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "scanState": { "enum": ["complete", "partial", "failed"] },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["discovery", "write", "updateChannel"],
+          "properties": {
+            "discovery": { "const": "read-only" },
+            "write": { "const": false },
+            "updateChannel": { "enum": ["source-managed", "external", "system-managed", "unknown"] }
+          }
+        }
+      }
+    },
+    "observedMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string" },
+        "trigger": { "type": "string" },
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https?://" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "name", "sourceId", "state", "origin", "visibility"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "const": "skill" },
+        "name": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "state": { "enum": ["present", "missing", "unknown"] },
+        "origin": { "enum": ["third-party", "creator", "system", "unknown"] },
+        "visibility": { "enum": ["public", "creator-showcase", "review-required"] },
+        "status": { "type": "string" },
+        "observed": { "$ref": "#/$defs/observedMetadata" }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sourceId", "severity", "code", "message"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "itemId": { "$ref": "#/$defs/id" },
+        "severity": { "enum": ["warning", "error"] },
+        "code": { "$ref": "#/$defs/id" },
+        "message": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

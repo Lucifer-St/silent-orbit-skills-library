@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/source-import.v1.schema.json",
+  "title": "SourceImportV1",
+  "description": "Portable normalized JSON input accepted by the read-only source import adapter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "source", "skills"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "label"],
+      "properties": {
+        "key": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "providerKind": { "type": "string", "minLength": 1 },
+        "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "updateChannel": { "enum": ["source-managed", "external", "system-managed", "unknown"] }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "state": { "enum": ["present", "missing", "unknown"] },
+          "origin": { "enum": ["third-party", "creator", "system", "unknown"] },
+          "visibility": { "enum": ["public", "creator-showcase", "local-only", "review-required"] },
+          "status": { "type": "string" },
+          "description": { "type": "string" },
+          "trigger": { "type": "string" },
+          "version": { "type": "string" },
+          "author": { "type": "string" },
+          "sourceUrl": { "type": "string" }
+        }
+      }
+    }
+  }
+}

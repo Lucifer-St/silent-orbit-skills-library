@@ -108,10 +108,10 @@ export interface MaintenanceStatusRecord {
   readonly catalogSkills: number;
   readonly publicGlobalSkills: number;
   readonly publicationHandoff: {
-    readonly productionAuthority: "public-github-main";
+    readonly productionAuthority: "public-github-main" | "local-library";
     readonly publicRepository: string;
-    readonly requiredCheck: "release-gate";
-    readonly deployProvider: "netlify";
+    readonly requiredCheck: "release-gate" | "not-configured";
+    readonly deployProvider: "netlify" | "none";
     readonly directPrivateProductionDeploy: false;
   };
   readonly channels: readonly MaintenanceChannelRecord[];
@@ -178,6 +178,7 @@ export interface AppData {
   readonly skills: readonly SkillRecord[];
   readonly libraries: readonly LibraryRecord[];
   readonly categoryUnits: readonly CategoryGroup[];
+  readonly categorySkillNames?: Readonly<Record<string, readonly string[]>>;
   readonly personalSkills: readonly SkillRecord[];
   readonly changes: readonly ChangeRecord[];
   readonly starredSkills: readonly StarredSkillRecord[];

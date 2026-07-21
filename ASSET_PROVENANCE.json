@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "10f294743982682e7260bd969301b137f8429d74",
-  "inputCommitTimestamp": "2026-07-19T18:05:30-04:00",
+  "inputCommit": "4fc69ccc412f26e25a1003e9677783c54c392a2b",
+  "inputCommitTimestamp": "2026-07-21T14:10:25-04:00",
   "visualAssetPolicy": "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.",
   "assets": [
     {
@@ -77,8 +77,8 @@
     },
     {
       "path": "public/assets/branding/favicon.svg",
-      "bytes": 575,
-      "sha256": "59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8",
+      "bytes": 584,
+      "sha256": "617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea",
       "origin": "project-native-vector",
       "source": "Project-native one-bit orbit mark created for the Phase 4A public website favicon.",
       "license": "Project visual asset policy"
@@ -684,8 +684,8 @@
     },
     {
       "path": "public/fonts/sarasa-term-sc/OFL.txt",
-      "bytes": 4814,
-      "sha256": "0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa",
+      "bytes": 4702,
+      "sha256": "32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53",
       "origin": "Sarasa Gothic v1.0.40 license",
       "source": "https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v1.0.40/LICENSE",
       "license": "SIL Open Font License 1.1"

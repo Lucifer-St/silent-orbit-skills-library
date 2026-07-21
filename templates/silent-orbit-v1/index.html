@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Silent Orbit Skill Library</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="#top" aria-label="Skill library home"><span class="mark" aria-hidden="true">◉</span><span id="project-title">SILENT ORBIT</span></a>
+      <p class="status" id="status">LOADING LIBRARY…</p>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">READ-ONLY SKILL ATLAS / GENERATOR V0.1</p>
+        <h1>Your capabilities,<br /> mapped into orbit.</h1>
+        <p class="lede">A private-first, static map generated from reviewed Skill metadata.</p>
+        <div class="metrics" id="metrics" aria-label="Library summary"></div>
+      </section>
+      <section class="controls" aria-label="Catalog controls">
+        <label><span>SEARCH</span><input id="search" type="search" autocomplete="off" placeholder="name, description, trigger…" /></label>
+        <label><span>SYSTEM</span><select id="category"><option value="all">ALL SYSTEMS</option></select></label>
+        <label><span>SOURCE</span><select id="source"><option value="all">ALL SOURCES</option></select></label>
+      </section>
+      <section class="systems" id="systems" aria-label="Functional systems"></section>
+      <section class="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading"><p class="eyebrow">CATALOG</p><h2 id="catalog-title">Reviewed Skills</h2><span id="result-count"></span></div>
+        <div class="skill-grid" id="skills"></div>
+        <p class="empty" id="empty" hidden>No Skills match this view.</p>
+      </section>
+    </main>
+    <dialog id="skill-dialog">
+      <button class="close" type="button" aria-label="Close">×</button>
+      <p class="eyebrow" id="dialog-source"></p>
+      <h2 id="dialog-title"></h2>
+      <p id="dialog-description"></p>
+      <dl id="dialog-meta"></dl>
+    </dialog>
+    <footer><span>SILENT ORBIT</span><span id="snapshot"></span></footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

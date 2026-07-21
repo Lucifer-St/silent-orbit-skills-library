@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/site-manifest.v1.schema.json",
+  "title": "SiteManifestV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "generatedAt", "snapshotRefs", "renderer", "locales", "summary", "privacy"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "projectId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "snapshotRefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inventory", "library"],
+      "properties": {
+        "inventory": { "type": "string", "minLength": 1 },
+        "library": { "type": "string", "minLength": 1 }
+      }
+    },
+    "renderer": {
+      "type": "object",
+      "required": ["theme", "defaultRoute"],
+      "properties": {
+        "theme": { "type": "string", "minLength": 1 },
+        "defaultRoute": { "type": "string", "minLength": 1 }
+      }
+    },
+    "locales": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["zh-CN", "en-US"] } },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skills", "libraries", "categories", "collections"],
+      "properties": {
+        "skills": { "type": "integer", "minimum": 0 },
+        "libraries": { "type": "integer", "minimum": 0 },
+        "categories": { "type": "integer", "minimum": 0 },
+        "collections": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["includesLocalOnly", "publicVisibilities"],
+      "properties": {
+        "includesLocalOnly": { "const": false },
+        "publicVisibilities": { "type": "array", "items": { "enum": ["public", "creator-showcase"] } }
+      }
+    }
+  }
+}

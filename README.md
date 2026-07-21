@@ -13,6 +13,16 @@ Silent Orbit turns a growing AI Skills collection into a navigable product: sear
 
 The public catalog currently contains **142 Skills across 9 systems and 28 libraries**.
 
+## Phase 1E Alpha Preview
+
+The Draft PR also builds a separate **44-Skill Reference Preview** from a pinned independent environment. It keeps the interactive Skill map as a primary way to explore the collection: a white canvas, black relationship lines, category clusters, restrained pan/zoom, and spatial focus transitions. A compact Library view uses the same search, filters, selection, and URL state.
+
+This Reference Renderer is a functional starting point, not an official visual theme. Generated projects include `frontend-handoff.md` so users can retain the public data, keyboard behavior, deep links, and privacy boundary while rebuilding the interface with any visual style and frontend Skill they prefer.
+
+- [Phase 1E architecture and acceptance boundary](./docs/architecture/GENERATOR_PHASE1E.md)
+- The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
+- Production remains the compatible 142-Skill site until the Draft PR is separately reviewed and merged.
+
 ## See the library
 
 <p align="center">
@@ -90,6 +100,7 @@ npm run validate:readme
 npm run test:mvp
 npx tsc --noEmit
 npm run build
+npm run build:alpha-preview
 npm run smoke:ui
 npm run qa:visual
 ```

@@ -2,6 +2,13 @@
 
 This release includes factual Skill metadata, self-hosted fonts, and npm dependencies. Third-party Skill instructions are not redistributed.
 
+## Phase 1E independent Alpha metadata
+
+- Source: NVIDIA/skills pinned at `f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0`
+- Metadata/documentation license: CC-BY-4.0
+- Source-code license where applicable: Apache-2.0
+- Included payload: reviewed factual metadata and source links only; no third-party `SKILL.md` instruction bodies
+
 ## Fonts
 
 - Fusion Pixel Font 2026.07.01 — SIL Open Font License 1.1 — https://github.com/TakWolf/fusion-pixel-font

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/project-config.v1.schema.json",
+  "title": "ProjectConfigV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "projectId", "title", "locales", "defaultLocale", "renderer", "privacy"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "projectId": { "type": "string", "minLength": 1 },
+    "title": { "$ref": "#/$defs/localizedText" },
+    "locales": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["zh-CN", "en-US"] }
+    },
+    "defaultLocale": { "enum": ["zh-CN", "en-US"] },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme", "defaultRoute"],
+      "properties": {
+        "theme": { "type": "string", "minLength": 1 },
+        "defaultRoute": { "type": "string", "minLength": 1 }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultVisibility", "publicVisibilities", "publishRawPaths", "publishHashes", "publishUsageEvidence"],
+      "properties": {
+        "defaultVisibility": { "$ref": "#/$defs/visibility" },
+        "publicVisibilities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["public", "creator-showcase"] }
+        },
+        "publishRawPaths": { "const": false },
+        "publishHashes": { "const": false },
+        "publishUsageEvidence": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "localizedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "zh-CN": { "type": "string" },
+        "en-US": { "type": "string" }
+      },
+      "minProperties": 1
+    },
+    "visibility": { "enum": ["public", "creator-showcase", "local-only", "review-required"] }
+  }
+}

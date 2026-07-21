@@ -13,11 +13,26 @@ export const dataFileMap = Object.freeze({
 });
 
 export const publicSourceFiles = Object.freeze([
+  "docs/architecture/GENERATOR_PHASE1A.md",
+  "docs/architecture/GENERATOR_PHASE1B.md",
+  "docs/architecture/GENERATOR_PHASE1C.md",
+  "docs/architecture/GENERATOR_PHASE1D.md",
+  "docs/architecture/GENERATOR_PHASE1E.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
   "tsconfig.json",
   "vite.config.ts",
+  "templates/silent-orbit-v1/index.html",
+  "templates/silent-orbit-v1/styles.css",
+  "templates/silent-orbit-v1/app.js",
+  "templates/reference-index-v1/index.html",
+  "templates/reference-index-v1/styles.css",
+  "templates/reference-index-v1/app.js",
+  "alpha/phase1e/site-data.json",
+  "alpha/phase1e/frontend-handoff.md",
+  "alpha/phase1e/alpha-source-lock.json",
+  "alpha/phase1e/alpha-receipt.json",
 ]);
 
 export const publicScriptFiles = Object.freeze([
@@ -27,11 +42,18 @@ export const publicScriptFiles = Object.freeze([
   "public-release-config.mjs",
   "smoke-ui.mjs",
   "sync-data.mjs",
+  "validate-generator-contracts.mjs",
   "validate-data.mjs",
   "validate-public-assets.mjs",
   "validate-public-release.mjs",
   "validate-readme.mjs",
   "tests/font-assets.test.mjs",
+  "tests/generator-contracts.test.mjs",
+  "tests/source-adapters.test.mjs",
+  "tests/library-analyzer.test.mjs",
+  "tests/silent-orbit-cli.test.mjs",
+  "tests/build-skill-cosmos.test.mjs",
+  "tests/phase1e-alpha.test.mjs",
   "tests/i18n-metadata.test.mjs",
   "tests/orbit-layout.test.mjs",
   "tests/outcome-policy.test.mjs",
@@ -40,6 +62,17 @@ export const publicScriptFiles = Object.freeze([
   "tests/skill-search.test.mjs",
   "tests/site-release.test.mjs",
   "tests/sync-data.test.mjs",
+  "lib/generator-contracts.mjs",
+  "lib/source-adapters.mjs",
+  "lib/library-analyzer.mjs",
+  "lib/silent-orbit-project.mjs",
+  "lib/phase1e-alpha.mjs",
+  "build-alpha-preview.mjs",
+  "silent-orbit.mjs",
+]);
+
+export const publicSkillDirectories = Object.freeze([
+  "build-skill-cosmos",
 ]);
 
 export const extraVisualAssetProvenance = Object.freeze({
