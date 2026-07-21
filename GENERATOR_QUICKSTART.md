@@ -92,4 +92,3 @@ Require `doctor.status` to be `ok`. The generated reference site and `frontend-h
 ## Release boundary
 
 The bundled 44-Skill NVIDIA Alpha is a fixed acceptance fixture. It proves an independent install and generation path; it is not Production content. Git-connected Netlify Deploy Previews build that fixture with `npm run build:alpha-preview`, while merged Production continues to build the current 142-Skill Silent Orbit catalog with `npm run build`.
-

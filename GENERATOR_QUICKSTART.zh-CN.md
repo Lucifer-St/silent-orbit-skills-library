@@ -92,4 +92,3 @@ npx silent-orbit doctor --project .\my-skill-cosmos --json
 ## 发布边界
 
 随包提供的 44-Skill NVIDIA Alpha 只是固定验收夹具，用于证明独立安装与生成路径，不是 Production 内容。Git-connected Netlify Deploy Preview 通过 `npm run build:alpha-preview` 构建该夹具；合并后的 Production 继续通过 `npm run build` 使用当前 142-Skill Silent Orbit catalog。
-

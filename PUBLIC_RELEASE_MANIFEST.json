@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "1bea076e09cb76cde18421eb30084b8b51314d05",
-  "inputCommitTimestamp": "2026-07-21T19:40:17-04:00",
+  "inputCommit": "1e37679c3fdba2b0ffe998aff54fcdaa4e794b98",
+  "inputCommitTimestamp": "2026-07-21T19:50:00-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "ea23b75d1638d0bea2226fa6035c1715d22d0f255295e06df49696e65eba297b",
+  "releaseDigest": "3371660a24172b45100d6cffd81b7f7f07e7d8084cbecb2353403622f395b8fd",
   "fileCount": 238,
-  "totalBytes": 11055151,
+  "totalBytes": 11055329,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "138dcfe194b8d737e61f0c6cb4bf96bbe46577c0af6006be6799fa3fdd6d12a0"
+      "sha256": "a0e14dd82a0930b6cc74ca677a18fae32bd102e326bccf6153a95e5d482cfa01"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -69,13 +69,13 @@
     },
     {
       "path": "GENERATOR_QUICKSTART.md",
-      "bytes": 4022,
-      "sha256": "23819a5fcd08abbf3c7b6ca439682b928b27311956568231f390ba24bb2c41a8"
+      "bytes": 4021,
+      "sha256": "fcdf3c46104754151b5ce30b1913237eeeb6cd37d290169b819f90d673bc9d3b"
     },
     {
       "path": "GENERATOR_QUICKSTART.zh-CN.md",
-      "bytes": 3807,
-      "sha256": "131d85c2e0d89e0d84a4bc673d4e74350c99f40c353162a5ec6098200c4497fc"
+      "bytes": 3806,
+      "sha256": "9d1543a7cbb3bd1b68dc56ed20cea1cf1cce8caccf6f4e71932710e581ae5160"
     },
     {
       "path": "LICENSE",
@@ -85,7 +85,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "dfdcb21bada362fe1e41814c70d645befbd505d34027a7a05777fb7b710403f7"
+      "sha256": "88948b4e5ea25cb77f1718c55e1a2b452373b96a0f79bda21fd868e6285256ec"
     },
     {
       "path": "README.md",
@@ -814,8 +814,8 @@
     },
     {
       "path": "scripts/validate-readme.mjs",
-      "bytes": 4959,
-      "sha256": "db96d63fbd89c3400287258d0b31cb6d36e87eedeb949329808366e915e97ce3"
+      "bytes": 5139,
+      "sha256": "d89a4309113694c1d78fd422b79a64f13ffb84c1c3095845772182f90b54af6c"
     },
     {
       "path": "skills/build-skill-cosmos/SKILL.md",

@@ -74,8 +74,13 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
   ]) {
     if (!content.includes(required)) throw new Error(`${fileName} is missing ${required}.`);
   }
-  if (/npm\s+(?:publish|install\s+(?:--global|-g)\s+silent-orbit-skills-library\b)|netlify\s+deploy/i.test(content)) {
-    throw new Error(`${fileName} contains a prohibited registry-publish or direct-deploy path.`);
+  const prohibitedCommands = [
+    /\bnpm\s+publish\b/i,
+    /\bnpm\s+install\s+(?:--global|-g)\s+silent-orbit-skills-library(?:@|\s|$)/im,
+    /\bnetlify\s+deploy(?:\s+--prod|\s+--dir|\s+--alias|$)/im,
+  ];
+  if (prohibitedCommands.some((pattern) => pattern.test(content))) {
+    throw new Error(`${fileName} contains a prohibited registry-publish, registry-install, or direct-deploy command.`);
   }
   if (chinese && !content.includes("首次生成")) throw new Error(`${fileName} is missing its Chinese first-generation section.`);
   if (!chinese && !content.includes("First generation")) throw new Error(`${fileName} is missing its first-generation section.`);
