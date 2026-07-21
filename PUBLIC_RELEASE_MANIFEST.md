@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `4fc69ccc412f26e25a1003e9677783c54c392a2b`
-- Input commit timestamp: `2026-07-21T14:10:25-04:00`
+- Input commit: `392eda27ca585b0e967c96047d52cd54ea2b28dc`
+- Input commit timestamp: `2026-07-21T14:24:05-04:00`
 - Payload files: 230
-- Payload bytes: 9620573
-- Canonical SHA-256 release digest: `736eb97b5562e182ccc1c05f0cca5dd0ee9bdb524ee21bf97eea367a50ed815b`
+- Payload bytes: 9620629
+- Canonical SHA-256 release digest: `a0ec343006dd058cb07f66d6d0429b828e8490a50cb0e9673b2c09ce320558ae`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,18 +17,18 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28893 | `81caf86ff75297d2b7b79f327265e452b763a36f968ae098f91569c95d4bc131` |
+| ASSET_PROVENANCE.json | 28893 | `01a1abb3cad1dd8739e6cfdef3cbab4c7e1b1612ce9559766995b8e03984507e` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `f880fc026ab798474e1341d57011d0fbd2f8492834e44164e7b145eb1e6c18a4` |
+| PRIVACY_AUDIT.md | 615 | `5b88721e92ac022f4cb2996be5e39764b24929f0e9f6acf14bf9eabd4933285b` |
 | README.md | 6449 | `3c5158810c085f975cc0f7e775163ef5d05179d6e513992642f0af3f8165c7bb` |
 | README.zh-CN.md | 5870 | `d5ea807ddd321429c36d94740ee89e0f87d3cae4362d5a1ea116efde30c1e0c4` |
 | RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
 | THIRD_PARTY_NOTICES.md | 13060 | `38747740ba4a3908d01057a4d46c7e4a0f80a3a6358197e203dcb21e4a872637` |
-| alpha/phase1e/alpha-receipt.json | 2380 | `53754727a0e033317ea518562af26fbeb298242de964540687f11abb73efc53c` |
+| alpha/phase1e/alpha-receipt.json | 2436 | `1e8fcd75933d1bfb2ee3bd89aeb16ebafee02413ee8bbc6f5ff3ae0e27976117` |
 | alpha/phase1e/alpha-source-lock.json | 12120 | `3f6826ae52f269a39d931a7997b70bb7297cab1fdfe7d457a595e265aaea05ca` |
 | alpha/phase1e/frontend-handoff.md | 995 | `c474073fcb19f4df4fb2670f9e387ff9f1460ef16ae8d737642654adc221884f` |
 | alpha/phase1e/site-data.json | 50339 | `0be2d577cae3ba6d23f274025d416348188e717c6de60876ea2f1fa100998992` |

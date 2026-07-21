@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "4fc69ccc412f26e25a1003e9677783c54c392a2b",
-  "inputCommitTimestamp": "2026-07-21T14:10:25-04:00",
+  "inputCommit": "392eda27ca585b0e967c96047d52cd54ea2b28dc",
+  "inputCommitTimestamp": "2026-07-21T14:24:05-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "736eb97b5562e182ccc1c05f0cca5dd0ee9bdb524ee21bf97eea367a50ed815b",
+  "releaseDigest": "a0ec343006dd058cb07f66d6d0429b828e8490a50cb0e9673b2c09ce320558ae",
   "fileCount": 230,
-  "totalBytes": 9620573,
+  "totalBytes": 9620629,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 28893,
-      "sha256": "81caf86ff75297d2b7b79f327265e452b763a36f968ae098f91569c95d4bc131"
+      "sha256": "01a1abb3cad1dd8739e6cfdef3cbab4c7e1b1612ce9559766995b8e03984507e"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -75,7 +75,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "f880fc026ab798474e1341d57011d0fbd2f8492834e44164e7b145eb1e6c18a4"
+      "sha256": "5b88721e92ac022f4cb2996be5e39764b24929f0e9f6acf14bf9eabd4933285b"
     },
     {
       "path": "README.md",
@@ -104,8 +104,8 @@
     },
     {
       "path": "alpha/phase1e/alpha-receipt.json",
-      "bytes": 2380,
-      "sha256": "53754727a0e033317ea518562af26fbeb298242de964540687f11abb73efc53c"
+      "bytes": 2436,
+      "sha256": "1e8fcd75933d1bfb2ee3bd89aeb16ebafee02413ee8bbc6f5ff3ae0e27976117"
     },
     {
       "path": "alpha/phase1e/alpha-source-lock.json",

@@ -75,10 +75,10 @@
   "release": {
     "privateGates": "pass",
     "publicRc": "pass",
-    "draftPr": null,
-    "releaseGate": "pending",
-    "deployPreview": "pending",
+    "draftPr": "https://github.com/Lucifer-St/silent-orbit-skills-library/pull/2",
+    "releaseGate": "pass",
+    "deployPreview": "pass",
     "productionChanged": false
   },
-  "receiptId": "787595854b922697c2552772e4e4bb3dc92b58234700d5a1109ca72e85d50ad9"
+  "receiptId": "738e417cb415ff4e3a2503a019b7a51ef82f21c6197be61b1c50e43af70e275c"
 }
