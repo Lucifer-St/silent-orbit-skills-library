@@ -13,22 +13,26 @@ const outputRoot = path.join(projectRoot, "dist");
 function invariant(condition, message) { if (!condition) throw new Error(`Alpha preview build violation: ${message}`); }
 
 export function buildAlphaPreview({ output = outputRoot } = {}) {
-  const files = [
-    [path.join(templateRoot, "index.html"), path.join(output, "index.html")],
-    [path.join(templateRoot, "styles.css"), path.join(output, "styles.css")],
-    [path.join(templateRoot, "app.js"), path.join(output, "app.js")],
-    [path.join(alphaRoot, "site-data.json"), path.join(output, "site-data.json")],
-    [path.join(alphaRoot, "frontend-handoff.md"), path.join(output, "frontend-handoff.md")],
-  ];
-  invariant(files.every(([source]) => fs.existsSync(source)), "Alpha artifacts are missing; run npm run alpha:acceptance first.");
+  const publicArtifacts = ["site-data.json", "frontend-handoff.md"];
+  invariant(fs.existsSync(templateRoot) && publicArtifacts.every((name) => fs.existsSync(path.join(alphaRoot, name))), "Alpha artifacts are missing; run npm run alpha:acceptance first.");
   if (fs.existsSync(output)) fs.rmSync(output, { recursive: true, force: true });
-  fs.mkdirSync(output, { recursive: true });
-  for (const [source, target] of files) fs.copyFileSync(source, target);
-  const payload = files.map(([, target]) => fs.readFileSync(target, "utf8")).join("\n");
+  fs.cpSync(templateRoot, output, { recursive: true });
+  for (const name of publicArtifacts) fs.copyFileSync(path.join(alphaRoot, name), path.join(output, name));
+  const outputFiles = fs.readdirSync(output, { recursive: true, withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => path.join(entry.parentPath, entry.name));
+  const payload = outputFiles
+    .filter((filePath) => /\.(?:html|css|js|json|md|txt)$/i.test(filePath))
+    .map((filePath) => fs.readFileSync(filePath, "utf8"))
+    .join("\n");
   invariant(!containsPhase1EPrivateEvidence(payload), "generated Preview contains private evidence.");
   const siteData = JSON.parse(fs.readFileSync(path.join(output, "site-data.json"), "utf8"));
   invariant(siteData.siteManifest.summary.skills === 44, "Preview must contain exactly 44 reviewed Skills.");
-  return { output, skills: 44, files: files.map(([, target]) => path.basename(target)).sort() };
+  return {
+    output,
+    skills: 44,
+    files: outputFiles.map((filePath) => path.relative(output, filePath).replace(/\\/g, "/")).sort(),
+  };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

@@ -281,7 +281,7 @@ function assertPrivacyAndSecrets(rootDir, { repositoryAware = false } = {}) {
       throw new Error(`${relativePath} contains secret-like material.`);
     }
     const emails = [...text.matchAll(email)].map((match) => match[0]);
-    if (emails.length > 0 && !/(?:public|dist)\/fonts\/.+\/OFL\.txt$/.test(relativePath)) {
+    if (emails.length > 0 && !/\/fonts\/.+\/OFL\.txt$/.test(`/${relativePath}`)) {
       throw new Error(`${relativePath} contains an email address outside a required font license.`);
     }
   }
@@ -307,6 +307,7 @@ function assertGitAttributesContract(rootDir) {
     "assets/readme/** binary",
     "public/assets/** binary",
     "public/fonts/** binary",
+    "templates/reference-index-v1/fonts/** binary",
   ];
   for (const rule of requiredRules) {
     if (!attributes.split(/\r?\n/).includes(rule)) {

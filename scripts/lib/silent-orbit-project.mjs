@@ -462,8 +462,7 @@ function templateRootFor(theme) {
 function copyTemplate(target, theme) {
   const templateRoot = templateRootFor(theme);
   invariant(fs.existsSync(templateRoot), "bundled renderer template is missing.");
-  fs.mkdirSync(target, { recursive: true });
-  for (const name of ["index.html", "styles.css", "app.js"]) fs.copyFileSync(path.join(templateRoot, name), path.join(target, name));
+  fs.cpSync(templateRoot, target, { recursive: true });
 }
 
 function frontendHandoff({ theme, summary }) {
@@ -472,6 +471,7 @@ function frontendHandoff({ theme, summary }) {
     "",
     "This directory is a functional reference preview, not a prescribed art direction.",
     "Use your preferred frontend Skill and visual style to create a custom implementation from the public data contract.",
+    "The bundled Editorial Skill Atlas demonstrates the required interactions through an editorial Map, Library index, and article Detail view; it is not an official theme recommendation.",
     "",
     "## Public inputs",
     "",
@@ -481,12 +481,12 @@ function frontendHandoff({ theme, summary }) {
     "",
     "## Required behavior",
     "",
-    "- Preserve search, category/source filtering, Map and Library navigation, Skill detail, keyboard access, and mobile interaction.",
+    "- Preserve search, category/source filtering, interactive Map and Library navigation, Skill detail, URL/history state, keyboard access, and mobile interaction.",
     "- Keep public counts derived from the supplied membership data.",
     "- Preserve `public` and `creator-showcase` records only; never invent publication approval.",
     "- Build into a user-selected output directory and do not overwrite this reference preview without confirmation.",
     "",
-    `Reference renderer: ${theme}`,
+    `Reference renderer: ${theme} (Editorial Skill Atlas functional preview)`,
     `Reviewed public Skills: ${summary.skills}`,
     "",
   ].join("\n");

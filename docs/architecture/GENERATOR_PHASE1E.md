@@ -25,14 +25,16 @@ The committed public Alpha projection contains only the 44 reviewed metadata rec
 
 ## Reference Renderer
 
-`reference-index` is the default Renderer for new projects. It is a functional reference, not an official Silent Orbit art direction.
+`reference-index` is the default Renderer for new projects. Its Phase 1E presentation is named **Editorial Skill Atlas**. It remains a functional reference, not an official Silent Orbit art direction or a bundled theme roadmap.
+
+The Preview interprets the editorial hierarchy, monochrome palette, hairlines, square geometry, and restrained blue focus language documented in [VoltAgent's WIRED design-system reference](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wired/DESIGN.md). It does not copy that publication's name, logo, page composition, or content.
 
 The Renderer exposes two views over the same public `SiteManifestV1`:
 
-- **Map**: a white canvas with black relationship lines, category clusters, restrained pan/zoom, and focus transitions inspired by mind maps and spatial presentations.
-- **Library**: a compact three-column desktop index with filters, result list, and detail panel; mobile uses a filter sheet, one-column results, and full-screen detail.
+- **Map**: an editorial taxonomy spread. The overview composes Category chapters with sparse black relationships rather than 44 radial edges; focusing a Category reorganizes its Skills into readable columns or a mobile sequence while retaining pan, zoom, focus, and return.
+- **Library**: a magazine-style index that prioritizes full Skill names and descriptions while keeping Category and Source metadata quiet. Desktop pairs the index with a 420–480px article Detail panel; mobile uses a filter sheet, one-column results, and full-screen Detail.
 
-Map and Library share search, Category and Source filters, selection, URL state, browser history, keyboard navigation, empty states, and result counts. The interface uses system fonts, one configurable accent, clear focus states, reduced-motion support, and no decorative hero, pixel art, branded font, or prescribed theme.
+Map and Library share search, Category and Source filters, selection, URL state, browser history, keyboard navigation, empty states, and result counts. The Preview self-hosts Playfair Display, Lora, and Inter under the SIL Open Font License; `#057DBC` is reserved for links and focus. It uses white, black, hairlines, zero-radius controls, reduced-motion support, and no gradients, shadows, decorative hero, pixel art, SaaS cards, or publication branding.
 
 Every generated site includes `frontend-handoff.md`. Users are encouraged to keep the public data and interaction/privacy obligations while implementing any visual language they prefer with their own frontend Skill. The Generator does not maintain a roadmap of bundled art themes.
 

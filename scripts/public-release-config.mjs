@@ -29,6 +29,12 @@ export const publicSourceFiles = Object.freeze([
   "templates/reference-index-v1/index.html",
   "templates/reference-index-v1/styles.css",
   "templates/reference-index-v1/app.js",
+  "templates/reference-index-v1/fonts/inter/Inter-Variable.ttf",
+  "templates/reference-index-v1/fonts/inter/OFL.txt",
+  "templates/reference-index-v1/fonts/lora/Lora-Variable.ttf",
+  "templates/reference-index-v1/fonts/lora/OFL.txt",
+  "templates/reference-index-v1/fonts/playfair-display/PlayfairDisplay-Variable.ttf",
+  "templates/reference-index-v1/fonts/playfair-display/OFL.txt",
   "alpha/phase1e/site-data.json",
   "alpha/phase1e/frontend-handoff.md",
   "alpha/phase1e/alpha-source-lock.json",
@@ -99,6 +105,36 @@ export const extraVisualAssetProvenance = Object.freeze({
 });
 
 export const fontProvenance = Object.freeze({
+  "templates/reference-index-v1/fonts/inter/Inter-Variable.ttf": {
+    origin: "Inter variable font from Google Fonts",
+    source: "https://github.com/google/fonts/tree/main/ofl/inter",
+    license: "SIL Open Font License 1.1",
+  },
+  "templates/reference-index-v1/fonts/inter/OFL.txt": {
+    origin: "Inter font license",
+    source: "https://github.com/google/fonts/blob/main/ofl/inter/OFL.txt",
+    license: "SIL Open Font License 1.1",
+  },
+  "templates/reference-index-v1/fonts/lora/Lora-Variable.ttf": {
+    origin: "Lora variable font from Google Fonts",
+    source: "https://github.com/google/fonts/tree/main/ofl/lora",
+    license: "SIL Open Font License 1.1",
+  },
+  "templates/reference-index-v1/fonts/lora/OFL.txt": {
+    origin: "Lora font license",
+    source: "https://github.com/google/fonts/blob/main/ofl/lora/OFL.txt",
+    license: "SIL Open Font License 1.1",
+  },
+  "templates/reference-index-v1/fonts/playfair-display/PlayfairDisplay-Variable.ttf": {
+    origin: "Playfair Display variable font from Google Fonts",
+    source: "https://github.com/google/fonts/tree/main/ofl/playfairdisplay",
+    license: "SIL Open Font License 1.1",
+  },
+  "templates/reference-index-v1/fonts/playfair-display/OFL.txt": {
+    origin: "Playfair Display font license",
+    source: "https://github.com/google/fonts/blob/main/ofl/playfairdisplay/OFL.txt",
+    license: "SIL Open Font License 1.1",
+  },
   "public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2": {
     origin: "Fusion Pixel Font 2026.07.01 web subset",
     source: "https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.07.01",

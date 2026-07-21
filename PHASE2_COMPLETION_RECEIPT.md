@@ -1,10 +1,10 @@
 # Phase 2 completion receipt
 
-- Input commit: `392eda27ca585b0e967c96047d52cd54ea2b28dc`
-- Input commit timestamp: `2026-07-21T14:24:05-04:00`
-- Canonical release digest: `a0ec343006dd058cb07f66d6d0429b828e8490a50cb0e9673b2c09ce320558ae`
-- JSON manifest SHA-256: `ae1bed0820bbcb5b758f9cc69152ef5b24bd78f25a8a6ebc87f07ac12710138a`
-- Markdown manifest SHA-256: `22e312f64659953aaf0e873796afa824296bbdecd9d719034bc99f336f74ca52`
+- Input commit: `da832374cf1f79ec640fd131cfbcc9640a1a7ecc`
+- Input commit timestamp: `2026-07-21T16:21:10-04:00`
+- Canonical release digest: `f46785fb9763c92ecc1cbb9f5e04780d75b4416043189c1fe4167e749126adb4`
+- JSON manifest SHA-256: `1bda410ab7961f422183ca0d119d5312a3c40729044fa9ce64c5656d3af8793e`
+- Markdown manifest SHA-256: `dabf00441870a2a3f0e54b23523bb54d7a7a0ad9583c092d1b459e428bba8566`
 - Export boundary: allowlisted current snapshot only; no Private Git history
 - Repository visibility action: none
 - Pull request or merge action: none

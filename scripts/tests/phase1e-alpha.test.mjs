@@ -79,9 +79,26 @@ test("Alpha preview build is static, private-safe, and keeps Map plus Library mo
   const styles = fs.readFileSync(path.join(output, "styles.css"), "utf8");
   assert.match(html, /data-view-target="map"/);
   assert.match(html, /data-view-target="library"/);
+  assert.match(html, /Editorial Skill Atlas/);
   assert.match(script, /animateViewBox/);
+  assert.match(script, /renderOverview/);
+  assert.match(script, /renderCategory/);
+  assert.doesNotMatch(script, /root-node|radial/i);
   assert.match(script, /ArrowDown/);
   assert.match(styles, /prefers-reduced-motion/);
+  assert.match(styles, /PlayfairDisplay-Variable\.ttf/);
+  assert.match(styles, /Lora-Variable\.ttf/);
+  assert.match(styles, /Inter-Variable\.ttf/);
+  assert.match(styles, /--accent:\s*#057dbc/i);
+  assert.match(styles, /--detail-width:\s*clamp\(420px,[^;]+480px\)/);
+  assert.doesNotMatch(styles, /linear-gradient|radial-gradient|box-shadow/);
+  for (const relativePath of [
+    "fonts/playfair-display/PlayfairDisplay-Variable.ttf",
+    "fonts/lora/Lora-Variable.ttf",
+    "fonts/inter/Inter-Variable.ttf",
+  ]) {
+    assert.ok(fs.statSync(path.join(output, ...relativePath.split("/"))).size > 100_000, `${relativePath} must be copied into the Preview.`);
+  }
   assert.equal(containsPhase1EPrivateEvidence([html, script, styles]), false);
 });
 

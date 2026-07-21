@@ -13,8 +13,11 @@ This release includes factual Skill metadata, self-hosted fonts, and npm depende
 
 - Fusion Pixel Font 2026.07.01 — SIL Open Font License 1.1 — https://github.com/TakWolf/fusion-pixel-font
 - Sarasa Gothic v1.0.40 — SIL Open Font License 1.1 — https://github.com/be5invis/Sarasa-Gothic
+- Playfair Display — SIL Open Font License 1.1 — https://github.com/google/fonts/tree/main/ofl/playfairdisplay
+- Lora — SIL Open Font License 1.1 — https://github.com/google/fonts/tree/main/ofl/lora
+- Inter — SIL Open Font License 1.1 — https://github.com/google/fonts/tree/main/ofl/inter
 
-The corresponding license copies are included under `public/fonts/`.
+The corresponding license copies are included beside each self-hosted font.
 
 ## npm dependency inventory
 

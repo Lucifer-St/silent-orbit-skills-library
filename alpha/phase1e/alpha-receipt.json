@@ -24,7 +24,7 @@
     "inventorySnapshotId": "inventory-snapshot:schemaversion-1-projectid-independen:8a750447f977",
     "librarySnapshotId": "library-snapshot:schemaversion-1-projectid-independen:c0438d15dac6",
     "siteManifestDigest": "869105940645b7b86e844bbfa5eb8ca2bb2dc39c6222d17c10fb57f316914011",
-    "distDigest": "49bf02bab8fc4ab21d4bb590456d2a09d28e0553bc20d8ef9391dbc0e834323d",
+    "distDigest": "caaadc6d75bfa97486c10ed422900d61350aa73eb2b9571c3006e58437bcf196",
     "doctorStatus": "ok"
   },
   "v2": {
@@ -32,7 +32,7 @@
     "inventorySnapshotId": "inventory-snapshot:schemaversion-1-projectid-independen:41b4e6e7ee3e",
     "librarySnapshotId": "library-snapshot:schemaversion-1-projectid-independen:633f4c07c827",
     "siteManifestDigest": "e490cf3e97b3417392b68560eceb4f704f001e4c902ffd10fd812fc11a6fd792",
-    "distDigest": "61035410973d50f811b0814529f597eff6c326aebbf373862c43fe27e269a1a2",
+    "distDigest": "513a35f8ede5f2426ad8a0defcb3cd93f7728217739c5946574e9ea051af95c4",
     "doctorStatus": "ok"
   },
   "diff": {
@@ -80,5 +80,5 @@
     "deployPreview": "pass",
     "productionChanged": false
   },
-  "receiptId": "738e417cb415ff4e3a2503a019b7a51ef82f21c6197be61b1c50e43af70e275c"
+  "receiptId": "d700a3b0cf1a25c52949ca2c505776ac77e605f8e037115cd41395154b3d75e9"
 }

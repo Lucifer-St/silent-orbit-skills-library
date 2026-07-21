@@ -1,36 +1,36 @@
 # Public release manifest
 
-- Input commit: `392eda27ca585b0e967c96047d52cd54ea2b28dc`
-- Input commit timestamp: `2026-07-21T14:24:05-04:00`
-- Payload files: 230
-- Payload bytes: 9620629
-- Canonical SHA-256 release digest: `a0ec343006dd058cb07f66d6d0429b828e8490a50cb0e9673b2c09ce320558ae`
+- Input commit: `da832374cf1f79ec640fd131cfbcc9640a1a7ecc`
+- Input commit timestamp: `2026-07-21T16:21:10-04:00`
+- Payload files: 236
+- Payload bytes: 11044513
+- Canonical SHA-256 release digest: `f46785fb9763c92ecc1cbb9f5e04780d75b4416043189c1fe4167e749126adb4`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| .gitattributes | 90 | `600a53b758fef81512d7b71bf00993e6302dfb87a7459025d135fe1271d2bef4` |
+| .gitattributes | 135 | `a5f28e7ead7f56f4fc7e9bee397cc5de7b1455f2279062e1594f460a4215d12c` |
 | .github/ISSUE_TEMPLATE/bug_report.yml | 1678 | `59036c1300bc7c4cc6897c063008029dfb9306e60d46e7ae24dbb8c514617b32` |
 | .github/ISSUE_TEMPLATE/experience_feedback.yml | 1813 | `a71d42f7110929da00ed90ca0ec1cd30dd7835bce5768082449fb8e25052cc68` |
 | .github/workflows/public-release-gate.yml | 1387 | `e9fc4480c6f459ca28f99c8c91682eb094e0c609e9a3cccdd15f5c5ad31ff49a` |
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28893 | `01a1abb3cad1dd8739e6cfdef3cbab4c7e1b1612ce9559766995b8e03984507e` |
+| ASSET_PROVENANCE.json | 31108 | `f826feafbdb72f505d97934d3d2783596c0ab11308f05ccd3af05f47a410eb7c` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `5b88721e92ac022f4cb2996be5e39764b24929f0e9f6acf14bf9eabd4933285b` |
+| PRIVACY_AUDIT.md | 615 | `4a3afb0fb7fb8905527505fdd627599b4a54aca0d3e97d38d00018b156550085` |
 | README.md | 6449 | `3c5158810c085f975cc0f7e775163ef5d05179d6e513992642f0af3f8165c7bb` |
 | README.zh-CN.md | 5870 | `d5ea807ddd321429c36d94740ee89e0f87d3cae4362d5a1ea116efde30c1e0c4` |
 | RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
-| THIRD_PARTY_NOTICES.md | 13060 | `38747740ba4a3908d01057a4d46c7e4a0f80a3a6358197e203dcb21e4a872637` |
-| alpha/phase1e/alpha-receipt.json | 2436 | `1e8fcd75933d1bfb2ee3bd89aeb16ebafee02413ee8bbc6f5ff3ae0e27976117` |
+| THIRD_PARTY_NOTICES.md | 13368 | `335d5b8add3d9ce33e4cb9c26ca0ad99ca11be3cba882220b0bde53222cda9c3` |
+| alpha/phase1e/alpha-receipt.json | 2436 | `b5be1d86c1e3303fc5c1a48fbc5c00f546e07f49c994c11451926671db1983c4` |
 | alpha/phase1e/alpha-source-lock.json | 12120 | `3f6826ae52f269a39d931a7997b70bb7297cab1fdfe7d457a595e265aaea05ca` |
-| alpha/phase1e/frontend-handoff.md | 995 | `c474073fcb19f4df4fb2670f9e387ff9f1460ef16ae8d737642654adc221884f` |
+| alpha/phase1e/frontend-handoff.md | 1252 | `0488ade9a2238c445fcf451bd1c59932bc701028e1efb8f9e352710ef7a95db0` |
 | alpha/phase1e/site-data.json | 50339 | `0be2d577cae3ba6d23f274025d416348188e717c6de60876ea2f1fa100998992` |
 | assets/readme/architecture.svg | 3382 | `78133db091033f81a0684bfcc893421bbcad02549471722503abc37a0d37607a` |
 | assets/readme/catalog.png | 64801 | `9391ae0410a3831bc8013296d9d240355fdeb49d3bae933aa74c0205293929b9` |
@@ -52,7 +52,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | docs/architecture/GENERATOR_PHASE1B.md | 6472 | `deafbba87d58cc8421ed01c2484900b60022ff034abf9bd71c6f080b0c52cd87` |
 | docs/architecture/GENERATOR_PHASE1C.md | 5564 | `45bb9c560d4300d3e2799d53819348da29565c3f5f9607214cc80b8e9f7d791d` |
 | docs/architecture/GENERATOR_PHASE1D.md | 2477 | `1dcf85a631892eb18f4869fa72054a85a7ead3bfd82144247db016dc4622881c` |
-| docs/architecture/GENERATOR_PHASE1E.md | 3933 | `6f650b9b0175f998dcc24dd41f2f4601c8e40a453789300d0bc2ed2177e73706` |
+| docs/architecture/GENERATOR_PHASE1E.md | 4725 | `f4c05681d6d0cbf14cc2a0a4fb740531b600146039d5e2c6d6ae634d098fd09b` |
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
 | netlify.toml | 1388 | `e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543` |
 | package-lock.json | 59644 | `aaf3bb72323c79812b621b1ac9c41c2dca4d887e0cea31c8af9b13a704a0c5a0` |
@@ -120,7 +120,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | public/data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | public/data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| public/fonts/README.md | 879 | `dd4c444df86382d1f215d6072b5c841c85e3f6cff8d224f9af90cc0d6147ee74` |
+| public/fonts/README.md | 1417 | `b33e11b04fab8c0d403d2292fc41ed4bcd9f7de8db687d368879acff5bdec3a9` |
 | public/fonts/fusion-pixel/OFL.txt | 4514 | `9291281eaa1275afe06285d010362c175efcf8766a37c9bac274a770550fe4fc` |
 | public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2 | 22344 | `3b265cb64eaba39252704a290aac551fa7884bea6af57c97ac153a4c46c8dc09` |
 | public/fonts/sarasa-term-sc/OFL.txt | 4702 | `32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53` |
@@ -136,16 +136,16 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | schemas/silent-orbit-config.v1.schema.json | 1480 | `aafa6d40b24c975cd18f542d8cc44254a3f4147683dcc0515526519ae94fb77c` |
 | schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
 | schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
-| scripts/build-alpha-preview.mjs | 2083 | `543cc55f4785eaed5b78080232e455e39c82dcd4f10388bea685d5bd7f78eb99` |
+| scripts/build-alpha-preview.mjs | 2159 | `857fe9b9ae52883e15d71921d51d5b59b712987be111b31d5f09ee9164985170` |
 | scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
 | scripts/lib/generator-contracts.mjs | 29912 | `603d2c06d422c5917770fa926c08b39d81242ead0072d3c53308548dc17370ca` |
 | scripts/lib/library-analyzer.mjs | 29499 | `d1219efd12869f1b8d16207b75109f12aa00ac0372892fb676ace9772533cda6` |
 | scripts/lib/phase1e-alpha.mjs | 4940 | `5f8bec165639b58e001f26339398187cb685630f78d2bf99d5fff8b38f35fb0f` |
-| scripts/lib/silent-orbit-project.mjs | 29434 | `249ded423fc556c436a16a054bfdc69836446876b484ffb436b8ab5c4c29e070` |
+| scripts/lib/silent-orbit-project.mjs | 29575 | `1a47e3e2277fad96b2fa82b444515f3e0b17b4664f45759d49b811d17fd2c64a` |
 | scripts/lib/source-adapters.mjs | 28516 | `7a8920411cec12f0461cec144d9738a5b0a3b47d6c8e90ee0abe1e050469d4fe` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
-| scripts/public-release-config.mjs | 4534 | `673d342bf653c2472d838191b6d884e5ec8d1fa2b3c62b9cd122b89a1d8b12d6` |
+| scripts/public-release-config.mjs | 6325 | `8e446c8602ed97845a16aae76da904f907224cdedfd16b77ca76690efd905746` |
 | scripts/silent-orbit.mjs | 4721 | `fe9b98629a1760548581703cd3079701c5950290d00c2155729f70443233700e` |
 | scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
 | scripts/sync-data.mjs | 4656 | `8930f0ab8380bcc3c167f560a0fe044f0606e950e90fc64de62f328adc938146` |
@@ -156,7 +156,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/library-analyzer.test.mjs | 7344 | `f658020241a1e99015a438696df47a6e1637043b722818d88fb559372f0e8094` |
 | scripts/tests/orbit-layout.test.mjs | 12962 | `376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
-| scripts/tests/phase1e-alpha.test.mjs | 5600 | `0ff9513b2818ca905991ae5210a4becd8b5a29a9196fefc79eedae81024cc1ff` |
+| scripts/tests/phase1e-alpha.test.mjs | 6446 | `f329f04004dff2a6ea382fa369281e9e6efa21bde21ba5963bd2b01b404e99e7` |
 | scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
 | scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
 | scripts/tests/silent-orbit-cli.test.mjs | 8358 | `759f7d57d37e787c3a8f0c953f586dcb86a39d38a096d84a94b05cea1ae1da2a` |
@@ -166,8 +166,8 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/sync-data.test.mjs | 948 | `b388085933d62c89e70e9772ccf041597df451715b1257b9bb3be935e5407451` |
 | scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
 | scripts/validate-generator-contracts.mjs | 2082 | `59b178e2389d52872605e3ff9b14705f98062a0030dcae3466639b955d09158e` |
-| scripts/validate-public-assets.mjs | 5968 | `7697324bb371e83a2a91eff125e81c72bd9510dcaa3a5eb7b5a9805ec91b24db` |
-| scripts/validate-public-release.mjs | 16446 | `4656db7f5dc7011a7c2d1524c8767eb8bd4d0c76cc9d116663aaf1a488a849d6` |
+| scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
+| scripts/validate-public-release.mjs | 16489 | `f6997decb32fcbde0096e780f422bab98a0b73a92be4482b68538d6b90b44fc4` |
 | scripts/validate-readme.mjs | 3672 | `8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
 | skills/build-skill-cosmos/agents/openai.yaml | 248 | `d685c42774faa837bbe23ecc9e9e7fae8b522f8c760f46a529c77e628835c347` |
@@ -232,9 +232,15 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/styles/responsive.css | 7282 | `46b51792df0e5f6d7715c8ea3fc5cf17926b5a1e2f939060048ad0c81874a134` |
 | src/types.ts | 7561 | `77ae6745911b14e4d586048a7f0acff7de09457b07b6ed62532fcac4ccc11e36` |
 | src/types/view-transitions.d.ts | 270 | `31941eba1a962e7c2780cf1fab631e6cfd79e2885914ff0a3be5505a3da79107` |
-| templates/reference-index-v1/app.js | 19870 | `0a3316061ef28ac28f166c5c6e9a7408177da81cfb99820a9d7c035bf6b8d6cc` |
-| templates/reference-index-v1/index.html | 4449 | `5be2ddb238862af43ed97105b50a741a0de60fc5ddde02b49282194bdf83bc20` |
-| templates/reference-index-v1/styles.css | 11538 | `99b604faddf6769b65d7a3080312065573a750e11a926b7a1faa362fec7b1a99` |
+| templates/reference-index-v1/app.js | 25802 | `886e98520afd956649d5ec650f89589150e44df412c54cfaa52ffb803557ce01` |
+| templates/reference-index-v1/fonts/inter/Inter-Variable.ttf | 876576 | `29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031` |
+| templates/reference-index-v1/fonts/inter/OFL.txt | 4376 | `5dd548d31a85f756e01d63e00d7faf1e324103ed3e9102fcbbabf2cc2db6dd39` |
+| templates/reference-index-v1/fonts/lora/Lora-Variable.ttf | 212196 | `822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7` |
+| templates/reference-index-v1/fonts/lora/OFL.txt | 4422 | `6d6bc7bbb828514925dabcaf89e4771398d12c60dd1cb2bbb90eea129535d0f4` |
+| templates/reference-index-v1/fonts/playfair-display/OFL.txt | 4448 | `0bb2b43ffd21233963b5d0c0eb6f1abffa776ec53c56131b5818708f2730ffd6` |
+| templates/reference-index-v1/fonts/playfair-display/PlayfairDisplay-Variable.ttf | 300724 | `c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6` |
+| templates/reference-index-v1/index.html | 5728 | `f9bb72c8dd882603d9ec7efc71d75f9e8cfc860a99ac66aa5b63d58acf0c8b62` |
+| templates/reference-index-v1/styles.css | 18349 | `0e08643e3f0adbdffa76eb9a40e3c49c7c645ac1f1e03b934b184d0d266531a5` |
 | templates/silent-orbit-v1/app.js | 5427 | `9ee9430cfeecbd673f7a266b861a2f6fb3abf2167910887d2e128c753c95393f` |
 | templates/silent-orbit-v1/index.html | 2264 | `31b53083a6adc4646d083a5f5af85870adaeeca78b06093ad37fcc532b8bb113` |
 | templates/silent-orbit-v1/styles.css | 5670 | `a68020cbb94c5dec1756bd11fe1530dff52cbf59d860fa27e33f8bac3c240f56` |
