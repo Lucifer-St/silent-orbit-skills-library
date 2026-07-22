@@ -195,6 +195,19 @@ function assertNoForbiddenJsonKeys(value, location = "data") {
   }
 }
 
+export function assertNoPrivateOperationalEvidence(changes) {
+  const serialized = JSON.stringify(changes);
+  const forbiddenPatterns = [
+    /\b(?:manifest|ledger|receipt)[-_a-z0-9.]*\.json\b/i,
+    /\bglobal\/user skill index\b/i,
+    /\bon disk but outside the active\b/i,
+    /\b(?:stale\s+)?[a-z0-9_.-]+\s+lock\s+(?:record|file)\b/i,
+  ];
+  if (forbiddenPatterns.some((pattern) => pattern.test(serialized))) {
+    throw new Error("changes.json contains private operational evidence.");
+  }
+}
+
 function assertDataBoundary(rootDir) {
   const dataFiles = [
     "skills.json", "libraries.json", "category-units.json", "personal-skills.json", "changes.json",
@@ -216,6 +229,7 @@ function assertDataBoundary(rootDir) {
     if (privateContinuityTokens.some((token) => serialized.toLowerCase().includes(token.toLowerCase()))) {
       throw new Error(`${fileName} contains private continuity content.`);
     }
+    if (fileName === "changes.json") assertNoPrivateOperationalEvidence(value);
   }
 
   const skills = readJson(rootDir, "data/skills.json");

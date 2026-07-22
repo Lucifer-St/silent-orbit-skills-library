@@ -8668,14 +8668,14 @@ export const librarySnapshot = {
       "date": "2026-07-10",
       "type": "cleanup",
       "title": "同步全局 Skills 瘦身结果",
-      "summary": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
+      "summary": "完成一次受控的公开目录维护：公开记录已重新核对，插件与系统托管能力保持独立，私人维护证据未进入公开投影。",
       "title_i18n": {
         "zh-CN": "同步全局 Skills 瘦身结果",
         "en-US": "Synced the global Skills cleanup"
       },
       "summary_i18n": {
-        "zh-CN": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
-        "en-US": "Removed 104 global/user Skill index entries from approved-skill-cleanup-manifest-2026-07-10.json; retained plugin- and system-managed capabilities; kept qwen-code on disk but outside the active Codex surface; and cleared the stale bailian-cli lock record."
+        "zh-CN": "完成一次受控的公开目录维护：公开记录已重新核对，插件与系统托管能力保持独立，私人维护证据未进入公开投影。",
+        "en-US": "Completed a governed public-catalog maintenance pass: public records were revalidated, plugin- and system-managed capabilities remain separate, and private maintenance evidence stays outside the public projection."
       }
     },
     {
@@ -8796,7 +8796,7 @@ export const librarySnapshot = {
       "en-US": "Use $skills-library-maintenance to check all Skill updates and show the plan before changing anything."
     }
   },
-  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:9bfe8ce8c7dd"
+  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:566d6debc586"
 } as LibrarySnapshotV1;
 
 export const siteManifest = {
@@ -8805,7 +8805,7 @@ export const siteManifest = {
   "generatedAt": "2026-07-17T12:00:00.000Z",
   "snapshotRefs": {
     "inventory": "inventory-snapshot:schemaversion-1-projectid-silent-orb:7113f8ff4224",
-    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:9bfe8ce8c7dd"
+    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:566d6debc586"
   },
   "renderer": {
     "theme": "silent-orbit",
@@ -12025,14 +12025,14 @@ export const appData = {
       "date": "2026-07-10",
       "type": "cleanup",
       "title": "同步全局 Skills 瘦身结果",
-      "summary": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
+      "summary": "完成一次受控的公开目录维护：公开记录已重新核对，插件与系统托管能力保持独立，私人维护证据未进入公开投影。",
       "title_i18n": {
         "zh-CN": "同步全局 Skills 瘦身结果",
         "en-US": "Synced the global Skills cleanup"
       },
       "summary_i18n": {
-        "zh-CN": "按 approved-skill-cleanup-manifest-2026-07-10.json 移除 104 个全局/user skill 索引；保留插件/系统托管能力；qwen-code 仅留在磁盘但不作为 Codex 活动 skill；stale bailian-cli lock 记录已清理。",
-        "en-US": "Removed 104 global/user Skill index entries from approved-skill-cleanup-manifest-2026-07-10.json; retained plugin- and system-managed capabilities; kept qwen-code on disk but outside the active Codex surface; and cleared the stale bailian-cli lock record."
+        "zh-CN": "完成一次受控的公开目录维护：公开记录已重新核对，插件与系统托管能力保持独立，私人维护证据未进入公开投影。",
+        "en-US": "Completed a governed public-catalog maintenance pass: public records were revalidated, plugin- and system-managed capabilities remain separate, and private maintenance evidence stays outside the public projection."
       }
     },
     {

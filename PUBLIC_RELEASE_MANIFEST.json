@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "1e37679c3fdba2b0ffe998aff54fcdaa4e794b98",
-  "inputCommitTimestamp": "2026-07-21T19:50:00-04:00",
+  "inputCommit": "742358089b197bf3c4c2c432681b9f9757a4dac1",
+  "inputCommitTimestamp": "2026-07-21T20:30:31-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "3371660a24172b45100d6cffd81b7f7f07e7d8084cbecb2353403622f395b8fd",
+  "releaseDigest": "703d48fc2ad6af336dc29c808e577e66aed7e8b7886e5e67cfd2ea928290e674",
   "fileCount": 238,
-  "totalBytes": 11055329,
+  "totalBytes": 11055171,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "a0e14dd82a0930b6cc74ca677a18fae32bd102e326bccf6153a95e5d482cfa01"
+      "sha256": "2ff41a1e80bedafe37834bf5db6b894d9a953059ef75b4f44364b27c2859ccd1"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -85,7 +85,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "88948b4e5ea25cb77f1718c55e1a2b452373b96a0f79bda21fd868e6285256ec"
+      "sha256": "76e01c4859484d7385ba88b8f421f057ae61c529999667fb4f2b53b7b9347803"
     },
     {
       "path": "README.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "data/changes.json",
-      "bytes": 2507,
-      "sha256": "b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811"
+      "bytes": 2323,
+      "sha256": "a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79"
     },
     {
       "path": "data/libraries.json",
@@ -534,8 +534,8 @@
     },
     {
       "path": "public/data/changes.json",
-      "bytes": 2507,
-      "sha256": "b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811"
+      "bytes": 2323,
+      "sha256": "a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79"
     },
     {
       "path": "public/data/libraries.json",
@@ -809,8 +809,8 @@
     },
     {
       "path": "scripts/validate-public-release.mjs",
-      "bytes": 16489,
-      "sha256": "f6997decb32fcbde0096e780f422bab98a0b73a92be4482b68538d6b90b44fc4"
+      "bytes": 17067,
+      "sha256": "9d4985c6006e611f37812dd2ee3b88d9422f7116988c1572b3c0fb510544c727"
     },
     {
       "path": "scripts/validate-readme.mjs",
@@ -1009,8 +1009,8 @@
     },
     {
       "path": "src/generated/data.generated.ts",
-      "bytes": 392945,
-      "sha256": "c43bd2001189ad9e77e3b61c406bebb747da17d8549960c750dd8b56473ba7e1"
+      "bytes": 392577,
+      "sha256": "d400c862dda83ae76cbe6ddaa11772815186c0a8b7a754d7f5e48383b6728966"
     },
     {
       "path": "src/hooks/useOrbitSurface.ts",
