@@ -24,9 +24,10 @@ The Draft PR also builds a separate **44-Skill Reference Preview** from a pinned
 This Reference Renderer is a functional starting point, not an official visual theme. Generated projects include `frontend-handoff.md` so users can retain the public data, keyboard behavior, deep links, and privacy boundary while rebuilding the interface with any visual style and frontend Skill they prefer.
 
 - [Phase 1E architecture and acceptance boundary](./docs/architecture/GENERATOR_PHASE1E.md)
+- [Phase 2B dogfood and source-of-truth boundary](./docs/architecture/GENERATOR_PHASE2B.md)
 - [Install and first-use guide](./GENERATOR_QUICKSTART.md)
 - The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
-- Production remains the compatible 142-Skill site until the Draft PR is separately reviewed and merged.
+- Production remains the reviewed 142-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
 
 ## See the library
 
@@ -65,7 +66,7 @@ Start with a task, not a package name. Try **“Install and verify a new Codex S
   <img src="./assets/readme/architecture.svg" width="100%" alt="Silent Orbit public data, deterministic export, static application, and browser-local outcome architecture">
 </p>
 
-The Private development repository remains the source of truth. This repository is generated from an explicit public allowlist and starts with a clean Git history. Public metadata flows through a deterministic exporter into a static React application; visitor outcomes never enter that export pipeline.
+The Private development repository remains the authority for personal inventory, curation, Outcomes, usage evidence, Obsidian integration, and operating receipts. Public owns the versioned Core, Schemas, CLI, Agent Skill, Quickstarts, and reference renderer. Catalog files in this repository are deterministic sanitized projections, not a second authoring source; visitor outcomes never enter the export pipeline.
 
 ## Privacy boundary
 

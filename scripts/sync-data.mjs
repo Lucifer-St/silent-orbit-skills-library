@@ -1,7 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildPublicData } from "./public-data.mjs";
-import { createLegacyGeneratorModel } from "./lib/generator-contracts.mjs";
+import {
+  buildRendererViewModel,
+  validateInventorySnapshotV1,
+  validateLibrarySnapshotV1,
+  validateProjectConfigV1,
+  validateSiteManifestV1,
+} from "./lib/generator-contracts.mjs";
 import { isFlatPublicLayout, projectDir, resolveDataDir } from "./project-layout.mjs";
 
 const flatPublicLayout = isFlatPublicLayout(projectDir);
@@ -69,11 +75,18 @@ const generatedSnapshotDate = [latestSnapshotDate, maintenanceStatus.snapshotDat
 // Tie every generated contract to source data, not the wall clock, so identical
 // inputs produce byte-identical snapshots, renderer data, and Vite asset hashes.
 const generatedAt = `${generatedSnapshotDate}T12:00:00.000Z`;
-const generatorModel = createLegacyGeneratorModel({
-  data: publicData,
-  generatedAt,
-  sourceDir: flatPublicLayout ? "data" : "outputs/data",
-});
+let generatorModel;
+if (flatPublicLayout) {
+  const projectConfig = validateProjectConfigV1(readJson("project-config.json"));
+  const inventorySnapshot = validateInventorySnapshotV1(readJson("inventory.snapshot.json"));
+  const librarySnapshot = validateLibrarySnapshotV1(readJson("library.snapshot.json"));
+  const siteManifest = validateSiteManifestV1(readJson("site-manifest.json"), { projectConfig, inventorySnapshot, librarySnapshot });
+  const appData = buildRendererViewModel({ librarySnapshot, generatedAt: librarySnapshot.generatedAt, sourceDir: "data/library.snapshot.json" });
+  generatorModel = { projectConfig, inventorySnapshot, librarySnapshot, siteManifest, appData };
+} else {
+  const { buildPrivateProductionProjection } = await import("./lib/phase2b-private-library.mjs");
+  generatorModel = buildPrivateProductionProjection({ data: publicData, generatedAt, sourceDir: "outputs/data" });
+}
 const { projectConfig, inventorySnapshot, librarySnapshot, siteManifest, appData } = generatorModel;
 
 const generatedFile = path.join(generatedDir, "data.generated.ts");

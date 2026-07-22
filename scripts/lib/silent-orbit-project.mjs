@@ -23,12 +23,12 @@ import {
   validateAnalysisReportV1,
   validateAnalysisOverridesV1,
 } from "./library-analyzer.mjs";
+import { createHealthReportV1 } from "./skill-health.mjs";
 
 const moduleDir = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(moduleDir, "../..");
 const TEMPLATE_DIRECTORIES = Object.freeze({
   "reference-index": "reference-index-v1",
-  "silent-orbit": "silent-orbit-v1",
 });
 const CONFIG_FILE = "silent-orbit.config.json";
 const OVERRIDES_FILE = "silent-orbit.overrides.json";
@@ -307,6 +307,19 @@ export function scanSilentOrbitProject({ projectDirectory = ".", generatedAt } =
     summary: result.snapshot.summary,
   });
   return { ...result, projectRoot, inventoryPath, receiptPath };
+}
+
+export function auditSilentOrbitProject({ projectDirectory = ".", generatedAt, staleAfterDays } = {}) {
+  const { projectRoot, config, overrides } = loadSilentOrbitProject(projectDirectory);
+  invariant(config.sources.length > 0, "audit needs at least one configured or imported source.");
+  const evaluatedAt = generatedAt ?? new Date().toISOString();
+  const { snapshot } = scanInventorySources({
+    projectConfig: config.project,
+    generatedAt: evaluatedAt,
+    adapters: adaptersForProject(projectRoot, config),
+    governanceOverrides: overrides.governance,
+  });
+  return createHealthReportV1({ inventorySnapshot: snapshot, evaluatedAt, staleAfterDays });
 }
 
 export function importSilentOrbitSource({ projectDirectory = ".", inputFile } = {}) {

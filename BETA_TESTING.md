@@ -25,6 +25,6 @@ Live demo: https://silent-orbit-skills-library.netlify.app/
 
 The site has no third-party analytics, cookies, or behavior tracking. Outcome records and language preferences stay in the current browser's local storage. Do not include secrets, private prompts, private memories, machine paths, or personal account information in GitHub feedback.
 
-Safari is an external beta check because Phase 4A did not have a local Safari runtime. Please include the browser name, version, device, and viewport when reporting a Safari result.
+Safari is an external beta check because Website Release Phase 4A did not have a local Safari runtime. Please include the browser name, version, device, and viewport when reporting a Safari result.
 
 Use the [beta feedback template](./BETA_FEEDBACK_TEMPLATE.md), the Bug Report issue form, or the Experience Feedback issue form in this repository.

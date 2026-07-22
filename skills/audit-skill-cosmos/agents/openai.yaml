@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Skill Cosmos"
+  short_description: "Explain read-only Skill library health reports"
+  default_prompt: "Use $audit-skill-cosmos to audit my Skill library health and explain unresolved evidence without making changes."

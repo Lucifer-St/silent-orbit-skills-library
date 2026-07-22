@@ -18,7 +18,7 @@ Skill directory / Codex global list / plugin manifest / normalized JSON
   -> existing renderer
 ```
 
-The existing nine-file compatibility adapter remains the production input until the analyzer/generator phase can reproduce the current curated LibrarySnapshot without loss.
+At this phase boundary, the existing nine-file compatibility adapter remained the Production input until the analyzer/generator could reproduce the curated LibrarySnapshot without loss. Generator Phase 2B later proved 142/28/9 parity and rollback, removed that adapter from Public Core, and isolated the continuing Private production projection.
 
 ## Public adapter API
 

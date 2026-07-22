@@ -1,8 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createLegacyGeneratorModel } from "./lib/generator-contracts.mjs";
+import {
+  buildRendererViewModel,
+  validateInventorySnapshotV1,
+  validateLibrarySnapshotV1,
+  validateProjectConfigV1,
+  validateSiteManifestV1,
+} from "./lib/generator-contracts.mjs";
 import { buildPublicData } from "./public-data.mjs";
-import { projectDir, resolveDataDir } from "./project-layout.mjs";
+import { isFlatPublicLayout, projectDir, resolveDataDir } from "./project-layout.mjs";
 
 const schemaFiles = [
   "project-config.v1.schema.json",
@@ -13,6 +19,7 @@ const schemaFiles = [
   "silent-orbit-config.v1.schema.json",
   "analysis-overrides.v1.schema.json",
   "analysis-report.v1.schema.json",
+  "health-report.v1.schema.json",
   "phase1e-alpha-receipt.v1.schema.json",
 ];
 for (const fileName of schemaFiles) {
@@ -24,20 +31,31 @@ for (const fileName of schemaFiles) {
 
 const sourceDir = resolveDataDir(projectDir);
 const read = (fileName) => JSON.parse(fs.readFileSync(path.join(sourceDir, fileName), "utf8"));
-const input = {
-  skills: read("skills.json"),
-  libraries: read("libraries.json"),
-  categoryUnits: read("category-units.json"),
-  personalSkills: read("personal-skills.json"),
-  changes: read("changes.json"),
-  starredSkills: read("starred-skills.json"),
-  relations: read("relations.json"),
-  skillDetails: read("skill-details.json"),
-  maintenanceStatus: read("maintenance-status.json"),
-};
-const data = buildPublicData(input);
-const generatedAt = `${data.maintenanceStatus.snapshotDate}T12:00:00.000Z`;
-const model = createLegacyGeneratorModel({ data, generatedAt, sourceDir: "outputs/data" });
+let model;
+if (isFlatPublicLayout(projectDir)) {
+  const projectConfig = validateProjectConfigV1(read("project-config.json"));
+  const inventorySnapshot = validateInventorySnapshotV1(read("inventory.snapshot.json"));
+  const librarySnapshot = validateLibrarySnapshotV1(read("library.snapshot.json"));
+  const siteManifest = validateSiteManifestV1(read("site-manifest.json"), { projectConfig, inventorySnapshot, librarySnapshot });
+  const appData = buildRendererViewModel({ librarySnapshot, generatedAt: librarySnapshot.generatedAt, sourceDir: "data/library.snapshot.json" });
+  model = { projectConfig, inventorySnapshot, librarySnapshot, siteManifest, appData };
+} else {
+  const input = {
+    skills: read("skills.json"),
+    libraries: read("libraries.json"),
+    categoryUnits: read("category-units.json"),
+    personalSkills: read("personal-skills.json"),
+    changes: read("changes.json"),
+    starredSkills: read("starred-skills.json"),
+    relations: read("relations.json"),
+    skillDetails: read("skill-details.json"),
+    maintenanceStatus: read("maintenance-status.json"),
+  };
+  const data = buildPublicData(input);
+  const generatedAt = `${data.maintenanceStatus.snapshotDate}T12:00:00.000Z`;
+  const { buildPrivateProductionProjection } = await import("./lib/phase2b-private-library.mjs");
+  model = buildPrivateProductionProjection({ data, generatedAt, sourceDir: "outputs/data" });
+}
 const categoryCounts = model.appData.categoryUnits.map((category) => category.skill_count).join(",");
 
 console.log([

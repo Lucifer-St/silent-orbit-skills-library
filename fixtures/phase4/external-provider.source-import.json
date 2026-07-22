@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "key": "external-provider-fixture",
+    "label": "External Provider Fixture",
+    "providerKind": "plugin-fixture",
+    "sourceUrl": "https://example.com/external-provider-fixture",
+    "updateChannel": "external"
+  },
+  "skills": [
+    {
+      "name": "orbit-tools",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public",
+      "version": "2.0.0",
+      "author": "Different Team",
+      "sourceUrl": "https://example.org/orbit-tools"
+    },
+    {
+      "name": "external-helper",
+      "state": "present",
+      "origin": "unknown",
+      "visibility": "public",
+      "version": "4.5.6"
+    }
+  ]
+}

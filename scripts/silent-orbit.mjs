@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import {
+  auditSilentOrbitProject,
   analyzeSilentOrbitProject,
   diffSilentOrbitProject,
   doctorSilentOrbitProject,
@@ -11,7 +12,7 @@ import {
 } from "./lib/silent-orbit-project.mjs";
 import { pathToFileURL } from "node:url";
 
-export const silentOrbitVersion = "0.1.0";
+export const silentOrbitVersion = "0.2.0";
 
 function parseArguments(argv) {
   const [command = "help", ...rest] = argv;
@@ -50,6 +51,7 @@ export function silentOrbitHelpText() {
     "  silent-orbit diff [--project <directory>]",
     "  silent-orbit generate [--project <directory>]",
     "  silent-orbit doctor [--project <directory>]",
+    "  silent-orbit audit [--project <directory>] [--generated-at <ISO timestamp>] [--stale-after-days <days>]",
     "",
     "Add --json to emit machine-readable output. The CLI never writes outside the selected project directory.",
   ].join("\n");
@@ -63,18 +65,17 @@ function summaryFor(command, result) {
   if (command === "diff") return `Diff added=${result.summary.added}, changed=${result.summary.changed}, removed=${result.summary.removed}.`;
   if (command === "generate") return `Generated ${result.summary.skills} Skills in ${result.outputDirectory}; files=${result.receipt.files.length}.`;
   if (command === "doctor") return `Doctor status=${result.status}; checks=${result.checks.length}.`;
+  if (command === "audit") return `Audit status=${result.status}; providers=${result.summary.providers}, Skills=${result.summary.skillIdentities}, source-failures=${result.summary.sourceFailures}, duplicates=${result.summary.duplicateIdentities}, identity-conflicts=${result.summary.identityConflicts}, versions-unknown=${result.summary.versionsUnknown}, unresolved=${result.summary.unresolved}.`;
   return JSON.stringify(result);
 }
 
-async function main() {
-  const { command, options } = parseArguments(process.argv.slice(2));
+export function runSilentOrbitCli(argv) {
+  const { command, options } = parseArguments(argv);
   if (["help", "--help", "-h"].includes(command)) {
-    process.stdout.write(`${silentOrbitHelpText()}\n`);
-    return;
+    return { command: "help", stdout: `${silentOrbitHelpText()}\n`, exitCode: 0 };
   }
   if (["version", "--version", "-v"].includes(command)) {
-    process.stdout.write(`${silentOrbitVersion}\n`);
-    return;
+    return { command: "version", stdout: `${silentOrbitVersion}\n`, exitCode: 0 };
   }
 
   let result;
@@ -85,11 +86,23 @@ async function main() {
   else if (command === "diff") result = diffSilentOrbitProject({ projectDirectory: projectDirectory(options) });
   else if (command === "generate") result = generateSilentOrbitProject({ projectDirectory: projectDirectory(options) });
   else if (command === "doctor") result = doctorSilentOrbitProject({ projectDirectory: projectDirectory(options) });
+  else if (command === "audit") {
+    const rawStaleAfterDays = options["stale-after-days"];
+    const staleAfterDays = rawStaleAfterDays === undefined ? undefined : Number(rawStaleAfterDays);
+    if (rawStaleAfterDays !== undefined && (!Number.isFinite(staleAfterDays) || staleAfterDays < 0)) throw new Error("--stale-after-days must be a non-negative number.");
+    result = auditSilentOrbitProject({ projectDirectory: projectDirectory(options), generatedAt: options["generated-at"], staleAfterDays });
+  }
   else throw new Error(`Unknown command ${command}. Run silent-orbit help.`);
 
-  if (options.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-  else process.stdout.write(`${summaryFor(command, result)}\n`);
-  if (command === "doctor" && result.status === "error") process.exitCode = 1;
+  const stdout = options.json ? `${JSON.stringify(result, null, 2)}\n` : `${summaryFor(command, result)}\n`;
+  const exitCode = ["doctor", "audit"].includes(command) && result.status === "error" ? 1 : 0;
+  return { command, result, stdout, exitCode };
+}
+
+async function main() {
+  const execution = runSilentOrbitCli(process.argv.slice(2));
+  process.stdout.write(execution.stdout);
+  process.exitCode = execution.exitCode;
 }
 
 if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {

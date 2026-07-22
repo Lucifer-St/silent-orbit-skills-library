@@ -3,8 +3,10 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { silentOrbitHelpText, silentOrbitVersion } from "../silent-orbit.mjs";
+import { fileURLToPath } from "node:url";
+import { runSilentOrbitCli, silentOrbitHelpText, silentOrbitVersion } from "../silent-orbit.mjs";
 import {
+  auditSilentOrbitProject,
   analyzeSilentOrbitProject,
   diffSilentOrbitProject,
   doctorSilentOrbitProject,
@@ -14,6 +16,8 @@ import {
   scanSilentOrbitProject,
   silentOrbitProjectFiles,
 } from "../lib/silent-orbit-project.mjs";
+
+const projectDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 function temporaryRoot(label) {
   return fs.mkdtempSync(path.join(os.tmpdir(), `silent-orbit-cli-${label}-`));
@@ -31,10 +35,60 @@ function sourceImport(skills) {
   };
 }
 
-test("CLI entry point exposes the expected v0.1 commands", () => {
+test("CLI entry point exposes the expected v0.2 commands", () => {
   const help = silentOrbitHelpText();
-  for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
-  assert.equal(silentOrbitVersion, "0.1.0");
+  for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
+  assert.equal(silentOrbitVersion, "0.2.0");
+});
+
+function fileSnapshot(root, relative = "") {
+  return fs.readdirSync(path.join(root, relative), { withFileTypes: true })
+    .sort((left, right) => left.name.localeCompare(right.name, "en"))
+    .flatMap((entry) => {
+      const next = relative ? path.join(relative, entry.name) : entry.name;
+      return entry.isDirectory() ? fileSnapshot(root, next) : [{ path: next.split(path.sep).join("/"), bytes: fs.readFileSync(path.join(root, next)).toString("base64") }];
+    });
+}
+
+test("audit --json checks only Skill health, tolerates provider failure, and performs zero project writes", (t) => {
+  const parent = temporaryRoot("audit");
+  const root = path.join(parent, "project");
+  const fixtureRoot = path.join(projectDir, "fixtures", "phase4");
+  t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
+  initSilentOrbitProject({ projectDirectory: root, title: "Audit Fixture", projectId: "audit-fixture" });
+  importSilentOrbitSource({ projectDirectory: root, inputFile: path.join(fixtureRoot, "source-managed.source-import.json") });
+  importSilentOrbitSource({ projectDirectory: root, inputFile: path.join(fixtureRoot, "external-provider.source-import.json") });
+  const configPath = path.join(root, silentOrbitProjectFiles.config);
+  const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+  config.sources.push({
+    key: "failed-provider",
+    type: "skill-folder",
+    label: "Failed Provider",
+    path: "missing-provider",
+    updateChannel: "unknown",
+  });
+  config.sources.sort((left, right) => left.key.localeCompare(right.key, "en"));
+  writeJson(configPath, config);
+
+  const doctorBefore = doctorSilentOrbitProject({ projectDirectory: root });
+  assert.equal(doctorBefore.status, "error");
+  assert.ok(doctorBefore.checks.some((check) => check.id === "inventory" && check.state === "missing"));
+  const before = fileSnapshot(root);
+  const programmatic = auditSilentOrbitProject({ projectDirectory: root, generatedAt: "2026-07-22T12:00:00.000Z" });
+  assert.equal(programmatic.summary.sourceFailures, 1);
+  assert.equal(programmatic.summary.skillIdentities, 6);
+  assert.equal(fs.existsSync(path.join(root, silentOrbitProjectFiles.inventory)), false);
+  assert.deepEqual(fileSnapshot(root), before);
+
+  const result = runSilentOrbitCli(["audit", "--project", root, "--generated-at", "2026-07-22T12:00:00.000Z", "--json"]);
+  assert.equal(result.exitCode, 1);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.reportId, programmatic.reportId);
+  assert.equal(report.status, "error");
+  assert.equal(report.summary.sourceFailures, 1);
+  assert.equal(report.summary.duplicateIdentities, 1);
+  assert.deepEqual(fileSnapshot(root), before);
+  assert.deepEqual(doctorSilentOrbitProject({ projectDirectory: root }), doctorBefore);
 });
 
 test("init refuses to overwrite an existing project configuration", (t) => {

@@ -54,7 +54,7 @@ Never publish `.silent-orbit/`. It may contain imports, private Inventory, analy
 
 Supported source types are `skill-folder`, `codex-global`, `codex-plugin`, and `json-import`. Every source needs a portable unique `key` and non-empty `label`. All except `codex-global` need `path`. Optional `sourceUrl` must be public HTTP(S); `maxDepth` is 0–20. Source paths are read-only inputs and may be outside the project.
 
-New projects use `reference-index`, a neutral interactive Map plus dense Library preview. Existing `silent-orbit` projects remain supported for compatibility. The renderer identifier is not a theme recommendation; use the generated frontend handoff when the user wants a custom visual implementation.
+Projects use `reference-index`, the portable interactive Map plus dense Library preview. The former author-only `silent-orbit` renderer compatibility path was retired after the 142/28/9 dogfood and rollback gates passed. The renderer identifier is not a theme recommendation; use the generated frontend handoff when the user wants a custom visual implementation.
 
 Use `silent-orbit import` instead of hand-copying normalized JSON. A `SourceImportV1` has `schemaVersion`, `source`, and `skills`; each Skill may include public metadata plus `state`, `origin`, and `visibility`.
 

@@ -8832,7 +8832,7 @@ export const siteManifest = {
 
 export const appData = {
   "generatedAt": "2026-07-17T12:00:00.000Z",
-  "sourceDir": "data",
+  "sourceDir": "data/library.snapshot.json",
   "skills": [
     {
       "name": "aihot",

@@ -3,6 +3,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { validatePublicAssets } from "./validate-public-assets.mjs";
+import {
+  validateInventorySnapshotV1,
+  validateLibrarySnapshotV1,
+  validateProjectConfigV1,
+  validateSiteManifestV1,
+} from "./lib/generator-contracts.mjs";
 
 const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const controlFiles = new Set([
@@ -43,7 +49,7 @@ const requiredFiles = [
   "PUBLIC_RELEASE_MANIFEST.md",
   "README.md",
   "README.zh-CN.md",
-  "RELEASE_NOTES_v0.9.0-beta.1.md",
+  "RELEASE_NOTES_v0.10.0-beta.1.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "index.html",
@@ -250,6 +256,20 @@ function assertDataBoundary(rootDir) {
     }
     if (typeof skill.trigger !== "string" || skill.trigger.length > 120) throw new Error(`${skill.name} has an invalid public invocation.`);
     if (typeof skill.description !== "string" || skill.description.length > 1200) throw new Error(`${skill.name} has an invalid public summary.`);
+  }
+
+  const projectConfig = validateProjectConfigV1(readJson(rootDir, "data/project-config.json"));
+  const inventorySnapshot = validateInventorySnapshotV1(readJson(rootDir, "data/inventory.snapshot.json"));
+  const librarySnapshot = validateLibrarySnapshotV1(readJson(rootDir, "data/library.snapshot.json"));
+  validateSiteManifestV1(readJson(rootDir, "data/site-manifest.json"), { projectConfig, inventorySnapshot, librarySnapshot });
+  for (const [fileName, value] of [
+    ["inventory.snapshot.json", inventorySnapshot],
+    ["library.snapshot.json", librarySnapshot],
+  ]) {
+    assertNoForbiddenJsonKeys(value, fileName);
+  }
+  if (librarySnapshot.skills.length !== 142 || librarySnapshot.libraries.length !== 28 || librarySnapshot.categories.length !== 9) {
+    throw new Error("Generated Public contract projection lost 142/28/9 parity.");
   }
 }
 

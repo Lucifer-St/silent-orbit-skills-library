@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "projectId": "silent-orbit-skills-library",
+  "title": {
+    "zh-CN": "Silent Orbit Skills Library",
+    "en-US": "Silent Orbit Skills Library"
+  },
+  "locales": [
+    "zh-CN",
+    "en-US"
+  ],
+  "defaultLocale": "en-US",
+  "renderer": {
+    "theme": "silent-orbit",
+    "defaultRoute": "/"
+  },
+  "privacy": {
+    "defaultVisibility": "public",
+    "publicVisibilities": [
+      "public",
+      "creator-showcase"
+    ],
+    "publishRawPaths": false,
+    "publishHashes": false,
+    "publishUsageEvidence": false
+  }
+}
