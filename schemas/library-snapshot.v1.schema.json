@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/library-snapshot.v1.schema.json",
+  "title": "LibrarySnapshotV1",
+  "description": "Normalized catalog contract. Category and unit counts are deliberately absent and must be derived from membership ids.",
+  "type": "object",
+  "required": ["schemaVersion", "snapshotId", "projectId", "generatedAt", "skills", "libraries", "categories", "units", "categoryMemberships", "collections", "changes", "starredSkills", "relations", "skillDetails", "maintenanceStatus"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "projectId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "skills": { "type": "array", "items": { "$ref": "#/$defs/skill" } },
+    "libraries": { "type": "array", "items": { "$ref": "#/$defs/library" } },
+    "categories": { "type": "array", "items": { "$ref": "#/$defs/category" } },
+    "units": { "type": "array", "items": { "$ref": "#/$defs/unit" } },
+    "categoryMemberships": { "type": "array", "items": { "$ref": "#/$defs/membership" } },
+    "collections": { "type": "array", "items": { "$ref": "#/$defs/collection" } },
+    "changes": { "type": "array" },
+    "starredSkills": { "type": "array" },
+    "relations": { "type": "array" },
+    "skillDetails": { "type": "array" },
+    "maintenanceStatus": { "type": "object" }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed", "inferred", "curated"],
+      "properties": {
+        "observed": { "$ref": "#/$defs/stringList" },
+        "inferred": { "$ref": "#/$defs/stringList" },
+        "curated": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["id", "name", "description", "trigger", "sourceId", "libraryId", "origin", "visibility", "provenance"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "$ref": "#/$defs/id" },
+        "description": { "type": "string" },
+        "trigger": { "type": "string" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "libraryId": { "$ref": "#/$defs/id" },
+        "primaryCategoryId": { "$ref": "#/$defs/id" },
+        "legacyCategory": { "type": "string" },
+        "origin": { "enum": ["third-party", "creator", "system", "unknown"] },
+        "visibility": { "enum": ["public", "creator-showcase"] },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      }
+    },
+    "library": {
+      "type": "object",
+      "required": ["id", "key", "sourceId", "title", "kind", "skillIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "key": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/id" },
+        "kind": { "$ref": "#/$defs/id" },
+        "skillIds": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "unitIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "$ref": "#/$defs/id" },
+        "unitIds": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "required": ["id", "categoryId", "type", "title", "skillIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "categoryId": { "$ref": "#/$defs/id" },
+        "type": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/id" },
+        "libraryId": { "$ref": "#/$defs/id" },
+        "skillIds": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "membership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["categoryId", "skillId", "basis"],
+      "properties": {
+        "categoryId": { "$ref": "#/$defs/id" },
+        "skillId": { "$ref": "#/$defs/id" },
+        "basis": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["legacy-unit", "legacy-skill-category", "curated-override", "inferred-rule", "review-required"] }
+        }
+      }
+    },
+    "collection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "title", "skillIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["personal-deck", "curated"] },
+        "title": { "$ref": "#/$defs/id" },
+        "skillIds": { "$ref": "#/$defs/stringList" }
+      }
+    }
+  }
+}

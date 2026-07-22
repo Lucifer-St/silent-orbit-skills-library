@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { buildPublicData } from "../public-data.mjs";
+import { buildPublicData, deriveCategorySkillNames } from "../public-data.mjs";
 
 test("public data removes local-only Skills and every dangling reference", () => {
   const result = buildPublicData({
@@ -56,4 +56,18 @@ test("public data removes local-only Skills and every dangling reference", () =>
     deployProvider: "netlify",
     directPrivateProductionDeploy: false,
   });
+});
+
+test("category summaries derive the same membership union used by the renderer", () => {
+  const skills = [
+    { name: "in-unit", category: "Elsewhere", visibility: "public" },
+    { name: "direct-member", category: "A", visibility: "public" },
+  ];
+  const categoryUnits = [{
+    category: "A",
+    skill_count: 99,
+    units: [{ type: "skill", title: "in-unit", skills: ["in-unit"], skill_count: 99 }],
+  }];
+  const categorySkillNames = deriveCategorySkillNames(skills, categoryUnits);
+  assert.deepEqual(categorySkillNames.A, ["direct-member", "in-unit"]);
 });

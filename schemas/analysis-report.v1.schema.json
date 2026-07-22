@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/analysis-report.v1.schema.json",
+  "title": "AnalysisReportV1",
+  "description": "Sanitized review surface explaining every publication and classification decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportId", "inventorySnapshotId", "generatedAt", "privacy", "taxonomy", "items", "diagnostics", "summary"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reportId": { "type": "string", "minLength": 1 },
+    "inventorySnapshotId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "privacy": { "const": "sanitized" },
+    "taxonomy": { "type": "object" },
+    "items": { "type": "array" },
+    "diagnostics": { "type": "array" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inventoryItems", "included", "reviewRequired", "excluded", "overridesApplied"],
+      "properties": {
+        "inventoryItems": { "type": "integer", "minimum": 0 },
+        "included": { "type": "integer", "minimum": 0 },
+        "reviewRequired": { "type": "integer", "minimum": 0 },
+        "excluded": { "type": "integer", "minimum": 0 },
+        "overridesApplied": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

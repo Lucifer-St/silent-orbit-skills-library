@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Skill Cosmos"
+  short_description: "Build or refresh a private-first Skill cosmos"
+  default_prompt: "Use $build-skill-cosmos to scan my reviewed Skill sources and build or refresh a private-first static library."

@@ -28,7 +28,10 @@ export function buildPublicData({
           return { ...unit, skills: visibleSkills, skill_count: visibleSkills.length };
         })
         .filter((unit) => unit.skills.length > 0);
-      const visibleNames = new Set(units.flatMap((unit) => unit.skills));
+      const visibleNames = new Set([
+        ...units.flatMap((unit) => unit.skills),
+        ...publicSkills.filter((skill) => skill.category === group.category).map((skill) => skill.name),
+      ]);
       return { ...group, units, skill_count: visibleNames.size };
     })
     .filter((group) => group.skill_count > 0);
@@ -53,6 +56,16 @@ export function buildPublicData({
     skillDetails: skillDetails.filter((detail) => skillNames.has(detail.skill)),
     maintenanceStatus,
   };
+}
+
+export function deriveCategorySkillNames(skills, categoryUnits) {
+  return Object.fromEntries(categoryUnits.map((group) => {
+    const names = new Set([
+      ...group.units.flatMap((unit) => unit.skills),
+      ...skills.filter((skill) => skill.category === group.category).map((skill) => skill.name),
+    ]);
+    return [group.category, [...names].sort((left, right) => left.localeCompare(right, "en"))];
+  }));
 }
 
 const PUBLIC_SKILL_FIELDS = [

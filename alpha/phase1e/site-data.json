@@ -1,0 +1,860 @@
+{
+  "project": {
+    "schemaVersion": 1,
+    "projectId": "independent-skill-library",
+    "title": {
+      "en-US": "Independent Skill Library"
+    },
+    "locales": [
+      "en-US"
+    ],
+    "defaultLocale": "en-US",
+    "renderer": {
+      "theme": "reference-index",
+      "defaultRoute": "/"
+    },
+    "privacy": {
+      "defaultVisibility": "review-required",
+      "publicVisibilities": [
+        "public",
+        "creator-showcase"
+      ],
+      "publishRawPaths": false,
+      "publishHashes": false,
+      "publishUsageEvidence": false
+    }
+  },
+  "siteManifest": {
+    "schemaVersion": 1,
+    "projectId": "independent-skill-library",
+    "generatedAt": "2026-07-22T20:00:00.000Z",
+    "snapshotRefs": {
+      "inventory": "inventory-snapshot:schemaversion-1-projectid-independen:41b4e6e7ee3e",
+      "library": "library-snapshot:schemaversion-1-projectid-independen:633f4c07c827"
+    },
+    "renderer": {
+      "theme": "reference-index",
+      "defaultRoute": "/"
+    },
+    "locales": [
+      "en-US"
+    ],
+    "summary": {
+      "skills": 44,
+      "libraries": 1,
+      "categories": 5,
+      "collections": 0
+    },
+    "privacy": {
+      "includesLocalOnly": false,
+      "publicVisibilities": [
+        "public",
+        "creator-showcase"
+      ]
+    }
+  },
+  "appData": {
+    "generatedAt": "2026-07-22T20:00:00.000Z",
+    "sourceDir": "library.snapshot.json",
+    "skills": [
+      {
+        "name": "accelerated-computing-cudf",
+        "description": "Official NVIDIA-authored guidance for NVIDIA cuDF GPU DataFrames, pandas acceleration, dask-cuDF, ETL, joins, groupby, CSV/Parquet I/O, nullable semantics, and multi-GPU DataFrame workloads.",
+        "trigger": "$accelerated-computing-cudf",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/accelerated-computing-cudf/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "aiq-deploy",
+        "description": "Use when asked to install, deploy, run, validate, troubleshoot, or stop NVIDIA AI-Q Blueprint infrastructure.",
+        "trigger": "$aiq-deploy",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/aiq-deploy/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "aiq-research",
+        "description": "Use when asked to run deep research or AI-Q research through a reachable NVIDIA AI-Q Blueprint backend.",
+        "trigger": "$aiq-research",
+        "category": "Research & Knowledge",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/aiq-research/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "amc-run-sample-calibration",
+        "description": "Curated Alpha v2 metadata for amc-run-sample-calibration; reviewed for the independent reference preview.",
+        "trigger": "$amc-run-sample-calibration",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-run-sample-calibration/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "amc-run-video-calibration",
+        "description": "Calibrate a new dataset from pre-recorded video files via the AutoMagicCalib REST API. Use when user has local MP4s and says 'calibrate my videos', 'run AMC on these videos', or similar. For RTSP/live streams, use amc-run-rtsp-calibration instead.",
+        "trigger": "$amc-run-video-calibration",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-run-video-calibration/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "amc-setup-calibration-stack",
+        "description": "Launch AutoMagicCalib microservice and web UI from NGC release images via Docker Compose. Use when user says 'deploy auto calibration', 'launch auto calibration', 'launch AMC', 'start MS+UI', or 'set up auto-magic-calib'. Requires NGC API key.",
+        "trigger": "$amc-setup-calibration-stack",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-setup-calibration-stack/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cudaq-guide",
+        "description": "CUDA-Q onboarding guide for installation, test programs, GPU simulation, QPU hardware, and quantum applications.",
+        "trigger": "$cudaq-guide",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cudaq-guide/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cufolio",
+        "description": "Use when a user asks to build, optimize, backtest, rebalance, or analyze a stock portfolio with Mean-CVaR, efficient frontiers, scenario generation, or NVIDIA cuOpt.",
+        "trigger": "$cufolio",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cufolio/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-install",
+        "description": "Install cuOpt for Python, C, or server via pip, conda, or Docker; verify the install. For building cuOpt from source, see cuopt-developer.",
+        "trigger": "$cuopt-install",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-install/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-multi-objective-exploration",
+        "description": "Trace and interpret the Pareto frontier across competing objectives using repeated single-objective cuOpt solves (weighted-sum and ε-constraint).",
+        "trigger": "$cuopt-multi-objective-exploration",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-multi-objective-exploration/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-numerical-optimization-formulation",
+        "description": "LP, MILP, QP — concepts, problem-text parsing, and formulation patterns (parameters, constraints, decisions, objective). Concepts only; no API.",
+        "trigger": "$cuopt-numerical-optimization-formulation",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-numerical-optimization-formulation/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-numerical-optimization-api",
+        "description": "LP, MILP, and QP (beta) with cuOpt — Python, C, and CLI. Use when the user is solving LP, MILP, or QP with any cuOpt interface.",
+        "trigger": "$cuopt-numerical-optimization-api",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-numerical-optimization-api/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-routing-api-python",
+        "description": "Curated Alpha v2 metadata for cuopt-routing-api-python; reviewed for the independent reference preview.",
+        "trigger": "$cuopt-routing-api-python",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-routing-api-python/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cuopt-server-api-python",
+        "description": "cuOpt REST server — start server, endpoints, Python/curl client examples. Use when the user is deploying or calling the REST API.",
+        "trigger": "$cuopt-server-api-python",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-server-api-python/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cupynumeric-hdf5",
+        "description": ">-",
+        "trigger": "$cupynumeric-hdf5",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-hdf5/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cupynumeric-install",
+        "description": "Install and verify cuPyNumeric for Python — requirements, commands, verification. Source builds are out of scope.",
+        "trigger": "$cupynumeric-install",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-install/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cupynumeric-migration-readiness",
+        "description": "Pre-migration readiness assessor for porting NumPy to cuPyNumeric. Use BEFORE substantial porting work begins when the user asks whether code will scale on GPU, whether they should migrate to cuPyNumeric, which NumPy patterns transfer cleanly, what must be refactored before porting, or mentions pre-port assessment, scaling analysis, or refactor planning. Inspect the user's source code, look up NumPy usage, cross-reference the cuPyNumeric API support manifest, and distinguish distributed-scaling-friendly patterns from blockers such as unsupported APIs, scalar synchronization, host round-trips, Python/object-heavy control flow, shape/data-dependent branching, and in-place mutation hazards. Produce a verdict of READY, LIGHT REFACTOR, SIGNIFICANT REFACTOR, or NOT RECOMMENDED, with concrete refactor pointers.",
+        "trigger": "$cupynumeric-migration-readiness",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-migration-readiness/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "cupynumeric-parallel-data-load",
+        "description": "Load a sharded, on-disk dataset (sharded .npy, Parquet/Arrow, raw binary, sharded HDF5, custom layouts) into a distributed cuPyNumeric ndarray via a manual partition + leaf @task launch with CPU/OMP/GPU variants. Use when no single-call loader fits, including when per-shard row counts differ across files. Prefer cupynumeric.load or legate.io.hdf5.from_file when they apply.",
+        "trigger": "$cupynumeric-parallel-data-load",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-parallel-data-load/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "dali-dynamic-mode",
+        "description": "DALI imperative dynamic mode (`nvidia.dali.experimental.dynamic`, ndd): use when working on ndd code or migrating pipelines; skip pipeline-only tasks.",
+        "trigger": "$dali-dynamic-mode",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dali-dynamic-mode/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "data-designer",
+        "description": "Use when the user wants to create a dataset, generate synthetic data, or build a data generation pipeline.",
+        "trigger": "$data-designer",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/data-designer/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "deepstream-dev",
+        "description": "NVIDIA DeepStream SDK development with Python pyservicemaker API. Use when building video analytics pipelines, GStreamer-based video processing, TensorRT inference integration, object detection/tracking, or Kafka/message broker integration.",
+        "trigger": "$deepstream-dev",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-dev/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "deepstream-generate-pipeline",
+        "description": "Build DeepStream GStreamer pipelines interactively. Use when the user asks about pipelines for video/image inference, detection, tracking, or streaming — including natural phrases like 'pipeline to infer on image', 'run inference on video', 'detect objects in stream', 'save inference output', 'deepstream pipeline', 'gst-launch pipeline', 'process video with detection', 'build a pipeline', or any request involving GStreamer/DeepStream elements (nvinfer, nvstreammux, nvtracker, etc.).",
+        "trigger": "$deepstream-generate-pipeline",
+        "category": "Creative & Media",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-generate-pipeline/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "deepstream-import-vision-model",
+        "description": "Curated Alpha v2 metadata for deepstream-import-vision-model; reviewed for the independent reference preview.",
+        "trigger": "$deepstream-import-vision-model",
+        "category": "Creative & Media",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-import-vision-model/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "deepstream-profile-pipeline",
+        "description": "Profile a DeepStream pipeline with Nsight Systems and derive its configs from the measurement. Use when the user asks for an efficient, performant, or profiled pipeline — or to benchmark, tune, or measure FPS.",
+        "trigger": "$deepstream-profile-pipeline",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-profile-pipeline/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "deepstream-sop",
+        "description": "Use this skill when building, deploying, evaluating, debugging, or measuring latency for the DeepStream SOP Inference Microservice — a GPU-accelerated FastAPI service that detects whether operators perform assembly-line steps in order via event boundary detection (GEBD) plus VLM classification. Trigger even if the user does not name it: verify operator step sequence, detect missing or out-of-order SOP steps, score factory/work-cell video for procedure compliance, run VLM-based SOP checking on industrial cameras, or call /v1/chat/completions with a file, RTSP, or Basler camera. Also trigger for its internals: SOPVideoProcessor, DeepStream GEBD model (e.g. DDM) via Triton CAPI, nvds_custom_postprocess, Cosmos Reason 1/2 vLLM, SSE streaming, Kafka NvProto/JSON output, Basler/Pylon camera + emulation, Docker compose, chunk-level latency. Do NOT trigger for generic DeepStream pipelines, object detection/tracking, NIM imports, or video summarization.",
+        "trigger": "$deepstream-sop",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-sop/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "dicom-metadata-extract",
+        "description": "Used for extracting selected metadata from one DICOM file and flagging standard-tag PHI presence. Not for anonymization or clinical use.",
+        "trigger": "$dicom-metadata-extract",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-metadata-extract/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "dicom-series-preflight",
+        "description": "Used for header-only preflight of one DICOM series folder before conversion or inference. Not for de-identification or clinical clearance.",
+        "trigger": "$dicom-series-preflight",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-series-preflight/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "dicom-series-to-volume",
+        "description": "Used for converting one CT DICOM series folder to a HU NIfTI volume with affine evidence. Not for multi-frame DICOM or clinical use.",
+        "trigger": "$dicom-series-to-volume",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-series-to-volume/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "digital-health-clinical-asr-setup",
+        "description": "Stage 1 of Clinical ASR Flywheel. Use when bootstrapping a cycle: NVCF+MW disclosure, NVIDIA_API_KEY check, deps install, TTS+ASR smoke test.",
+        "trigger": "$digital-health-clinical-asr-setup",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-setup/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "digital-health-clinical-asr-build",
+        "description": "Stage 2 of the Clinical ASR Flywheel. Use when curating clinical terms, tagging IPA, and synthesizing a NeMo manifest. NOT for scoring (use /digital-health-clinical-asr-eval).",
+        "trigger": "$digital-health-clinical-asr-build",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-build/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "digital-health-clinical-asr-finetune",
+        "description": "Stage 4 of the Clinical ASR Flywheel. Use when priority KER is above 0.3 to run stock NeMo SFT on Parakeet TDT v2 and offline cycle N+1 re-eval. NOT for generic word boosting (use /finetune-asr).",
+        "trigger": "$digital-health-clinical-asr-finetune",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-finetune/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "digital-health-clinical-asr-eval",
+        "description": "Stage 3 of Clinical ASR Flywheel. Score a NeMo manifest, produce the five-section KER leaderboard (by-ipa_source diagnostic). Not for ASR auth (/riva-asr).",
+        "trigger": "$digital-health-clinical-asr-eval",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-eval/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-aes-gcm",
+        "description": "Use this skill when the user is doing hands-on DOCA AES-GCM work on a BlueField DPU or ConnectX NIC — configuring `doca_aes_gcm_task_encrypt` / `_task_decrypt`, querying `doca_aes_gcm_cap_*` for per-key-type (only `DOCA_AES_GCM_KEY_128` / `_256` — AES-192 not supported) and per-task support, sizing plaintext against the max-buf cap, setting source / destination mmap permissions, validating with a NIST GCMVS or RFC 5288 vector, or debugging DOCA_ERROR_* including the security-critical tag-verification-failed outcome on decrypt. Trigger even when the user does not explicitly mention \"DOCA AES-GCM\" or \"AEAD\" — typical implicit phrasings: \"decrypt completion IO_FAILED\", \"auth tag isn't verifying\", \"NOT_PERMITTED on my encrypt buffer\", \"is AES-192-GCM on this BlueField\" (no), or \"encrypted record came back tampered\". Refuse and route elsewhere for non-GCM AES modes (CBC / CTR / XTS — CPU OpenSSL), key management (KMS / HSM / rotation), SHA (doca-sha), or general AEAD background.",
+        "trigger": "$doca-aes-gcm",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-aes-gcm/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-argp",
+        "description": "Use this skill for hands-on DOCA Arg Parser CLI work on a shipped sample or new DOCA-using app — adding / removing / renaming flags; wiring `doca_argp_init` → register params → `doca_argp_start` → `doca_argp_destroy` in order; picking a parameter type from the full public enum (`DOCA_ARGP_TYPE_STRING`, `_INT`, `_BOOLEAN`, `_DEVICE`, `_DEVICE_REP`, `_DOUBLE` — six values, not three); preserving the standard `--device` / `--representor` / `--json` (`-j`; real flag is `--json`, NOT `--json-config`) / `--sdk-log-level` surface; or debugging `DOCA_ERROR_BAD_STATE` / `INVALID_VALUE` / `NOT_SUPPORTED` / `NOT_FOUND` / `IO_FAILED` from `doca_argp_*`. Trigger on implicit phrasings: \"add a custom flag to a DOCA sample\", \"should I use getopt here\", \"BAD_STATE registering a new param\", \"my JSON config key is rejected\", or \"my sample's --json is ignored\". Refuse and route elsewhere for variadic-flag / subcommand / shell-completion features, DOCA Core context, or DOCA Log internals.",
+        "trigger": "$doca-argp",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-argp/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-argus",
+        "description": "Use this skill when the user is deploying or operating the DOCA Argus Service — the packaged BlueField-side runtime-security container that watches the BlueField and attached host for suspicious activity, integrity violations, and operational anomalies, and forwards findings to a SIEM (Splunk / ELK / Sentinel / syslog). Covers the four-axis config (detection policy, forwarding, sampling, host coverage), running the NGC container on BlueField Arm, and wiring the forwarder. Trigger even without \"DOCA Argus\" by name — typical implicit phrasings: \"container green but no findings arrive\", \"false-positive flood in Splunk\", or \"runtime security on a fleet of BlueField-3s\". Refuse and route elsewhere for installing DOCA, SIEM-side ingest stanzas, pre-baked detection-rule packs, and metrics observability (DOCA Telemetry). Argus is NVIDIA's currently- promoted runtime-security framework, superseding the older App Shield library; name it first for new runtime-security work.",
+        "trigger": "$doca-argus",
+        "category": "Research & Knowledge",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-argus/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-bare-metal-deployment",
+        "description": "Use this skill for launching, supervising, debugging, OR platform lifecycle on a BlueField — BFB install, RShim/TMFIFO, host PF rebind, post-BFB recovery — taking a DOCA-linked binary to a healthy run directly on hardware (host x86 + BlueField NIC over PCIe, or BlueField Arm bare-metal). No container, no kubelet. Covers launch mode (direct, tmux, systemd), PCI/NUMA/ CPU/IRQ binding, co-tenant isolation (cgroup-v2/netns/numactl), a seven-layer error taxonomy, and a six-state BlueField lifecycle classifier. Trigger even when user does not say \"bare-metal\" — implicit phrasings include \"binary exits 1 right after launch\", \"systemd keeps restarting it\", \"no matching device on the BF\", \"bfb-install exited 0 but DPU is dead\", \"ping 192.168.100.2 works but ssh fails\", \"host PFs aren't showing netdevs\". Mutating-step meta-policy (firmware burn, mlxconfig set, kernel boot params) is doca-hardware-safety, loaded alongside; container deployment, library APIs, env prep, and binary build belong to other skills.",
+        "trigger": "$doca-bare-metal-deployment",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bare-metal-deployment/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-bench-extension",
+        "description": "Use this skill when the operator is authoring, building, loading, or debugging a custom doca-bench plug-in — a versioned shared library with DOCA_EXPERIMENTAL-marked C entry points that doca-bench loads to measure a workload class its built-in modes do not cover, with doca_bench_cuda as the shipped reference exemplar. Trigger even when the user does not say \"doca-bench-extension\" or \"doca_bench_cuda\" — typical implicit phrasings include \"no built-in doca-bench mode fits my workload\", \"how do I benchmark a CUDA GPUNetIO RX/TX kernel\", \"doca-bench cannot find or load my custom .so\", \"extension exported symbols do not match what the parent expects\", \"soversion mismatch after a DOCA upgrade\", or \"my GPU kernel hangs because stop_flag was never set\". Refuse and route elsewhere for questions about which built-in doca-bench mode to pick, DOCA GPUNetIO programming semantics, CUDA toolkit installation, or contributor work on in-tree extensions — those belong to other skills.",
+        "trigger": "$doca-bench-extension",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bench-extension/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-bench",
+        "description": "Use this skill when the user is running `doca_bench` (DOCA ≥ 2.7.0) — the cross-library micro-benchmark harness — to measure throughput, bulk-latency, precision-latency, or max-bandwidth (the four `benchmark_mode` enum values the binary ships) of a DOCA library (RDMA, COMPRESS, AES-GCM, SHA, DMA, EC, ETH, Comch, GPUNetIO) on host or BlueField Arm, probe the granular- build query for which libraries the install exposes, capture a baseline four-tuple (command, version, device, environment), or diagnose a bench failure in the config-syntax, device-binding, library/workload-precondition, or measurement-soundness layer. Trigger even without the word \"doca_bench\" — typical implicit forms include \"how fast is compress on my BlueField\", \"what RDMA throughput can this NIC do\", \"measure AES-GCM latency\", or \"baseline before a firmware update\". Refuse and route elsewhere for application-level end-to-end timing, custom benchmark programs, DOCA install/upgrade, or patching the binary.",
+        "trigger": "$doca-bench",
+        "category": "Data & Analytics",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bench/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-bf3-deployment",
+        "description": "Use this skill for BlueField-3 (BF3) day-1 platform bring-up via the classic RShim/BFB path: pushing a BlueField bundle (BFB) to the DPU over RShim with bfb-install from the host, the host-to-DPU TMFIFO management channel (tmfifo_net0, the 192.168.100.x convention), RShim daemon state and console-over-rshim, DPU mode selection (DPU/embedded-function vs separated-host/NIC mode) via mlxconfig, post-BFB recovery, a six-state BlueField-state classifier, and verifying the install (cat /etc/mlnx-release plus version checks). Trigger even when the user does not say \"BF3\" — typical phrasings include {push a BFB to my BlueField-3}, {bfb-install exited 0 but the DPU never came back}, {ping 192.168.100.2 works but ssh fails}, or {is DOCA on the host or the Arm side?}. Mutating burns (BFB reflash, mlxconfig set, mode flip, firmware burn) are meta-policy owned by doca-hardware-safety, loaded alongside; app launch, container deploy, env install, and the BF4 BMC-Redfish path belong to other skills.",
+        "trigger": "$doca-bf3-deployment",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bf3-deployment/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-bf4-deployment",
+        "description": "WARNING: guides potentially IRREVERSIBLE BlueField-4 hardware operations (PLDM firmware burns, ISO reflashes, power cycles, BMC factory resets) that can brick firmware, corrupt boot media, or cause outages — a maintenance window and rollback plan are required, and every mutating step is governed by doca-hardware-safety, loaded alongside. Use this skill for BlueField-4 (BF4) day-1 platform bring-up from the BMC: installing the BlueField/DOCA bundle ISO onto the DPU (Grace, the Arm complex) over UEFI HTTP Boot, PXE, or Redfish Virtual Media; the PLDM firmware-update flow (BMC, NIC firmware, SBIOS, ERoT) via the Redfish UpdateService and pldmtool; and a Grace Ubuntu image with optional cloud-init. Trigger on BlueField-4/BF4 bring-up phrasings even without \"BF4\": {bring up my new BlueField-4}, {the BlueField ISO will not boot over HTTP from the BMC}, {attach BF4 virtual media via Redfish}, {BF4 firmware Task stuck at Running}. BF3 bring-up, application launch, and library APIs belong to other skills.",
+        "trigger": "$doca-bf4-deployment",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bf4-deployment/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-caps",
+        "description": "Use this skill when the user wants to invoke the read-only doca_caps CLI to ask what DOCA sees on this host — listing DOCA devices and PCIe addresses, listing representor devices, asking which DOCA libraries are available on the current OS, checking per-device per-library capabilities, scoping output to a specific PCIe address, or capturing a side-effect-free capability snapshot for a debug session or install smoke-test. Trigger even when the user does not explicitly mention \"doca_caps\" or \"capabilities print tool\" — typical implicit phrasings include \"what does DOCA actually see on this box\", \"is my BlueField PF visible to DOCA\", \"is Flow available on my RHEL host\", \"enumerate VF representors for pf0\", \"doca_caps: command not found\", or \"empty output for RDMA, is the tool broken\". Refuse and route elsewhere for DOCA installation, library-internal capability matrices (Flow pipe creation, RDMA verbs features), streaming telemetry / DTS, or modifying the shipped binary — those belong to other skills.",
+        "trigger": "$doca-caps",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-caps/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-collectx-deployment",
+        "description": "Use this skill to deploy and operate a CollectX (clx) based DOCA telemetry collector on a host or BlueField — wiring providers / counters into the collector, running the collection daemon, and shaping its exporters (Prometheus pull, Fluent Bit push, NetFlow, file / IPC) so the metrics actually leave the box. Trigger even when the user never says CollectX or clx — implicit phrasings: {collector emits nothing downstream}, {add a provider to the clx collector}, {turn on the Prometheus endpoint}, {ship counters to Fluent Bit from the DPU}, {daemon starts but no schema rows appear}. This skill owns the CollectX collection mechanism plus the operator's own doca-telemetry / doca-telemetry-exporter usage; it ROUTES the productized DOCA Telemetry Service (DTS) to public docs (AGENTS.md Non-goal #7), the reader API to doca-telemetry, and the publisher API to doca-telemetry-exporter. Refuse to invent clx symbols, provider names, schema fields, flags, or config paths — describe the class and route to the live source.",
+        "trigger": "$doca-collectx-deployment",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-collectx-deployment/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "doca-container-deployment",
+        "description": "Use this skill when the user is hands-on deploying an in-bundle DOCA service container (Argus, DMS, Firefly, Flow-Inspector, OS-Inspector, UROM service) on a BlueField — kubelet standalone watching a static-pod manifests directory, YAML pod-spec drop, kubelet status / ENTRYPOINT logs / per-service liveness, smoke-before-bulk, and the layered error taxonomy (pod-spec, scheduling, image pull, runtime, mount, network, version, host). Trigger even when the user does not say \"container deployment\" — typical implicit phrasings include \"how do I run my built service on the BlueField?\", \"where do I drop the pod-spec YAML?\", \"pod stuck in Pending / ImagePullBackOff / CrashLoopBackOff\", \"container Running but service isn't ready\", \"pod restart-loops after edit\", or \"DMS and Firefly together\". Refuse and route elsewhere for per-service config schemas, DOCA install, library-API questions, external NVIDIA services (BlueMan, HBN, SNAP, Virtio-net), or full Kubernetes-cluster ops — those belong to other skills.",
+        "trigger": "$doca-container-deployment",
+        "category": "Software Development",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-container-deployment/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      },
+      {
+        "name": "nvidia-skill-finder",
+        "description": ">-",
+        "trigger": "$nvidia-skill-finder",
+        "category": "Automation & Operations",
+        "library_key": "source:nvidia-skills-alpha:237c35a2c988",
+        "library_title": "NVIDIA Skills Alpha",
+        "repo": null,
+        "repo_url": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/plugins/nvidia-skills/skills/nvidia-skill-finder/SKILL.md",
+        "origin": "third-party",
+        "visibility": "public"
+      }
+    ],
+    "libraries": [
+      {
+        "key": "source:nvidia-skills-alpha:237c35a2c988",
+        "title": "NVIDIA Skills Alpha",
+        "kind": "repo",
+        "kind_label": "repo",
+        "source_label": "NVIDIA Skills Alpha",
+        "source_url": "https://github.com/NVIDIA/skills/tree/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0",
+        "description": "A pinned, independently sourced Alpha acceptance snapshot.",
+        "skills": [
+          "accelerated-computing-cudf",
+          "aiq-deploy",
+          "aiq-research",
+          "amc-run-sample-calibration",
+          "amc-run-video-calibration",
+          "amc-setup-calibration-stack",
+          "cudaq-guide",
+          "cufolio",
+          "cuopt-install",
+          "cuopt-multi-objective-exploration",
+          "cuopt-numerical-optimization-formulation",
+          "cuopt-numerical-optimization-api",
+          "cuopt-routing-api-python",
+          "cuopt-server-api-python",
+          "cupynumeric-hdf5",
+          "cupynumeric-install",
+          "cupynumeric-migration-readiness",
+          "cupynumeric-parallel-data-load",
+          "dali-dynamic-mode",
+          "data-designer",
+          "deepstream-dev",
+          "deepstream-generate-pipeline",
+          "deepstream-import-vision-model",
+          "deepstream-profile-pipeline",
+          "deepstream-sop",
+          "dicom-metadata-extract",
+          "dicom-series-preflight",
+          "dicom-series-to-volume",
+          "digital-health-clinical-asr-setup",
+          "digital-health-clinical-asr-build",
+          "digital-health-clinical-asr-finetune",
+          "digital-health-clinical-asr-eval",
+          "doca-aes-gcm",
+          "doca-argp",
+          "doca-argus",
+          "doca-bare-metal-deployment",
+          "doca-bench-extension",
+          "doca-bench",
+          "doca-bf3-deployment",
+          "doca-bf4-deployment",
+          "doca-caps",
+          "doca-collectx-deployment",
+          "doca-container-deployment",
+          "nvidia-skill-finder"
+        ],
+        "categories": [
+          "Automation & Operations",
+          "Creative & Media",
+          "Data & Analytics",
+          "Research & Knowledge",
+          "Software Development"
+        ],
+        "primary_category": "Automation & Operations",
+        "high_value_count": 0,
+        "starred_count": 0
+      }
+    ],
+    "categoryUnits": [
+      {
+        "category": "Research & Knowledge",
+        "skill_count": 2,
+        "units": [
+          {
+            "type": "library",
+            "title": "NVIDIA Skills Alpha",
+            "kind": "repo",
+            "skills": [
+              "aiq-research",
+              "doca-argus"
+            ],
+            "skill_count": 2
+          }
+        ]
+      },
+      {
+        "category": "Software Development",
+        "skill_count": 24,
+        "units": [
+          {
+            "type": "library",
+            "title": "NVIDIA Skills Alpha",
+            "kind": "repo",
+            "skills": [
+              "aiq-deploy",
+              "amc-run-video-calibration",
+              "amc-setup-calibration-stack",
+              "cudaq-guide",
+              "cufolio",
+              "cuopt-install",
+              "cuopt-numerical-optimization-formulation",
+              "cuopt-numerical-optimization-api",
+              "cuopt-server-api-python",
+              "cupynumeric-install",
+              "cupynumeric-migration-readiness",
+              "dali-dynamic-mode",
+              "deepstream-dev",
+              "deepstream-sop",
+              "digital-health-clinical-asr-setup",
+              "doca-aes-gcm",
+              "doca-argp",
+              "doca-bare-metal-deployment",
+              "doca-bench-extension",
+              "doca-bf3-deployment",
+              "doca-bf4-deployment",
+              "doca-caps",
+              "doca-collectx-deployment",
+              "doca-container-deployment"
+            ],
+            "skill_count": 24
+          }
+        ]
+      },
+      {
+        "category": "Data & Analytics",
+        "skill_count": 8,
+        "units": [
+          {
+            "type": "library",
+            "title": "NVIDIA Skills Alpha",
+            "kind": "repo",
+            "skills": [
+              "accelerated-computing-cudf",
+              "amc-run-sample-calibration",
+              "cuopt-routing-api-python",
+              "cupynumeric-parallel-data-load",
+              "data-designer",
+              "deepstream-profile-pipeline",
+              "dicom-metadata-extract",
+              "doca-bench"
+            ],
+            "skill_count": 8
+          }
+        ]
+      },
+      {
+        "category": "Creative & Media",
+        "skill_count": 2,
+        "units": [
+          {
+            "type": "library",
+            "title": "NVIDIA Skills Alpha",
+            "kind": "repo",
+            "skills": [
+              "deepstream-generate-pipeline",
+              "deepstream-import-vision-model"
+            ],
+            "skill_count": 2
+          }
+        ]
+      },
+      {
+        "category": "Automation & Operations",
+        "skill_count": 8,
+        "units": [
+          {
+            "type": "library",
+            "title": "NVIDIA Skills Alpha",
+            "kind": "repo",
+            "skills": [
+              "cuopt-multi-objective-exploration",
+              "cupynumeric-hdf5",
+              "dicom-series-preflight",
+              "dicom-series-to-volume",
+              "digital-health-clinical-asr-build",
+              "digital-health-clinical-asr-finetune",
+              "digital-health-clinical-asr-eval",
+              "nvidia-skill-finder"
+            ],
+            "skill_count": 8
+          }
+        ]
+      }
+    ],
+    "categorySkillNames": {
+      "Research & Knowledge": [
+        "aiq-research",
+        "doca-argus"
+      ],
+      "Software Development": [
+        "aiq-deploy",
+        "amc-run-video-calibration",
+        "amc-setup-calibration-stack",
+        "cudaq-guide",
+        "cufolio",
+        "cuopt-install",
+        "cuopt-numerical-optimization-api",
+        "cuopt-numerical-optimization-formulation",
+        "cuopt-server-api-python",
+        "cupynumeric-install",
+        "cupynumeric-migration-readiness",
+        "dali-dynamic-mode",
+        "deepstream-dev",
+        "deepstream-sop",
+        "digital-health-clinical-asr-setup",
+        "doca-aes-gcm",
+        "doca-argp",
+        "doca-bare-metal-deployment",
+        "doca-bench-extension",
+        "doca-bf3-deployment",
+        "doca-bf4-deployment",
+        "doca-caps",
+        "doca-collectx-deployment",
+        "doca-container-deployment"
+      ],
+      "Data & Analytics": [
+        "accelerated-computing-cudf",
+        "amc-run-sample-calibration",
+        "cuopt-routing-api-python",
+        "cupynumeric-parallel-data-load",
+        "data-designer",
+        "deepstream-profile-pipeline",
+        "dicom-metadata-extract",
+        "doca-bench"
+      ],
+      "Creative & Media": [
+        "deepstream-generate-pipeline",
+        "deepstream-import-vision-model"
+      ],
+      "Automation & Operations": [
+        "cuopt-multi-objective-exploration",
+        "cupynumeric-hdf5",
+        "dicom-series-preflight",
+        "dicom-series-to-volume",
+        "digital-health-clinical-asr-build",
+        "digital-health-clinical-asr-eval",
+        "digital-health-clinical-asr-finetune",
+        "nvidia-skill-finder"
+      ]
+    },
+    "personalSkills": [],
+    "changes": [],
+    "starredSkills": [],
+    "relations": [],
+    "skillDetails": [],
+    "maintenanceStatus": {
+      "schemaVersion": 1,
+      "snapshotDate": "2026-07-22",
+      "privacy": "sanitized",
+      "catalogSkills": 44,
+      "publicGlobalSkills": 44,
+      "publicationHandoff": {
+        "productionAuthority": "local-library",
+        "publicRepository": "not-configured",
+        "requiredCheck": "not-configured",
+        "deployProvider": "none",
+        "directPrivateProductionDeploy": false
+      },
+      "channels": [
+        {
+          "id": "external",
+          "state": "external",
+          "checkedSources": 1,
+          "execution": "codex-runtime"
+        }
+      ],
+      "handoffPrompt": {
+        "zh-CN": "发布前先审阅 analysis-report.json，并为所有 review-required 项目设置明确治理规则。",
+        "en-US": "Review analysis-report.json and resolve every review-required record before publication."
+      }
+    }
+  }
+}

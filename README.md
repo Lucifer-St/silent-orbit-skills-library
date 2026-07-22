@@ -13,6 +13,21 @@ Silent Orbit turns a growing AI Skills collection into a navigable product: sear
 
 The public catalog currently contains **142 Skills across 9 systems and 28 libraries**.
 
+## Install the Public Generator
+
+The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI locally or globally from the downloaded file, optionally install the bundled `build-skill-cosmos` Agent Skill at project scope, and complete a reviewed first generation.
+
+## Phase 1E Alpha Preview
+
+The Draft PR also builds a separate **44-Skill Reference Preview** from a pinned independent environment. It keeps the interactive Skill map as a primary way to explore the collection: a white canvas, black relationship lines, category clusters, restrained pan/zoom, and spatial focus transitions. A compact Library view uses the same search, filters, selection, and URL state.
+
+This Reference Renderer is a functional starting point, not an official visual theme. Generated projects include `frontend-handoff.md` so users can retain the public data, keyboard behavior, deep links, and privacy boundary while rebuilding the interface with any visual style and frontend Skill they prefer.
+
+- [Phase 1E architecture and acceptance boundary](./docs/architecture/GENERATOR_PHASE1E.md)
+- [Install and first-use guide](./GENERATOR_QUICKSTART.md)
+- The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
+- Production remains the compatible 142-Skill site until the Draft PR is separately reviewed and merged.
+
 ## See the library
 
 <p align="center">
@@ -90,6 +105,7 @@ npm run validate:readme
 npm run test:mvp
 npx tsc --noEmit
 npm run build
+npm run build:alpha-preview
 npm run smoke:ui
 npm run qa:visual
 ```

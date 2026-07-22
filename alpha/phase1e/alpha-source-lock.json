@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/NVIDIA/skills",
+  "commit": "f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0",
+  "license": [
+    "CC-BY-4.0",
+    "Apache-2.0"
+  ],
+  "selection": {
+    "strategy": "canonical-relative-path-first-49-valid-public-metadata",
+    "lockedCount": 49,
+    "publicCount": 44
+  },
+  "selectionDigest": "91f97562b0b114214e2135a783b999b0213e8ba63d40cca2ea1774cc838ded91",
+  "skills": [
+    {
+      "rank": 1,
+      "path": "plugins/nvidia-skills/skills/nvidia-skill-finder/SKILL.md",
+      "name": "nvidia-skill-finder",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/plugins/nvidia-skills/skills/nvidia-skill-finder/SKILL.md"
+    },
+    {
+      "rank": 2,
+      "path": "skills/accelerated-computing-cudf/SKILL.md",
+      "name": "accelerated-computing-cudf",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/accelerated-computing-cudf/SKILL.md"
+    },
+    {
+      "rank": 3,
+      "path": "skills/aiq-deploy/SKILL.md",
+      "name": "aiq-deploy",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/aiq-deploy/SKILL.md"
+    },
+    {
+      "rank": 4,
+      "path": "skills/aiq-research/SKILL.md",
+      "name": "aiq-research",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/aiq-research/SKILL.md"
+    },
+    {
+      "rank": 5,
+      "path": "skills/amc-run-sample-calibration/SKILL.md",
+      "name": "amc-run-sample-calibration",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-run-sample-calibration/SKILL.md"
+    },
+    {
+      "rank": 6,
+      "path": "skills/amc-run-video-calibration/SKILL.md",
+      "name": "amc-run-video-calibration",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-run-video-calibration/SKILL.md"
+    },
+    {
+      "rank": 7,
+      "path": "skills/amc-setup-calibration-stack/SKILL.md",
+      "name": "amc-setup-calibration-stack",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/amc-setup-calibration-stack/SKILL.md"
+    },
+    {
+      "rank": 8,
+      "path": "skills/cudaq-guide/SKILL.md",
+      "name": "cudaq-guide",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cudaq-guide/SKILL.md"
+    },
+    {
+      "rank": 9,
+      "path": "skills/cufolio/SKILL.md",
+      "name": "cufolio",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cufolio/SKILL.md"
+    },
+    {
+      "rank": 11,
+      "path": "skills/cuopt-install/SKILL.md",
+      "name": "cuopt-install",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-install/SKILL.md"
+    },
+    {
+      "rank": 12,
+      "path": "skills/cuopt-multi-objective-exploration/SKILL.md",
+      "name": "cuopt-multi-objective-exploration",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-multi-objective-exploration/SKILL.md"
+    },
+    {
+      "rank": 13,
+      "path": "skills/cuopt-numerical-optimization-api/SKILL.md",
+      "name": "cuopt-numerical-optimization-api",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-numerical-optimization-api/SKILL.md"
+    },
+    {
+      "rank": 14,
+      "path": "skills/cuopt-numerical-optimization-formulation/SKILL.md",
+      "name": "cuopt-numerical-optimization-formulation",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-numerical-optimization-formulation/SKILL.md"
+    },
+    {
+      "rank": 15,
+      "path": "skills/cuopt-routing-api-python/SKILL.md",
+      "name": "cuopt-routing-api-python",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-routing-api-python/SKILL.md"
+    },
+    {
+      "rank": 16,
+      "path": "skills/cuopt-server-api-python/SKILL.md",
+      "name": "cuopt-server-api-python",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cuopt-server-api-python/SKILL.md"
+    },
+    {
+      "rank": 17,
+      "path": "skills/cupynumeric-hdf5/SKILL.md",
+      "name": "cupynumeric-hdf5",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-hdf5/SKILL.md"
+    },
+    {
+      "rank": 18,
+      "path": "skills/cupynumeric-install/SKILL.md",
+      "name": "cupynumeric-install",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-install/SKILL.md"
+    },
+    {
+      "rank": 19,
+      "path": "skills/cupynumeric-migration-readiness/SKILL.md",
+      "name": "cupynumeric-migration-readiness",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-migration-readiness/SKILL.md"
+    },
+    {
+      "rank": 20,
+      "path": "skills/cupynumeric-parallel-data-load/SKILL.md",
+      "name": "cupynumeric-parallel-data-load",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/cupynumeric-parallel-data-load/SKILL.md"
+    },
+    {
+      "rank": 21,
+      "path": "skills/dali-dynamic-mode/SKILL.md",
+      "name": "dali-dynamic-mode",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dali-dynamic-mode/SKILL.md"
+    },
+    {
+      "rank": 22,
+      "path": "skills/data-designer/SKILL.md",
+      "name": "data-designer",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/data-designer/SKILL.md"
+    },
+    {
+      "rank": 23,
+      "path": "skills/deepstream-dev/SKILL.md",
+      "name": "deepstream-dev",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-dev/SKILL.md"
+    },
+    {
+      "rank": 24,
+      "path": "skills/deepstream-generate-pipeline/SKILL.md",
+      "name": "deepstream-generate-pipeline",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-generate-pipeline/SKILL.md"
+    },
+    {
+      "rank": 25,
+      "path": "skills/deepstream-import-vision-model/SKILL.md",
+      "name": "deepstream-import-vision-model",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-import-vision-model/SKILL.md"
+    },
+    {
+      "rank": 26,
+      "path": "skills/deepstream-profile-pipeline/SKILL.md",
+      "name": "deepstream-profile-pipeline",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-profile-pipeline/SKILL.md"
+    },
+    {
+      "rank": 27,
+      "path": "skills/deepstream-sop/SKILL.md",
+      "name": "deepstream-sop",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/deepstream-sop/SKILL.md"
+    },
+    {
+      "rank": 28,
+      "path": "skills/dicom-metadata-extract/SKILL.md",
+      "name": "dicom-metadata-extract",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-metadata-extract/SKILL.md"
+    },
+    {
+      "rank": 29,
+      "path": "skills/dicom-series-preflight/SKILL.md",
+      "name": "dicom-series-preflight",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-series-preflight/SKILL.md"
+    },
+    {
+      "rank": 30,
+      "path": "skills/dicom-series-to-volume/SKILL.md",
+      "name": "dicom-series-to-volume",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/dicom-series-to-volume/SKILL.md"
+    },
+    {
+      "rank": 31,
+      "path": "skills/digital-health-clinical-asr-build/SKILL.md",
+      "name": "digital-health-clinical-asr-build",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-build/SKILL.md"
+    },
+    {
+      "rank": 32,
+      "path": "skills/digital-health-clinical-asr-eval/SKILL.md",
+      "name": "digital-health-clinical-asr-eval",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-eval/SKILL.md"
+    },
+    {
+      "rank": 33,
+      "path": "skills/digital-health-clinical-asr-finetune/SKILL.md",
+      "name": "digital-health-clinical-asr-finetune",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-finetune/SKILL.md"
+    },
+    {
+      "rank": 34,
+      "path": "skills/digital-health-clinical-asr-setup/SKILL.md",
+      "name": "digital-health-clinical-asr-setup",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/digital-health-clinical-asr-setup/SKILL.md"
+    },
+    {
+      "rank": 35,
+      "path": "skills/doca-aes-gcm/SKILL.md",
+      "name": "doca-aes-gcm",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-aes-gcm/SKILL.md"
+    },
+    {
+      "rank": 36,
+      "path": "skills/doca-argp/SKILL.md",
+      "name": "doca-argp",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-argp/SKILL.md"
+    },
+    {
+      "rank": 37,
+      "path": "skills/doca-argus/SKILL.md",
+      "name": "doca-argus",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-argus/SKILL.md"
+    },
+    {
+      "rank": 38,
+      "path": "skills/doca-bare-metal-deployment/SKILL.md",
+      "name": "doca-bare-metal-deployment",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bare-metal-deployment/SKILL.md"
+    },
+    {
+      "rank": 39,
+      "path": "skills/doca-bench-extension/SKILL.md",
+      "name": "doca-bench-extension",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bench-extension/SKILL.md"
+    },
+    {
+      "rank": 40,
+      "path": "skills/doca-bench/SKILL.md",
+      "name": "doca-bench",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bench/SKILL.md"
+    },
+    {
+      "rank": 41,
+      "path": "skills/doca-bf3-deployment/SKILL.md",
+      "name": "doca-bf3-deployment",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bf3-deployment/SKILL.md"
+    },
+    {
+      "rank": 42,
+      "path": "skills/doca-bf4-deployment/SKILL.md",
+      "name": "doca-bf4-deployment",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-bf4-deployment/SKILL.md"
+    },
+    {
+      "rank": 43,
+      "path": "skills/doca-caps/SKILL.md",
+      "name": "doca-caps",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-caps/SKILL.md"
+    },
+    {
+      "rank": 44,
+      "path": "skills/doca-collectx-deployment/SKILL.md",
+      "name": "doca-collectx-deployment",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-collectx-deployment/SKILL.md"
+    },
+    {
+      "rank": 49,
+      "path": "skills/doca-container-deployment/SKILL.md",
+      "name": "doca-container-deployment",
+      "sourceUrl": "https://github.com/NVIDIA/skills/blob/f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0/skills/doca-container-deployment/SKILL.md"
+    }
+  ]
+}

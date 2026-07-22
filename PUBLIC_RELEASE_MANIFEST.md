@@ -1,33 +1,39 @@
 # Public release manifest
 
-- Input commit: `10f294743982682e7260bd969301b137f8429d74`
-- Input commit timestamp: `2026-07-19T18:05:30-04:00`
-- Payload files: 186
-- Payload bytes: 8965928
-- Canonical SHA-256 release digest: `4f0866cf9bda320407fefe01b061b979f38b80033afd7afc0d2915de4fa9a53e`
+- Input commit: `1e37679c3fdba2b0ffe998aff54fcdaa4e794b98`
+- Input commit timestamp: `2026-07-21T19:50:00-04:00`
+- Payload files: 238
+- Payload bytes: 11055329
+- Canonical SHA-256 release digest: `3371660a24172b45100d6cffd81b7f7f07e7d8084cbecb2353403622f395b8fd`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
 | Path | Bytes | SHA-256 |
 | --- | ---: | --- |
-| .gitattributes | 90 | `600a53b758fef81512d7b71bf00993e6302dfb87a7459025d135fe1271d2bef4` |
+| .gitattributes | 135 | `a5f28e7ead7f56f4fc7e9bee397cc5de7b1455f2279062e1594f460a4215d12c` |
 | .github/ISSUE_TEMPLATE/bug_report.yml | 1678 | `59036c1300bc7c4cc6897c063008029dfb9306e60d46e7ae24dbb8c514617b32` |
 | .github/ISSUE_TEMPLATE/experience_feedback.yml | 1813 | `a71d42f7110929da00ed90ca0ec1cd30dd7835bce5768082449fb8e25052cc68` |
-| .github/workflows/public-release-gate.yml | 1311 | `94d14645d18a04c5d006a6ad2b5831308dc0b9a8a552938612b98d4b591f7ad0` |
+| .github/workflows/public-release-gate.yml | 1387 | `e9fc4480c6f459ca28f99c8c91682eb094e0c609e9a3cccdd15f5c5ad31ff49a` |
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 28893 | `99273c851d53e52aa53388b8897563a8afd4743daa47d8238f0398b0a8ec6fae` |
+| ASSET_PROVENANCE.json | 31108 | `a0e14dd82a0930b6cc74ca677a18fae32bd102e326bccf6153a95e5d482cfa01` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
+| GENERATOR_QUICKSTART.md | 4021 | `fcdf3c46104754151b5ce30b1913237eeeb6cd37d290169b819f90d673bc9d3b` |
+| GENERATOR_QUICKSTART.zh-CN.md | 3806 | `9d1543a7cbb3bd1b68dc56ed20cea1cf1cce8caccf6f4e71932710e581ae5160` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `bfff01631c55c206d14056f53e16e40eb4aba0bb05cb96e0747156fd09171808` |
-| README.md | 5373 | `7413c9d3ad2653d2b868179eb84e22ba1da833d97b4a577e5782f03374ae8438` |
-| README.zh-CN.md | 4937 | `8ba1668caf184cc4c02c835c3072d4eb1bda335b1889c1e9a6970a7ebf256768` |
-| RELEASE_NOTES_v0.9.0-beta.1.md | 2780 | `9885203f0aa631579ee34edfefb9dda032e09792aae2e40775337773ba0e3054` |
+| PRIVACY_AUDIT.md | 615 | `88948b4e5ea25cb77f1718c55e1a2b452373b96a0f79bda21fd868e6285256ec` |
+| README.md | 6939 | `b336c150b2bae307842024f87f9d585e659ab659bbc18d7fc31b30c4b2df8726` |
+| README.zh-CN.md | 6354 | `2ef65784cc35e8e4d50654078ff1b5d4315de33af1d60c8f18b8d9b083024f01` |
+| RELEASE_NOTES_v0.9.0-beta.1.md | 3260 | `77bee2ead23d044a835a81084e29577e6a0b45c2ca54c0f93e057f7a57cf45e6` |
 | SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
-| THIRD_PARTY_NOTICES.md | 12733 | `0278189a19539080ef8eee8b5bcfe17f08cdfe2aced7148183a496f87e0ab2cb` |
+| THIRD_PARTY_NOTICES.md | 13368 | `335d5b8add3d9ce33e4cb9c26ca0ad99ca11be3cba882220b0bde53222cda9c3` |
+| alpha/phase1e/alpha-receipt.json | 2436 | `b5be1d86c1e3303fc5c1a48fbc5c00f546e07f49c994c11451926671db1983c4` |
+| alpha/phase1e/alpha-source-lock.json | 12120 | `3f6826ae52f269a39d931a7997b70bb7297cab1fdfe7d457a595e265aaea05ca` |
+| alpha/phase1e/frontend-handoff.md | 1252 | `0488ade9a2238c445fcf451bd1c59932bc701028e1efb8f9e352710ef7a95db0` |
+| alpha/phase1e/site-data.json | 50339 | `0be2d577cae3ba6d23f274025d416348188e717c6de60876ea2f1fa100998992` |
 | assets/readme/architecture.svg | 3382 | `78133db091033f81a0684bfcc893421bbcad02549471722503abc37a0d37607a` |
 | assets/readme/catalog.png | 64801 | `9391ae0410a3831bc8013296d9d240355fdeb49d3bae933aa74c0205293929b9` |
 | assets/readme/hero.svg | 2346 | `6354bf8f38404b75de74f7478ec734409de0bbf719857b72e57be382885433f1` |
@@ -35,7 +41,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | assets/readme/inspector.png | 153507 | `b003b8a53925a6c53221c2c25555d8c93821e37bba52b056162275ca767db887` |
 | assets/readme/mobile-inspector.png | 48707 | `1bd97ebcdb5f105824657f90a9e3c2eaf68471bb1796c1ccd18f27c0314af6ee` |
 | assets/readme/social-preview.png | 38502 | `17843d2e911be346dbf6766e458ebba21e4622e9bd331a602c177552c976db88` |
-| data/category-units.json | 11341 | `72930536858f37b5245ea96b0ff6bceafb8687c18d7775e447636cb32b17a268` |
+| data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
 | data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
 | data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
 | data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
@@ -44,11 +50,16 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
+| docs/architecture/GENERATOR_PHASE1A.md | 4108 | `f31030b9a4f97a810e9634aea1a3cf7a2ce6e79e3be9caa52a1e736c20ca5618` |
+| docs/architecture/GENERATOR_PHASE1B.md | 6472 | `deafbba87d58cc8421ed01c2484900b60022ff034abf9bd71c6f080b0c52cd87` |
+| docs/architecture/GENERATOR_PHASE1C.md | 5564 | `45bb9c560d4300d3e2799d53819348da29565c3f5f9607214cc80b8e9f7d791d` |
+| docs/architecture/GENERATOR_PHASE1D.md | 2477 | `1dcf85a631892eb18f4869fa72054a85a7ead3bfd82144247db016dc4622881c` |
+| docs/architecture/GENERATOR_PHASE1E.md | 4725 | `f4c05681d6d0cbf14cc2a0a4fb740531b600146039d5e2c6d6ae634d098fd09b` |
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
-| netlify.toml | 1374 | `7f62629ada55e2d98bbb9232cca49e43be6a391f10f264009bc0c33817fc434e` |
-| package-lock.json | 59569 | `5ec509cac2c74c16102627af405df9f17b55c2272501f307eaa5f551a070add9` |
-| package.json | 2101 | `c079d4fd415e4c9a3ad2208100d0a804a697c4bd30aac4e8d2be4f877e4d7f39` |
-| public/assets/branding/favicon.svg | 575 | `59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8` |
+| netlify.toml | 1388 | `e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543` |
+| package-lock.json | 59644 | `aaf3bb72323c79812b621b1ac9c41c2dca4d887e0cea31c8af9b13a704a0c5a0` |
+| package.json | 3402 | `7f376b82e0022711c662c7c605edb7f4650ff734befb817cfdb8ce7dd287b5e1` |
+| public/assets/branding/favicon.svg | 584 | `617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea` |
 | public/assets/cosmos/celestial/01-cratered-planet.png | 1811 | `fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488` |
 | public/assets/cosmos/celestial/02-ringed-planet.png | 850 | `00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a` |
 | public/assets/cosmos/celestial/04-banded-gas-giant.png | 1638 | `ea74886c5dc9d0757caca9d49b68f8791885d52b2f7057744a8f7cf2bf5f9f1c` |
@@ -102,7 +113,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/assets/system-ecliptic-a.png | 260 | `c691b61d6002d40961f6c750d02374b716b192cd4e3ef5ddfdb1d79033d1950d` |
 | public/assets/system-ecliptic-b.png | 217 | `605e52962215f2fddfa103608035b244e8d0791c5aa34b5fe3b3be3002f50f68` |
 | public/assets/system-ecliptic-c.png | 229 | `a2e160a31670c2e37c6c3ba580e1f086f72390a23a4c55964041f17148f72e91` |
-| public/data/category-units.json | 11341 | `72930536858f37b5245ea96b0ff6bceafb8687c18d7775e447636cb32b17a268` |
+| public/data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
 | public/data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
 | public/data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
 | public/data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
@@ -111,37 +122,65 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | public/data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | public/data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| public/fonts/README.md | 879 | `77368fecb695cb8b5c008c92cce704c187d813337941b078d4fede50ce50eb1b` |
+| public/fonts/README.md | 1417 | `b33e11b04fab8c0d403d2292fc41ed4bcd9f7de8db687d368879acff5bdec3a9` |
 | public/fonts/fusion-pixel/OFL.txt | 4514 | `9291281eaa1275afe06285d010362c175efcf8766a37c9bac274a770550fe4fc` |
 | public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2 | 22344 | `3b265cb64eaba39252704a290aac551fa7884bea6af57c97ac153a4c46c8dc09` |
-| public/fonts/sarasa-term-sc/OFL.txt | 4814 | `0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa` |
+| public/fonts/sarasa-term-sc/OFL.txt | 4702 | `32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53` |
 | public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2 | 138904 | `63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4` |
 | public/robots.txt | 93 | `596f6653b8fb445482b0044dceaddabb14b8d57ae18db0f4c78d20eb50911d87` |
 | public/sitemap.xml | 290 | `cedfd1b8098a479d6a14b73d4467e5305b70567f3aab537a5728e66f3a153ec3` |
+| schemas/analysis-overrides.v1.schema.json | 4029 | `6b6b5b717f9a77337e7449069cd5cc693d23142b63fc9d080c33f0de32580bec` |
+| schemas/analysis-report.v1.schema.json | 1382 | `3227b31446b382d8a3ae04287d69ef8474d93d2840a8e5647d6cccee46c64cd4` |
+| schemas/inventory-snapshot.v1.schema.json | 3870 | `a8fc285f918f52e3516a35d8a04004cfab38e6fa6c632ba51e3462a9cffe568e` |
+| schemas/library-snapshot.v1.schema.json | 4740 | `32946ba76c7777885f9a1d7bbd2a5d2735ba521abfdfcf86dbcfaf88669e6e96` |
+| schemas/phase1e-alpha-receipt.v1.schema.json | 4145 | `7154364d887693223f45728956920e2fcfa227d290c83d3be1b37851eb6760b4` |
+| schemas/project-config.v1.schema.json | 1931 | `6a290b311c2e33d7b33bcee1cf1d7c9ff2a35df5e076000d692bc443c3b6f774` |
+| schemas/silent-orbit-config.v1.schema.json | 1480 | `aafa6d40b24c975cd18f542d8cc44254a3f4147683dcc0515526519ae94fb77c` |
+| schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
+| schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
+| scripts/build-alpha-preview.mjs | 2159 | `857fe9b9ae52883e15d71921d51d5b59b712987be111b31d5f09ee9164985170` |
 | scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
+| scripts/lib/generator-contracts.mjs | 29912 | `603d2c06d422c5917770fa926c08b39d81242ead0072d3c53308548dc17370ca` |
+| scripts/lib/library-analyzer.mjs | 29499 | `d1219efd12869f1b8d16207b75109f12aa00ac0372892fb676ace9772533cda6` |
+| scripts/lib/phase1e-alpha.mjs | 4940 | `5f8bec165639b58e001f26339398187cb685630f78d2bf99d5fff8b38f35fb0f` |
+| scripts/lib/silent-orbit-project.mjs | 29575 | `1a47e3e2277fad96b2fa82b444515f3e0b17b4664f45759d49b811d17fd2c64a` |
+| scripts/lib/source-adapters.mjs | 28516 | `7a8920411cec12f0461cec144d9738a5b0a3b47d6c8e90ee0abe1e050469d4fe` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
-| scripts/public-data.mjs | 4984 | `168d3de0c97120056b37bd9d810fee6380af14c0501f69c1a5cac4559614a565` |
-| scripts/public-release-config.mjs | 3360 | `c3ec9315ee4565ca5d7752d96a0825ed4b0dba63d03022737b026bc7faa9cf19` |
+| scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
+| scripts/public-release-config.mjs | 6325 | `8e446c8602ed97845a16aae76da904f907224cdedfd16b77ca76690efd905746` |
+| scripts/silent-orbit.mjs | 4721 | `fe9b98629a1760548581703cd3079701c5950290d00c2155729f70443233700e` |
 | scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
-| scripts/sync-data.mjs | 3897 | `14f42e32fa2ca5810ce892b474023eb13a8e142e6823f2121943c0d718735f8c` |
+| scripts/sync-data.mjs | 4656 | `8930f0ab8380bcc3c167f560a0fe044f0606e950e90fc64de62f328adc938146` |
+| scripts/tests/build-skill-cosmos.test.mjs | 3130 | `6caf0f86fe9b9a168da63dd80b5ccf3977417d05ce3e64b10f0a8e3eeca6b785` |
 | scripts/tests/font-assets.test.mjs | 2230 | `c2d8c72b096cd2eaf2d3c2955f4465e2e367d70bf44c680793b9331e82802354` |
+| scripts/tests/generator-contracts.test.mjs | 8060 | `bea406a6b9a71355e5f31c63a50562ba71e8770a0e2f58298eba33bc0d99cc79` |
 | scripts/tests/i18n-metadata.test.mjs | 5651 | `48d72ad4d65ae1e08913b70a89f2b3ae08103fd7aaf71746c69236d5fc6ced53` |
+| scripts/tests/library-analyzer.test.mjs | 7344 | `f658020241a1e99015a438696df47a6e1637043b722818d88fb559372f0e8094` |
 | scripts/tests/orbit-layout.test.mjs | 12962 | `376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
-| scripts/tests/public-data.test.mjs | 2545 | `262cc12e739090c0ce1527b4677a06f7d30b953f2eeabbaca2666095c52643cf` |
+| scripts/tests/phase1e-alpha.test.mjs | 6446 | `f329f04004dff2a6ea382fa369281e9e6efa21bde21ba5963bd2b01b404e99e7` |
+| scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
 | scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
+| scripts/tests/silent-orbit-cli.test.mjs | 8358 | `759f7d57d37e787c3a8f0c953f586dcb86a39d38a096d84a94b05cea1ae1da2a` |
 | scripts/tests/site-release.test.mjs | 6019 | `f4fe86d401aff0d3b5c1ad4ee8091c6cf2ea19ebe717ecc0eabf489fd9e9b165` |
 | scripts/tests/skill-search.test.mjs | 4809 | `591d27b5d91119dbf24b575edf2fa363136d314462bbb2702aa3bf5b99babe2b` |
+| scripts/tests/source-adapters.test.mjs | 12074 | `5669c96c849de84811df1a6d1526380371abd6359c3518b543839d73c7089fc0` |
 | scripts/tests/sync-data.test.mjs | 948 | `b388085933d62c89e70e9772ccf041597df451715b1257b9bb3be935e5407451` |
 | scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
-| scripts/validate-public-assets.mjs | 5968 | `7697324bb371e83a2a91eff125e81c72bd9510dcaa3a5eb7b5a9805ec91b24db` |
-| scripts/validate-public-release.mjs | 16446 | `4656db7f5dc7011a7c2d1524c8767eb8bd4d0c76cc9d116663aaf1a488a849d6` |
-| scripts/validate-readme.mjs | 3672 | `8e15f98441db8b1ddf6ec8e600546e0e807fedb9baa1592dbb4c99cd2d6e8ce3` |
-| src/App.tsx | 27400 | `7148594631b0d479378fabb3f2c18b5ed20ac6818de7edc1e685bc10046f4c05` |
+| scripts/validate-generator-contracts.mjs | 2082 | `59b178e2389d52872605e3ff9b14705f98062a0030dcae3466639b955d09158e` |
+| scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
+| scripts/validate-public-release.mjs | 16489 | `f6997decb32fcbde0096e780f422bab98a0b73a92be4482b68538d6b90b44fc4` |
+| scripts/validate-readme.mjs | 5139 | `d89a4309113694c1d78fd422b79a64f13ffb84c1c3095845772182f90b54af6c` |
+| skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
+| skills/build-skill-cosmos/agents/openai.yaml | 248 | `d685c42774faa837bbe23ecc9e9e7fae8b522f8c760f46a529c77e628835c347` |
+| skills/build-skill-cosmos/references/cli-contract.md | 2845 | `7d8f1529005af052fb98cec35c0222709aa4331b48338659f3ffbd25541ff99a` |
+| skills/build-skill-cosmos/references/project-schema.md | 3888 | `f0787e74f313745283bbf4817bcbc354b6b1ce959c03af9627ec386adac37cef` |
+| skills/build-skill-cosmos/references/review-contract.md | 2936 | `61e6b07fd05cb6b5058b600ec9b283d1452030a1aaa20a21c91c017585a55c04` |
+| src/App.tsx | 27428 | `2d3f61a639726b77803b0ac3787c680e6f81f0b063ed07ce05e452d03b0ac03a` |
 | src/components/CosmosAsset.tsx | 531 | `1721d7f182ef2a8ed7960e018eae66ec27601dccf1948c44948c559ea7b0d492` |
 | src/components/badges/StarSkillMarker.tsx | 415 | `5d83c913966ce34891427bf5cc303e9cf3f74612aff03cf49e31c52cbcf803fb` |
 | src/components/catalog/AbilityUnitCard.tsx | 2465 | `95a6735929b02718b99aba0c34e0f8ed0049e137615d5082f55d38816c94052e` |
-| src/components/catalog/CatalogPage.tsx | 10299 | `996f0280b30610c86e1ffbf2be438955a0fb647729d1b7e4ee51931e388e86d5` |
+| src/components/catalog/CatalogPage.tsx | 10425 | `4f91b4f4df520719723112950730bae819d00084509d1759b9e94780ac16c8fc` |
 | src/components/catalog/SkillList.tsx | 1500 | `8396d57c47c0dfa95e55cde8b441b538f7b1db2f941a009d0b8f008b68c17d38` |
 | src/components/catalog/StandaloneSkillGrid.tsx | 1133 | `02a2f909d27a1c444001718e87da9e9248120c665f934a77b3126f80b010c6a4` |
 | src/components/console/AgentConsoleShell.tsx | 1100 | `bd7967301c7792e794c67ba54de190e90a32f41a149757b35585433a579e7a8b` |
@@ -168,21 +207,22 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/components/orbit/OrbitScene.tsx | 14925 | `a9c5d349c8ba40f74e2d2faa781b5a1ee4bd6a22b484c748ec5962837a84fe6a` |
 | src/components/orbit/SilentOrbitPage.tsx | 4531 | `25d38f56da3f0fca1f8814eeeb92b60855e7da7f98043384dc8d9272916a137e` |
 | src/components/orbit/SkillAsteroid.tsx | 1231 | `fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857` |
-| src/data/indexes.ts | 3129 | `1d9907cc3066111a280de6d548ee0238401568ebf6af1ea821317e2507933b06` |
-| src/generated/data.generated.ts | 106838 | `fa4bce8bc7375df27fadc257e959b6114fcbd67cccf7e2040e8a937bcb07979c` |
+| src/core/contracts.ts | 8133 | `242e00a30065d9c4d66f56dcb3f9c527c56b0eeebad67a00e1dbe30af2136fa7` |
+| src/data/indexes.ts | 3157 | `0018933bc60789de3c7fa7280908a82b1300018e1b07015bc4521d7f86bc8ac4` |
+| src/generated/data.generated.ts | 392945 | `c43bd2001189ad9e77e3b61c406bebb747da17d8549960c750dd8b56473ba7e1` |
 | src/hooks/useOrbitSurface.ts | 4573 | `75fc2964bbc196e8e1f953fc31041dfe7f31a9f71fd2bb065378f1b64c10a148` |
 | src/hooks/usePersonalOutcomes.ts | 4166 | `b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d` |
 | src/i18n/LocaleContext.tsx | 7202 | `0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51` |
 | src/lib/catalogRevision.ts | 499 | `8fb147d5a088bf7bdd1dadf92549923a261b52b51ebcd903533c51fca14f7656` |
 | src/lib/cosmosAssets.ts | 4185 | `72e2be4ff5e427a49afb8096fee6b62688851f77dbea09fbcbd189f94c049e35` |
-| src/lib/dataSelectors.ts | 4569 | `f9e4e7c88119db24a335f4e43b7b233224ac25104ef90cf012d993888d03061f` |
+| src/lib/dataSelectors.ts | 4754 | `e54d3905c0a5a1ed67e5227420b3a0dce97e16df98e74e6d8ac82ef9fc05db4a` |
 | src/lib/mapModel.ts | 6877 | `cdc4ef00d60b98259b435169b430bec4a326a0e922b2499c30f2360b55a4f38e` |
 | src/lib/mapViewport.ts | 2143 | `c47e81790012172d96363562e9da26bbf99273d4dfe22c30fe779e5412775d05` |
 | src/lib/orbitLayout.ts | 1101 | `7bbb7b4f6171815bc23ced0d24e4536a53fc1750d07545c5ba9bd2c85d102685` |
 | src/lib/orbitModel.ts | 2021 | `077c8814196f6a2c44315a68cc9f46d930874b106660451758c5c1a77a728e56` |
 | src/lib/outcomePolicy.ts | 7494 | `dce7bb15c43bd0653388c22a3a0fe441927953ba552deb61d49949cec4bb25aa` |
 | src/lib/personalStore.ts | 4446 | `68855bfec3aabf7c6b1c9ada4974a8aea0b514473d9b5ca4fbaf2159b372eb43` |
-| src/lib/skillSearch.ts | 4333 | `7081416ca0e6dd6a5f058321de801bb9ecf0db8c3e6f5829ffb14d8561070a2c` |
+| src/lib/skillSearch.ts | 4543 | `57d038d581e64f49cc39f9a180a7ca713ee22946bb80ab8e7a83dcd04a94e44f` |
 | src/main.tsx | 560 | `0c4695db3b14ae0148042bada5f61748d5ea4545e915cdbf50655f6c193f63d8` |
 | src/styles.css | 33365 | `1943f0c7fb702daa64877b9d0e04f1ea3a1df5213d40600fcd5fde2bca172936` |
 | src/styles/console.css | 24066 | `f5785949f10e653dc5b98f11f2618c6e79f4950245082778e2332a41efe55aa9` |
@@ -192,7 +232,19 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/styles/one-bit.css | 884 | `99c7b5b6f240c113792155d101fc48df7762b57aec7ba28c69b5f7c6494c4346` |
 | src/styles/orbit.css | 18235 | `05e9f4377c77735074d3c6224f86c102143ab62840aa69d53e2483d1672bf2f4` |
 | src/styles/responsive.css | 7282 | `46b51792df0e5f6d7715c8ea3fc5cf17926b5a1e2f939060048ad0c81874a134` |
-| src/types.ts | 7438 | `32e642947e84f222ee8bdeb9a3eb514d34c31cc06d2a303cafa308b914548748` |
+| src/types.ts | 7561 | `77ae6745911b14e4d586048a7f0acff7de09457b07b6ed62532fcac4ccc11e36` |
 | src/types/view-transitions.d.ts | 270 | `31941eba1a962e7c2780cf1fab631e6cfd79e2885914ff0a3be5505a3da79107` |
+| templates/reference-index-v1/app.js | 25802 | `886e98520afd956649d5ec650f89589150e44df412c54cfaa52ffb803557ce01` |
+| templates/reference-index-v1/fonts/inter/Inter-Variable.ttf | 876576 | `29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031` |
+| templates/reference-index-v1/fonts/inter/OFL.txt | 4376 | `5dd548d31a85f756e01d63e00d7faf1e324103ed3e9102fcbbabf2cc2db6dd39` |
+| templates/reference-index-v1/fonts/lora/Lora-Variable.ttf | 212196 | `822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7` |
+| templates/reference-index-v1/fonts/lora/OFL.txt | 4422 | `6d6bc7bbb828514925dabcaf89e4771398d12c60dd1cb2bbb90eea129535d0f4` |
+| templates/reference-index-v1/fonts/playfair-display/OFL.txt | 4448 | `0bb2b43ffd21233963b5d0c0eb6f1abffa776ec53c56131b5818708f2730ffd6` |
+| templates/reference-index-v1/fonts/playfair-display/PlayfairDisplay-Variable.ttf | 300724 | `c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6` |
+| templates/reference-index-v1/index.html | 5728 | `f9bb72c8dd882603d9ec7efc71d75f9e8cfc860a99ac66aa5b63d58acf0c8b62` |
+| templates/reference-index-v1/styles.css | 18349 | `0e08643e3f0adbdffa76eb9a40e3c49c7c645ac1f1e03b934b184d0d266531a5` |
+| templates/silent-orbit-v1/app.js | 5427 | `9ee9430cfeecbd673f7a266b861a2f6fb3abf2167910887d2e128c753c95393f` |
+| templates/silent-orbit-v1/index.html | 2264 | `31b53083a6adc4646d083a5f5af85870adaeeca78b06093ad37fcc532b8bb113` |
+| templates/silent-orbit-v1/styles.css | 5670 | `a68020cbb94c5dec1756bd11fe1530dff52cbf59d860fa27e33f8bac3c240f56` |
 | tsconfig.json | 524 | `9665597ba397119a137d724b8987ad6584f84a987aef5cd3d481ad52eedda218` |
 | vite.config.ts | 1229 | `4b93ab9a09b3343d22db8ce0ce68632786a15d6fd1a33f69068ebcf8be69fd3d` |

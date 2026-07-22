@@ -45,7 +45,7 @@ export function getCategoryByName(categoryName: string): CategoryGroup | undefin
 }
 
 export function rankSkills(text: string, category: string, sourceKind: string, starredOnly: boolean) {
-  return rankSkillRecords(skills, librariesByKey, { text, category, sourceKind, starredOnly });
+  return rankSkillRecords(skills, librariesByKey, { text, category, sourceKind, starredOnly }, appData.categorySkillNames);
 }
 
 export function searchSkills(text: string, category: string, sourceKind: string, starredOnly: boolean) {

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/phase1e-alpha-receipt.v1.schema.json",
+  "title": "Phase1EAlphaReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "humanFeedback", "environment", "counts", "v1", "v2", "diff", "postGenerateDiff", "privacy", "compatibility", "release"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "$ref": "#/$defs/text" },
+    "humanFeedback": { "const": false },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "execution", "repository", "commit", "selectionDigest", "license"],
+      "properties": {
+        "kind": { "const": "fixed-independent" },
+        "execution": { "const": "installed-npm-tarball" },
+        "repository": { "type": "string", "pattern": "^https://" },
+        "commit": { "$ref": "#/$defs/text" },
+        "selectionDigest": { "$ref": "#/$defs/text" },
+        "license": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed", "inventory", "public", "reviewRequired", "localOnly"],
+      "properties": {
+        "observed": { "const": 48 },
+        "inventory": { "const": 46 },
+        "public": { "const": 44 },
+        "reviewRequired": { "const": 2 },
+        "localOnly": { "const": 2 }
+      }
+    },
+    "v1": { "$ref": "#/$defs/run" },
+    "v2": { "$ref": "#/$defs/run" },
+    "diff": { "$ref": "#/$defs/diff" },
+    "postGenerateDiff": { "$ref": "#/$defs/diff" },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "forbiddenFindings"],
+      "properties": { "status": { "const": "pass" }, "forbiddenFindings": { "const": 0 } }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skills", "libraries", "categories"],
+      "properties": { "skills": { "const": 142 }, "libraries": { "const": 28 }, "categories": { "const": 9 } }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["privateGates", "publicRc", "draftPr", "releaseGate", "deployPreview", "productionChanged"],
+      "properties": {
+        "privateGates": { "$ref": "#/$defs/releaseState" },
+        "publicRc": { "$ref": "#/$defs/releaseState" },
+        "draftPr": { "type": ["string", "null"] },
+        "releaseGate": { "$ref": "#/$defs/releaseState" },
+        "deployPreview": { "$ref": "#/$defs/releaseState" },
+        "productionChanged": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "releaseState": { "enum": ["pending", "pass", "blocked"] },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generatedAt", "inventorySnapshotId", "librarySnapshotId", "siteManifestDigest", "distDigest", "doctorStatus"],
+      "properties": {
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "inventorySnapshotId": { "$ref": "#/$defs/text" },
+        "librarySnapshotId": { "$ref": "#/$defs/text" },
+        "siteManifestDigest": { "$ref": "#/$defs/text" },
+        "distDigest": { "$ref": "#/$defs/text" },
+        "doctorStatus": { "const": "ok" }
+      }
+    },
+    "diff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["added", "changed", "removed", "summary"],
+      "properties": {
+        "added": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "changed": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "removed": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["added", "changed", "removed"],
+          "properties": { "added": { "type": "integer" }, "changed": { "type": "integer" }, "removed": { "type": "integer" } }
+        }
+      }
+    }
+  }
+}

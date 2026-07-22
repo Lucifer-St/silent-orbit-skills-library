@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "humanFeedback": false,
+  "environment": {
+    "kind": "fixed-independent",
+    "execution": "installed-npm-tarball",
+    "repository": "https://github.com/NVIDIA/skills",
+    "commit": "f1f4c7a8bff9676ffa73a7874b6e5e27aa4ee3a0",
+    "selectionDigest": "91f97562b0b114214e2135a783b999b0213e8ba63d40cca2ea1774cc838ded91",
+    "license": [
+      "CC-BY-4.0",
+      "Apache-2.0"
+    ]
+  },
+  "counts": {
+    "observed": 48,
+    "inventory": 46,
+    "public": 44,
+    "reviewRequired": 2,
+    "localOnly": 2
+  },
+  "v1": {
+    "generatedAt": "2026-07-21T20:00:00.000Z",
+    "inventorySnapshotId": "inventory-snapshot:schemaversion-1-projectid-independen:8a750447f977",
+    "librarySnapshotId": "library-snapshot:schemaversion-1-projectid-independen:c0438d15dac6",
+    "siteManifestDigest": "869105940645b7b86e844bbfa5eb8ca2bb2dc39c6222d17c10fb57f316914011",
+    "distDigest": "caaadc6d75bfa97486c10ed422900d61350aa73eb2b9571c3006e58437bcf196",
+    "doctorStatus": "ok"
+  },
+  "v2": {
+    "generatedAt": "2026-07-22T20:00:00.000Z",
+    "inventorySnapshotId": "inventory-snapshot:schemaversion-1-projectid-independen:41b4e6e7ee3e",
+    "librarySnapshotId": "library-snapshot:schemaversion-1-projectid-independen:633f4c07c827",
+    "siteManifestDigest": "e490cf3e97b3417392b68560eceb4f704f001e4c902ffd10fd812fc11a6fd792",
+    "distDigest": "513a35f8ede5f2426ad8a0defcb3cd93f7728217739c5946574e9ea051af95c4",
+    "doctorStatus": "ok"
+  },
+  "diff": {
+    "added": [
+      "doca-container-deployment"
+    ],
+    "changed": [
+      "amc-run-sample-calibration",
+      "cuopt-routing-api-python",
+      "deepstream-import-vision-model"
+    ],
+    "removed": [
+      "cuopt-developer"
+    ],
+    "summary": {
+      "added": 1,
+      "changed": 3,
+      "removed": 1
+    }
+  },
+  "postGenerateDiff": {
+    "added": [],
+    "changed": [],
+    "removed": [],
+    "summary": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+    }
+  },
+  "privacy": {
+    "status": "pass",
+    "forbiddenFindings": 0
+  },
+  "compatibility": {
+    "skills": 142,
+    "libraries": 28,
+    "categories": 9
+  },
+  "release": {
+    "privateGates": "pass",
+    "publicRc": "pass",
+    "draftPr": "https://github.com/Lucifer-St/silent-orbit-skills-library/pull/2",
+    "releaseGate": "pass",
+    "deployPreview": "pass",
+    "productionChanged": false
+  },
+  "receiptId": "d700a3b0cf1a25c52949ca2c505776ac77e605f8e037115cd41395154b3d75e9"
+}

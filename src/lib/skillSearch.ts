@@ -62,13 +62,17 @@ export function rankSkillRecords(
   skills: readonly SkillRecord[],
   librariesByKey: ReadonlyMap<string, LibraryRecord>,
   query: SkillSearchQuery,
+  categorySkillNames?: Readonly<Record<string, readonly string[]>>,
 ): RankedSkillResult[] {
   const phrase = normalizeSearchText(query.text);
   const tokenGroups = buildQueryTokenGroups(query.text);
   if (!phrase || tokenGroups.length === 0) return [];
   return skills.flatMap((skill) => {
     const library = librariesByKey.get(skill.library_key);
-    if (query.category !== "all" && skill.category !== query.category) return [];
+    if (query.category !== "all") {
+      const categoryMembers = categorySkillNames?.[query.category];
+      if (categoryMembers ? !categoryMembers.includes(skill.name) : skill.category !== query.category) return [];
+    }
     if (query.sourceKind !== "all" && library?.kind !== query.sourceKind) return [];
     if (query.starredOnly && !isHighValueSkillRecord(skill)) return [];
     const fields = [

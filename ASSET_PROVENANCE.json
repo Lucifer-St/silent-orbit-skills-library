@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "10f294743982682e7260bd969301b137f8429d74",
-  "inputCommitTimestamp": "2026-07-19T18:05:30-04:00",
+  "inputCommit": "1e37679c3fdba2b0ffe998aff54fcdaa4e794b98",
+  "inputCommitTimestamp": "2026-07-21T19:50:00-04:00",
   "visualAssetPolicy": "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.",
   "assets": [
     {
@@ -77,8 +77,8 @@
     },
     {
       "path": "public/assets/branding/favicon.svg",
-      "bytes": 575,
-      "sha256": "59876469164d52a601639e0138a182a13df973eb955727c82e789f88f09662f8",
+      "bytes": 584,
+      "sha256": "617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea",
       "origin": "project-native-vector",
       "source": "Project-native one-bit orbit mark created for the Phase 4A public website favicon.",
       "license": "Project visual asset policy"
@@ -684,8 +684,8 @@
     },
     {
       "path": "public/fonts/sarasa-term-sc/OFL.txt",
-      "bytes": 4814,
-      "sha256": "0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa",
+      "bytes": 4702,
+      "sha256": "32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53",
       "origin": "Sarasa Gothic v1.0.40 license",
       "source": "https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v1.0.40/LICENSE",
       "license": "SIL Open Font License 1.1"
@@ -696,6 +696,54 @@
       "sha256": "63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4",
       "origin": "Sarasa Gothic v1.0.40 web subset",
       "source": "https://github.com/be5invis/Sarasa-Gothic/releases/tag/v1.0.40",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/inter/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+      "origin": "Inter variable font from Google Fonts",
+      "source": "https://github.com/google/fonts/tree/main/ofl/inter",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/inter/OFL.txt",
+      "bytes": 4376,
+      "sha256": "5dd548d31a85f756e01d63e00d7faf1e324103ed3e9102fcbbabf2cc2db6dd39",
+      "origin": "Inter font license",
+      "source": "https://github.com/google/fonts/blob/main/ofl/inter/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/lora/Lora-Variable.ttf",
+      "bytes": 212196,
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+      "origin": "Lora variable font from Google Fonts",
+      "source": "https://github.com/google/fonts/tree/main/ofl/lora",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/lora/OFL.txt",
+      "bytes": 4422,
+      "sha256": "6d6bc7bbb828514925dabcaf89e4771398d12c60dd1cb2bbb90eea129535d0f4",
+      "origin": "Lora font license",
+      "source": "https://github.com/google/fonts/blob/main/ofl/lora/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/playfair-display/OFL.txt",
+      "bytes": 4448,
+      "sha256": "0bb2b43ffd21233963b5d0c0eb6f1abffa776ec53c56131b5818708f2730ffd6",
+      "origin": "Playfair Display font license",
+      "source": "https://github.com/google/fonts/blob/main/ofl/playfairdisplay/OFL.txt",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "path": "templates/reference-index-v1/fonts/playfair-display/PlayfairDisplay-Variable.ttf",
+      "bytes": 300724,
+      "sha256": "c40f2293766a503bc70cce9e512ef844a4ccb7cbcde792fe2ea31d191917d8d6",
+      "origin": "Playfair Display variable font from Google Fonts",
+      "source": "https://github.com/google/fonts/tree/main/ofl/playfairdisplay",
       "license": "SIL Open Font License 1.1"
     }
   ]

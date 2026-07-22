@@ -1,7 +1,7 @@
 [
   {
     "category": "个人知识库与本地工具",
-    "skill_count": 7,
+    "skill_count": 10,
     "units": [
       {
         "type": "library",
@@ -46,7 +46,7 @@
   },
   {
     "category": "产品与前端开发",
-    "skill_count": 12,
+    "skill_count": 22,
     "units": [
       {
         "type": "library",
@@ -104,7 +104,7 @@
   },
   {
     "category": "协作平台与发布",
-    "skill_count": 62,
+    "skill_count": 69,
     "units": [
       {
         "type": "library",
@@ -260,7 +260,7 @@
   },
   {
     "category": "工程质量与安全",
-    "skill_count": 1,
+    "skill_count": 3,
     "units": [
       {
         "type": "skill",
@@ -275,7 +275,7 @@
   },
   {
     "category": "效率与元工作流",
-    "skill_count": 3,
+    "skill_count": 12,
     "units": [
       {
         "type": "library",
@@ -292,7 +292,7 @@
   },
   {
     "category": "数据分析与研究",
-    "skill_count": 18,
+    "skill_count": 20,
     "units": [
       {
         "type": "library",
@@ -332,7 +332,7 @@
   },
   {
     "category": "文档与办公",
-    "skill_count": 6,
+    "skill_count": 7,
     "units": [
       {
         "type": "library",
@@ -392,7 +392,7 @@
   },
   {
     "category": "浏览器与自动化",
-    "skill_count": 2,
+    "skill_count": 4,
     "units": [
       {
         "type": "library",
@@ -416,7 +416,7 @@
   },
   {
     "category": "设计与创意生产",
-    "skill_count": 28,
+    "skill_count": 33,
     "units": [
       {
         "type": "library",

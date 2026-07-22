@@ -54,6 +54,38 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
   if (!chinese && !content.includes("Privacy boundary")) throw new Error(`${fileName} is missing its privacy boundary.`);
 }
 
+function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
+  const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
+  for (const required of [
+    "v0.9.0-beta.1",
+    "silent-orbit-skills-library-0.9.0-beta.1.tgz",
+    "silent-orbit init",
+    "silent-orbit import",
+    "silent-orbit scan",
+    "silent-orbit analyze",
+    "silent-orbit diff",
+    "silent-orbit generate",
+    "silent-orbit doctor",
+    "build-skill-cosmos",
+    "review-required",
+    "local-only",
+    "44-Skill",
+    "142-Skill",
+  ]) {
+    if (!content.includes(required)) throw new Error(`${fileName} is missing ${required}.`);
+  }
+  const prohibitedCommands = [
+    /\bnpm\s+publish\b/i,
+    /\bnpm\s+install\s+(?:--global|-g)\s+silent-orbit-skills-library(?:@|\s|$)/im,
+    /\bnetlify\s+deploy(?:\s+--prod|\s+--dir|\s+--alias|$)/im,
+  ];
+  if (prohibitedCommands.some((pattern) => pattern.test(content))) {
+    throw new Error(`${fileName} contains a prohibited registry-publish, registry-install, or direct-deploy command.`);
+  }
+  if (chinese && !content.includes("首次生成")) throw new Error(`${fileName} is missing its Chinese first-generation section.`);
+  if (!chinese && !content.includes("First generation")) throw new Error(`${fileName} is missing its first-generation section.`);
+}
+
 export function validateReadme(rootDir = projectDir) {
   const assetRoot = path.join(rootDir, "assets", "readme");
   for (const fileName of readmeAssets) {
@@ -63,6 +95,8 @@ export function validateReadme(rootDir = projectDir) {
   }
   assertReadme(rootDir, "README.md");
   assertReadme(rootDir, "README.zh-CN.md", { chinese: true });
+  assertGeneratorQuickstart(rootDir, "GENERATOR_QUICKSTART.md");
+  assertGeneratorQuickstart(rootDir, "GENERATOR_QUICKSTART.zh-CN.md", { chinese: true });
 
   const social = readPng(path.join(assetRoot, "social-preview.png"), "social-preview.png");
   if (social.width !== 1280 || social.height !== 640 || social.bytes >= 1_000_000) {
@@ -72,8 +106,8 @@ export function validateReadme(rootDir = projectDir) {
     const screenshot = readPng(path.join(assetRoot, fileName), fileName);
     if (screenshot.width < 320 || screenshot.height < 320) throw new Error(`${fileName} is too small to prove the product UI.`);
   }
-  console.log(`README validation passed. files=2 assets=${readmeAssets.length}`);
-  return { readmes: 2, assets: readmeAssets.length };
+  console.log(`README validation passed. files=4 assets=${readmeAssets.length}`);
+  return { readmes: 4, assets: readmeAssets.length };
 }
 
 function parseRoot(args) {

@@ -62,6 +62,7 @@ export function CatalogPage({ categories, onCategory, onPrivate, onSources, onCh
               "",
               "all",
               false,
+              appData.categorySkillNames,
             ).length;
             return (
               <button
@@ -131,7 +132,7 @@ export function CategoryPage({
 }: CategoryPageProps) {
   const { category: categoryLabel, text } = useLocale();
   const matchingSkills = useMemo(
-    () => filterCategorySkills(appData.skills, librariesByKey, category, query, sourceFilter, starredOnly),
+    () => filterCategorySkills(appData.skills, librariesByKey, category, query, sourceFilter, starredOnly, appData.categorySkillNames),
     [category, query, sourceFilter, starredOnly],
   );
   const matchingSkillNames = useMemo(
@@ -160,8 +161,8 @@ export function CategoryPage({
         <h1>{categoryLabel(category.category)}</h1>
         <p>
           {text(
-            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false).length} 个可查看 Skills，${category.units.length} 个能力单元。库会作为整体出现，展开后查看库内 Skills。`,
-            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false).length} visible Skills across ${category.units.length} capability units. Expand a Library to inspect its Skills.`,
+            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false, appData.categorySkillNames).length} 个可查看 Skills，${category.units.length} 个能力单元。库会作为整体出现，展开后查看库内 Skills。`,
+            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false, appData.categorySkillNames).length} visible Skills across ${category.units.length} capability units. Expand a Library to inspect its Skills.`,
           )}
         </p>
       </section>

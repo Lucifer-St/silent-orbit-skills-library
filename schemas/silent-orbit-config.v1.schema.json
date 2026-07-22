@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/silent-orbit-config.v1.schema.json",
+  "title": "SilentOrbitConfigV1",
+  "description": "Local CLI project configuration. Source paths are read-only inputs and never enter public snapshots.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "project", "sources"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "project": { "$ref": "project-config.v1.schema.json" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "type", "label"],
+        "properties": {
+          "key": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+          "type": { "enum": ["skill-folder", "codex-global", "codex-plugin", "json-import"] },
+          "label": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "sourceUrl": { "type": "string", "format": "uri", "pattern": "^https?://" },
+          "updateChannel": { "enum": ["source-managed", "external", "system-managed", "unknown"] },
+          "maxDepth": { "type": "integer", "minimum": 0, "maximum": 20 }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "type": { "not": { "const": "codex-global" } } } },
+            "then": { "required": ["path"] }
+          }
+        ]
+      }
+    }
+  }
+}

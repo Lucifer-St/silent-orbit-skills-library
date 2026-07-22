@@ -123,10 +123,14 @@ export function filterCategorySkills(
   query: string,
   sourceKind: string,
   starredOnly: boolean,
+  categorySkillNames?: Readonly<Record<string, readonly string[]>>,
 ): SkillRecord[] {
-  const unitSkillNames = new Set(category.units.flatMap((unit) => unit.skills));
+  const unitSkillNames = new Set(
+    categorySkillNames?.[category.category]
+      ?? [...category.units.flatMap((unit) => unit.skills), ...skills.filter((skill) => skill.category === category.category).map((skill) => skill.name)],
+  );
   return filterSkills(skills, librariesByKey, query, "all", sourceKind, starredOnly)
-    .filter((skill) => unitSkillNames.has(skill.name) || skill.category === category.category);
+    .filter((skill) => unitSkillNames.has(skill.name));
 }
 
 export function listSourceKinds(libraries: readonly LibraryRecord[]) {

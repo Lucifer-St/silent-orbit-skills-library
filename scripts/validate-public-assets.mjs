@@ -70,6 +70,7 @@ export function validatePublicAssets(rootDir = projectDir) {
     ...collectFiles(rootDir, "assets/readme"),
     ...collectFiles(rootDir, "public/assets"),
     ...collectFiles(rootDir, "public/fonts").filter((file) => file !== "public/fonts/README.md"),
+    ...collectFiles(rootDir, "templates/reference-index-v1/fonts"),
   ].sort((left, right) => left.localeCompare(right, "en"));
   const records = [...provenance.assets].sort((left, right) => left.path.localeCompare(right.path, "en"));
   const recordPaths = records.map((record) => record.path);

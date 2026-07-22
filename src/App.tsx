@@ -129,7 +129,7 @@ export function App() {
     () => {
       const category = getCategoryByName(activeCategory);
       return category
-        ? filterCategorySkills(appData.skills, librariesByKey, category, query, sourceFilter, starredOnly).length
+        ? filterCategorySkills(appData.skills, librariesByKey, category, query, sourceFilter, starredOnly, appData.categorySkillNames).length
         : 0;
     },
     [query, activeCategory, sourceFilter, starredOnly],
