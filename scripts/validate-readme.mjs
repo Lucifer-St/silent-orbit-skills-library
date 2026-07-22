@@ -57,8 +57,8 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
 function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.9.0-beta.1",
-    "silent-orbit-skills-library-0.9.0-beta.1.tgz",
+    "v0.10.0-beta.1",
+    "silent-orbit-skills-library-0.10.0-beta.1.tgz",
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",
@@ -66,7 +66,9 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     "silent-orbit diff",
     "silent-orbit generate",
     "silent-orbit doctor",
+    "silent-orbit audit",
     "build-skill-cosmos",
+    "audit-skill-cosmos",
     "$skillSource = (Resolve-Path -LiteralPath",
     "npx skills add $skillSource",
     "review-required",

@@ -1,21 +1,21 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.9.0-beta.1` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.10.0-beta.1` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
 
 ## 1. Download and verify the artifact
 
 Requirements: Node.js 24 and npm.
 
-Download these two assets from the [`v0.9.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.9.0-beta.1):
+Download these two assets from the [`v0.10.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.10.0-beta.1):
 
-- `silent-orbit-skills-library-0.9.0-beta.1.tgz`
+- `silent-orbit-skills-library-0.10.0-beta.1.tgz`
 - `SHA256SUMS.txt`
 
 In PowerShell, keep both files in the same directory and verify the tarball before installing it:
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.9\.0-beta\.1\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.9.0-beta.1.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.10\.0-beta\.1\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.10.0-beta.1.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -24,30 +24,32 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.9.0-beta.1.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.10.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.9.0-beta.1.tgz
+npm install --global .\silent-orbit-skills-library-0.10.0-beta.1.tgz
 silent-orbit --version
 ```
 
-The package version is `0.9.0-beta.1`; the generator CLI reports its independent `0.1.x` interface version.
+The package/repository release version is `0.10.0-beta.1`; this source reports the independent CLI interface version `0.2.0` (the `0.2.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional project-level Agent Skill
 
-Review the bundled Skill before installing it. The Skill is a thin CLI and publication-review layer; it does not install, update, remove, or rewrite real Skills and it does not deploy.
+Review either bundled Skill before installing it. `build-skill-cosmos` is the thin generation/review layer; `audit-skill-cosmos` only interprets the read-only health report. Neither installs, updates, removes, freezes, or rewrites real Skills, and neither deploys.
 
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
 npx skills add $skillSource --skill build-skill-cosmos --agent codex --copy -y
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\audit-skill-cosmos\SKILL.md')
+npx skills add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
 ```
 
-`Resolve-Path` is required on Windows because the Skills installer expects an absolute local source path. This installs `build-skill-cosmos` for the current project. Omit this step if you only need the CLI.
+`Resolve-Path` is required on Windows because the Skills installer expects an absolute local source path. Install either or both Skills for the current project, or omit this step if you only need the CLI.
 
 ## 4. First generation
 
@@ -86,10 +88,15 @@ npx silent-orbit analyze --project .\my-skill-cosmos --json
 npx silent-orbit diff --project .\my-skill-cosmos --json
 npx silent-orbit generate --project .\my-skill-cosmos --json
 npx silent-orbit doctor --project .\my-skill-cosmos --json
+npx silent-orbit audit --project .\my-skill-cosmos --json
 ```
 
 Require `doctor.status` to be `ok`. The generated reference site and `frontend-handoff.md` are under `my-skill-cosmos/dist/`. Private imports, analysis, receipts, and runtime state remain under `my-skill-cosmos/.silent-orbit/` and must not be published.
 
+`doctor` checks project integrity. `audit` checks only read-only Skill library health and does not write inventory or receipts. Missing version or freshness evidence stays `unknown`; add `--stale-after-days <days>` only when you intentionally supply that explicit Snapshot-age policy.
+
 ## Release boundary
 
-The bundled 44-Skill NVIDIA Alpha is a fixed acceptance fixture. It proves an independent install and generation path; it is not Production content. Git-connected Netlify Deploy Previews build that fixture with `npm run build:alpha-preview`, while merged Production continues to build the current 142-Skill Silent Orbit catalog with `npm run build`.
+The Public repository retains a 44-Skill NVIDIA Alpha as a fixed historical acceptance fixture, but it is not part of the installable Generator package and is not Production content. Git-connected Netlify Deploy Previews build that fixture with `npm run build:alpha-preview`. Production continues to build the reviewed 142-Skill projection with `npm run build`; the editable personal inventory and curation remain Private.
+
+Historical Phase 4A/4B labels refer to the **Website Release Track**, not Generator phases. Website Release Phase 4A launched the public beta; Website Release Phase 4B still requires external-human evidence. Generator work uses its own Phase 1A-1E, Phase 2A, and Phase 2B sequence.

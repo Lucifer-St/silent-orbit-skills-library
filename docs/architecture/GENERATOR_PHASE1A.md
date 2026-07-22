@@ -1,7 +1,7 @@
 # Generator Phase 1A: contract and compatibility boundary
 
 Status: implemented on `codex/generator-phase1a`
-Input baseline: completed Phase 4A private source
+Input baseline: completed Website Release Phase 4A Private source
 
 ## Purpose
 
@@ -12,7 +12,7 @@ Phase 1A turns the current author-specific data build into a versioned contract 
 3. `LibrarySnapshotV1` contains normalized catalog entities, category memberships, collections, and field provenance.
 4. `SiteManifestV1` binds exact snapshots to one renderer build and exposes derived summaries.
 
-The machine-readable JSON Schemas live in `schemas/`. Runtime validation and the legacy adapter live in `scripts/lib/generator-contracts.mjs`. TypeScript renderer contracts live in `src/core/contracts.ts`.
+The machine-readable JSON Schemas live in `schemas/`. Runtime validation lives in `scripts/lib/generator-contracts.mjs`, and TypeScript renderer contracts live in `src/core/contracts.ts`. Historical note: the author-only adapter originally shared that Public Core module; Generator Phase 2B moved the Private production projection behind the Private boundary after parity and rollback passed.
 
 ## Compatibility flow
 
@@ -75,3 +75,5 @@ The total catalog remains 142 unique Skills. Category counts are membership coun
 - Install, update, disable, remove, watcher, or daemon behavior.
 
 Phase 1B implements the read-only adapters, Phase 1C adds the review-first CLI Generator, Phase 1D adds the thin Agent Skill, and Phase 1E validates a fixed independent environment plus Reference Preview. The hosted renderer contract remains compatible, while the Alpha receipt explicitly avoids claiming real external-user feedback.
+
+Phase 2B retirement note: the nine-file path described above is no longer a Public Core API, and `silent-orbit-v1` is no longer a CLI renderer option. Private retains its curated production projection; Public consumes generated v1 contract files and exposes only the portable `reference-index` renderer.

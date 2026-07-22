@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "key": "source-managed-fixture",
+    "label": "Source-managed Fixture",
+    "providerKind": "source-managed-fixture",
+    "sourceUrl": "https://example.com/source-managed-fixture",
+    "updateChannel": "source-managed"
+  },
+  "skills": [
+    {
+      "name": "versioned-helper",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public",
+      "version": "1.2.3",
+      "author": "Example Team",
+      "sourceUrl": "https://example.com/versioned-helper"
+    },
+    {
+      "name": "orbit-tools",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public",
+      "version": "1.0.0",
+      "author": "Orbit Team",
+      "sourceUrl": "https://example.com/orbit-tools"
+    },
+    {
+      "name": "orbit-tools",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public",
+      "version": "1.1.0",
+      "author": "Orbit Team",
+      "sourceUrl": "https://example.com/orbit-tools"
+    },
+    {
+      "name": "missing-helper",
+      "state": "missing",
+      "origin": "unknown",
+      "visibility": "public"
+    },
+    {
+      "name": "unknown-helper",
+      "state": "unknown",
+      "origin": "unknown",
+      "visibility": "public"
+    },
+    {
+      "name": "no-version-evidence",
+      "state": "present",
+      "origin": "unknown",
+      "visibility": "public"
+    }
+  ]
+}

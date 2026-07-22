@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/health-report.v1.schema.json",
+  "title": "HealthReportV1",
+  "description": "Sanitized, provider-neutral, read-only Skill library health report with traceable evidence and explicit unknown states.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportId", "projectId", "generatedAt", "privacy", "inventorySnapshot", "policy", "status", "providers", "skills", "evidence", "summary"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reportId": { "$ref": "#/$defs/id" },
+    "projectId": { "$ref": "#/$defs/id" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "privacy": { "const": "sanitized" },
+    "inventorySnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "generatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "generatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["freshnessEvidence"],
+      "properties": {
+        "freshnessEvidence": { "const": "explicit-time-or-snapshot-required" },
+        "staleAfterDays": { "type": "number", "minimum": 0 }
+      }
+    },
+    "status": { "enum": ["ok", "attention", "error"] },
+    "providers": { "type": "array", "items": { "$ref": "#/$defs/provider" } },
+    "skills": { "type": "array", "items": { "$ref": "#/$defs/skill" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providers", "sourceFailures", "sourcePartial", "skillIdentities", "present", "missing", "unknownPresence", "presenceConflicts", "duplicateIdentities", "identityConflicts", "versionsKnown", "versionsUnknown", "versionConflicts", "freshnessStale", "freshnessUnknown", "unresolved"],
+      "properties": {
+        "providers": { "type": "integer", "minimum": 0 },
+        "sourceFailures": { "type": "integer", "minimum": 0 },
+        "sourcePartial": { "type": "integer", "minimum": 0 },
+        "skillIdentities": { "type": "integer", "minimum": 0 },
+        "present": { "type": "integer", "minimum": 0 },
+        "missing": { "type": "integer", "minimum": 0 },
+        "unknownPresence": { "type": "integer", "minimum": 0 },
+        "presenceConflicts": { "type": "integer", "minimum": 0 },
+        "duplicateIdentities": { "type": "integer", "minimum": 0 },
+        "identityConflicts": { "type": "integer", "minimum": 0 },
+        "versionsKnown": { "type": "integer", "minimum": 0 },
+        "versionsUnknown": { "type": "integer", "minimum": 0 },
+        "versionConflicts": { "type": "integer", "minimum": 0 },
+        "freshnessStale": { "type": "integer", "minimum": 0 },
+        "freshnessUnknown": { "type": "integer", "minimum": 0 },
+        "unresolved": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 },
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "updateChannel": { "enum": ["source-managed", "external", "system-managed", "unknown", "mixed"] },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "providerKind", "label", "scanState", "updateChannel", "evidenceIds", "unresolved"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "providerKind": { "$ref": "#/$defs/id" },
+        "label": { "$ref": "#/$defs/id" },
+        "scanState": { "enum": ["complete", "partial", "failed"] },
+        "updateChannel": { "$ref": "#/$defs/updateChannel" },
+        "evidenceIds": { "$ref": "#/$defs/stringArray" },
+        "unresolved": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "values"],
+      "properties": {
+        "state": { "enum": ["known", "conflict", "unknown"] },
+        "values": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "itemIds", "sourceIds", "presence", "sourceState", "duplicate", "identity", "version", "updateChannel", "freshness", "evidenceIds", "unresolved"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "$ref": "#/$defs/id" },
+        "itemIds": { "$ref": "#/$defs/stringArray" },
+        "sourceIds": { "$ref": "#/$defs/stringArray" },
+        "presence": { "enum": ["present", "missing", "unknown", "conflict"] },
+        "sourceState": { "enum": ["complete", "partial", "failed", "unknown"] },
+        "duplicate": { "enum": ["none", "duplicate"] },
+        "identity": { "enum": ["consistent", "conflict", "unknown"] },
+        "version": { "$ref": "#/$defs/version" },
+        "updateChannel": { "$ref": "#/$defs/updateChannel" },
+        "freshness": { "enum": ["current", "stale", "unknown"] },
+        "evidenceIds": { "$ref": "#/$defs/stringArray" },
+        "unresolved": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "subjectType", "subjectId", "field", "value", "observedAt", "basis"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["source-scan", "presence", "duplicate", "identity", "version", "update-channel", "freshness", "diagnostic"] },
+        "subjectType": { "enum": ["provider", "skill"] },
+        "subjectId": { "$ref": "#/$defs/id" },
+        "sourceId": { "$ref": "#/$defs/id" },
+        "field": { "$ref": "#/$defs/id" },
+        "value": { "type": "string" },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "basis": { "$ref": "#/$defs/id" }
+      }
+    }
+  }
+}

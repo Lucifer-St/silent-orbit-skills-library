@@ -1,0 +1,1607 @@
+{
+  "schemaVersion": 1,
+  "projectId": "silent-orbit-skills-library",
+  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "privacy": "sanitized",
+  "sources": [
+    {
+      "id": "source:local-global:8ff0a25c41eb",
+      "providerKind": "local",
+      "label": "global",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "unknown"
+      }
+    },
+    {
+      "id": "source:local-obsidian:c5a1f73808be",
+      "providerKind": "local",
+      "label": "obsidian",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "unknown"
+      }
+    },
+    {
+      "id": "source:personal-deck:d3713fdc6fa4",
+      "providerKind": "personal",
+      "label": "个人常用",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "unknown"
+      }
+    },
+    {
+      "id": "source:plugin-browser:9dc68a9de2eb",
+      "providerKind": "plugin",
+      "label": "Plugin: browser",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-build-web-apps:5042ebc6b7a7",
+      "providerKind": "plugin",
+      "label": "Plugin: build-web-apps",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-canva:a75129678c0b",
+      "providerKind": "plugin",
+      "label": "Plugin: canva",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-chrome:788145d0e076",
+      "providerKind": "plugin",
+      "label": "Plugin: chrome",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-computer-use:3cbd72eba62f",
+      "providerKind": "plugin",
+      "label": "Plugin: computer-use",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-creative-production:7f7639b98cb3",
+      "providerKind": "plugin",
+      "label": "Plugin: creative-production",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-data-analytics:7d3761ef00d2",
+      "providerKind": "plugin",
+      "label": "Plugin: data-analytics",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-documents:0261af28325c",
+      "providerKind": "plugin",
+      "label": "Plugin: documents",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-figma:55cc7d7c35a3",
+      "providerKind": "plugin",
+      "label": "Plugin: figma",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-github:82b7f245fc6a",
+      "providerKind": "plugin",
+      "label": "Plugin: github",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-gmail:ef11e9f30cde",
+      "providerKind": "plugin",
+      "label": "Plugin: gmail",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-google-drive:cfc2839588d1",
+      "providerKind": "plugin",
+      "label": "Plugin: google-drive",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-hyperframes:f69c9b1984d4",
+      "providerKind": "plugin",
+      "label": "Plugin: hyperframes",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-netlify:6e07a7bc4494",
+      "providerKind": "plugin",
+      "label": "Plugin: netlify",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-notion:d1e78bf528eb",
+      "providerKind": "plugin",
+      "label": "Plugin: notion",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-openai-developers:f480cdd8710b",
+      "providerKind": "plugin",
+      "label": "Plugin: openai-developers",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-presentations:a6374b381c28",
+      "providerKind": "plugin",
+      "label": "Plugin: presentations",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-product-design:b6157c15e53e",
+      "providerKind": "plugin",
+      "label": "Plugin: product-design",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-sales:848756b8cfff",
+      "providerKind": "plugin",
+      "label": "Plugin: sales",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-spreadsheets:675f3970551e",
+      "providerKind": "plugin",
+      "label": "Plugin: spreadsheets",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:plugin-template-creator:d09c2f817d32",
+      "providerKind": "plugin",
+      "label": "Plugin: template-creator",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "external"
+      }
+    },
+    {
+      "id": "source:repo-lewislulu-html-ppt-skill:34a15c9afa0c",
+      "providerKind": "repo",
+      "label": "lewislulu/html-ppt-skill",
+      "sourceUrl": "https://github.com/lewislulu/html-ppt-skill",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "source-managed"
+      }
+    },
+    {
+      "id": "source:repo-mzlogin-chinese-copywriting-gui:3fb232cc1d86",
+      "providerKind": "repo",
+      "label": "mzlogin/chinese-copywriting-guidelines",
+      "sourceUrl": "https://github.com/mzlogin/chinese-copywriting-guidelines",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "source-managed"
+      }
+    },
+    {
+      "id": "source:repo-openai-skills:25cd9d697332",
+      "providerKind": "repo",
+      "label": "openai/skills",
+      "sourceUrl": "https://github.com/openai/skills",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "source-managed"
+      }
+    },
+    {
+      "id": "source:system-codex-system:593ad5f111af",
+      "providerKind": "system",
+      "label": "Codex System Skills",
+      "scanState": "complete",
+      "capabilities": {
+        "discovery": "read-only",
+        "write": false,
+        "updateChannel": "system-managed"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "skill:local-global-beautify-github-readme:0b1f04b33544",
+      "kind": "skill",
+      "name": "beautify-github-readme",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-html-diagram:81297ab5bab1",
+      "kind": "skill",
+      "name": "html-diagram",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-html-plan:6db21ad99df8",
+      "kind": "skill",
+      "name": "html-plan",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-html:a9710aa195ef",
+      "kind": "skill",
+      "name": "html",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-interview-me:320e968f416e",
+      "kind": "skill",
+      "name": "interview-me",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-interview-prep:b09a41fb292a",
+      "kind": "skill",
+      "name": "interview-prep",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-jupyter-notebook:2c7c4e90035e",
+      "kind": "skill",
+      "name": "jupyter-notebook",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-screenshot:e58512c6d8ad",
+      "kind": "skill",
+      "name": "screenshot",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-security-best-practices:c31cdd0eb66a",
+      "kind": "skill",
+      "name": "security-best-practices",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-transcribe:da65f2bd6322",
+      "kind": "skill",
+      "name": "transcribe",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-web-design-guidelines:f79f4a913852",
+      "kind": "skill",
+      "name": "web-design-guidelines",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-windows-workstation-bas:d9d7eefff780",
+      "kind": "skill",
+      "name": "windows-workstation-baseline",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-obsidian-obsidian-bases:c9936d742d81",
+      "kind": "skill",
+      "name": "obsidian-bases",
+      "sourceId": "source:local-obsidian:c5a1f73808be",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-obsidian-obsidian-cli:b610acd37922",
+      "kind": "skill",
+      "name": "obsidian-cli",
+      "sourceId": "source:local-obsidian:c5a1f73808be",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-obsidian-obsidian-markdown:417c3f87de53",
+      "kind": "skill",
+      "name": "obsidian-markdown",
+      "sourceId": "source:local-obsidian:c5a1f73808be",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-obsidian-obsidian-vault:3b1296823882",
+      "kind": "skill",
+      "name": "obsidian-vault",
+      "sourceId": "source:local-obsidian:c5a1f73808be",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:personal-deck-aihot:7b3a602654bc",
+      "kind": "skill",
+      "name": "aihot",
+      "sourceId": "source:personal-deck:d3713fdc6fa4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:personal-deck-fengxue-ai-weekly:c724dd8c4c4f",
+      "kind": "skill",
+      "name": "fengxue-ai-weekly",
+      "sourceId": "source:personal-deck:d3713fdc6fa4",
+      "state": "present",
+      "origin": "creator",
+      "visibility": "creator-showcase"
+    },
+    {
+      "id": "skill:personal-deck-fengxue:0cc902069c07",
+      "kind": "skill",
+      "name": "fengxue",
+      "sourceId": "source:personal-deck:d3713fdc6fa4",
+      "state": "present",
+      "origin": "creator",
+      "visibility": "creator-showcase"
+    },
+    {
+      "id": "skill:plugin-browser-control-in-app-browse:972d2a7f7ed6",
+      "kind": "skill",
+      "name": "control-in-app-browser",
+      "sourceId": "source:plugin-browser:9dc68a9de2eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-build-web-apps-frontend-app-b:f2fbe4c86c23",
+      "kind": "skill",
+      "name": "frontend-app-builder",
+      "sourceId": "source:plugin-build-web-apps:5042ebc6b7a7",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-build-web-apps-frontend-testi:47ca83a80293",
+      "kind": "skill",
+      "name": "frontend-testing-debugging",
+      "sourceId": "source:plugin-build-web-apps:5042ebc6b7a7",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-build-web-apps-react-best-pra:c936148fb7e9",
+      "kind": "skill",
+      "name": "react-best-practices",
+      "sourceId": "source:plugin-build-web-apps:5042ebc6b7a7",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-build-web-apps-stripe-best-pr:ed7117ae2d01",
+      "kind": "skill",
+      "name": "stripe-best-practices",
+      "sourceId": "source:plugin-build-web-apps:5042ebc6b7a7",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-canva-canva-branded-presentat:b07a135c71f3",
+      "kind": "skill",
+      "name": "canva-branded-presentation",
+      "sourceId": "source:plugin-canva:a75129678c0b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-canva-canva-resize-for-all-so:fdbaf1e3d28a",
+      "kind": "skill",
+      "name": "canva-resize-for-all-social-media",
+      "sourceId": "source:plugin-canva:a75129678c0b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-canva-canva-translate-design:f0da4498390f",
+      "kind": "skill",
+      "name": "canva-translate-design",
+      "sourceId": "source:plugin-canva:a75129678c0b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-chrome-control-chrome:79b79464d1b9",
+      "kind": "skill",
+      "name": "control-chrome",
+      "sourceId": "source:plugin-chrome:788145d0e076",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-computer-use-computer-use:fcd6175c86d6",
+      "kind": "skill",
+      "name": "computer-use",
+      "sourceId": "source:plugin-computer-use:3cbd72eba62f",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-ads-explo:11959fb9584d",
+      "kind": "skill",
+      "name": "ads-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-explore:18a579d9af19",
+      "kind": "skill",
+      "name": "explore",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-generativ:a13754a98439",
+      "kind": "skill",
+      "name": "generative-polish",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-logo-expl:407cc3dcf1cf",
+      "kind": "skill",
+      "name": "logo-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-moodboard:605d1a036ec4",
+      "kind": "skill",
+      "name": "moodboard-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-offer-exp:670e38b7ecdc",
+      "kind": "skill",
+      "name": "offer-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-positioni:23ea9e0ff171",
+      "kind": "skill",
+      "name": "positioning-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-scene-exp:bb5698a706b5",
+      "kind": "skill",
+      "name": "scene-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-creative-production-shot-expl:26489a53712a",
+      "kind": "skill",
+      "name": "shot-explorer",
+      "sourceId": "source:plugin-creative-production:7f7639b98cb3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-analyze-data-q:aef78a505d7f",
+      "kind": "skill",
+      "name": "analyze-data-quality",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-build-dashboar:3df37aab8525",
+      "kind": "skill",
+      "name": "build-dashboard",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-build-report:033f4c1a6e06",
+      "kind": "skill",
+      "name": "build-report",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-create-data-co:8eb1bfe1f803",
+      "kind": "skill",
+      "name": "create-data-context",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-design-kpis:e6faa91b2757",
+      "kind": "skill",
+      "name": "design-kpis",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-gather-busines:7b5b36ba5045",
+      "kind": "skill",
+      "name": "gather-business-context",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-index:682a4a77e4dc",
+      "kind": "skill",
+      "name": "index",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-jupyter-notebo:c610559edc16",
+      "kind": "skill",
+      "name": "jupyter-notebooks",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-kpi-reporting:d21ddc05fbc0",
+      "kind": "skill",
+      "name": "kpi-reporting",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-market-sizing:c5cb63a120fd",
+      "kind": "skill",
+      "name": "market-sizing",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-metric-diagnos:ba39f2f5d652",
+      "kind": "skill",
+      "name": "metric-diagnostics",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-product-busine:dbf38487fc3a",
+      "kind": "skill",
+      "name": "product-business-analysis",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-report-to-goog:2e073b7f2274",
+      "kind": "skill",
+      "name": "report-to-google-doc",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-report-to-goog:75f7a027de89",
+      "kind": "skill",
+      "name": "report-to-google-slides",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-report-to-pdf:13312e0b9f7b",
+      "kind": "skill",
+      "name": "report-to-pdf",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-validate-data:465ff01a3c9c",
+      "kind": "skill",
+      "name": "validate-data",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-data-analytics-visualize-data:9d7ffc5ec3a0",
+      "kind": "skill",
+      "name": "visualize-data",
+      "sourceId": "source:plugin-data-analytics:7d3761ef00d2",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-documents-documents:7a553bf3998b",
+      "kind": "skill",
+      "name": "documents",
+      "sourceId": "source:plugin-documents:0261af28325c",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-code-connect:19f18a048396",
+      "kind": "skill",
+      "name": "figma-code-connect",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-create-new-file:b7f785c670fb",
+      "kind": "skill",
+      "name": "figma-create-new-file",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-generate-design:5786f915f259",
+      "kind": "skill",
+      "name": "figma-generate-design",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-generate-diagram:49b64d880e38",
+      "kind": "skill",
+      "name": "figma-generate-diagram",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-generate-library:fe9e570da97b",
+      "kind": "skill",
+      "name": "figma-generate-library",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-implement-motion:40ddb2dd2eae",
+      "kind": "skill",
+      "name": "figma-implement-motion",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-swiftui:dd49575066ae",
+      "kind": "skill",
+      "name": "figma-swiftui",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-use-figjam:42f5d4fb5032",
+      "kind": "skill",
+      "name": "figma-use-figjam",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-use-motion:87045d44bde1",
+      "kind": "skill",
+      "name": "figma-use-motion",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-use-slides:849047b5eeea",
+      "kind": "skill",
+      "name": "figma-use-slides",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-figma-figma-use:dfa01a21e8b5",
+      "kind": "skill",
+      "name": "figma-use",
+      "sourceId": "source:plugin-figma:55cc7d7c35a3",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-github-gh-address-comments:3516f21dc16e",
+      "kind": "skill",
+      "name": "gh-address-comments",
+      "sourceId": "source:plugin-github:82b7f245fc6a",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-github-gh-fix-ci:77e01758d724",
+      "kind": "skill",
+      "name": "gh-fix-ci",
+      "sourceId": "source:plugin-github:82b7f245fc6a",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-github-github:d1c90c95ac68",
+      "kind": "skill",
+      "name": "github",
+      "sourceId": "source:plugin-github:82b7f245fc6a",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-github-yeet:c314196e074c",
+      "kind": "skill",
+      "name": "yeet",
+      "sourceId": "source:plugin-github:82b7f245fc6a",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-gmail-gmail-inbox-triage:6f2144d9a9c5",
+      "kind": "skill",
+      "name": "gmail-inbox-triage",
+      "sourceId": "source:plugin-gmail:ef11e9f30cde",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-gmail-gmail:ba840a1491a1",
+      "kind": "skill",
+      "name": "gmail",
+      "sourceId": "source:plugin-gmail:ef11e9f30cde",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-google-drive-google-docs:e435b864c3e5",
+      "kind": "skill",
+      "name": "google-docs",
+      "sourceId": "source:plugin-google-drive:cfc2839588d1",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-google-drive-google-drive-com:767b8427955b",
+      "kind": "skill",
+      "name": "google-drive-comments",
+      "sourceId": "source:plugin-google-drive:cfc2839588d1",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-google-drive-google-drive:f3e9b7bc0825",
+      "kind": "skill",
+      "name": "google-drive",
+      "sourceId": "source:plugin-google-drive:cfc2839588d1",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-google-drive-google-sheets:c4d1e5274ccb",
+      "kind": "skill",
+      "name": "google-sheets",
+      "sourceId": "source:plugin-google-drive:cfc2839588d1",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-google-drive-google-slides:bcbe11edd8cc",
+      "kind": "skill",
+      "name": "google-slides",
+      "sourceId": "source:plugin-google-drive:cfc2839588d1",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-hyperframes-gsap:eeed4247867c",
+      "kind": "skill",
+      "name": "gsap",
+      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
+      "kind": "skill",
+      "name": "hyperframes-cli",
+      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
+      "kind": "skill",
+      "name": "hyperframes-registry",
+      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
+      "kind": "skill",
+      "name": "hyperframes",
+      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-hyperframes-website-to-hyperf:8aa17f6ebe6b",
+      "kind": "skill",
+      "name": "website-to-hyperframes",
+      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-ai-gateway:c13d8183d63e",
+      "kind": "skill",
+      "name": "netlify-ai-gateway",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-blobs:64593cc5b324",
+      "kind": "skill",
+      "name": "netlify-blobs",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-caching:65daafa1c6aa",
+      "kind": "skill",
+      "name": "netlify-caching",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-cli-and-deplo:dda8628794ef",
+      "kind": "skill",
+      "name": "netlify-cli-and-deploy",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-config:7beaa736a12b",
+      "kind": "skill",
+      "name": "netlify-config",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-deploy:d1e2f90b7839",
+      "kind": "skill",
+      "name": "netlify-deploy",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-edge-function:89254d9d200e",
+      "kind": "skill",
+      "name": "netlify-edge-functions",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-forms:51f67f586bfd",
+      "kind": "skill",
+      "name": "netlify-forms",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-frameworks:2f6b77363afc",
+      "kind": "skill",
+      "name": "netlify-frameworks",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-functions:e5ec43a27fe3",
+      "kind": "skill",
+      "name": "netlify-functions",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-identity:fe563fe786d5",
+      "kind": "skill",
+      "name": "netlify-identity",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-netlify-netlify-image-cdn:3c239c8fc669",
+      "kind": "skill",
+      "name": "netlify-image-cdn",
+      "sourceId": "source:plugin-netlify:6e07a7bc4494",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-notion-notion-knowledge-captu:a2ef8ef88990",
+      "kind": "skill",
+      "name": "notion-knowledge-capture",
+      "sourceId": "source:plugin-notion:d1e78bf528eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-notion-notion-meeting-intelli:02304e946352",
+      "kind": "skill",
+      "name": "notion-meeting-intelligence",
+      "sourceId": "source:plugin-notion:d1e78bf528eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-notion-notion-research-docume:4b82870edbc1",
+      "kind": "skill",
+      "name": "notion-research-documentation",
+      "sourceId": "source:plugin-notion:d1e78bf528eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-notion-notion-spec-to-impleme:4b1ff60a509c",
+      "kind": "skill",
+      "name": "notion-spec-to-implementation",
+      "sourceId": "source:plugin-notion:d1e78bf528eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-openai-developers-agents-sdk:fd00c2a537c1",
+      "kind": "skill",
+      "name": "agents-sdk",
+      "sourceId": "source:plugin-openai-developers:f480cdd8710b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-openai-developers-build-chatg:24c432aa0e85",
+      "kind": "skill",
+      "name": "build-chatgpt-app",
+      "sourceId": "source:plugin-openai-developers:f480cdd8710b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-openai-developers-chatgpt-app:abd4d335ba81",
+      "kind": "skill",
+      "name": "chatgpt-app-submission",
+      "sourceId": "source:plugin-openai-developers:f480cdd8710b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-openai-developers-openai-api-:bc1dbc4cbbd1",
+      "kind": "skill",
+      "name": "openai-api-troubleshooting",
+      "sourceId": "source:plugin-openai-developers:f480cdd8710b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-openai-developers-openai-plat:d93cac262de4",
+      "kind": "skill",
+      "name": "openai-platform-api-key",
+      "sourceId": "source:plugin-openai-developers:f480cdd8710b",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-presentations-presentations:59a209f1b093",
+      "kind": "skill",
+      "name": "Presentations",
+      "sourceId": "source:plugin-presentations:a6374b381c28",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-audit:3584d7c8a410",
+      "kind": "skill",
+      "name": "audit",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-design-qa:ea4d6c7f28d7",
+      "kind": "skill",
+      "name": "design-qa",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-get-context:92f7aaecc560",
+      "kind": "skill",
+      "name": "get-context",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-ideate:c6acd47782ad",
+      "kind": "skill",
+      "name": "ideate",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-prototype:6e734d77b97e",
+      "kind": "skill",
+      "name": "prototype",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-research:e161a5f9b81d",
+      "kind": "skill",
+      "name": "research",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-share:e90907927a6b",
+      "kind": "skill",
+      "name": "share",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-url-to-code:dffca2109d4d",
+      "kind": "skill",
+      "name": "url-to-code",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-product-design-user-context:640edbe26390",
+      "kind": "skill",
+      "name": "user-context",
+      "sourceId": "source:plugin-product-design:b6157c15e53e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-analyze-account-signals:c40fa4903f3e",
+      "kind": "skill",
+      "name": "analyze-account-signals",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-apollo:a1128af05b75",
+      "kind": "skill",
+      "name": "apollo",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-build-business-case:5756e571efc5",
+      "kind": "skill",
+      "name": "build-business-case",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-build-competitive-brief:527e13f201bc",
+      "kind": "skill",
+      "name": "build-competitive-brief",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-enrich-company-and-cont:d88dfc4e185c",
+      "kind": "skill",
+      "name": "enrich-company-and-contact-data",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-find-customer-quotes:44aa8c3d92ec",
+      "kind": "skill",
+      "name": "find-customer-quotes",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-find-key-internal-sourc:f9c440ac080d",
+      "kind": "skill",
+      "name": "find-key-internal-sources",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-follow-up-after-call:92d2d4b8ad1a",
+      "kind": "skill",
+      "name": "follow-up-after-call",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-get-rep-call-feedback:ca8c5d597525",
+      "kind": "skill",
+      "name": "get-rep-call-feedback",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-hubspot:55b54939a410",
+      "kind": "skill",
+      "name": "hubspot",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-plan-deal-strategy:2b54d1cf2c46",
+      "kind": "skill",
+      "name": "plan-deal-strategy",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-prepare-for-meeting:a853b5074dcc",
+      "kind": "skill",
+      "name": "prepare-for-meeting",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-prioritize-accounts:258a76691721",
+      "kind": "skill",
+      "name": "prioritize-accounts",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-review-forecast:b613d5a51d21",
+      "kind": "skill",
+      "name": "review-forecast",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-review-rep-call-trends:b5517d746972",
+      "kind": "skill",
+      "name": "review-rep-call-trends",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-sales-company-research:c1d3f35397cd",
+      "kind": "skill",
+      "name": "sales-company-research",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-salesforce:21629fcc9019",
+      "kind": "skill",
+      "name": "salesforce",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-sales-zoominfo:44df84ac7c18",
+      "kind": "skill",
+      "name": "zoominfo",
+      "sourceId": "source:plugin-sales:848756b8cfff",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-spreadsheets-spreadsheets:e1d54311a624",
+      "kind": "skill",
+      "name": "Spreadsheets",
+      "sourceId": "source:plugin-spreadsheets:675f3970551e",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:plugin-template-creator-template-cre:b109cc762c01",
+      "kind": "skill",
+      "name": "template-creator",
+      "sourceId": "source:plugin-template-creator:d09c2f817d32",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:repo-lewislulu-html-ppt-skill-html-p:7693950e6ace",
+      "kind": "skill",
+      "name": "html-ppt",
+      "sourceId": "source:repo-lewislulu-html-ppt-skill:34a15c9afa0c",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:repo-mzlogin-chinese-copywriting-gui:d063fd5444f4",
+      "kind": "skill",
+      "name": "humanizer-zh",
+      "sourceId": "source:repo-mzlogin-chinese-copywriting-gui:3fb232cc1d86",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:repo-openai-skills-find-skills:6ec8c32397b8",
+      "kind": "skill",
+      "name": "find-skills",
+      "sourceId": "source:repo-openai-skills:25cd9d697332",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:repo-openai-skills-skill-creator:f6464c43c618",
+      "kind": "skill",
+      "name": "skill-creator",
+      "sourceId": "source:repo-openai-skills:25cd9d697332",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:repo-openai-skills-skill-installer:75c4cfa39a98",
+      "kind": "skill",
+      "name": "skill-installer",
+      "sourceId": "source:repo-openai-skills:25cd9d697332",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:system-codex-system-imagegen:b71aae25ab98",
+      "kind": "skill",
+      "name": "imagegen",
+      "sourceId": "source:system-codex-system:593ad5f111af",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:system-codex-system-openai-docs:2503f1328a95",
+      "kind": "skill",
+      "name": "openai-docs",
+      "sourceId": "source:system-codex-system:593ad5f111af",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:system-codex-system-plugin-creator:bc16f81faa56",
+      "kind": "skill",
+      "name": "plugin-creator",
+      "sourceId": "source:system-codex-system:593ad5f111af",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    }
+  ],
+  "diagnostics": [],
+  "summary": {
+    "sources": 28,
+    "items": 142,
+    "warnings": 0,
+    "errors": 0
+  },
+  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:7113f8ff4224"
+}

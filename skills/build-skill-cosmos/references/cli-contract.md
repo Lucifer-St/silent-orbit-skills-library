@@ -11,6 +11,8 @@ Use the first available explicit, local, or installed command:
 
 Verify with `--version`; require version `0.1.x` for this Skill. Do not download or install a missing CLI.
 
+The CLI interface version is independent from the package/repository release version. For the current release, package `0.9.0-beta.1` contains CLI `0.1.0`. Do not infer CLI compatibility from the package tag alone.
+
 ## Locate the project
 
 Use this order:

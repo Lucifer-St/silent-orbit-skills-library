@@ -116,7 +116,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.9.0-beta.1");
+  assert.equal(packageJson.version, "0.10.0-beta.1");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
