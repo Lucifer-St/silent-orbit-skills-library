@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `1e37679c3fdba2b0ffe998aff54fcdaa4e794b98`
-- Input commit timestamp: `2026-07-21T19:50:00-04:00`
+- Input commit: `742358089b197bf3c4c2c432681b9f9757a4dac1`
+- Input commit timestamp: `2026-07-21T20:30:31-04:00`
 - Payload files: 238
-- Payload bytes: 11055329
-- Canonical SHA-256 release digest: `3371660a24172b45100d6cffd81b7f7f07e7d8084cbecb2353403622f395b8fd`
+- Payload bytes: 11055171
+- Canonical SHA-256 release digest: `703d48fc2ad6af336dc29c808e577e66aed7e8b7886e5e67cfd2ea928290e674`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,14 +17,14 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `a0e14dd82a0930b6cc74ca677a18fae32bd102e326bccf6153a95e5d482cfa01` |
+| ASSET_PROVENANCE.json | 31108 | `2ff41a1e80bedafe37834bf5db6b894d9a953059ef75b4f44364b27c2859ccd1` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1726 | `7b2da2a4ba0950ddb24e80be55aa20373d29f99a7817ef95b92a48083bb62b21` |
 | CONTRIBUTING.md | 1505 | `5005882d2d76278e990b13e4d83c1191b85ac6665a7e8b25012ac87e92194f3e` |
 | GENERATOR_QUICKSTART.md | 4021 | `fcdf3c46104754151b5ce30b1913237eeeb6cd37d290169b819f90d673bc9d3b` |
 | GENERATOR_QUICKSTART.zh-CN.md | 3806 | `9d1543a7cbb3bd1b68dc56ed20cea1cf1cce8caccf6f4e71932710e581ae5160` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `88948b4e5ea25cb77f1718c55e1a2b452373b96a0f79bda21fd868e6285256ec` |
+| PRIVACY_AUDIT.md | 615 | `76e01c4859484d7385ba88b8f421f057ae61c529999667fb4f2b53b7b9347803` |
 | README.md | 6939 | `b336c150b2bae307842024f87f9d585e659ab659bbc18d7fc31b30c4b2df8726` |
 | README.zh-CN.md | 6354 | `2ef65784cc35e8e4d50654078ff1b5d4315de33af1d60c8f18b8d9b083024f01` |
 | RELEASE_NOTES_v0.9.0-beta.1.md | 3260 | `77bee2ead23d044a835a81084e29577e6a0b45c2ca54c0f93e057f7a57cf45e6` |
@@ -42,7 +42,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | assets/readme/mobile-inspector.png | 48707 | `1bd97ebcdb5f105824657f90a9e3c2eaf68471bb1796c1ccd18f27c0314af6ee` |
 | assets/readme/social-preview.png | 38502 | `17843d2e911be346dbf6766e458ebba21e4622e9bd331a602c177552c976db88` |
 | data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
-| data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
+| data/changes.json | 2323 | `a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79` |
 | data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
 | data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
 | data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
@@ -114,7 +114,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/assets/system-ecliptic-b.png | 217 | `605e52962215f2fddfa103608035b244e8d0791c5aa34b5fe3b3be3002f50f68` |
 | public/assets/system-ecliptic-c.png | 229 | `a2e160a31670c2e37c6c3ba580e1f086f72390a23a4c55964041f17148f72e91` |
 | public/data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
-| public/data/changes.json | 2507 | `b97e04a77ac410a1ba89a43d201f239ecaea7999019fb08e0e168081839a7811` |
+| public/data/changes.json | 2323 | `a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79` |
 | public/data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
 | public/data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
 | public/data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
@@ -169,7 +169,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
 | scripts/validate-generator-contracts.mjs | 2082 | `59b178e2389d52872605e3ff9b14705f98062a0030dcae3466639b955d09158e` |
 | scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
-| scripts/validate-public-release.mjs | 16489 | `f6997decb32fcbde0096e780f422bab98a0b73a92be4482b68538d6b90b44fc4` |
+| scripts/validate-public-release.mjs | 17067 | `9d4985c6006e611f37812dd2ee3b88d9422f7116988c1572b3c0fb510544c727` |
 | scripts/validate-readme.mjs | 5139 | `d89a4309113694c1d78fd422b79a64f13ffb84c1c3095845772182f90b54af6c` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
 | skills/build-skill-cosmos/agents/openai.yaml | 248 | `d685c42774faa837bbe23ecc9e9e7fae8b522f8c760f46a529c77e628835c347` |
@@ -209,7 +209,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/components/orbit/SkillAsteroid.tsx | 1231 | `fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857` |
 | src/core/contracts.ts | 8133 | `242e00a30065d9c4d66f56dcb3f9c527c56b0eeebad67a00e1dbe30af2136fa7` |
 | src/data/indexes.ts | 3157 | `0018933bc60789de3c7fa7280908a82b1300018e1b07015bc4521d7f86bc8ac4` |
-| src/generated/data.generated.ts | 392945 | `c43bd2001189ad9e77e3b61c406bebb747da17d8549960c750dd8b56473ba7e1` |
+| src/generated/data.generated.ts | 392577 | `d400c862dda83ae76cbe6ddaa11772815186c0a8b7a754d7f5e48383b6728966` |
 | src/hooks/useOrbitSurface.ts | 4573 | `75fc2964bbc196e8e1f953fc31041dfe7f31a9f71fd2bb065378f1b64c10a148` |
 | src/hooks/usePersonalOutcomes.ts | 4166 | `b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d` |
 | src/i18n/LocaleContext.tsx | 7202 | `0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51` |
