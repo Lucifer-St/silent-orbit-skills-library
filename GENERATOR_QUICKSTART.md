@@ -42,11 +42,12 @@ The package version is `0.9.0-beta.1`; the generator CLI reports its independent
 Review the bundled Skill before installing it. The Skill is a thin CLI and publication-review layer; it does not install, update, remove, or rewrite real Skills and it does not deploy.
 
 ```powershell
-Get-Content -LiteralPath .\node_modules\silent-orbit-skills-library\skills\build-skill-cosmos\SKILL.md
-npx skills add .\node_modules\silent-orbit-skills-library --skill build-skill-cosmos --agent codex --copy -y
+$skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
+npx skills add $skillSource --skill build-skill-cosmos --agent codex --copy -y
 ```
 
-This installs `build-skill-cosmos` for the current project. Omit this step if you only need the CLI.
+`Resolve-Path` is required on Windows because the Skills installer expects an absolute local source path. This installs `build-skill-cosmos` for the current project. Omit this step if you only need the CLI.
 
 ## 4. First generation
 

@@ -67,6 +67,8 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     "silent-orbit generate",
     "silent-orbit doctor",
     "build-skill-cosmos",
+    "$skillSource = (Resolve-Path -LiteralPath",
+    "npx skills add $skillSource",
     "review-required",
     "local-only",
     "44-Skill",
@@ -78,6 +80,7 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     /\bnpm\s+publish\b/i,
     /\bnpm\s+install\s+(?:--global|-g)\s+silent-orbit-skills-library(?:@|\s|$)/im,
     /\bnetlify\s+deploy(?:\s+--prod|\s+--dir|\s+--alias|$)/im,
+    /\bnpx\s+skills\s+add\s+\.\\node_modules\\silent-orbit-skills-library\b/im,
   ];
   if (prohibitedCommands.some((pattern) => pattern.test(content))) {
     throw new Error(`${fileName} contains a prohibited registry-publish, registry-install, or direct-deploy command.`);
