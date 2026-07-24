@@ -16,16 +16,32 @@ test("the installable package owns only public Core, Schemas, CLI, Agent Skill, 
     "scripts/lib/generator-contracts.mjs",
     "scripts/lib/source-adapters.mjs",
     "scripts/lib/skill-health.mjs",
+    "scripts/lib/skill-management.mjs",
+    "scripts/lib/npx-skills-source-managed-evaluation.mjs",
+    "scripts/lib/trusted-source-maintenance.mjs",
     "scripts/lib/library-analyzer.mjs",
     "scripts/lib/silent-orbit-project.mjs",
     "schemas",
     "templates/reference-index-v1",
     "GENERATOR_QUICKSTART.md",
     "GENERATOR_QUICKSTART.zh-CN.md",
+    "INSTALLATION_AND_UPGRADE.md",
+    "INSTALLATION_AND_UPGRADE.zh-CN.md",
+    "VERSIONING_AND_MIGRATIONS.md",
+    "VERSIONING_AND_MIGRATIONS.zh-CN.md",
+    "PRIVACY.md",
+    "PRIVACY.zh-CN.md",
+    "RECOVERY.md",
+    "RECOVERY.zh-CN.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
     "skills/build-skill-cosmos",
     "skills/audit-skill-cosmos",
+    "skills/manage-skill-cosmos",
+    "skills/skills-library-maintenance",
   ]);
-  assert.equal(packageJson.version, "0.10.0-beta.1");
+  assert.equal(packageJson.version, "0.11.0-beta.4");
+  assert.equal(packageJson.devDependencies.skills, "1.5.20");
   assert.equal(packageJson.bin["silent-orbit"], "scripts/silent-orbit.mjs");
   assert.equal(packageJson.files.some((entry) => /alpha\/phase1e|silent-orbit-v1|outputs|obsidian|receipt/i.test(entry)), false);
 });

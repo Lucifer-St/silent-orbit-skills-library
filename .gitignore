@@ -4,5 +4,6 @@ dist/
 .qa-evidence/
 .chrome-smoke-profile/
 .chrome-visual-qa-profile/
+.silent-orbit-management/
 .preview.pid
 qa-*.png

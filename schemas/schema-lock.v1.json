@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "releaseVersion": "0.11.0-beta.4",
+  "cliInterfaceVersion": "0.4.0",
+  "compatibilityFamily": "v1",
+  "hashAlgorithm": "sha256",
+  "lineEnding": "LF",
+  "schemas": [
+    {
+      "path": "analysis-overrides.v1.schema.json",
+      "sha256": "6b6b5b717f9a77337e7449069cd5cc693d23142b63fc9d080c33f0de32580bec"
+    },
+    {
+      "path": "analysis-report.v1.schema.json",
+      "sha256": "3227b31446b382d8a3ae04287d69ef8474d93d2840a8e5647d6cccee46c64cd4"
+    },
+    {
+      "path": "health-report.v1.schema.json",
+      "sha256": "20fc970a54d6a00f019a470e21cadec7edb7ac2c647ec7cee8a69f2003321d08"
+    },
+    {
+      "path": "inventory-snapshot.v1.schema.json",
+      "sha256": "a8fc285f918f52e3516a35d8a04004cfab38e6fa6c632ba51e3462a9cffe568e"
+    },
+    {
+      "path": "library-snapshot.v1.schema.json",
+      "sha256": "32946ba76c7777885f9a1d7bbd2a5d2735ba521abfdfcf86dbcfaf88669e6e96"
+    },
+    {
+      "path": "management-plan.v1.schema.json",
+      "sha256": "777d30ee3c73da8fdb3df2efeb83ce57111c84efa0c5b35e0feb068770f4d90a"
+    },
+    {
+      "path": "management-receipt.v1.schema.json",
+      "sha256": "01e8fcdbe62f15a163c12479a25aaad77c0930a3ce83dda68b12e7b73a1c7f98"
+    },
+    {
+      "path": "phase1e-alpha-receipt.v1.schema.json",
+      "sha256": "7154364d887693223f45728956920e2fcfa227d290c83d3be1b37851eb6760b4"
+    },
+    {
+      "path": "project-config.v1.schema.json",
+      "sha256": "6a290b311c2e33d7b33bcee1cf1d7c9ff2a35df5e076000d692bc443c3b6f774"
+    },
+    {
+      "path": "provider-capability.v1.schema.json",
+      "sha256": "882e22881bb9b5d5e53b5f069c560cccc8f129f6a13f89e5a34328f720dc18a7"
+    },
+    {
+      "path": "silent-orbit-config.v1.schema.json",
+      "sha256": "aafa6d40b24c975cd18f542d8cc44254a3f4147683dcc0515526519ae94fb77c"
+    },
+    {
+      "path": "site-manifest.v1.schema.json",
+      "sha256": "a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931"
+    },
+    {
+      "path": "source-import.v1.schema.json",
+      "sha256": "2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62"
+    }
+  ]
+}

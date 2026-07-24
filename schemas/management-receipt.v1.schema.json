@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/management-receipt.v1.schema.json",
+  "title": "ManagementReceiptV1",
+  "description": "Private transaction outcome contract. Runtime instances and backups are never Public Export inputs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "planId", "provider", "operation", "generatedAt", "dryRun", "status", "confirmation", "capability", "execution", "preconditions", "impact", "transaction", "steps", "appliedChanges", "rescan", "verification", "rollback", "errors"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "$ref": "#/$defs/id" },
+    "planId": { "$ref": "#/$defs/id" },
+    "provider": { "type": "object" },
+    "operation": { "enum": ["install", "update", "freeze", "remove", "restore"] },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "dryRun": { "type": "boolean" },
+    "status": { "enum": ["blocked", "dry-run", "succeeded", "failed", "rolled-back", "rollback-failed"] },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "matched", "tokenDigest"],
+      "properties": {
+        "required": { "const": true },
+        "matched": { "type": "boolean" },
+        "tokenDigest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plannedId", "verifiedId", "state", "evidenceIds"],
+      "properties": {
+        "plannedId": { "$ref": "#/$defs/id" },
+        "verifiedId": {
+          "anyOf": [
+            { "$ref": "#/$defs/id" },
+            { "type": "null" }
+          ]
+        },
+        "state": { "enum": ["supported", "unsupported", "unknown"] },
+        "evidenceIds": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "manager", "nativeTransactionGuarantee", "exceptions", "evidence"],
+      "properties": {
+        "mode": { "enum": ["core-writer", "trusted-external-manager"] },
+        "manager": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "version", "registryIntegrity", "cliSha256", "packageJsonSha256"],
+              "properties": {
+                "name": { "const": "skills" },
+                "version": { "type": "string", "minLength": 1 },
+                "registryIntegrity": { "type": "string", "minLength": 1 },
+                "cliSha256": { "$ref": "#/$defs/digest" },
+                "packageJsonSha256": { "$ref": "#/$defs/digest" }
+              }
+            }
+          ]
+        },
+        "nativeTransactionGuarantee": { "type": "boolean" },
+        "exceptions": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "evidence": { "type": "object" }
+      }
+    },
+    "preconditions": { "type": "array", "items": { "type": "object" } },
+    "impact": { "type": "object" },
+    "transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "backupManifest", "persistedReceipt"],
+      "properties": {
+        "id": {
+          "anyOf": [
+            { "$ref": "#/$defs/id" },
+            { "type": "null" }
+          ]
+        },
+        "backupManifest": {
+          "anyOf": [
+            { "type": "object" },
+            { "type": "null" }
+          ]
+        },
+        "persistedReceipt": { "type": "boolean" }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phase", "state"],
+        "properties": {
+          "phase": { "enum": ["precondition", "backup", "apply", "rescan", "verify", "rollback", "receipt"] },
+          "state": { "enum": ["blocked", "planned", "passed", "completed", "failed", "skipped"] },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "appliedChanges": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+    "rescan": { "type": "array", "items": { "type": "object" } },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": { "enum": ["not-run", "planned", "passed", "failed"] },
+        "evidence": { "type": "array" }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempted", "status", "restored", "failures"],
+      "properties": {
+        "attempted": { "type": "boolean" },
+        "status": { "enum": ["not-needed", "planned", "succeeded", "failed"] },
+        "restored": { "type": "array", "items": { "type": "object" } },
+        "failures": { "type": "array", "items": { "type": "object" } }
+      }
+    },
+    "errors": { "type": "array", "items": { "type": "object" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

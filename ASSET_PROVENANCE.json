@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "dc25dc0c676010b751591f3ada68eb3e0f89ed05",
-  "inputCommitTimestamp": "2026-07-22T05:47:33-04:00",
+  "inputCommit": "dd394b4cce7fb4b23cda63d66ec0a6e5170504f3",
+  "inputCommitTimestamp": "2026-07-24T10:04:15-04:00",
   "visualAssetPolicy": "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.",
   "assets": [
     {
@@ -684,8 +684,8 @@
     },
     {
       "path": "public/fonts/sarasa-term-sc/OFL.txt",
-      "bytes": 4702,
-      "sha256": "32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53",
+      "bytes": 4814,
+      "sha256": "0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa",
       "origin": "Sarasa Gothic v1.0.40 license",
       "source": "https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/v1.0.40/LICENSE",
       "license": "SIL Open Font License 1.1"

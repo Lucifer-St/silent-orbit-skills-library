@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -116,7 +117,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.10.0-beta.1");
+  assert.equal(packageJson.version, "0.11.0-beta.4");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -129,4 +130,44 @@ test("beta version, root-safe Vite base, and publication handoff are explicit", 
     deployProvider: "netlify",
     directPrivateProductionDeploy: false,
   });
+});
+
+test("v1 schemas are frozen by the Phase 6A release lock", () => {
+  const lock = JSON.parse(read("schemas/schema-lock.v1.json"));
+  assert.equal(lock.schemaVersion, 1);
+  assert.equal(lock.releaseVersion, "0.11.0-beta.4");
+  assert.equal(lock.cliInterfaceVersion, "0.4.0");
+  assert.equal(lock.compatibilityFamily, "v1");
+  assert.equal(lock.hashAlgorithm, "sha256");
+  assert.equal(lock.lineEnding, "LF");
+
+  const schemaDir = path.join(projectDir, "schemas");
+  const actualNames = fs.readdirSync(schemaDir)
+    .filter((name) => name.endsWith(".schema.json"))
+    .sort();
+  assert.deepEqual(lock.schemas.map((entry) => entry.path), actualNames);
+  for (const entry of lock.schemas) {
+    assert.match(entry.path, /\.v1\.schema\.json$/);
+    const canonicalSchema = fs.readFileSync(path.join(schemaDir, entry.path), "utf8")
+      .replace(/\r\n?/g, "\n");
+    const digest = createHash("sha256")
+      .update(canonicalSchema)
+      .digest("hex");
+    assert.equal(entry.sha256, digest, `${entry.path} changed after the v1 lock.`);
+  }
+});
+
+test("Phase 6A operational handoff documents every required boundary", () => {
+  const requirements = new Map([
+    ["INSTALLATION_AND_UPGRADE.md", ["GitHub", "SHA-256", "skills-library-maintenance", "--global --copy -y"]],
+    ["VERSIONING_AND_MIGRATIONS.md", ["Semantic versioning", "schema-lock.v1.json", "Deprecation", "not `v1.0.0`"]],
+    ["PRIVACY.md", ["local-first", "localStorage", "local-only", "Netlify"]],
+    ["RECOVERY.md", ["folder backup", "rollback-failed", "Public PR", "Git-connected Netlify Production"]],
+    ["SECURITY.md", ["vulnerability", "skills@1.5.20", "release-gate"]],
+    ["CONTRIBUTING.md", ["Schemas", "migration", "release gate"]],
+  ]);
+  for (const [fileName, tokens] of requirements) {
+    const content = read(publicDocument(fileName));
+    for (const token of tokens) assert.ok(content.includes(token), `${fileName} is missing ${token}.`);
+  }
 });

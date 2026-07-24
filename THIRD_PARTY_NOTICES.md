@@ -136,11 +136,13 @@ The corresponding license copies are included beside each self-hosted font.
 | rollup | 4.62.2 | MIT | https://www.npmjs.com/package/rollup/v/4.62.2 |
 | scheduler | 0.27.0 | MIT | https://www.npmjs.com/package/scheduler/v/0.27.0 |
 | semver | 6.3.1 | ISC | https://www.npmjs.com/package/semver/v/6.3.1 |
+| skills | 1.5.20 | MIT | https://www.npmjs.com/package/skills/v/1.5.20 |
 | source-map-js | 1.2.1 | BSD-3-Clause | https://www.npmjs.com/package/source-map-js/v/1.2.1 |
 | tinyglobby | 0.2.17 | MIT | https://www.npmjs.com/package/tinyglobby/v/0.2.17 |
 | typescript | 5.9.3 | Apache-2.0 | https://www.npmjs.com/package/typescript/v/5.9.3 |
 | update-browserslist-db | 1.2.3 | MIT | https://www.npmjs.com/package/update-browserslist-db/v/1.2.3 |
 | vite | 7.3.6 | MIT | https://www.npmjs.com/package/vite/v/7.3.6 |
 | yallist | 3.1.1 | ISC | https://www.npmjs.com/package/yallist/v/3.1.1 |
+| yaml | 2.9.0 | ISC | https://www.npmjs.com/package/yaml/v/2.9.0 |
 
 This inventory is generated from the pinned package lock. Package authors retain their respective rights.

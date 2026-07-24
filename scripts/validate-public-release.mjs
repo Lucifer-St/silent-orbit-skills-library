@@ -42,20 +42,31 @@ const requiredFiles = [
   "BETA_FEEDBACK_TEMPLATE.md",
   "BETA_TESTING.md",
   "CONTRIBUTING.md",
+  "GENERATOR_QUICKSTART.md",
+  "GENERATOR_QUICKSTART.zh-CN.md",
+  "INSTALLATION_AND_UPGRADE.md",
+  "INSTALLATION_AND_UPGRADE.zh-CN.md",
   "LICENSE",
   "PHASE2_COMPLETION_RECEIPT.md",
+  "PRIVACY.md",
+  "PRIVACY.zh-CN.md",
   "PRIVACY_AUDIT.md",
   "PUBLIC_RELEASE_MANIFEST.json",
   "PUBLIC_RELEASE_MANIFEST.md",
   "README.md",
   "README.zh-CN.md",
-  "RELEASE_NOTES_v0.10.0-beta.1.md",
+  "RECOVERY.md",
+  "RECOVERY.zh-CN.md",
+  "RELEASE_NOTES_v0.11.0-beta.4.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
+  "VERSIONING_AND_MIGRATIONS.md",
+  "VERSIONING_AND_MIGRATIONS.zh-CN.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
   "package.json",
+  "schemas/schema-lock.v1.json",
   "tsconfig.json",
   "vite.config.ts",
   "public/robots.txt",
@@ -144,6 +155,14 @@ function assertForbiddenPaths(rootDir, { repositoryAware = false } = {}) {
     if (lowered.includes(["legacy", "external", "chat"].join("-"))) {
       throw new Error(`Forbidden legacy visual path: ${relativePath}`);
     }
+    if (
+      lowered === ".silent-orbit-management"
+      || lowered.startsWith(".silent-orbit-management/")
+      || /(?:^|\/)(?:transactions|backups)(?:\/|$)/.test(lowered)
+      || /(?:^|\/)(?:receipt|backup-manifest|management-plan|management-request)\.json$/.test(lowered)
+    ) {
+      throw new Error(`Forbidden management runtime artifact: ${relativePath}`);
+    }
   }
 }
 
@@ -194,6 +213,7 @@ function assertNoForbiddenJsonKeys(value, location = "data") {
   const forbiddenKeys = new Set([
     "frequency", "importance", "installed_path", "installedPath", "library_page", "skill_page",
     "task_count", "last_seen_at", "evidence_types", "transaction", "session_id", "sessionsRoot", "vaultRoot",
+    "allowedRoots", "runtimeRoot", "transactionRoot", "transactionId", "backupManifest", "backupKey", "receiptId", "planId",
   ]);
   for (const [key, nested] of Object.entries(value)) {
     if (forbiddenKeys.has(key)) throw new Error(`Forbidden private/usage field ${location}.${key}.`);
@@ -277,7 +297,7 @@ function assertPackageContract(rootDir) {
   const packageJson = readJson(rootDir, "package.json");
   const expectedScripts = [
     "validate:data", "validate:assets", "validate:public-release", "validate:public-repository", "validate:readme",
-    "test:mvp", "build", "smoke:ui", "qa:visual",
+    "test:management", "test:mvp", "build", "smoke:ui", "qa:visual",
   ];
   for (const script of expectedScripts) {
     if (typeof packageJson.scripts?.[script] !== "string") throw new Error(`package.json is missing ${script}.`);

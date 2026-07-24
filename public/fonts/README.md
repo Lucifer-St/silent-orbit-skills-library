@@ -13,7 +13,7 @@ The Public RC carries pinned font binaries and their SIL Open Font License 1.1 c
 
 - Format: deterministic WOFF2 subset generated from the pinned source font for the characters in this release
 - Font SHA-256: `63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4`
-- License SHA-256: `32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53`
+- License SHA-256: `0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa`
 - Source: https://github.com/be5invis/Sarasa-Gothic/releases/tag/v1.0.40
 
 ## Editorial Skill Atlas fonts

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/provider-capability.v1.schema.json",
+  "title": "ProviderCapabilityV1",
+  "description": "Immutable, operation-specific management capability evidence. Missing operations default to unknown and remain read-only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "capabilityId", "provider", "defaultState", "readOnly", "operations", "evidence"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "capabilityId": { "$ref": "#/$defs/id" },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1 }
+      }
+    },
+    "defaultState": { "const": "unknown" },
+    "readOnly": { "type": "boolean" },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["install", "update", "freeze", "remove", "restore"],
+      "properties": {
+        "install": { "$ref": "#/$defs/operation" },
+        "update": { "$ref": "#/$defs/operation" },
+        "freeze": { "$ref": "#/$defs/operation" },
+        "remove": { "$ref": "#/$defs/operation" },
+        "restore": { "$ref": "#/$defs/operation" }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "state": {
+      "enum": ["supported", "unsupported", "unknown"]
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "access", "evidenceIds"],
+      "properties": {
+        "state": { "$ref": "#/$defs/state" },
+        "access": { "enum": ["guarded", "read-only"] },
+        "evidenceIds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "operation", "kind", "claim", "basis", "verification"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "operation": { "enum": ["install", "update", "freeze", "remove", "restore"] },
+        "kind": { "$ref": "#/$defs/id" },
+        "claim": { "type": "string", "minLength": 1 },
+        "basis": {},
+        "verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["algorithm", "digest"],
+          "properties": {
+            "algorithm": { "const": "sha256" },
+            "digest": { "$ref": "#/$defs/digest" }
+          }
+        }
+      }
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

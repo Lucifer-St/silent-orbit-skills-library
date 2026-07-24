@@ -15,7 +15,7 @@ The public catalog currently contains **142 Skills across 9 systems and 28 libra
 
 ## Install the Public Generator
 
-The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI locally or globally from the downloaded file, optionally install the bundled `build-skill-cosmos` Agent Skill at project scope, and complete a reviewed first generation.
+The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
 
 ## Phase 1E Alpha Preview
 
@@ -96,6 +96,19 @@ The development server runs locally. The production build is written to `dist/`.
 
 The public beta uses no third-party analytics, cookies, or behavior tracking. Safari remains an external beta coverage item.
 
+## Operational handoff
+
+- [Installation and upgrade](./INSTALLATION_AND_UPGRADE.md)
+- [Versioning, compatibility, migrations, and deprecation](./VERSIONING_AND_MIGRATIONS.md)
+- [Privacy policy and data boundary](./PRIVACY.md)
+- [Recovery and rollback](./RECOVERY.md)
+- [Security policy](./SECURITY.md)
+- [Contribution policy](./CONTRIBUTING.md)
+
+The `v0.11.0-beta.4` v1 Schemas are locked by
+`schemas/schema-lock.v1.json`. This is a GitHub Pre-release, not `v1.0.0`, and
+Production authority remains Public `main` after the required `release-gate`.
+
 ## Verify the release
 
 ```powershell
@@ -121,4 +134,5 @@ GitHub Actions runs the same full gate on `windows-latest`. The manifest and pri
 - Project-created and project-generated visuals are excluded from MIT; see [`ASSET_LICENSE.md`](./ASSET_LICENSE.md).
 - Fonts and dependencies retain their original licenses; see [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) and [`ASSET_PROVENANCE.json`](./ASSET_PROVENANCE.json).
 
-Security reports and contribution boundaries are documented in [`SECURITY.md`](./SECURITY.md) and [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Security reports, privacy, recovery, versioning, and contribution boundaries
+are documented in the operational handoff above.

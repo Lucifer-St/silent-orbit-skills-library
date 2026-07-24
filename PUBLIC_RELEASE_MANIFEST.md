@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `dc25dc0c676010b751591f3ada68eb3e0f89ed05`
-- Input commit timestamp: `2026-07-22T05:47:33-04:00`
-- Payload files: 250
-- Payload bytes: 11379921
-- Canonical SHA-256 release digest: `9df42dfef0040392beb3075a8c2c28e1800d7bba234d6278f36d6d8f85483b54`
+- Input commit: `dd394b4cce7fb4b23cda63d66ec0a6e5170504f3`
+- Input commit timestamp: `2026-07-24T10:04:15-04:00`
+- Payload files: 280
+- Payload bytes: 11721612
+- Canonical SHA-256 release digest: `58d756f3aeeb0b9ec116cdcf95ff3906d9e8a0c4f43b06dcb111c1c60f0d8dda`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -14,22 +14,30 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .github/ISSUE_TEMPLATE/bug_report.yml | 1678 | `59036c1300bc7c4cc6897c063008029dfb9306e60d46e7ae24dbb8c514617b32` |
 | .github/ISSUE_TEMPLATE/experience_feedback.yml | 1813 | `a71d42f7110929da00ed90ca0ec1cd30dd7835bce5768082449fb8e25052cc68` |
 | .github/workflows/public-release-gate.yml | 1387 | `e9fc4480c6f459ca28f99c8c91682eb094e0c609e9a3cccdd15f5c5ad31ff49a` |
-| .gitignore | 118 | `9f616c788d77d8c789ffd74fc81047af9f7a423171f0806838dc1285851f00d0` |
+| .gitignore | 144 | `43e881bf9f7141c323d6d35cdeb5d842a09eedec428b9db59fb8dc4409696671` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `5ce00cec4a25601968e08b8e03dc67f6a16e4625e8f72a3a9e5c537ef95f44ce` |
+| ASSET_PROVENANCE.json | 31108 | `cb020668b7e24d30695144a04681ebb058d8a0a36afaac520314785657e40a62` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1742 | `4c177abd31431cbcbf92dd82c44d87332e3ee5076e63309b89bad0251a8244ab` |
-| CONTRIBUTING.md | 2811 | `b37caa2f70b96cb60de11b1c17c962e20a06cbfb86147aac446dcfd37aa58cee` |
-| GENERATOR_QUICKSTART.md | 5322 | `b379383eee1ae4e0677960eaffc6481d845a876693e547873ad414b20af3e986` |
-| GENERATOR_QUICKSTART.zh-CN.md | 4752 | `e0de4ce0680c3922ab1e7c245712d6e37cf40e44af3806b073e045812605b91a` |
+| CONTRIBUTING.md | 3346 | `11993c8a34594efaf9a2d826e7c1fe60f250cad6d57af6d720330bab174ae044` |
+| GENERATOR_QUICKSTART.md | 7738 | `a32408562089ee31a9bfe27c8f5f8678398b2612dd25c6f054d3e9522a6efa5d` |
+| GENERATOR_QUICKSTART.zh-CN.md | 7095 | `e6000dff793112f8f8f2d72145f66e3fa5e68e3205089f48515fdd53c0035871` |
+| INSTALLATION_AND_UPGRADE.md | 2798 | `93311dc11573f69b19bd6a1270acd2dc9cc5ee2aa39953252cdb98460f69cd4e` |
+| INSTALLATION_AND_UPGRADE.zh-CN.md | 2553 | `c98930820c19b55759140ecedf6c232fa3b188efefe77698d30b475137f2dd30` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY_AUDIT.md | 615 | `9012b945badaaac8c22d15fbea7ee0fa5bc5a584ba0948307997b7752800ee6d` |
-| README.md | 7187 | `6a6861d3df412c749ccafdb1fbf87c7076674f3edd919d51645a7cc85d119004` |
-| README.zh-CN.md | 6605 | `dd70bf48b378685a4f304d266358e7ca8ecae30b06853512a50c4428c65a3917` |
-| RELEASE_NOTES_v0.10.0-beta.1.md | 3964 | `5755c25a4c3ec556f44b4faac12fd78b6c29c62a1eb84bc35ea18584c2e0652b` |
-| SECURITY.md | 1248 | `66a683abecb67919e44c10a94a281b1187ac56af25cab8236a5b792d0c3369dc` |
-| THIRD_PARTY_NOTICES.md | 13368 | `335d5b8add3d9ce33e4cb9c26ca0ad99ca11be3cba882220b0bde53222cda9c3` |
+| PRIVACY.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
+| PRIVACY.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
+| PRIVACY_AUDIT.md | 615 | `0ed96d6fa72620ee98a4ff8b432a5650583dfc047e85a2c8b47cf34199cd4f7c` |
+| README.md | 8131 | `5a6ce11a01fe13d80f55d6ccbdd6001a25e047f4954197643a2aa01f69a18047` |
+| README.zh-CN.md | 7482 | `89947849db2cead9496c414f9ab4d727fcbcddf6fb726ddcc7d77bdc2da10e0a` |
+| RECOVERY.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
+| RECOVERY.zh-CN.md | 2183 | `d81e0ede1f878335cbc8ddb3b3ddf0b7fe232621658d0a0472dbca8751057d3d` |
+| RELEASE_NOTES_v0.11.0-beta.4.md | 4659 | `3bd8d17779c54700f9a96183e65230c28722bdd3abb5021ca25ba6724996cdec` |
+| SECURITY.md | 2589 | `116cc2088b7036be2e6e26174616d78e69b71f86fdb8ac5371049eab8113e616` |
+| THIRD_PARTY_NOTICES.md | 13510 | `d0278e4a84443f57f0564b7a229e2d4dcf08782db80be5a82abeeaa83d9f8458` |
+| VERSIONING_AND_MIGRATIONS.md | 3809 | `a884c609691daacf8d2d046fa88c408ee6e0ff48da2668573b0664a594e2c912` |
+| VERSIONING_AND_MIGRATIONS.zh-CN.md | 3016 | `68b9c13fa73e4533085f3c0c9a451e1f33ccb3ee5631ba9c3814ebc4350d0cd9` |
 | alpha/phase1e/alpha-receipt.json | 2436 | `b5be1d86c1e3303fc5c1a48fbc5c00f546e07f49c994c11451926671db1983c4` |
 | alpha/phase1e/alpha-source-lock.json | 12120 | `3f6826ae52f269a39d931a7997b70bb7297cab1fdfe7d457a595e265aaea05ca` |
 | alpha/phase1e/frontend-handoff.md | 1252 | `0488ade9a2238c445fcf451bd1c59932bc701028e1efb8f9e352710ef7a95db0` |
@@ -43,14 +51,14 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | assets/readme/social-preview.png | 38502 | `17843d2e911be346dbf6766e458ebba21e4622e9bd331a602c177552c976db88` |
 | data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
 | data/changes.json | 2323 | `a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79` |
-| data/inventory.snapshot.json | 48751 | `3c72e8ebbb7dfbaf18e44e2be3cbd4ef5ccf3062db79ea5b90bb36b2055c50e7` |
+| data/inventory.snapshot.json | 48751 | `df681e55cc1cb39440bc576b72e046cf46b50adde3096b6677872cbfcc0a35ce` |
 | data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
-| data/library.snapshot.json | 230645 | `f8d0c83c27527aacf0619152050915eb026563ed1b67f82bc605a6e1ae5b9b9e` |
-| data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
+| data/library.snapshot.json | 230645 | `4ef6066624708137284fb7dab682a83abc5c1cbd03ea7883a0c1f9c812b6d5d3` |
+| data/maintenance-status.json | 1012 | `bf753db2fd86d0aec713a4b6d00dd776e6b2e00f3c71291911d3c2a8db35cd89` |
 | data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
 | data/project-config.json | 546 | `d7387f88ec30d51f9ba9af97379073e2dae90ad23a292eca2ab177bbf4448753` |
 | data/relations.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| data/site-manifest.json | 662 | `5b2adc9697729a4f3e893b683d3a5bae274e09470ce148b8f5bb12f07038f44b` |
+| data/site-manifest.json | 662 | `ea8cb6926396ef74dfbb5684571c6e29739bb20a745376e96bbc865e8d7ca8bd` |
 | data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
@@ -61,12 +69,15 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | docs/architecture/GENERATOR_PHASE1E.md | 4725 | `f4c05681d6d0cbf14cc2a0a4fb740531b600146039d5e2c6d6ae634d098fd09b` |
 | docs/architecture/GENERATOR_PHASE2B.md | 6671 | `74e56bc5981a164911a6f19b45071515aecc8e18735004def445b4bf63652b60` |
 | docs/architecture/GENERATOR_PHASE4.md | 1941 | `d753d2d35d25e0de04438288359263b98553b759dd5239440ad9e87ba1af3a35` |
+| docs/architecture/GENERATOR_PHASE5A.md | 3526 | `7738988fb688de85400630b58b05f9f26b0c7f93ebd91180622521b2e0520090` |
+| docs/architecture/GENERATOR_PHASE5B.md | 5464 | `4a236bf2aa90e7e56ad3cb5a4990bd4fdf11e58b1e309b6ad7403ad52523a95e` |
+| docs/architecture/GENERATOR_PHASE5C.md | 3781 | `a285b97bb7b60b51cac5e1b7999d989cb4aba9d94efc1b9d630689b79de7af54` |
 | fixtures/phase4/external-provider.source-import.json | 676 | `6fc219a1c1680980bdf070a77a93ec95a153de5bf1ffd9154d59157b1ce8dc99` |
 | fixtures/phase4/source-managed.source-import.json | 1397 | `622e93bbeabcf9e5f50d743d9f09d73dac18f0ad5c48565ffaede8fae7eccee6` |
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
 | netlify.toml | 1388 | `e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543` |
-| package-lock.json | 59646 | `54529b69f0edde145d0a1b9f09aa28a687ef7ee7769877cfe60aeeb5455b6ee4` |
-| package.json | 3648 | `1b6c0d58a62667263dc6547342a2ef98ae4ec9daa9e245a2a234e56d2710d5ea` |
+| package-lock.json | 60660 | `22e77ff456670336bdeaeb010e8e71b5810d75a4c9fe36bb9ee7a8be864a3a92` |
+| package.json | 4481 | `bd49ee6f3952126b96993648e189ba690236b01109d1f54e627dabc24fe5a9fa` |
 | public/assets/branding/favicon.svg | 584 | `617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea` |
 | public/assets/cosmos/celestial/01-cratered-planet.png | 1811 | `fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488` |
 | public/assets/cosmos/celestial/02-ringed-planet.png | 850 | `00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a` |
@@ -124,16 +135,16 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | public/data/category-units.json | 11343 | `42f9b2a48708c650832a2bdbbf50897c7257c5d200b0ba1c2b566a2dcf9e47ec` |
 | public/data/changes.json | 2323 | `a7d36a1417dc167c0a9ad34280b5b1cc5dd5cf717d57b0ba9b34d2e55065de79` |
 | public/data/libraries.json | 18730 | `0bf13fee3ba3340ac90eea6d7c1b44646bf9ff6f70b22e6757322391a9d1441e` |
-| public/data/maintenance-status.json | 1012 | `e92209441b830e2a587d34248317cd9a27fd5ef3795bdfc060c7a646bd491790` |
+| public/data/maintenance-status.json | 1012 | `bf753db2fd86d0aec713a4b6d00dd776e6b2e00f3c71291911d3c2a8db35cd89` |
 | public/data/personal-skills.json | 2081 | `7cbfa7f523f2fb1e16e6a3c7fac4306c96301218da4c9530e6b1363887f1585a` |
 | public/data/relations.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | public/data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | public/data/skills.json | 62679 | `cce6a8e083af92f167e523192867e75a6fd703954b8b7c0d511bee2def4ac50f` |
 | public/data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| public/fonts/README.md | 1417 | `b33e11b04fab8c0d403d2292fc41ed4bcd9f7de8db687d368879acff5bdec3a9` |
+| public/fonts/README.md | 1417 | `57d22a0351c6e5d900afa56f94748d12ecbb27bbaded5d79faf429f2077f15c6` |
 | public/fonts/fusion-pixel/OFL.txt | 4514 | `9291281eaa1275afe06285d010362c175efcf8766a37c9bac274a770550fe4fc` |
 | public/fonts/fusion-pixel/fusion-pixel-12px-proportional-subset.woff2 | 22344 | `3b265cb64eaba39252704a290aac551fa7884bea6af57c97ac153a4c46c8dc09` |
-| public/fonts/sarasa-term-sc/OFL.txt | 4702 | `32c932e0dbae4f6e6386964bbc2d04178707665a05ca65cf636241af13d50a53` |
+| public/fonts/sarasa-term-sc/OFL.txt | 4814 | `0cb1dd95531b3709fc45cd54646fd9a1d0b9712ae3fb43af88ea31b5c02367fa` |
 | public/fonts/sarasa-term-sc/sarasa-term-sc-regular-subset.woff2 | 138904 | `63dc93914dac4303733dfd20dd15a67ff5794a98f54db741569952dc5a16e3b4` |
 | public/robots.txt | 93 | `596f6653b8fb445482b0044dceaddabb14b8d57ae18db0f4c78d20eb50911d87` |
 | public/sitemap.xml | 290 | `cedfd1b8098a479d6a14b73d4467e5305b70567f3aab537a5728e66f3a153ec3` |
@@ -142,8 +153,12 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | schemas/health-report.v1.schema.json | 6056 | `20fc970a54d6a00f019a470e21cadec7edb7ac2c647ec7cee8a69f2003321d08` |
 | schemas/inventory-snapshot.v1.schema.json | 3870 | `a8fc285f918f52e3516a35d8a04004cfab38e6fa6c632ba51e3462a9cffe568e` |
 | schemas/library-snapshot.v1.schema.json | 4740 | `32946ba76c7777885f9a1d7bbd2a5d2735ba521abfdfcf86dbcfaf88669e6e96` |
+| schemas/management-plan.v1.schema.json | 7093 | `777d30ee3c73da8fdb3df2efeb83ce57111c84efa0c5b35e0feb068770f4d90a` |
+| schemas/management-receipt.v1.schema.json | 5332 | `01e8fcdbe62f15a163c12479a25aaad77c0930a3ce83dda68b12e7b73a1c7f98` |
 | schemas/phase1e-alpha-receipt.v1.schema.json | 4145 | `7154364d887693223f45728956920e2fcfa227d290c83d3be1b37851eb6760b4` |
 | schemas/project-config.v1.schema.json | 1931 | `6a290b311c2e33d7b33bcee1cf1d7c9ff2a35df5e076000d692bc443c3b6f774` |
+| schemas/provider-capability.v1.schema.json | 2912 | `882e22881bb9b5d5e53b5f069c560cccc8f129f6a13f89e5a34328f720dc18a7` |
+| schemas/schema-lock.v1.json | 2086 | `945845e921a83f82bac84ca7cce28ae5a9a2b7c0f7446fa472c84611431d216d` |
 | schemas/silent-orbit-config.v1.schema.json | 1480 | `aafa6d40b24c975cd18f542d8cc44254a3f4147683dcc0515526519ae94fb77c` |
 | schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
 | schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
@@ -151,39 +166,47 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
 | scripts/lib/generator-contracts.mjs | 22075 | `5cdf4575bb62baa87f7e50d56565539aae3e787177f2aa84487478efd0401ff3` |
 | scripts/lib/library-analyzer.mjs | 29499 | `d1219efd12869f1b8d16207b75109f12aa00ac0372892fb676ace9772533cda6` |
+| scripts/lib/npx-skills-source-managed-evaluation.mjs | 16376 | `e867c0f8894bcc528514d226c00486eaf3d7f930032677d05e379d1cf79648bc` |
 | scripts/lib/phase1e-alpha.mjs | 4940 | `5f8bec165639b58e001f26339398187cb685630f78d2bf99d5fff8b38f35fb0f` |
 | scripts/lib/silent-orbit-project.mjs | 30265 | `34b1c10711afa0bb28a4a6b2255df35e95fc784ab9daf0e4898742621ea5b5ac` |
 | scripts/lib/skill-health.mjs | 23041 | `e29b50dbecb1c942c8148d6a290cdd3f39b1aeaa2cd420f0cf27639f765fa46b` |
+| scripts/lib/skill-management.mjs | 73000 | `8d069aabb2587fea808599b7adc343c88e3de7ac83b9f6f25716b278ef15a9a8` |
 | scripts/lib/source-adapters.mjs | 28516 | `7a8920411cec12f0461cec144d9738a5b0a3b47d6c8e90ee0abe1e050469d4fe` |
+| scripts/lib/trusted-source-maintenance.mjs | 27154 | `29b4df72efea69f60f51585ec91ec3af301ea9643d30dd4b1d3b4252bc2f49c0` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
-| scripts/public-release-config.mjs | 6565 | `a253174c4012705ba25d961edf80967e84eae6c528d9e165d518a73a4d148bbf` |
-| scripts/silent-orbit.mjs | 6000 | `a20bd88234ad4f36bed946022a46d2c04a81a0c1a89f51d99df35c042385f94d` |
+| scripts/public-release-config.mjs | 7096 | `86a10a948b80146ab044e10e9474779b178769da5a0e6f05829a4b5056e63fc8` |
+| scripts/silent-orbit.mjs | 11189 | `b4d5787f6c1ef938c5167a69ca839b813e0ba9e056d64e650c891735fe0ced5f` |
 | scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
 | scripts/sync-data.mjs | 5529 | `a681c9f13e66040ab1f1754bd983fb1425a0d25aa5fb5bb82f93e89bb1f562d7` |
-| scripts/tests/audit-skill-cosmos.test.mjs | 2815 | `402526b9d78d8836a3dd93e691a27f52ed4da14175349a6a4123b1c2ab0a56a9` |
-| scripts/tests/build-skill-cosmos.test.mjs | 3130 | `6caf0f86fe9b9a168da63dd80b5ccf3977417d05ce3e64b10f0a8e3eeca6b785` |
+| scripts/tests/audit-skill-cosmos.test.mjs | 2839 | `99581f194daeb72d20a1948f2bc0c169f2385960e797c6ee21f1984400e0b751` |
+| scripts/tests/build-skill-cosmos.test.mjs | 3154 | `3a996698e9a096b104f63c357df61720f26b5ec60134953848d75617b7a844ba` |
 | scripts/tests/font-assets.test.mjs | 2230 | `c2d8c72b096cd2eaf2d3c2955f4465e2e367d70bf44c680793b9331e82802354` |
 | scripts/tests/generator-core.test.mjs | 4082 | `72a0ad68f2e5f09f269dfa20820621d43fdb43ea03a41ad6624c20119800162b` |
 | scripts/tests/i18n-metadata.test.mjs | 5651 | `48d72ad4d65ae1e08913b70a89f2b3ae08103fd7aaf71746c69236d5fc6ced53` |
 | scripts/tests/library-analyzer.test.mjs | 7344 | `f658020241a1e99015a438696df47a6e1637043b722818d88fb559372f0e8094` |
+| scripts/tests/manage-skill-cosmos.test.mjs | 3801 | `024981d53409bcb1decac2908b35d10bb1e38150f267335ed6c393e1f7255740` |
+| scripts/tests/npx-skills-source-managed-evaluation.test.mjs | 22142 | `0af8b44af600ec39ad9824740bae3702b8b5bc021b184da84f3c8ea26f8ff300` |
 | scripts/tests/orbit-layout.test.mjs | 12962 | `376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
 | scripts/tests/phase1e-alpha.test.mjs | 6446 | `f329f04004dff2a6ea382fa369281e9e6efa21bde21ba5963bd2b01b404e99e7` |
 | scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
 | scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
-| scripts/tests/silent-orbit-cli.test.mjs | 11326 | `46418e7f4659454cfcb2caaa0bf3c6a414e33fde6fa8865b47e58e107bad950a` |
-| scripts/tests/site-release.test.mjs | 6020 | `2d890a040fffc0c407efde1d21a5db7969c9a8fa523817a6a0bfe1091b5da3af` |
+| scripts/tests/silent-orbit-cli.test.mjs | 11384 | `62c73555ecf799e742512559a8d4284b0d866aada36336619dc02b8b7504a33c` |
+| scripts/tests/site-release.test.mjs | 7997 | `c4de58188268d5fe6f05c3aee05c5fabbf5fbe75b95be64d1777c912c11c3ed5` |
 | scripts/tests/skill-health.test.mjs | 6006 | `56e10c60260711d2bb1f6015f01b7f778720c8ddb0bbcd950e81228b5040158e` |
+| scripts/tests/skill-management-cli.test.mjs | 7947 | `5b15761124e0fc6f7f0320fcc937a603069ce6afe4e5bad7062d655a3213c59a` |
+| scripts/tests/skill-management.test.mjs | 20213 | `f6a6dae85a20803629581cfbe7988d908c6f2ec06dbb940dc2f6f4404a2869ea` |
 | scripts/tests/skill-search.test.mjs | 4809 | `591d27b5d91119dbf24b575edf2fa363136d314462bbb2702aa3bf5b99babe2b` |
 | scripts/tests/source-adapters.test.mjs | 12074 | `5669c96c849de84811df1a6d1526380371abd6359c3518b543839d73c7089fc0` |
-| scripts/tests/source-of-truth-boundary.test.mjs | 3384 | `b25a2ef810fd344e74d5e69ccf35043ee9f62d14b494d7a41a41542fbf6cd5df` |
+| scripts/tests/source-of-truth-boundary.test.mjs | 3953 | `1e520d2189adade629e9c0541b8bf0f349dd1d53bc8ca250e8836a2dac280f0f` |
 | scripts/tests/sync-data.test.mjs | 948 | `b388085933d62c89e70e9772ccf041597df451715b1257b9bb3be935e5407451` |
+| scripts/tests/trusted-source-maintenance.test.mjs | 12938 | `897b536aa270c9566ec87fa44da081b27b86cc842cc2137bac47cb4372e55df3` |
 | scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
-| scripts/validate-generator-contracts.mjs | 3050 | `d47471a633bf32f3fe3d9fabf72ecb16249bd4de7b5be5f0bc31a22cbbc0e259` |
+| scripts/validate-generator-contracts.mjs | 3165 | `3641f321c74723f5b36db2ce3f7e63ad144685bd91decaec0def8cdce1a11dcb` |
 | scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
-| scripts/validate-public-release.mjs | 18079 | `a0793cc6f88c9c3111ac5c02a91ab0a5515db65a62f3fb85c86a0ae92b9f6f86` |
-| scripts/validate-readme.mjs | 5357 | `83992bc73eb8622d9cb534ed8ebabab4bc0e2112714d12543f9d4a82e7415639` |
+| scripts/validate-public-release.mjs | 18919 | `09c296c4c73975489219989d2db3d6600287bec1e15563d99d434115c7bf8604` |
+| scripts/validate-readme.mjs | 5500 | `ba488f4c46e98de6820c9aa4f2069db7d94376fd74052d95f6615acd230098cd` |
 | skills/audit-skill-cosmos/SKILL.md | 2834 | `3a03417d05342c3d919ce525076d51456867bcf4c4d8c2219e7619347b93e70d` |
 | skills/audit-skill-cosmos/agents/openai.yaml | 251 | `34583d764cc6efff15dd21bbc0d663a751b36c2e3b83a017ea32766b91fa493c` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
@@ -191,6 +214,13 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | skills/build-skill-cosmos/references/cli-contract.md | 3061 | `2e69edef8a8bb081a24cfec0fc8b3f9d0a3f351d5d7b38416389a7dfb5fe8dc3` |
 | skills/build-skill-cosmos/references/project-schema.md | 3950 | `08a6df6630d629edbd43b6ba4444b28954d0a673c375b8b1db5dc0543ea2e6e8` |
 | skills/build-skill-cosmos/references/review-contract.md | 2936 | `61e6b07fd05cb6b5058b600ec9b283d1452030a1aaa20a21c91c017585a55c04` |
+| skills/manage-skill-cosmos/SKILL.md | 4432 | `ab89374776c5c9f683e4bd9b0ab88540a576841af16d1659ef4684c3a916a90a` |
+| skills/manage-skill-cosmos/agents/openai.yaml | 240 | `aea0183359f4bbf16f0e1f60baaeefbe3edf0e7d1f14ba54a1c63b00f70f8ec3` |
+| skills/skills-library-maintenance/SKILL.md | 7942 | `9b2a16499e4280b50bd551258a96c4e13a884b4c175e943c917481ad01addd7a` |
+| skills/skills-library-maintenance/agents/openai.yaml | 283 | `52a12dffa7204232623c88711077379be01a5b8b0ebf42c94ab3c8c7b62e82ad` |
+| skills/skills-library-maintenance/references/data-contract.md | 4107 | `bb1d381739428f12caaa2ff6cacb7ea60b471e36cea00d7d9509168193c30ccf` |
+| skills/skills-library-maintenance/references/system-contract.md | 6377 | `eb3edaf88bceee2215b0258b303fa58ad91490231c366c9ed4c7cb947695965f` |
+| skills/skills-library-maintenance/scripts/skills-library.mjs | 62873 | `5c5c5c4d84d71be0f2da9e98f39d03584c4303b721b7b75a3c29d1439b4d7b1a` |
 | src/App.tsx | 27428 | `2d3f61a639726b77803b0ac3787c680e6f81f0b063ed07ce05e452d03b0ac03a` |
 | src/components/CosmosAsset.tsx | 531 | `1721d7f182ef2a8ed7960e018eae66ec27601dccf1948c44948c559ea7b0d492` |
 | src/components/badges/StarSkillMarker.tsx | 415 | `5d83c913966ce34891427bf5cc303e9cf3f74612aff03cf49e31c52cbcf803fb` |
@@ -224,7 +254,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/components/orbit/SkillAsteroid.tsx | 1231 | `fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857` |
 | src/core/contracts.ts | 8133 | `242e00a30065d9c4d66f56dcb3f9c527c56b0eeebad67a00e1dbe30af2136fa7` |
 | src/data/indexes.ts | 3157 | `0018933bc60789de3c7fa7280908a82b1300018e1b07015bc4521d7f86bc8ac4` |
-| src/generated/data.generated.ts | 392599 | `d475d493dc5876270be8b438ec7ef38695dbcced900c63b8cf922fd658c73e76` |
+| src/generated/data.generated.ts | 392599 | `da31649e0117fd4667b66af0405aab8bad760baed2ddc107af0d31f7babe34d2` |
 | src/hooks/useOrbitSurface.ts | 4573 | `75fc2964bbc196e8e1f953fc31041dfe7f31a9f71fd2bb065378f1b64c10a148` |
 | src/hooks/usePersonalOutcomes.ts | 4166 | `b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d` |
 | src/i18n/LocaleContext.tsx | 7202 | `0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51` |

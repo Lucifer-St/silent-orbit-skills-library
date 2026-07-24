@@ -32,7 +32,7 @@ export const projectConfig = {
 export const inventorySnapshot = {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "generatedAt": "2026-07-24T12:00:00.000Z",
   "privacy": "sanitized",
   "sources": [
     {
@@ -1634,13 +1634,13 @@ export const inventorySnapshot = {
     "warnings": 0,
     "errors": 0
   },
-  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:7113f8ff4224"
+  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4ae09aa6ca94"
 } as InventorySnapshotV1;
 
 export const librarySnapshot = {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "generatedAt": "2026-07-24T12:00:00.000Z",
   "skills": [
     {
       "id": "skill:personal-deck-aihot:7b3a602654bc",
@@ -8762,7 +8762,7 @@ export const librarySnapshot = {
   ],
   "maintenanceStatus": {
     "schemaVersion": 1,
-    "snapshotDate": "2026-07-17",
+    "snapshotDate": "2026-07-24",
     "privacy": "sanitized",
     "catalogSkills": 142,
     "publicGlobalSkills": 22,
@@ -8777,7 +8777,7 @@ export const librarySnapshot = {
       {
         "id": "source-managed-global",
         "state": "current",
-        "checkedSources": 1,
+        "checkedSources": 2,
         "execution": "local-codex"
       },
       {
@@ -8796,16 +8796,16 @@ export const librarySnapshot = {
       "en-US": "Use $skills-library-maintenance to check all Skill updates and show the plan before changing anything."
     }
   },
-  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:566d6debc586"
+  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:511941a8e84a"
 } as LibrarySnapshotV1;
 
 export const siteManifest = {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "generatedAt": "2026-07-24T12:00:00.000Z",
   "snapshotRefs": {
-    "inventory": "inventory-snapshot:schemaversion-1-projectid-silent-orb:7113f8ff4224",
-    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:566d6debc586"
+    "inventory": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4ae09aa6ca94",
+    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:511941a8e84a"
   },
   "renderer": {
     "theme": "silent-orbit",
@@ -8831,7 +8831,7 @@ export const siteManifest = {
 } as SiteManifestV1;
 
 export const appData = {
-  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "generatedAt": "2026-07-24T12:00:00.000Z",
   "sourceDir": "data/library.snapshot.json",
   "skills": [
     {
@@ -12119,7 +12119,7 @@ export const appData = {
   ],
   "maintenanceStatus": {
     "schemaVersion": 1,
-    "snapshotDate": "2026-07-17",
+    "snapshotDate": "2026-07-24",
     "privacy": "sanitized",
     "catalogSkills": 142,
     "publicGlobalSkills": 22,
@@ -12134,7 +12134,7 @@ export const appData = {
       {
         "id": "source-managed-global",
         "state": "current",
-        "checkedSources": 1,
+        "checkedSources": 2,
         "execution": "local-codex"
       },
       {
