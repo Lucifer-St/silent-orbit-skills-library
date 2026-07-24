@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/management-plan.v1.schema.json",
+  "title": "ManagementPlanV1",
+  "description": "Deterministic, path-independent guarded Skill management plan with exact confirmation, bounded targets, backup, verification, and rollback.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "planId", "provider", "operation", "requestDigest", "capability", "execution", "executable", "blockers", "targets", "preconditions", "impact", "backup", "steps", "rollback", "changes", "confirmation"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "planId": { "$ref": "#/$defs/id" },
+    "provider": { "$ref": "#/$defs/provider" },
+    "operation": { "$ref": "#/$defs/operation" },
+    "requestDigest": { "$ref": "#/$defs/digest" },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capabilityId", "digest", "state", "evidenceIds"],
+      "properties": {
+        "capabilityId": { "$ref": "#/$defs/id" },
+        "digest": { "$ref": "#/$defs/digest" },
+        "state": { "$ref": "#/$defs/state" },
+        "evidenceIds": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "execution": { "$ref": "#/$defs/execution" },
+    "executable": { "type": "boolean" },
+    "blockers": { "$ref": "#/$defs/idArray" },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rootId", "relativePath", "expectedDigest", "expectedAfterDigest"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "rootId": { "$ref": "#/$defs/id" },
+          "relativePath": { "$ref": "#/$defs/portablePath" },
+          "expectedDigest": { "$ref": "#/$defs/digestOrUnknown" },
+          "expectedAfterDigest": { "$ref": "#/$defs/digestOrUnknown" }
+        }
+      }
+    },
+    "preconditions": { "type": "array", "minItems": 3, "items": { "type": "object" } },
+    "impact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "rootIds", "targetIds", "changeCount", "writes", "removals", "executionMode", "managerOwnedMutation"],
+      "properties": {
+        "scope": { "const": "declared-targets-only" },
+        "rootIds": { "$ref": "#/$defs/idArray" },
+        "targetIds": { "$ref": "#/$defs/idArray" },
+        "changeCount": { "type": "integer", "minimum": 0 },
+        "writes": { "type": "integer", "minimum": 0 },
+        "removals": { "type": "integer", "minimum": 0 },
+        "executionMode": { "enum": ["core-writer", "trusted-external-manager"] },
+        "managerOwnedMutation": { "type": "boolean" }
+      }
+    },
+    "backup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "strategy", "targetIds"],
+      "properties": {
+        "required": { "const": true },
+        "strategy": { "const": "copy-before-apply" },
+        "targetIds": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["order", "phase", "policy"],
+        "properties": {
+          "order": { "type": "integer", "minimum": 1, "maximum": 7 },
+          "phase": { "enum": ["precondition", "backup", "apply", "rescan", "verify", "rollback", "receipt"] },
+          "policy": { "enum": ["required", "on-failure"] }
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "strategy", "targetIds"],
+      "properties": {
+        "required": { "const": true },
+        "strategy": { "const": "restore-all-targets-and-verify-pre-digests" },
+        "targetIds": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "sequence", "targetId", "action", "path"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "sequence": { "type": "integer", "minimum": 1 },
+          "targetId": { "$ref": "#/$defs/id" },
+          "action": { "enum": ["ensure-directory", "write-file", "remove-path", "remove-target"] },
+          "path": {
+            "anyOf": [
+              { "const": "." },
+              { "$ref": "#/$defs/portablePath" }
+            ]
+          },
+          "contentBase64": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "mode", "summary", "token"],
+      "properties": {
+        "required": { "const": true },
+        "mode": { "const": "exact-token" },
+        "summary": { "type": "string", "minLength": 1 },
+        "token": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "idArray": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "digestOrUnknown": { "anyOf": [{ "$ref": "#/$defs/digest" }, { "enum": ["unknown", "provider-verified"] }] },
+    "portablePath": {
+      "type": "string",
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[^/]+(?:/[^/]+)*$"
+    },
+    "operation": { "enum": ["install", "update", "freeze", "remove", "restore"] },
+    "state": { "enum": ["supported", "unsupported", "unknown"] },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "manager", "nativeTransactionGuarantee", "exceptions", "evidence"],
+      "properties": {
+        "mode": { "enum": ["core-writer", "trusted-external-manager"] },
+        "manager": {
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "version", "registryIntegrity", "cliSha256", "packageJsonSha256"],
+              "properties": {
+                "name": { "const": "skills" },
+                "version": { "type": "string", "minLength": 1 },
+                "registryIntegrity": { "type": "string", "minLength": 1 },
+                "cliSha256": { "$ref": "#/$defs/digest" },
+                "packageJsonSha256": { "$ref": "#/$defs/digest" }
+              }
+            }
+          ]
+        },
+        "nativeTransactionGuarantee": { "type": "boolean" },
+        "exceptions": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "evidence": { "type": "object" }
+      }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

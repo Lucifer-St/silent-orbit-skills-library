@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manage Skill Cosmos"
+  short_description: "Coordinate trusted Skill updates and recovery"
+  default_prompt: "Use $manage-skill-cosmos to review a trusted source-managed update and explain its recovery evidence."

@@ -1,6 +1,6 @@
 {
   "name": "silent-orbit-skills-library",
-  "version": "0.10.0-beta.1",
+  "version": "0.11.0-beta.4",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -12,14 +12,29 @@
     "scripts/lib/generator-contracts.mjs",
     "scripts/lib/source-adapters.mjs",
     "scripts/lib/skill-health.mjs",
+    "scripts/lib/skill-management.mjs",
+    "scripts/lib/npx-skills-source-managed-evaluation.mjs",
+    "scripts/lib/trusted-source-maintenance.mjs",
     "scripts/lib/library-analyzer.mjs",
     "scripts/lib/silent-orbit-project.mjs",
     "schemas",
     "templates/reference-index-v1",
     "GENERATOR_QUICKSTART.md",
     "GENERATOR_QUICKSTART.zh-CN.md",
+    "INSTALLATION_AND_UPGRADE.md",
+    "INSTALLATION_AND_UPGRADE.zh-CN.md",
+    "VERSIONING_AND_MIGRATIONS.md",
+    "VERSIONING_AND_MIGRATIONS.zh-CN.md",
+    "PRIVACY.md",
+    "PRIVACY.zh-CN.md",
+    "RECOVERY.md",
+    "RECOVERY.zh-CN.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
     "skills/build-skill-cosmos",
-    "skills/audit-skill-cosmos"
+    "skills/audit-skill-cosmos",
+    "skills/manage-skill-cosmos",
+    "skills/skills-library-maintenance"
   ],
   "scripts": {
     "sync:data": "node scripts/sync-data.mjs",
@@ -35,13 +50,14 @@
     "test:contracts": "node --test scripts/tests/generator-core.test.mjs",
     "test:adapters": "node --test scripts/tests/source-adapters.test.mjs",
     "test:health": "node --test scripts/tests/skill-health.test.mjs",
+    "test:management": "node --test scripts/tests/skill-management.test.mjs scripts/tests/skill-management-cli.test.mjs scripts/tests/npx-skills-source-managed-evaluation.test.mjs scripts/tests/trusted-source-maintenance.test.mjs scripts/tests/manage-skill-cosmos.test.mjs",
     "test:analyzer": "node --test scripts/tests/library-analyzer.test.mjs",
     "test:cli": "node --test scripts/tests/silent-orbit-cli.test.mjs",
     "test:agent-skill": "node --test scripts/tests/build-skill-cosmos.test.mjs",
     "test:audit-skill": "node --test scripts/tests/audit-skill-cosmos.test.mjs",
     "test:boundary": "node --test scripts/tests/source-of-truth-boundary.test.mjs",
     "test:alpha": "node --test scripts/tests/phase1e-alpha.test.mjs",
-    "test:mvp": "npm run test:contracts && npm run test:adapters && npm run test:health && npm run test:analyzer && npm run test:cli && npm run test:agent-skill && npm run test:audit-skill && npm run test:boundary && npm run test:alpha && npm run test:orbit && npm run test:search && npm run test:outcomes && npm run test:fonts && npm run test:metadata && npm run test:sync && npm run test:public-data && npm run test:maintenance && npm run test:site-release",
+    "test:mvp": "npm run test:contracts && npm run test:adapters && npm run test:health && npm run test:management && npm run test:analyzer && npm run test:cli && npm run test:agent-skill && npm run test:audit-skill && npm run test:boundary && npm run test:alpha && npm run test:orbit && npm run test:search && npm run test:outcomes && npm run test:fonts && npm run test:metadata && npm run test:sync && npm run test:public-data && npm run test:maintenance && npm run test:site-release",
     "validate:assets": "node scripts/validate-public-assets.mjs --root .",
     "validate:data": "node scripts/validate-data.mjs",
     "validate:contracts": "node scripts/validate-generator-contracts.mjs",
@@ -57,14 +73,15 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^7.0.0",
+    "lucide-react": "^0.468.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "lucide-react": "^0.468.0"
+    "vite": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "skills": "1.5.20",
     "typescript": "^5.8.0"
   }
 }

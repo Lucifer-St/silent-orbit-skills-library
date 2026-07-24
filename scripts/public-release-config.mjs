@@ -20,6 +20,9 @@ export const publicSourceFiles = Object.freeze([
   "docs/architecture/GENERATOR_PHASE1E.md",
   "docs/architecture/GENERATOR_PHASE2B.md",
   "docs/architecture/GENERATOR_PHASE4.md",
+  "docs/architecture/GENERATOR_PHASE5A.md",
+  "docs/architecture/GENERATOR_PHASE5B.md",
+  "docs/architecture/GENERATOR_PHASE5C.md",
   "fixtures/phase4/source-managed.source-import.json",
   "fixtures/phase4/external-provider.source-import.json",
   "index.html",
@@ -59,6 +62,11 @@ export const publicScriptFiles = Object.freeze([
   "tests/source-of-truth-boundary.test.mjs",
   "tests/source-adapters.test.mjs",
   "tests/skill-health.test.mjs",
+  "tests/skill-management.test.mjs",
+  "tests/skill-management-cli.test.mjs",
+  "tests/npx-skills-source-managed-evaluation.test.mjs",
+  "tests/trusted-source-maintenance.test.mjs",
+  "tests/manage-skill-cosmos.test.mjs",
   "tests/library-analyzer.test.mjs",
   "tests/silent-orbit-cli.test.mjs",
   "tests/build-skill-cosmos.test.mjs",
@@ -75,6 +83,9 @@ export const publicScriptFiles = Object.freeze([
   "lib/generator-contracts.mjs",
   "lib/source-adapters.mjs",
   "lib/skill-health.mjs",
+  "lib/skill-management.mjs",
+  "lib/npx-skills-source-managed-evaluation.mjs",
+  "lib/trusted-source-maintenance.mjs",
   "lib/library-analyzer.mjs",
   "lib/silent-orbit-project.mjs",
   "lib/phase1e-alpha.mjs",
@@ -85,6 +96,8 @@ export const publicScriptFiles = Object.freeze([
 export const publicSkillDirectories = Object.freeze([
   "build-skill-cosmos",
   "audit-skill-cosmos",
+  "manage-skill-cosmos",
+  "skills-library-maintenance",
 ]);
 
 export const extraVisualAssetProvenance = Object.freeze({

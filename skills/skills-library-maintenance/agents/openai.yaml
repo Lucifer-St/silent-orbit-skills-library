@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skills Library Maintenance"
+  short_description: "Scan, reconcile, and maintain the Skills Library"
+  default_prompt: "Use $skills-library-maintenance to scan the live Skill surface, plan any changes, and safely synchronize the Web Library and Obsidian."

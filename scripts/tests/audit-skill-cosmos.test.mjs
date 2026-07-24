@@ -10,7 +10,7 @@ const privateSkillDir = path.resolve(projectDir, "..", "..", "skills", "audit-sk
 const skillDir = fs.existsSync(publicSkillDir) ? publicSkillDir : privateSkillDir;
 
 function read(relativePath) {
-  return fs.readFileSync(path.join(skillDir, ...relativePath.split("/")), "utf8");
+  return fs.readFileSync(path.join(skillDir, ...relativePath.split("/")), "utf8").replace(/\r\n?/g, "\n");
 }
 
 function collectFiles(root, relative = "") {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-07-17",
+  "snapshotDate": "2026-07-24",
   "privacy": "sanitized",
   "catalogSkills": 142,
   "publicGlobalSkills": 22,
@@ -15,7 +15,7 @@
     {
       "id": "source-managed-global",
       "state": "current",
-      "checkedSources": 1,
+      "checkedSources": 2,
       "execution": "local-codex"
     },
     {

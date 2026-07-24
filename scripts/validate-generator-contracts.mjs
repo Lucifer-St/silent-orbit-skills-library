@@ -20,6 +20,9 @@ const schemaFiles = [
   "analysis-overrides.v1.schema.json",
   "analysis-report.v1.schema.json",
   "health-report.v1.schema.json",
+  "provider-capability.v1.schema.json",
+  "management-plan.v1.schema.json",
+  "management-receipt.v1.schema.json",
   "phase1e-alpha-receipt.v1.schema.json",
 ];
 for (const fileName of schemaFiles) {

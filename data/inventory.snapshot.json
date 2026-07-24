@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-17T12:00:00.000Z",
+  "generatedAt": "2026-07-24T12:00:00.000Z",
   "privacy": "sanitized",
   "sources": [
     {
@@ -1603,5 +1603,5 @@
     "warnings": 0,
     "errors": 0
   },
-  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:7113f8ff4224"
+  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4ae09aa6ca94"
 }

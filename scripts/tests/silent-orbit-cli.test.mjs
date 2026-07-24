@@ -35,10 +35,10 @@ function sourceImport(skills) {
   };
 }
 
-test("CLI entry point exposes the expected v0.2 commands", () => {
+test("CLI entry point exposes the expected v0.4 commands", () => {
   const help = silentOrbitHelpText();
-  for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
-  assert.equal(silentOrbitVersion, "0.2.0");
+  for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit", "manage plan", "manage apply", "manage check-and-update"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
+  assert.equal(silentOrbitVersion, "0.4.0");
 });
 
 function fileSnapshot(root, relative = "") {
