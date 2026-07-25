@@ -57,8 +57,9 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
 function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.11.0-beta.4",
-    "silent-orbit-skills-library-0.11.0-beta.4.tgz",
+    "v0.11.0-beta.5",
+    "silent-orbit-skills-library-0.11.0-beta.5.tgz",
+    "silent-orbit-skills-library-0\\.11\\.0-beta\\.5\\.tgz$",
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",
@@ -75,7 +76,7 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     "skills-library-maintenance",
     "--global --copy -y",
     "$skillSource = (Resolve-Path -LiteralPath",
-    "npx skills add $skillSource",
+    "npx skills@1.5.20 add $skillSource",
     "review-required",
     "local-only",
     "44-Skill",
@@ -87,7 +88,7 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     /\bnpm\s+publish\b/i,
     /\bnpm\s+install\s+(?:--global|-g)\s+silent-orbit-skills-library(?:@|\s|$)/im,
     /\bnetlify\s+deploy(?:\s+--prod|\s+--dir|\s+--alias|$)/im,
-    /\bnpx\s+skills\s+add\s+\.\\node_modules\\silent-orbit-skills-library\b/im,
+    /\bnpx\s+skills(?:@1\.5\.20)?\s+add\s+\.\\node_modules\\silent-orbit-skills-library\b/im,
   ];
   if (prohibitedCommands.some((pattern) => pattern.test(content))) {
     throw new Error(`${fileName} contains a prohibited registry-publish, registry-install, or direct-deploy command.`);

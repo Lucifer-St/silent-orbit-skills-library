@@ -9,7 +9,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   createTrustedSourceBatchPlanV1,
   executeTrustedSourceBatchV1,
-} from "../../../work/agent-os-index/scripts/lib/trusted-source-maintenance.mjs";
+} from "./lib/trusted-source-maintenance.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const skillDir = path.dirname(scriptDir);
@@ -1344,6 +1344,10 @@ function printHelp() {
 
 async function main() {
   const parsed = parseArgs(process.argv.slice(2));
+  if (["help", "--help", "-h"].includes(parsed.command)) {
+    console.log(printHelp());
+    return;
+  }
   const config = resolveConfig(parsed.options);
   let result;
   switch (parsed.command) {
@@ -1385,9 +1389,6 @@ async function main() {
       else if (!["succeeded"].includes(result.receipt.status)) process.exitCode = 1;
       break;
     }
-    case "help":
-    case "--help":
-    case "-h": console.log(printHelp()); return;
     default: throw new Error(`Unknown command: ${parsed.command}\n\n${printHelp()}`);
   }
   console.log(JSON.stringify(result, null, 2));

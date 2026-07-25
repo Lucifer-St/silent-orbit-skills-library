@@ -125,11 +125,11 @@ The corresponding license copies are included beside each self-hosted font.
 | lru-cache | 5.1.1 | ISC | https://www.npmjs.com/package/lru-cache/v/5.1.1 |
 | lucide-react | 0.468.0 | ISC | https://www.npmjs.com/package/lucide-react/v/0.468.0 |
 | ms | 2.1.3 | MIT | https://www.npmjs.com/package/ms/v/2.1.3 |
-| nanoid | 3.3.15 | MIT | https://www.npmjs.com/package/nanoid/v/3.3.15 |
+| nanoid | 3.3.16 | MIT | https://www.npmjs.com/package/nanoid/v/3.3.16 |
 | node-releases | 2.0.50 | MIT | https://www.npmjs.com/package/node-releases/v/2.0.50 |
 | picocolors | 1.1.1 | ISC | https://www.npmjs.com/package/picocolors/v/1.1.1 |
 | picomatch | 4.0.5 | MIT | https://www.npmjs.com/package/picomatch/v/4.0.5 |
-| postcss | 8.5.16 | MIT | https://www.npmjs.com/package/postcss/v/8.5.16 |
+| postcss | 8.5.23 | MIT | https://www.npmjs.com/package/postcss/v/8.5.23 |
 | react | 19.2.7 | MIT | https://www.npmjs.com/package/react/v/19.2.7 |
 | react-dom | 19.2.7 | MIT | https://www.npmjs.com/package/react-dom/v/19.2.7 |
 | react-refresh | 0.18.0 | MIT | https://www.npmjs.com/package/react-refresh/v/0.18.0 |

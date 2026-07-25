@@ -1,6 +1,6 @@
 # 安装与升级
 
-Silent Orbit `v0.11.0-beta.4` 只通过 GitHub Pre-release 分发，不得按 package
+Silent Orbit `v0.11.0-beta.5` 只通过 GitHub Pre-release 分发，不得按 package
 名称从 npm registry 安装。
 
 ## 要求
@@ -17,14 +17,14 @@ SHA-256 校验与首次生成请按 `GENERATOR_QUICKSTART.zh-CN.md` 执行。
 项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 npx silent-orbit --version
 ```
 
 已有全局文件安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 silent-orbit --version
 ```
 
@@ -37,15 +37,20 @@ tarball 包含 `skills-library-maintenance` 与 `manage-skill-cosmos`。写入�
 Release 内和现有安装中的 `SKILL.md`。如果现有差异不能追溯到已知 Release 或已复核
 source commit，停止并处理冲突。
 
+全局交接必须使用 beta.5 或更高版本。beta.4 的 Skill 被复制后仍保留依赖 package
+root 的 Core import，仅作为失败证据保留；不得用 beta.4 安装全局 maintenance host。
+
 在临时 consumer project 安装 tarball 后：
 
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
-npx skills list --global --agent codex --json
+npx skills@1.5.20 add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+$installedMaintenance = Join-Path $HOME '.agents\skills\skills-library-maintenance'
+node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
+npx skills@1.5.20 list --global --agent codex --json
 ```
 
 Windows 必须使用绝对路径。把写入前 folder backup 和 Release checksum 保存在私有
@@ -58,7 +63,8 @@ handoff receipt 中。安装命令可能替换同名 Skill，因此先审阅和�
 
 1. 重新读取两个已安装 `SKILL.md`；
 2. 比较安装目录和已验证 Release 的 folder hashes；
-3. 运行 `skills-library-maintenance scan` 与 `plan`；
+3. 要求上述 copied maintenance CLI startup 通过，再运行
+   `skills-library-maintenance scan` 与 `plan`；
 4. 完成项目 `doctor`、`audit` 与一次确定性 sample generation；
 5. 继续阻止删除、freeze、Plugin/System mutation 与未知来源 mutation。
 

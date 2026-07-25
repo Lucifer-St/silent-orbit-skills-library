@@ -1,6 +1,6 @@
 # Installation and upgrade
 
-Silent Orbit `v0.11.0-beta.4` is distributed only through the GitHub
+Silent Orbit `v0.11.0-beta.5` is distributed only through the GitHub
 Pre-release. Do not install it by package name from the npm registry.
 
 ## Requirements
@@ -18,14 +18,14 @@ first generation.
 For a project-local installation:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 npx silent-orbit --version
 ```
 
 For an existing global file-based installation:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 silent-orbit --version
 ```
 
@@ -40,15 +40,21 @@ Review their `SKILL.md` files and any existing installed copies before writing.
 If the existing copy contains changes that cannot be traced to a known release
 or reviewed source commit, stop and reconcile the conflict.
 
+Use beta.5 or newer for this global handoff. Beta.4 retained a package-root
+relative Core import after the Skill was copied and is preserved only as
+failure evidence; do not use beta.4 to install the global maintenance host.
+
 After installing the tarball in a temporary consumer project:
 
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
-npx skills list --global --agent codex --json
+npx skills@1.5.20 add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+$installedMaintenance = Join-Path $HOME '.agents\skills\skills-library-maintenance'
+node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
+npx skills@1.5.20 list --global --agent codex --json
 ```
 
 Use an absolute path on Windows. Keep the pre-write folder backup and release
@@ -63,7 +69,8 @@ check-and-update path.
 
 1. Re-read the installed `SKILL.md` files.
 2. Compare installed folder hashes with the verified release copy.
-3. Run `skills-library-maintenance scan` and `plan`.
+3. Require the copied maintenance CLI startup above, then run
+   `skills-library-maintenance scan` and `plan`.
 4. Run project `doctor`, `audit`, and a deterministic sample generation.
 5. Keep deletion, freeze, Plugin/System mutation, and unknown-source mutation
    blocked.

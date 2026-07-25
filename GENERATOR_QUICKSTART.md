@@ -1,21 +1,21 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.11.0-beta.4` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.11.0-beta.5` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
 
 ## 1. Download and verify the artifact
 
 Requirements: Node.js 24 and npm.
 
-Download these two assets from the [`v0.11.0-beta.4` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.4):
+Download these two assets from the [`v0.11.0-beta.5` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.5):
 
-- `silent-orbit-skills-library-0.11.0-beta.4.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.5.tgz`
 - `SHA256SUMS.txt`
 
 In PowerShell, keep both files in the same directory and verify the tarball before installing it:
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.4\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.4.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.5\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.5.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -24,18 +24,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 silent-orbit --version
 ```
 
-The package/repository release version is `0.11.0-beta.4`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
+The package/repository release version is `0.11.0-beta.5`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional Agent Skills
 
@@ -44,11 +44,11 @@ Review every bundled Skill before installing it. `build-skill-cosmos` is the thi
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill build-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill build-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\audit-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --copy -y
 ```
 
 `Resolve-Path` is required on Windows because the Skills installer expects an absolute local source path. Install only the project Skills you need, or omit this step if you only need the CLI.
@@ -57,11 +57,14 @@ The release also contains the `skills-library-maintenance` host. A global
 handoff replaces an existing named copy, so first compare it with the verified
 release and preserve a complete folder backup. If the existing difference is
 not traceable to a known release or reviewed source commit, stop.
+Use beta.5 or newer: beta.4 is preserved as the failed copy-install candidate.
 
 ```powershell
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
-npx skills add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+$installedMaintenance = Join-Path $HOME '.agents\skills\skills-library-maintenance'
+node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
 ```
 
 The install is not approval to run `npx skills check`, `update`, or `upgrade`;
