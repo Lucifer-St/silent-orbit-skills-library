@@ -105,7 +105,7 @@ Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍�
 - [Security policy](./SECURITY.md)
 - [贡献政策](./CONTRIBUTING.md)
 
-`v0.11.0-beta.4` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
+`v0.11.0-beta.5` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
 这是 GitHub Pre-release，不是 `v1.0.0`；Production authority 仍是通过必需
 `release-gate` 的 Public `main`。
 

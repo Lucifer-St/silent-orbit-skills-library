@@ -1,21 +1,21 @@
 # Silent Orbit Public Generator 快速开始
 
-本指南从 GitHub Pre-release 安装 `v0.11.0-beta.4` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
+本指南从 GitHub Pre-release 安装 `v0.11.0-beta.5` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
 
 ## 1. 下载并校验产物
 
 环境要求：Node.js 24 和 npm。
 
-从 [`v0.11.0-beta.4` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.4) 下载：
+从 [`v0.11.0-beta.5` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.5) 下载：
 
-- `silent-orbit-skills-library-0.11.0-beta.4.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.5.tgz`
 - `SHA256SUMS.txt`
 
 把两个文件放在同一目录，使用 PowerShell 在安装前校验 tarball：
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.4\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.4.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.5\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.5.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -24,18 +24,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 优先选择项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 npx silent-orbit --version
 ```
 
 只有确实需要把 `silent-orbit` 放进用户 PATH 时才使用全局安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.4.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
 silent-orbit --version
 ```
 
-package / repository release version 是 `0.11.0-beta.4`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
+package / repository release version 是 `0.11.0-beta.5`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
 
 ## 3. 可选 Agent Skills
 
@@ -47,11 +47,11 @@ guarded management plan。这些项目级 Skills 不会自行发现或修改真�
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill build-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill build-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\audit-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --copy -y
 ```
 
 Windows 上必须先用 `Resolve-Path` 得到绝对本地来源路径，否则 Skills installer 会把相对路径误判为 Git 仓库。只安装当前项目需要的 Skills；只使用 CLI 时可以跳过。
@@ -59,11 +59,14 @@ Windows 上必须先用 `Resolve-Path` 得到绝对本地来源路径，否则 S
 Release 还包含 `skills-library-maintenance` host。全局交接会替换现有同名 copy，
 因此必须先与已验证 Release 比较并保存完整 folder backup。若现有差异不能追溯到
 已知 Release 或已复核 source commit，立即停止。
+必须使用 beta.5 或更高版本；beta.4 仅保留为 copy-install 失败候选证据。
 
 ```powershell
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
-npx skills add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
-npx skills add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill skills-library-maintenance --agent codex --global --copy -y
+npx skills@1.5.20 add $skillSource --skill manage-skill-cosmos --agent codex --global --copy -y
+$installedMaintenance = Join-Path $HOME '.agents\skills\skills-library-maintenance'
+node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
 ```
 
 安装不授权执行 `npx skills check`、`update` 或 `upgrade`；固定 manager 的这些入口

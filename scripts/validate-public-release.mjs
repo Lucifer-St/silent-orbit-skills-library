@@ -57,7 +57,7 @@ const requiredFiles = [
   "README.zh-CN.md",
   "RECOVERY.md",
   "RECOVERY.zh-CN.md",
-  "RELEASE_NOTES_v0.11.0-beta.4.md",
+  "RELEASE_NOTES_v0.11.0-beta.5.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "VERSIONING_AND_MIGRATIONS.md",

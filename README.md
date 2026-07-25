@@ -105,7 +105,7 @@ The public beta uses no third-party analytics, cookies, or behavior tracking. Sa
 - [Security policy](./SECURITY.md)
 - [Contribution policy](./CONTRIBUTING.md)
 
-The `v0.11.0-beta.4` v1 Schemas are locked by
+The `v0.11.0-beta.5` v1 Schemas are locked by
 `schemas/schema-lock.v1.json`. This is a GitHub Pre-release, not `v1.0.0`, and
 Production authority remains Public `main` after the required `release-gate`.
 

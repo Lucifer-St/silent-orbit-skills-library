@@ -7,13 +7,18 @@ CLI 与随包提供的 Agent Skills。
 
 | Surface | 候选版本 | 兼容承诺 |
 |---|---:|---|
-| Repository / package | `0.11.0-beta.4` | `0.11.x` beta 系列 |
+| Repository / package | `0.11.0-beta.5` | `0.11.x` beta 系列 |
 | CLI interface | `0.4.0` | `0.4.x` 命令与 JSON 系列 |
 | JSON Schemas | `v1` | 以 `schemas/schema-lock.v1.json` 为准 |
 | Runtime | Node.js 24 | 发布门禁验证版本 |
 | Trusted manager | `skills@1.5.20` | Phase 5C 固定内容身份 |
 
 这是 Pre-release，不是 `v1.0.0`，也不会发布到 npm registry。
+
+`0.11.0-beta.5` 是仅修正 package 的纠正版。beta.4 在全局复制安装后暴露了
+依赖 package root 的相对 import；beta.5 使随包提供的
+`skills-library-maintenance` 成为自包含 copy。CLI interface 仍为 `0.4.0`，
+全部 v1 Schema digest 保持不变。
 
 ## SemVer 规则
 
@@ -41,7 +46,7 @@ SHA-256。release gate 会在 Windows、macOS 与 Linux 上重新计算，并拒
 
 ## 当前迁移基线
 
-v1 系列内部无需迁移。`0.11.0-beta.4` 读写固定的 v1 contracts。遇到不支持的
+v1 系列内部无需迁移。`0.11.0-beta.5` 读写固定的 v1 contracts。遇到不支持的
 新 schema 时必须停止，不能静默转换。
 
 未来 v2 迁移必须由用户显式启动并在本地完成；不得覆盖唯一副本，不得发布私有

@@ -7,7 +7,7 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 | Surface | Phase 6A candidate | Compatibility promise |
 |---|---:|---|
-| Repository and package | `0.11.0-beta.4` | `0.11.x` beta line |
+| Repository and package | `0.11.0-beta.5` | `0.11.x` beta line |
 | CLI interface | `0.4.0` | `0.4.x` command and JSON family |
 | JSON Schemas | `v1` | exact files in `schemas/schema-lock.v1.json` |
 | Runtime | Node.js 24 | tested release runtime |
@@ -15,6 +15,11 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 This is a pre-release. It is not `v1.0.0`, and the package is not published to
 the npm registry.
+
+`0.11.0-beta.5` is a package-only corrective release. It makes the bundled
+`skills-library-maintenance` copy self-contained after beta.4 exposed a
+package-root-relative import during global installation. The CLI interface
+remains `0.4.0`, and every locked v1 Schema digest is unchanged.
 
 ## Semantic versioning
 
@@ -51,7 +56,7 @@ file itself is versioned separately from the locked Schemas.
 
 ## Current migration baseline
 
-No migration is required inside the v1 family. `0.11.0-beta.4` reads and writes
+No migration is required inside the v1 family. `0.11.0-beta.5` reads and writes
 the frozen v1 contracts. It must reject an unsupported newer schema instead of
 silently coercing it.
 
