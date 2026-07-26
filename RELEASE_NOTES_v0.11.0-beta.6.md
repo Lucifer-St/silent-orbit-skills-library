@@ -1,0 +1,44 @@
+# Silent Orbit v0.11.0-beta.6 — Phase 6B external acceptance candidate
+
+`v0.11.0-beta.6` is the GitHub-native Release Candidate for independent
+Phase 6B acceptance. It is not `v1.0.0`, and it is not published to the npm
+registry.
+
+## Confirmed corrections
+
+- Resolves the npm-generated POSIX symlink before deciding whether
+  `silent-orbit.mjs` is the active CLI entrypoint.
+- Reports an actionable `no-global-skills-found` warning when a configured
+  Codex global source is empty.
+- Explains that Docker must mount the host Skill directory into the
+  container's `$HOME/.agents/skills`.
+- Adds first-use value copy to the Skill map and an explicit Catalog list
+  fallback for people who do not recognize the orbit nodes as Skills.
+- Keeps public acceptance receipts sanitized: no absolute paths, Skill names,
+  raw logs, prompts, or private runtime records.
+
+## Capability boundary
+
+- Native CLI: Windows, Linux, and macOS with Node.js 24.
+- Docker CLI: supported only with an explicit host Skill mount.
+- Hosted website: browse and inspect only. It cannot scan, install, update, or
+  otherwise mutate a visitor's local Skills.
+
+## Compatibility
+
+- Package/repository candidate: `0.11.0-beta.6`.
+- CLI interface: `0.4.0`.
+- JSON Schemas: frozen v1 family; all locked digests are unchanged.
+- Trusted external manager: exactly `skills@1.5.20`.
+- Migration: none from another `0.11.x` candidate.
+
+## Release decision boundary
+
+The GitHub tarball remains the default distribution path. npm publication is
+out of scope unless independent evidence proves the tarball prevents real
+installation and registry provenance plus rollback are ready.
+
+CI, fixtures, author dogfood, and automated agents are not independent-user
+acceptance. `v1.0.0` remains blocked until a real independent user completes
+the published [15-25 minute checklist](./V1_RC_ACCEPTANCE.md) with no
+unresolved P0/P1 issue.

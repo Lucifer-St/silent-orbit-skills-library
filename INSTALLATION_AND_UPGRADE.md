@@ -1,6 +1,6 @@
 # Installation and upgrade
 
-Silent Orbit `v0.11.0-beta.5` is distributed only through the GitHub
+Silent Orbit `v0.11.0-beta.6` is distributed only through the GitHub
 Pre-release. Do not install it by package name from the npm registry.
 
 ## Requirements
@@ -18,14 +18,14 @@ first generation.
 For a project-local installation:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 npx silent-orbit --version
 ```
 
 For an existing global file-based installation:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 silent-orbit --version
 ```
 
@@ -40,7 +40,8 @@ Review their `SKILL.md` files and any existing installed copies before writing.
 If the existing copy contains changes that cannot be traced to a known release
 or reviewed source commit, stop and reconcile the conflict.
 
-Use beta.5 or newer for this global handoff. Beta.4 retained a package-root
+Use beta.6 or newer for this global handoff. Beta.5 did not yet include the
+POSIX npm-bin resolution and zero-source diagnostics. Beta.4 retained a package-root
 relative Core import after the Skill was copied and is preserved only as
 failure evidence; do not use beta.4 to install the global maintenance host.
 

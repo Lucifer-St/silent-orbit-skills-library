@@ -1,6 +1,6 @@
 # 安装与升级
 
-Silent Orbit `v0.11.0-beta.5` 只通过 GitHub Pre-release 分发，不得按 package
+Silent Orbit `v0.11.0-beta.6` 只通过 GitHub Pre-release 分发，不得按 package
 名称从 npm registry 安装。
 
 ## 要求
@@ -17,14 +17,14 @@ SHA-256 校验与首次生成请按 `GENERATOR_QUICKSTART.zh-CN.md` 执行。
 项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 npx silent-orbit --version
 ```
 
 已有全局文件安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 silent-orbit --version
 ```
 
@@ -37,7 +37,7 @@ tarball 包含 `skills-library-maintenance` 与 `manage-skill-cosmos`。写入�
 Release 内和现有安装中的 `SKILL.md`。如果现有差异不能追溯到已知 Release 或已复核
 source commit，停止并处理冲突。
 
-全局交接必须使用 beta.5 或更高版本。beta.4 的 Skill 被复制后仍保留依赖 package
+全局交接必须使用 beta.6 或更高版本。beta.5 尚未包含 POSIX npm-bin 解析修复和零来源诊断。beta.4 的 Skill 被复制后仍保留依赖 package
 root 的 Core import，仅作为失败证据保留；不得用 beta.4 安装全局 maintenance host。
 
 在临时 consumer project 安装 tarball 后：

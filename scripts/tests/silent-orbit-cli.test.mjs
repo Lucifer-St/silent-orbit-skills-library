@@ -4,7 +4,12 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { runSilentOrbitCli, silentOrbitHelpText, silentOrbitVersion } from "../silent-orbit.mjs";
+import {
+  isSilentOrbitCliEntrypoint,
+  runSilentOrbitCli,
+  silentOrbitHelpText,
+  silentOrbitVersion,
+} from "../silent-orbit.mjs";
 import {
   auditSilentOrbitProject,
   analyzeSilentOrbitProject,
@@ -39,6 +44,15 @@ test("CLI entry point exposes the expected v0.4 commands", () => {
   const help = silentOrbitHelpText();
   for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit", "manage plan", "manage apply", "manage check-and-update"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
   assert.equal(silentOrbitVersion, "0.4.0");
+});
+
+test("CLI entrypoint resolves an npm-style symlink before comparing module identity", (t) => {
+  const root = temporaryRoot("entrypoint-link");
+  const moduleDirectory = path.dirname(fileURLToPath(new URL("../silent-orbit.mjs", import.meta.url)));
+  const linkedDirectory = path.join(root, "package-bin");
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.symlinkSync(moduleDirectory, linkedDirectory, process.platform === "win32" ? "junction" : "dir");
+  assert.equal(isSilentOrbitCliEntrypoint(path.join(linkedDirectory, "silent-orbit.mjs")), true);
 });
 
 function fileSnapshot(root, relative = "") {
@@ -99,6 +113,10 @@ test("init refuses to overwrite an existing project configuration", (t) => {
   assert.equal(fs.readFileSync(path.join(root, ".gitignore"), "utf8"), ".silent-orbit/\n");
   const config = JSON.parse(fs.readFileSync(path.join(root, silentOrbitProjectFiles.config), "utf8"));
   assert.equal(config.project.renderer.theme, "reference-index");
+  assert.throws(
+    () => scanSilentOrbitProject({ projectDirectory: root }),
+    /silent-orbit import --project <directory> --file <source-import\.json>.*Docker.*mount/i,
+  );
 });
 
 test("fresh project completes init, import, scan, analyze, diff, generate, and doctor deterministically", (t) => {

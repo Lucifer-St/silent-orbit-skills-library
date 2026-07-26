@@ -25,6 +25,9 @@ export const publicSourceFiles = Object.freeze([
   "docs/architecture/GENERATOR_PHASE5C.md",
   "fixtures/phase4/source-managed.source-import.json",
   "fixtures/phase4/external-provider.source-import.json",
+  "scripts/fixtures/v1-preflight/codex-global.config.json",
+  "scripts/fixtures/v1-preflight/starter.source-import.json",
+  "scripts/fixtures/v1-preflight/docker-home/.agents/skills/v1-docker-fixture/SKILL.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
@@ -47,9 +50,12 @@ export const publicSourceFiles = Object.freeze([
 
 export const publicScriptFiles = Object.freeze([
   "capture-visual-qa.mjs",
+  "create-v1-acceptance-summary.mjs",
   "project-layout.mjs",
   "public-data.mjs",
   "public-release-config.mjs",
+  "run-release-tarball-smoke.mjs",
+  "run-v1-preflight.mjs",
   "smoke-ui.mjs",
   "sync-data.mjs",
   "validate-generator-contracts.mjs",
@@ -66,6 +72,7 @@ export const publicScriptFiles = Object.freeze([
   "tests/skill-management-cli.test.mjs",
   "tests/npx-skills-source-managed-evaluation.test.mjs",
   "tests/trusted-source-maintenance.test.mjs",
+  "tests/v1-acceptance-receipt.test.mjs",
   "tests/manage-skill-cosmos.test.mjs",
   "tests/library-analyzer.test.mjs",
   "tests/silent-orbit-cli.test.mjs",
@@ -91,6 +98,7 @@ export const publicScriptFiles = Object.freeze([
   "lib/phase1e-alpha.mjs",
   "build-alpha-preview.mjs",
   "silent-orbit.mjs",
+  "v1-docker-smoke.sh",
 ]);
 
 export const publicSkillDirectories = Object.freeze([

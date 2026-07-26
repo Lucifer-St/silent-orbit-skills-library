@@ -13,6 +13,7 @@ const read = (relative) => fs.readFileSync(path.join(projectDir, ...relative.spl
 test("the installable package owns only public Core, Schemas, CLI, Agent Skill, docs, and reference renderer", () => {
   assert.deepEqual(packageJson.files, [
     "scripts/silent-orbit.mjs",
+    "scripts/create-v1-acceptance-summary.mjs",
     "scripts/lib/generator-contracts.mjs",
     "scripts/lib/source-adapters.mjs",
     "scripts/lib/skill-health.mjs",
@@ -40,7 +41,7 @@ test("the installable package owns only public Core, Schemas, CLI, Agent Skill, 
     "skills/manage-skill-cosmos",
     "skills/skills-library-maintenance",
   ]);
-  assert.equal(packageJson.version, "0.11.0-beta.5");
+  assert.equal(packageJson.version, "0.11.0-beta.6");
   assert.equal(packageJson.devDependencies.skills, "1.5.20");
   assert.equal(packageJson.bin["silent-orbit"], "scripts/silent-orbit.mjs");
   assert.equal(packageJson.files.some((entry) => /alpha\/phase1e|silent-orbit-v1|outputs|obsidian|receipt/i.test(entry)), false);

@@ -210,6 +210,16 @@ test("one failed provider does not discard successful read-only sources", () => 
   assert.equal(snapshot.summary.errors, 1);
 });
 
+test("empty Codex global discovery emits an actionable Docker diagnostic", () => {
+  const { snapshot, report } = scan([createCodexGlobalSkillsAdapter({ entries: [] })]);
+  assert.equal(snapshot.items.length, 0);
+  assert.equal(snapshot.sources[0].scanState, "partial");
+  assert.equal(snapshot.diagnostics[0].code, "no-global-skills-found");
+  assert.match(snapshot.diagnostics[0].message, /\.agents\/skills/);
+  assert.match(snapshot.diagnostics[0].message, /HOME|USERPROFILE/);
+  assert.equal(report.warnings, 1);
+});
+
 test("duplicate names select a deterministic record and report partial source state", () => {
   const input = {
     schemaVersion: 1,

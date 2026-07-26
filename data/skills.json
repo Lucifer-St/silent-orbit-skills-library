@@ -180,42 +180,6 @@
     "visibility": "public"
   },
   {
-    "name": "hyperframes",
-    "description": "用于处理 hyperframes 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-    "trigger": "$hyperframes",
-    "category": "产品与前端开发",
-    "library_key": "plugin:hyperframes",
-    "library_title": "Plugin: hyperframes",
-    "repo": null,
-    "repo_url": null,
-    "origin": "third-party",
-    "visibility": "public"
-  },
-  {
-    "name": "hyperframes-cli",
-    "description": "用于处理 hyperframes cli 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-    "trigger": "$hyperframes-cli",
-    "category": "产品与前端开发",
-    "library_key": "plugin:hyperframes",
-    "library_title": "Plugin: hyperframes",
-    "repo": null,
-    "repo_url": null,
-    "origin": "third-party",
-    "visibility": "public"
-  },
-  {
-    "name": "hyperframes-registry",
-    "description": "用于处理 hyperframes registry 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-    "trigger": "$hyperframes-registry",
-    "category": "产品与前端开发",
-    "library_key": "plugin:hyperframes",
-    "library_title": "Plugin: hyperframes",
-    "repo": null,
-    "repo_url": null,
-    "origin": "third-party",
-    "visibility": "public"
-  },
-  {
     "name": "netlify-edge-functions",
     "description": "用于处理 netlify edge functions 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
     "trigger": "$netlify-edge-functions",
@@ -1717,6 +1681,230 @@
     "description_i18n": {
       "zh-CN": "重新设计和美化 GitHub README，并围绕仓库的真实主题制作 GitHub 安全的 SVG、GIF、分区标题、图表、徽章与展示模块。",
       "en-US": "Redesigns GitHub README pages and creates GitHub-safe SVG, GIF, section headers, diagrams, badges, and showcase modules grounded in the repository's actual theme."
+    }
+  },
+  {
+    "name": "hatch-pet",
+    "description": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging.",
+    "trigger": "$hatch-pet",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": null,
+    "repo_url": null,
+    "origin": "unknown",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging.",
+      "en-US": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging."
+    }
+  },
+  {
+    "name": "humanizer",
+    "description": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases.",
+    "trigger": "$humanizer",
+    "category": "文档与办公",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "blader/humanizer",
+    "repo_url": "https://github.com/blader/humanizer",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases.",
+      "en-US": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases."
+    }
+  },
+  {
+    "name": "agent-reach",
+    "description": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools.",
+    "trigger": "$agent-reach",
+    "category": "数据分析与研究",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "Panniantong/Agent-Reach",
+    "repo_url": "https://github.com/Panniantong/Agent-Reach",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools.",
+      "en-US": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools."
+    }
+  },
+  {
+    "name": "hyperframes",
+    "description": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session.",
+    "trigger": "$hyperframes",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session.",
+      "en-US": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session."
+    }
+  },
+  {
+    "name": "hyperframes-animation",
+    "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+    "trigger": "$hyperframes-animation",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+      "en-US": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic."
+    }
+  },
+  {
+    "name": "hyperframes-cli",
+    "description": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.",
+    "trigger": "$hyperframes-cli",
+    "category": "浏览器与自动化",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.",
+      "en-US": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering."
+    }
+  },
+  {
+    "name": "hyperframes-core",
+    "description": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML.",
+    "trigger": "$hyperframes-core",
+    "category": "文档与办公",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML.",
+      "en-US": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML."
+    }
+  },
+  {
+    "name": "hyperframes-creative",
+    "description": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+    "trigger": "$hyperframes-creative",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+      "en-US": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`."
+    }
+  },
+  {
+    "name": "hyperframes-keyframes",
+    "description": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning.",
+    "trigger": "$hyperframes-keyframes",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning.",
+      "en-US": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning."
+    }
+  },
+  {
+    "name": "hyperframes-registry",
+    "description": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).",
+    "trigger": "$hyperframes-registry",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).",
+      "en-US": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR)."
+    }
+  },
+  {
+    "name": "media-use",
+    "description": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need.",
+    "trigger": "$media-use",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need.",
+      "en-US": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need."
+    }
+  },
+  {
+    "name": "motion-graphics",
+    "description": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes.",
+    "trigger": "$motion-graphics",
+    "category": "设计与创意生产",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "heygen-com/hyperframes",
+    "repo_url": "https://github.com/heygen-com/hyperframes",
+    "origin": "third-party",
+    "visibility": "public",
+    "description_i18n": {
+      "zh-CN": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes.",
+      "en-US": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes."
+    }
+  },
+  {
+    "name": "skills-library-maintenance",
+    "description": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status.",
+    "trigger": "$skills-library-maintenance",
+    "category": "个人知识库与本地工具",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "Lucifer-St/silent-orbit-skills-library",
+    "repo_url": "https://github.com/Lucifer-St/silent-orbit-skills-library",
+    "origin": "creator",
+    "visibility": "creator-showcase",
+    "description_i18n": {
+      "zh-CN": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status.",
+      "en-US": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status."
+    }
+  },
+  {
+    "name": "manage-skill-cosmos",
+    "description": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior.",
+    "trigger": "$manage-skill-cosmos",
+    "category": "效率与元工作流",
+    "library_key": "local:global",
+    "library_title": "global",
+    "repo": "Lucifer-St/silent-orbit-skills-library",
+    "repo_url": "https://github.com/Lucifer-St/silent-orbit-skills-library",
+    "origin": "creator",
+    "visibility": "creator-showcase",
+    "description_i18n": {
+      "zh-CN": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior.",
+      "en-US": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior."
     }
   }
 ]

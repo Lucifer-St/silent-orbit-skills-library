@@ -1,21 +1,29 @@
 # Silent Orbit Public Generator 快速开始
 
-本指南从 GitHub Pre-release 安装 `v0.11.0-beta.5` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
+本指南从 GitHub Pre-release 安装 `v0.11.0-beta.6` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
 
 ## 1. 下载并校验产物
 
-环境要求：Node.js 24 和 npm。
+环境要求：Node.js 24 和 npm。v1 的 Native 支持目标为 Windows、Linux 与
+macOS。
 
-从 [`v0.11.0-beta.5` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.5) 下载：
+Docker 使用独立 Home，默认看不到宿主 Skills。在执行 `codex-global` scan
+前，必须把宿主 `.agents/skills` 目录挂载到容器 profile，并把 `HOME`（或
+`USERPROFILE`）指向该 profile。scan/generate/audit 应使用只读挂载。未挂载
+时返回零 Skills，不能当作宿主确实没有 Skills 的证据。
 
-- `silent-orbit-skills-library-0.11.0-beta.5.tgz`
+Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Skill 环境。
+
+从 [`v0.11.0-beta.6` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.6) 下载：
+
+- `silent-orbit-skills-library-0.11.0-beta.6.tgz`
 - `SHA256SUMS.txt`
 
 把两个文件放在同一目录，使用 PowerShell 在安装前校验 tarball：
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.5\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.5.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.6\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.6.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -24,18 +32,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 优先选择项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 npx silent-orbit --version
 ```
 
 只有确实需要把 `silent-orbit` 放进用户 PATH 时才使用全局安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 silent-orbit --version
 ```
 
-package / repository release version 是 `0.11.0-beta.5`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
+package / repository release version 是 `0.11.0-beta.6`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
 
 ## 3. 可选 Agent Skills
 
@@ -59,7 +67,7 @@ Windows 上必须先用 `Resolve-Path` 得到绝对本地来源路径，否则 S
 Release 还包含 `skills-library-maintenance` host。全局交接会替换现有同名 copy，
 因此必须先与已验证 Release 比较并保存完整 folder backup。若现有差异不能追溯到
 已知 Release 或已复核 source commit，立即停止。
-必须使用 beta.5 或更高版本；beta.4 仅保留为 copy-install 失败候选证据。
+必须使用 beta.6 或更高版本；beta.5 仅保留为 Phase 6A package 候选证据。
 
 ```powershell
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
@@ -125,6 +133,6 @@ Phase 5C 支持 host 注入的 `skills@1.5.20` check-and-update，一次批准�
 
 ## 发布边界
 
-Public repository 保留 44-Skill NVIDIA Alpha 作为历史固定验收夹具，但它不属于 installable Generator package，也不是 Production 内容。Git-connected Netlify Deploy Preview 通过 `npm run build:alpha-preview` 构建该夹具；Production 继续通过 `npm run build` 使用经复核的 142-Skill projection，可编辑的个人 inventory 与 curation 只保留在 Private。
+Public repository 保留 44-Skill NVIDIA Alpha 作为历史固定验收夹具，但它不属于 installable Generator package，也不是 Production 内容。Git-connected Netlify Deploy Preview 通过 `npm run build:alpha-preview` 构建该夹具；Production 通过 `npm run build` 使用经复核的 153-Skill projection，可编辑的个人 inventory 与 curation 只保留在 Private。
 
 旧的 Phase 4A/4B 名称属于 **Website Release Track**，不是 Generator phase。Website Release Phase 4A 是 public beta launch；Website Release Phase 4B 仍需要外部真人证据。Generator 使用独立的 Phase 1A-1E、Phase 2A 与 Phase 2B 序列。

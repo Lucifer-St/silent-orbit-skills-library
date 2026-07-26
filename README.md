@@ -11,11 +11,23 @@
 
 Silent Orbit turns a growing AI Skills collection into a navigable product: search by intent, move from **System → Library → Skill**, inspect provenance and boundaries, and record outcomes without sending personal data to a backend.
 
-The public catalog currently contains **142 Skills across 9 systems and 28 libraries**.
+The public catalog currently contains **153 Skills across 9 systems and 28 libraries**.
 
 ## Install the Public Generator
 
-The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
+The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. Independent v1 candidates should use the single [15–25 minute RC acceptance checklist](./V1_RC_ACCEPTANCE.md). The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
+
+## Capability boundary
+
+- Native CLI and Generator support targets Node.js 24 on Windows, Linux, and
+  macOS.
+- Docker is supported only when the required host Skill directories are
+  explicitly mounted. An unmounted container has its own empty Home and cannot
+  inspect host Skills.
+- The hosted site is browse-only. It cannot inspect, install, update, or remove
+  Skills on a visitor's computer.
+- Node.js 24 is the v1 runtime baseline. A different major version requires an
+  explicit compatibility decision and gate update.
 
 ## Phase 1E Alpha Preview
 
@@ -27,7 +39,7 @@ This Reference Renderer is a functional starting point, not an official visual t
 - [Phase 2B dogfood and source-of-truth boundary](./docs/architecture/GENERATOR_PHASE2B.md)
 - [Install and first-use guide](./GENERATOR_QUICKSTART.md)
 - The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
-- Production remains the reviewed 142-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
+- Production remains the reviewed 153-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
 
 ## See the library
 
@@ -92,6 +104,7 @@ The development server runs locally. The production build is written to `dist/`.
 
 - [Beta testing guide](./BETA_TESTING.md)
 - [Beta feedback template](./BETA_FEEDBACK_TEMPLATE.md)
+- [V1 RC independent acceptance](./V1_RC_ACCEPTANCE.md)
 - GitHub issue forms are available for reproducible bugs and experience feedback.
 
 The public beta uses no third-party analytics, cookies, or behavior tracking. Safari remains an external beta coverage item.
@@ -105,7 +118,7 @@ The public beta uses no third-party analytics, cookies, or behavior tracking. Sa
 - [Security policy](./SECURITY.md)
 - [Contribution policy](./CONTRIBUTING.md)
 
-The `v0.11.0-beta.5` v1 Schemas are locked by
+The `v0.11.0-beta.6` v1 Schemas are locked by
 `schemas/schema-lock.v1.json`. This is a GitHub Pre-release, not `v1.0.0`, and
 Production authority remains Public `main` after the required `release-gate`.
 

@@ -323,9 +323,6 @@
     "description": "由 `hyperframes` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
     "skills": [
       "gsap",
-      "hyperframes",
-      "hyperframes-cli",
-      "hyperframes-registry",
       "website-to-hyperframes"
     ],
     "repos": [],
@@ -333,8 +330,8 @@
       "hyperframes"
     ],
     "categories": [
-      "产品与前端开发",
-      "设计与创意生产"
+      "设计与创意生产",
+      "产品与前端开发"
     ],
     "primary_category": "产品与前端开发"
   },
@@ -661,7 +658,21 @@
       "screenshot",
       "transcribe",
       "web-design-guidelines",
-      "beautify-github-readme"
+      "beautify-github-readme",
+      "hatch-pet",
+      "humanizer",
+      "agent-reach",
+      "hyperframes",
+      "hyperframes-animation",
+      "hyperframes-cli",
+      "hyperframes-core",
+      "hyperframes-creative",
+      "hyperframes-keyframes",
+      "hyperframes-registry",
+      "media-use",
+      "motion-graphics",
+      "skills-library-maintenance",
+      "manage-skill-cosmos"
     ],
     "repos": [],
     "plugins": [],
@@ -672,7 +683,9 @@
       "协作平台与发布",
       "数据分析与研究",
       "文档与办公",
-      "设计与创意生产"
+      "设计与创意生产",
+      "浏览器与自动化",
+      "效率与元工作流"
     ],
     "primary_category": "工程质量与安全"
   },

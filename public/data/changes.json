@@ -45,5 +45,243 @@
     },
     "skill": "beautify-github-readme",
     "visibility": "public"
+  },
+  {
+    "id": "agent-reach-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published agent-reach to the Skills Library",
+    "summary": "agent-reach was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "agent-reach 已进入 Skills Library",
+      "en-US": "Published agent-reach to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "agent-reach 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "agent-reach was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "agent-reach",
+    "visibility": "public"
+  },
+  {
+    "id": "hatch-pet-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hatch-pet to the Skills Library",
+    "summary": "hatch-pet was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hatch-pet 已进入 Skills Library",
+      "en-US": "Published hatch-pet to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hatch-pet 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hatch-pet was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hatch-pet",
+    "visibility": "public"
+  },
+  {
+    "id": "humanizer-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published humanizer to the Skills Library",
+    "summary": "humanizer was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "humanizer 已进入 Skills Library",
+      "en-US": "Published humanizer to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "humanizer 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "humanizer was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "humanizer",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes to the Skills Library",
+    "summary": "hyperframes was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes 已进入 Skills Library",
+      "en-US": "Published hyperframes to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-animation-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-animation to the Skills Library",
+    "summary": "hyperframes-animation was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-animation 已进入 Skills Library",
+      "en-US": "Published hyperframes-animation to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-animation 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-animation was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-animation",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-cli-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-cli to the Skills Library",
+    "summary": "hyperframes-cli was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-cli 已进入 Skills Library",
+      "en-US": "Published hyperframes-cli to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-cli 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-cli was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-cli",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-core-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-core to the Skills Library",
+    "summary": "hyperframes-core was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-core 已进入 Skills Library",
+      "en-US": "Published hyperframes-core to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-core 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-core was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-core",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-creative-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-creative to the Skills Library",
+    "summary": "hyperframes-creative was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-creative 已进入 Skills Library",
+      "en-US": "Published hyperframes-creative to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-creative 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-creative was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-creative",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-keyframes-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-keyframes to the Skills Library",
+    "summary": "hyperframes-keyframes was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-keyframes 已进入 Skills Library",
+      "en-US": "Published hyperframes-keyframes to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-keyframes 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-keyframes was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-keyframes",
+    "visibility": "public"
+  },
+  {
+    "id": "hyperframes-registry-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published hyperframes-registry to the Skills Library",
+    "summary": "hyperframes-registry was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "hyperframes-registry 已进入 Skills Library",
+      "en-US": "Published hyperframes-registry to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "hyperframes-registry 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "hyperframes-registry was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "hyperframes-registry",
+    "visibility": "public"
+  },
+  {
+    "id": "manage-skill-cosmos-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published manage-skill-cosmos to the Skills Library",
+    "summary": "manage-skill-cosmos was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "manage-skill-cosmos 已进入 Skills Library",
+      "en-US": "Published manage-skill-cosmos to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "manage-skill-cosmos 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "manage-skill-cosmos was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "manage-skill-cosmos",
+    "visibility": "public"
+  },
+  {
+    "id": "media-use-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published media-use to the Skills Library",
+    "summary": "media-use was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "media-use 已进入 Skills Library",
+      "en-US": "Published media-use to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "media-use 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "media-use was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "media-use",
+    "visibility": "public"
+  },
+  {
+    "id": "motion-graphics-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published motion-graphics to the Skills Library",
+    "summary": "motion-graphics was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "motion-graphics 已进入 Skills Library",
+      "en-US": "Published motion-graphics to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "motion-graphics 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "motion-graphics was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "motion-graphics",
+    "visibility": "public"
+  },
+  {
+    "id": "skills-library-maintenance-2026-07-25T04-37-42-572Z-published",
+    "date": "2026-07-25",
+    "type": "published",
+    "title": "Published skills-library-maintenance to the Skills Library",
+    "summary": "skills-library-maintenance was added to the local Skills Library and sanitized Public Export staging data.",
+    "title_i18n": {
+      "zh-CN": "skills-library-maintenance 已进入 Skills Library",
+      "en-US": "Published skills-library-maintenance to the Skills Library"
+    },
+    "summary_i18n": {
+      "zh-CN": "skills-library-maintenance 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+      "en-US": "skills-library-maintenance was added to the local Skills Library and sanitized Public Export staging data."
+    },
+    "skill": "skills-library-maintenance",
+    "visibility": "public"
   }
 ]

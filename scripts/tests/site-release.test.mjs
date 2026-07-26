@@ -107,17 +107,23 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
   const feedback = read(publicDocument("BETA_FEEDBACK_TEMPLATE.md"));
   for (const prompt of ["Most confusing", "Liked most", "Most wanted to click"]) assert.ok(feedback.includes(prompt));
-  for (const template of ["bug_report.yml", "experience_feedback.yml"]) {
+  for (const template of ["bug_report.yml", "experience_feedback.yml", "v1_rc_acceptance.yml"]) {
     const body = read(issueTemplate(template));
     assert.match(body, /^name:/m);
     assert.match(body, /public-beta/);
     assert.doesNotMatch(body, /email|account id/i);
   }
+  const v1Acceptance = read(publicDocument("V1_RC_ACCEPTANCE.md"));
+  assert.match(v1Acceptance, /15[–-]25 minutes/);
+  assert.match(v1Acceptance, /independent user/i);
+  assert.match(v1Acceptance, /SHA256SUMS\.txt/);
+  assert.match(v1Acceptance, /second scan\/diff/i);
+  assert.match(v1Acceptance, /npx skills@1\.5\.20 check/);
 });
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.11.0-beta.5");
+  assert.equal(packageJson.version, "0.11.0-beta.6");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -135,7 +141,7 @@ test("beta version, root-safe Vite base, and publication handoff are explicit", 
 test("v1 schemas are frozen by the Phase 6A release lock", () => {
   const lock = JSON.parse(read("schemas/schema-lock.v1.json"));
   assert.equal(lock.schemaVersion, 1);
-  assert.equal(lock.releaseVersion, "0.11.0-beta.5");
+  assert.equal(lock.releaseVersion, "0.11.0-beta.6");
   assert.equal(lock.cliInterfaceVersion, "0.4.0");
   assert.equal(lock.compatibilityFamily, "v1");
   assert.equal(lock.hashAlgorithm, "sha256");

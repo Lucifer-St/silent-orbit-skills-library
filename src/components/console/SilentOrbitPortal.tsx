@@ -6,6 +6,7 @@ import { useLocale } from "../../i18n/LocaleContext";
 export interface SilentOrbitPortalProps {
   className?: string;
   model: OrbitMapModel;
+  onBrowseCatalog: () => void;
   onOpenSystem: (system: OrbitSystemNode, trigger: HTMLButtonElement) => void;
 }
 
@@ -33,6 +34,7 @@ const PORTAL_SYSTEM_LABEL_OFFSET = 4;
 export function SilentOrbitPortal({
   className = "",
   model,
+  onBrowseCatalog,
   onOpenSystem,
 }: SilentOrbitPortalProps) {
   const { category, text } = useLocale();
@@ -43,6 +45,24 @@ export function SilentOrbitPortal({
       className={`silent-orbit-portal ${className}`.trim()}
       aria-label={text("Silent Orbit 技能宇宙入口", "Silent Orbit Skill galaxy entrance")}
     >
+      <div
+        className="librarian-onboarding"
+        data-first-use="skill-map"
+        data-first-use-hierarchy="system-library-skill"
+      >
+        <div>
+          <strong>{text("这是你的 Skills 能力地图", "YOUR SKILLS, MADE NAVIGABLE")}</strong>
+          <p>
+            {text(
+              "描述一个目标来匹配 Skill，或点击带标签的星区：星区 → Libraries → Skills。",
+              "Describe a goal to match a Skill, or open a labeled system: systems -> libraries -> individual Skills.",
+            )}
+          </p>
+        </div>
+        <button data-first-use-action="catalog-list" type="button" onClick={onBrowseCatalog}>
+          {text("使用列表浏览 Skills", "BROWSE THE SKILL LIST")}
+        </button>
+      </div>
       <div className="portal-map">
         <svg
           className="silent-orbit-preview"

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-07-24",
+  "snapshotDate": "2026-07-25",
   "privacy": "sanitized",
-  "catalogSkills": 142,
-  "publicGlobalSkills": 22,
+  "catalogSkills": 153,
+  "publicGlobalSkills": 36,
   "publicationHandoff": {
     "productionAuthority": "public-github-main",
     "publicRepository": "Lucifer-St/silent-orbit-skills-library",
@@ -14,8 +14,8 @@
   "channels": [
     {
       "id": "source-managed-global",
-      "state": "current",
-      "checkedSources": 2,
+      "state": "unchecked",
+      "checkedSources": 0,
       "execution": "local-codex"
     },
     {

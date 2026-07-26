@@ -14,6 +14,7 @@ export interface LibrarianPageProps {
   onDraftChange: (value: string) => void;
   onSubmit: () => void;
   onClear: () => void;
+  onBrowseCatalog: () => void;
   onOpenSystem: (system: OrbitSystemNode, trigger: HTMLButtonElement) => void;
   onOpenSkill: (skill: SkillRecord) => void;
 }
@@ -26,6 +27,7 @@ export function LibrarianPage({
   onDraftChange,
   onSubmit,
   onClear,
+  onBrowseCatalog,
   onOpenSystem,
   onOpenSkill,
 }: LibrarianPageProps) {
@@ -44,6 +46,7 @@ export function LibrarianPage({
       <SilentOrbitPortal
         className="librarian-galaxy-portal"
         model={orbitModel}
+        onBrowseCatalog={onBrowseCatalog}
         onOpenSystem={onOpenSystem}
       />
       <p className="sr-only librarian-status" aria-live="polite" aria-atomic="true">

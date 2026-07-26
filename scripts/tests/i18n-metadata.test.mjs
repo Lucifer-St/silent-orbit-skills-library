@@ -109,11 +109,11 @@ test("English intent can reach localized Skill metadata", async () => {
       sourceKind: "all",
       starredOnly: false,
     });
-    assert.deepEqual(weeklyResults.slice(0, 3).map((result) => result.skill.name), [
+    assert.deepEqual(weeklyResults.slice(0, 2).map((result) => result.skill.name), [
       "aihot",
       "fengxue-ai-weekly",
-      "gmail",
     ]);
+    assert.ok(!weeklyResults.slice(0, 5).some((result) => result.skill.name === "skills-library-maintenance"));
   } finally {
     await server.close();
   }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-24T12:00:00.000Z",
+  "generatedAt": "2026-07-25T12:00:00.000Z",
   "privacy": "sanitized",
   "sources": [
     {
@@ -318,12 +318,30 @@
   ],
   "items": [
     {
+      "id": "skill:local-global-agent-reach:51ae965bb722",
+      "kind": "skill",
+      "name": "agent-reach",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
       "id": "skill:local-global-beautify-github-readme:0b1f04b33544",
       "kind": "skill",
       "name": "beautify-github-readme",
       "sourceId": "source:local-global:8ff0a25c41eb",
       "state": "present",
       "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hatch-pet:da19f0e6adb0",
+      "kind": "skill",
+      "name": "hatch-pet",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "unknown",
       "visibility": "public"
     },
     {
@@ -348,6 +366,78 @@
       "id": "skill:local-global-html:a9710aa195ef",
       "kind": "skill",
       "name": "html",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-humanizer:5766e7cb9036",
+      "kind": "skill",
+      "name": "humanizer",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-animation:5ac557a8c628",
+      "kind": "skill",
+      "name": "hyperframes-animation",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-cli:2fd6756e314b",
+      "kind": "skill",
+      "name": "hyperframes-cli",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-core:6d62dbad228f",
+      "kind": "skill",
+      "name": "hyperframes-core",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-creative:9ca033366d0b",
+      "kind": "skill",
+      "name": "hyperframes-creative",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-keyframes:7794435ff7cc",
+      "kind": "skill",
+      "name": "hyperframes-keyframes",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes-registry:3b9d371462e9",
+      "kind": "skill",
+      "name": "hyperframes-registry",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-hyperframes:11fff3001761",
+      "kind": "skill",
+      "name": "hyperframes",
       "sourceId": "source:local-global:8ff0a25c41eb",
       "state": "present",
       "origin": "third-party",
@@ -381,6 +471,33 @@
       "visibility": "public"
     },
     {
+      "id": "skill:local-global-manage-skill-cosmos:8ba4a77558e2",
+      "kind": "skill",
+      "name": "manage-skill-cosmos",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "creator",
+      "visibility": "creator-showcase"
+    },
+    {
+      "id": "skill:local-global-media-use:a9173c22c56b",
+      "kind": "skill",
+      "name": "media-use",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-motion-graphics:0807433b216a",
+      "kind": "skill",
+      "name": "motion-graphics",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "third-party",
+      "visibility": "public"
+    },
+    {
       "id": "skill:local-global-screenshot:e58512c6d8ad",
       "kind": "skill",
       "name": "screenshot",
@@ -397,6 +514,15 @@
       "state": "present",
       "origin": "third-party",
       "visibility": "public"
+    },
+    {
+      "id": "skill:local-global-skills-library-maintena:09a50a52675c",
+      "kind": "skill",
+      "name": "skills-library-maintenance",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "state": "present",
+      "origin": "creator",
+      "visibility": "creator-showcase"
     },
     {
       "id": "skill:local-global-transcribe:da65f2bd6322",
@@ -1029,33 +1155,6 @@
       "visibility": "public"
     },
     {
-      "id": "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
-      "kind": "skill",
-      "name": "hyperframes-cli",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "state": "present",
-      "origin": "third-party",
-      "visibility": "public"
-    },
-    {
-      "id": "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
-      "kind": "skill",
-      "name": "hyperframes-registry",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "state": "present",
-      "origin": "third-party",
-      "visibility": "public"
-    },
-    {
-      "id": "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
-      "kind": "skill",
-      "name": "hyperframes",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "state": "present",
-      "origin": "third-party",
-      "visibility": "public"
-    },
-    {
       "id": "skill:plugin-hyperframes-website-to-hyperf:8aa17f6ebe6b",
       "kind": "skill",
       "name": "website-to-hyperframes",
@@ -1599,9 +1698,9 @@
   "diagnostics": [],
   "summary": {
     "sources": 28,
-    "items": 142,
+    "items": 153,
     "warnings": 0,
     "errors": 0
   },
-  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4ae09aa6ca94"
+  "snapshotId": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4d1cb2d6cf14"
 }

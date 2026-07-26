@@ -1,8 +1,8 @@
 # Privacy audit
 
-- Input commit: `41a6607ec663980a6b09da7c4fae9a34ea985f0f`
-- Stable input time: `2026-07-26T04:04:09-04:00`
-- Published Skills: 142
+- Input commit: `55e8057f0dc0564cf2776bd00e74b212c207f4a4`
+- Stable input time: `2026-07-26T14:37:24-04:00`
+- Published Skills: 153
 - Allowed visibility classes: `public`, `creator-showcase`
 - Local-only records: 0
 - Private runtime ledgers, paths, accounts, sessions, usage evidence, and personal outcomes: excluded

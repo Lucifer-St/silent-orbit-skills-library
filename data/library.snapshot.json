@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-24T12:00:00.000Z",
+  "generatedAt": "2026-07-25T12:00:00.000Z",
   "skills": [
     {
       "id": "skill:personal-deck-aihot:7b3a602654bc",
@@ -415,96 +415,6 @@
       "sourceId": "source:local-global:8ff0a25c41eb",
       "libraryId": "library:local-global:71326d0fc8bf",
       "libraryTitle": "global",
-      "repo": null,
-      "repoUrl": null,
-      "origin": "third-party",
-      "visibility": "public",
-      "provenance": {
-        "observed": [
-          "name",
-          "trigger",
-          "libraryId"
-        ],
-        "inferred": [
-          "description"
-        ],
-        "curated": [
-          "origin",
-          "visibility",
-          "categoryMemberships"
-        ]
-      }
-    },
-    {
-      "id": "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
-      "name": "hyperframes",
-      "description": "用于处理 hyperframes 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-      "trigger": "$hyperframes",
-      "legacyCategory": "产品与前端开发",
-      "primaryCategoryId": "category:record:61fbd064e22a",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "libraryId": "library:plugin-hyperframes:817c14d4362c",
-      "libraryTitle": "Plugin: hyperframes",
-      "repo": null,
-      "repoUrl": null,
-      "origin": "third-party",
-      "visibility": "public",
-      "provenance": {
-        "observed": [
-          "name",
-          "trigger",
-          "libraryId"
-        ],
-        "inferred": [
-          "description"
-        ],
-        "curated": [
-          "origin",
-          "visibility",
-          "categoryMemberships"
-        ]
-      }
-    },
-    {
-      "id": "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
-      "name": "hyperframes-cli",
-      "description": "用于处理 hyperframes cli 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-      "trigger": "$hyperframes-cli",
-      "legacyCategory": "产品与前端开发",
-      "primaryCategoryId": "category:record:61fbd064e22a",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "libraryId": "library:plugin-hyperframes:817c14d4362c",
-      "libraryTitle": "Plugin: hyperframes",
-      "repo": null,
-      "repoUrl": null,
-      "origin": "third-party",
-      "visibility": "public",
-      "provenance": {
-        "observed": [
-          "name",
-          "trigger",
-          "libraryId"
-        ],
-        "inferred": [
-          "description"
-        ],
-        "curated": [
-          "origin",
-          "visibility",
-          "categoryMemberships"
-        ]
-      }
-    },
-    {
-      "id": "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
-      "name": "hyperframes-registry",
-      "description": "用于处理 hyperframes registry 相关的产品或前端开发任务，帮助把需求落到界面、代码或集成步骤。",
-      "trigger": "$hyperframes-registry",
-      "legacyCategory": "产品与前端开发",
-      "primaryCategoryId": "category:record:61fbd064e22a",
-      "sourceId": "source:plugin-hyperframes:f69c9b1984d4",
-      "libraryId": "library:plugin-hyperframes:817c14d4362c",
-      "libraryTitle": "Plugin: hyperframes",
       "repo": null,
       "repoUrl": null,
       "origin": "third-party",
@@ -4275,6 +4185,482 @@
           "categoryMemberships"
         ]
       }
+    },
+    {
+      "id": "skill:local-global-hatch-pet:da19f0e6adb0",
+      "name": "hatch-pet",
+      "description": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging.",
+      "descriptionI18n": {
+        "zh-CN": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging.",
+        "en-US": "Create, repair, validate, visually QA, and package Codex-compatible v2 animated pets from character art, generated images, company or prospect brand cues, or visual references. Use for any new Codex pet, custom mascot, non-pixel pet style, brand-inspired pet, existing-pet repair, or 8x11 spritesheet workflow requiring all 9 standard animation rows, 16 look directions, deterministic assembly, QA artifacts, and spriteVersionNumber 2 packaging."
+      },
+      "trigger": "$hatch-pet",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": null,
+      "repoUrl": null,
+      "origin": "unknown",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-humanizer:5766e7cb9036",
+      "name": "humanizer",
+      "description": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases.",
+      "descriptionI18n": {
+        "zh-CN": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases.",
+        "en-US": "Remove signs of AI-generated writing from text. Use when editing or reviewing text to make it sound more natural and human-written. Based on Wikipedia's comprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including: inflated symbolism, promotional language, superficial -ing analyses, vague attributions, em dash overuse, rule of three, AI vocabulary words, passive voice, negative parallelisms, and filler phrases."
+      },
+      "trigger": "$humanizer",
+      "legacyCategory": "文档与办公",
+      "primaryCategoryId": "category:record:388b3d7c9eab",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "blader/humanizer",
+      "repoUrl": "https://github.com/blader/humanizer",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-agent-reach:51ae965bb722",
+      "name": "agent-reach",
+      "description": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools.",
+      "descriptionI18n": {
+        "zh-CN": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools.",
+        "en-US": "Explicit opt-in only. Use this skill only when the user's current message affirmatively asks to use `Agent Reach`, `agent-reach`, or `$agent-reach`. Do not trigger from research/search intent, platform names, URLs, links, or prior conversation alone. After explicit activation, route supported internet access through Agent Reach and its upstream tools."
+      },
+      "trigger": "$agent-reach",
+      "legacyCategory": "数据分析与研究",
+      "primaryCategoryId": "category:record:7900ebe6b003",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "Panniantong/Agent-Reach",
+      "repoUrl": "https://github.com/Panniantong/Agent-Reach",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes:11fff3001761",
+      "name": "hyperframes",
+      "description": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session.",
+      "descriptionI18n": {
+        "zh-CN": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session.",
+        "en-US": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session."
+      },
+      "trigger": "$hyperframes",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-animation:5ac557a8c628",
+      "name": "hyperframes-animation",
+      "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+      "descriptionI18n": {
+        "zh-CN": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+        "en-US": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic."
+      },
+      "trigger": "$hyperframes-animation",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-cli:2fd6756e314b",
+      "name": "hyperframes-cli",
+      "description": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.",
+      "descriptionI18n": {
+        "zh-CN": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.",
+        "en-US": "Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering."
+      },
+      "trigger": "$hyperframes-cli",
+      "legacyCategory": "浏览器与自动化",
+      "primaryCategoryId": "category:record:c6d07dc8d875",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-core:6d62dbad228f",
+      "name": "hyperframes-core",
+      "description": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML.",
+      "descriptionI18n": {
+        "zh-CN": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML.",
+        "en-US": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML."
+      },
+      "trigger": "$hyperframes-core",
+      "legacyCategory": "文档与办公",
+      "primaryCategoryId": "category:record:388b3d7c9eab",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-creative:9ca033366d0b",
+      "name": "hyperframes-creative",
+      "description": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+      "descriptionI18n": {
+        "zh-CN": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+        "en-US": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`."
+      },
+      "trigger": "$hyperframes-creative",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-keyframes:7794435ff7cc",
+      "name": "hyperframes-keyframes",
+      "description": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning.",
+      "descriptionI18n": {
+        "zh-CN": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning.",
+        "en-US": "Use when a HyperFrames composition needs seek-safe 2D/3D keyframes, GSAP timelines, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning."
+      },
+      "trigger": "$hyperframes-keyframes",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-hyperframes-registry:3b9d371462e9",
+      "name": "hyperframes-registry",
+      "description": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).",
+      "descriptionI18n": {
+        "zh-CN": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).",
+        "en-US": "Install, discover, and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR)."
+      },
+      "trigger": "$hyperframes-registry",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-media-use:a9173c22c56b",
+      "name": "media-use",
+      "description": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need.",
+      "descriptionI18n": {
+        "zh-CN": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need.",
+        "en-US": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Keeps search noise on disk, hands the agent one path or block. Use for any audio, image, icon, logo, voiceover, caption, color-grading, or media-asset need."
+      },
+      "trigger": "$media-use",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-motion-graphics:0807433b216a",
+      "name": "motion-graphics",
+      "description": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes.",
+      "descriptionI18n": {
+        "zh-CN": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes.",
+        "en-US": "A short, design-led motion graphic where motion is the message — kinetic typography, stat count-up, chart/data-viz hit, logo sting / brand lockup, lower-third / callout / social overlay, animated map (highlight regions, connect places, zoom to a location), animated tweet / news-article / headline, webpage / UI animation (scroll, cursor, callouts), or fusing a real image's geometry into a chart. Usually under 10s (up to ~30s), no narration or live-action subject; renders to MP4 or transparent overlay. Longer / narrated / multi-scene → /general-video. Unclear → /hyperframes."
+      },
+      "trigger": "$motion-graphics",
+      "legacyCategory": "设计与创意生产",
+      "primaryCategoryId": "category:record:96a0eea78757",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "heygen-com/hyperframes",
+      "repoUrl": "https://github.com/heygen-com/hyperframes",
+      "origin": "third-party",
+      "visibility": "public",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-skills-library-maintena:09a50a52675c",
+      "name": "skills-library-maintenance",
+      "description": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status.",
+      "descriptionI18n": {
+        "zh-CN": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status.",
+        "en-US": "Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status."
+      },
+      "trigger": "$skills-library-maintenance",
+      "legacyCategory": "个人知识库与本地工具",
+      "primaryCategoryId": "category:record:677bf4682752",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "Lucifer-St/silent-orbit-skills-library",
+      "repoUrl": "https://github.com/Lucifer-St/silent-orbit-skills-library",
+      "origin": "creator",
+      "visibility": "creator-showcase",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
+    },
+    {
+      "id": "skill:local-global-manage-skill-cosmos:8ba4a77558e2",
+      "name": "manage-skill-cosmos",
+      "description": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior.",
+      "descriptionI18n": {
+        "zh-CN": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior.",
+        "en-US": "Explain Silent Orbit Provider results and ManagementPlanV1 output, coordinate trusted source-managed check-and-update, invoke the guarded management CLI, and interpret receipts. Use when a user asks to assess or perform an install, update, freeze, remove, or restore through `silent-orbit manage`; keep unsupported operations blocked and disclose trusted external manager behavior."
+      },
+      "trigger": "$manage-skill-cosmos",
+      "legacyCategory": "效率与元工作流",
+      "primaryCategoryId": "category:record:877bc13e9bec",
+      "sourceId": "source:local-global:8ff0a25c41eb",
+      "libraryId": "library:local-global:71326d0fc8bf",
+      "libraryTitle": "global",
+      "repo": "Lucifer-St/silent-orbit-skills-library",
+      "repoUrl": "https://github.com/Lucifer-St/silent-orbit-skills-library",
+      "origin": "creator",
+      "visibility": "creator-showcase",
+      "provenance": {
+        "observed": [
+          "name",
+          "trigger",
+          "libraryId"
+        ],
+        "inferred": [
+          "description"
+        ],
+        "curated": [
+          "origin",
+          "visibility",
+          "categoryMemberships"
+        ]
+      }
     }
   ],
   "libraries": [
@@ -4626,9 +5012,6 @@
       "description": "由 `hyperframes` 插件提供的 skills。它们通常共享同一个软件、账户或 MCP 能力边界。",
       "skillIds": [
         "skill:plugin-hyperframes-gsap:eeed4247867c",
-        "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
-        "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
-        "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
         "skill:plugin-hyperframes-website-to-hyperf:8aa17f6ebe6b"
       ],
       "repos": [],
@@ -4636,8 +5019,8 @@
         "hyperframes"
       ],
       "legacyCategories": [
-        "产品与前端开发",
-        "设计与创意生产"
+        "设计与创意生产",
+        "产品与前端开发"
       ],
       "legacyPrimaryCategory": "产品与前端开发"
     },
@@ -4994,7 +5377,21 @@
         "skill:local-global-screenshot:e58512c6d8ad",
         "skill:local-global-transcribe:da65f2bd6322",
         "skill:local-global-web-design-guidelines:f79f4a913852",
-        "skill:local-global-beautify-github-readme:0b1f04b33544"
+        "skill:local-global-beautify-github-readme:0b1f04b33544",
+        "skill:local-global-hatch-pet:da19f0e6adb0",
+        "skill:local-global-humanizer:5766e7cb9036",
+        "skill:local-global-agent-reach:51ae965bb722",
+        "skill:local-global-hyperframes:11fff3001761",
+        "skill:local-global-hyperframes-animation:5ac557a8c628",
+        "skill:local-global-hyperframes-cli:2fd6756e314b",
+        "skill:local-global-hyperframes-core:6d62dbad228f",
+        "skill:local-global-hyperframes-creative:9ca033366d0b",
+        "skill:local-global-hyperframes-keyframes:7794435ff7cc",
+        "skill:local-global-hyperframes-registry:3b9d371462e9",
+        "skill:local-global-media-use:a9173c22c56b",
+        "skill:local-global-motion-graphics:0807433b216a",
+        "skill:local-global-skills-library-maintena:09a50a52675c",
+        "skill:local-global-manage-skill-cosmos:8ba4a77558e2"
       ],
       "repos": [],
       "plugins": [],
@@ -5005,7 +5402,9 @@
         "协作平台与发布",
         "数据分析与研究",
         "文档与办公",
-        "设计与创意生产"
+        "设计与创意生产",
+        "浏览器与自动化",
+        "效率与元工作流"
       ],
       "legacyPrimaryCategory": "工程质量与安全"
     },
@@ -5041,7 +5440,8 @@
         "unit:library-local-obsidian:ebf9a62e44aa",
         "unit:skill-windows-workstation-baseline:09d2835a9234",
         "unit:library-plugin-computer-use:b272f4b1aa47",
-        "unit:skill-interview-prep:7275b6839b01"
+        "unit:skill-interview-prep:7275b6839b01",
+        "unit:skill-skills-library-maintenance:ff6c600d4792"
       ]
     },
     {
@@ -5083,7 +5483,8 @@
       "id": "category:record:877bc13e9bec",
       "name": "效率与元工作流",
       "unitIds": [
-        "unit:library-repo-openai-skills:5fddccb61945"
+        "unit:library-repo-openai-skills:5fddccb61945",
+        "unit:skill-manage-skill-cosmos:78c47ecd6fc1"
       ]
     },
     {
@@ -5091,7 +5492,8 @@
       "name": "数据分析与研究",
       "unitIds": [
         "unit:library-plugin-data-analytics:0a7bd97a29ad",
-        "unit:skill-jupyter-notebook:046130193566"
+        "unit:skill-jupyter-notebook:046130193566",
+        "unit:skill-agent-reach:341cca8cf202"
       ]
     },
     {
@@ -5103,7 +5505,9 @@
         "unit:library-plugin-documents:995ffd4a9f0d",
         "unit:library-plugin-presentations:15211d030ca1",
         "unit:library-plugin-template-creator:a3a7dd14609c",
-        "unit:skill-transcribe:dd4a216d7a77"
+        "unit:skill-transcribe:dd4a216d7a77",
+        "unit:skill-humanizer:726df993f844",
+        "unit:skill-hyperframes-core:332be3b535ed"
       ]
     },
     {
@@ -5111,7 +5515,8 @@
       "name": "浏览器与自动化",
       "unitIds": [
         "unit:library-plugin-chrome:f7b529bbea41",
-        "unit:library-plugin-browser:b659b3bbfe7d"
+        "unit:library-plugin-browser:b659b3bbfe7d",
+        "unit:skill-hyperframes-cli:6e3b3e13af6e"
       ]
     },
     {
@@ -5123,7 +5528,15 @@
         "unit:library-plugin-canva:35f43525aa27",
         "unit:library-system-codex-system:58479e8c10c0",
         "unit:skill-web-design-guidelines:ace8f5483bac",
-        "unit:skill-beautify-github-readme:d34908b31e54"
+        "unit:skill-beautify-github-readme:d34908b31e54",
+        "unit:skill-hatch-pet:07069c57dd3a",
+        "unit:skill-hyperframes:d5632809e2b3",
+        "unit:skill-hyperframes-animation:7f1b912071cc",
+        "unit:skill-hyperframes-creative:254107a5a661",
+        "unit:skill-hyperframes-keyframes:dc90af9ca9f4",
+        "unit:skill-hyperframes-registry:63fe9fcc393b",
+        "unit:skill-media-use:7d0e1e213364",
+        "unit:skill-motion-graphics:59d03d3850b2"
       ]
     }
   ],
@@ -5174,6 +5587,16 @@
       ]
     },
     {
+      "id": "unit:skill-skills-library-maintenance:ff6c600d4792",
+      "categoryId": "category:record:677bf4682752",
+      "type": "skill",
+      "title": "skills-library-maintenance",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-skills-library-maintena:09a50a52675c"
+      ]
+    },
+    {
       "id": "unit:library-plugin-build-web-apps:5cba88e62e48",
       "categoryId": "category:record:61fbd064e22a",
       "type": "library",
@@ -5196,9 +5619,6 @@
       "libraryId": "library:plugin-hyperframes:817c14d4362c",
       "skillIds": [
         "skill:plugin-hyperframes-gsap:eeed4247867c",
-        "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
-        "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
-        "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
         "skill:plugin-hyperframes-website-to-hyperf:8aa17f6ebe6b"
       ]
     },
@@ -5426,6 +5846,16 @@
       ]
     },
     {
+      "id": "unit:skill-manage-skill-cosmos:78c47ecd6fc1",
+      "categoryId": "category:record:877bc13e9bec",
+      "type": "skill",
+      "title": "manage-skill-cosmos",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-manage-skill-cosmos:8ba4a77558e2"
+      ]
+    },
+    {
       "id": "unit:library-plugin-data-analytics:0a7bd97a29ad",
       "categoryId": "category:record:7900ebe6b003",
       "type": "library",
@@ -5460,6 +5890,16 @@
       "kind": "单独 skill",
       "skillIds": [
         "skill:local-global-jupyter-notebook:2c7c4e90035e"
+      ]
+    },
+    {
+      "id": "unit:skill-agent-reach:341cca8cf202",
+      "categoryId": "category:record:7900ebe6b003",
+      "type": "skill",
+      "title": "agent-reach",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-agent-reach:51ae965bb722"
       ]
     },
     {
@@ -5528,6 +5968,26 @@
       ]
     },
     {
+      "id": "unit:skill-humanizer:726df993f844",
+      "categoryId": "category:record:388b3d7c9eab",
+      "type": "skill",
+      "title": "humanizer",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-humanizer:5766e7cb9036"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-core:332be3b535ed",
+      "categoryId": "category:record:388b3d7c9eab",
+      "type": "skill",
+      "title": "hyperframes-core",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-core:6d62dbad228f"
+      ]
+    },
+    {
       "id": "unit:library-plugin-chrome:f7b529bbea41",
       "categoryId": "category:record:c6d07dc8d875",
       "type": "library",
@@ -5547,6 +6007,16 @@
       "libraryId": "library:plugin-browser:acb026cf6ed2",
       "skillIds": [
         "skill:plugin-browser-control-in-app-browse:972d2a7f7ed6"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-cli:6e3b3e13af6e",
+      "categoryId": "category:record:c6d07dc8d875",
+      "type": "skill",
+      "title": "hyperframes-cli",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-cli:2fd6756e314b"
       ]
     },
     {
@@ -5634,9 +6104,105 @@
       "skillIds": [
         "skill:local-global-beautify-github-readme:0b1f04b33544"
       ]
+    },
+    {
+      "id": "unit:skill-hatch-pet:07069c57dd3a",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hatch-pet",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hatch-pet:da19f0e6adb0"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes:d5632809e2b3",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hyperframes",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes:11fff3001761"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-animation:7f1b912071cc",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hyperframes-animation",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-animation:5ac557a8c628"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-creative:254107a5a661",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hyperframes-creative",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-creative:9ca033366d0b"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-keyframes:dc90af9ca9f4",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hyperframes-keyframes",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-keyframes:7794435ff7cc"
+      ]
+    },
+    {
+      "id": "unit:skill-hyperframes-registry:63fe9fcc393b",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "hyperframes-registry",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-hyperframes-registry:3b9d371462e9"
+      ]
+    },
+    {
+      "id": "unit:skill-media-use:7d0e1e213364",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "media-use",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-media-use:a9173c22c56b"
+      ]
+    },
+    {
+      "id": "unit:skill-motion-graphics:59d03d3850b2",
+      "categoryId": "category:record:96a0eea78757",
+      "type": "skill",
+      "title": "motion-graphics",
+      "kind": "单独 skill",
+      "skillIds": [
+        "skill:local-global-motion-graphics:0807433b216a"
+      ]
     }
   ],
   "categoryMemberships": [
+    {
+      "categoryId": "category:record:388b3d7c9eab",
+      "skillId": "skill:local-global-humanizer:5766e7cb9036",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:388b3d7c9eab",
+      "skillId": "skill:local-global-hyperframes-core:6d62dbad228f",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
     {
       "categoryId": "category:record:388b3d7c9eab",
       "skillId": "skill:local-global-transcribe:da65f2bd6322",
@@ -5769,30 +6335,6 @@
     },
     {
       "categoryId": "category:record:61fbd064e22a",
-      "skillId": "skill:plugin-hyperframes-hyperframes-cli:097592c3083c",
-      "basis": [
-        "legacy-skill-category",
-        "legacy-unit"
-      ]
-    },
-    {
-      "categoryId": "category:record:61fbd064e22a",
-      "skillId": "skill:plugin-hyperframes-hyperframes-regis:94e790f02feb",
-      "basis": [
-        "legacy-skill-category",
-        "legacy-unit"
-      ]
-    },
-    {
-      "categoryId": "category:record:61fbd064e22a",
-      "skillId": "skill:plugin-hyperframes-hyperframes:1dc6cadbbfad",
-      "basis": [
-        "legacy-skill-category",
-        "legacy-unit"
-      ]
-    },
-    {
-      "categoryId": "category:record:61fbd064e22a",
       "skillId": "skill:plugin-hyperframes-website-to-hyperf:8aa17f6ebe6b",
       "basis": [
         "legacy-skill-category",
@@ -5865,6 +6407,14 @@
     },
     {
       "categoryId": "category:record:677bf4682752",
+      "skillId": "skill:local-global-skills-library-maintena:09a50a52675c",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:677bf4682752",
       "skillId": "skill:local-global-windows-workstation-bas:d9d7eefff780",
       "basis": [
         "legacy-skill-category",
@@ -5930,6 +6480,14 @@
       "skillId": "skill:plugin-sales-build-competitive-brief:527e13f201bc",
       "basis": [
         "legacy-skill-category"
+      ]
+    },
+    {
+      "categoryId": "category:record:7900ebe6b003",
+      "skillId": "skill:local-global-agent-reach:51ae965bb722",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
       ]
     },
     {
@@ -6086,6 +6644,14 @@
     },
     {
       "categoryId": "category:record:877bc13e9bec",
+      "skillId": "skill:local-global-manage-skill-cosmos:8ba4a77558e2",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:877bc13e9bec",
       "skillId": "skill:plugin-data-analytics-build-report:033f4c1a6e06",
       "basis": [
         "legacy-skill-category"
@@ -6173,6 +6739,70 @@
     {
       "categoryId": "category:record:96a0eea78757",
       "skillId": "skill:local-global-beautify-github-readme:0b1f04b33544",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hatch-pet:da19f0e6adb0",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hyperframes-animation:5ac557a8c628",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hyperframes-creative:9ca033366d0b",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hyperframes-keyframes:7794435ff7cc",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hyperframes-registry:3b9d371462e9",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-hyperframes:11fff3001761",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-media-use:a9173c22c56b",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:96a0eea78757",
+      "skillId": "skill:local-global-motion-graphics:0807433b216a",
       "basis": [
         "legacy-skill-category",
         "legacy-unit"
@@ -6967,6 +7597,14 @@
     },
     {
       "categoryId": "category:record:c6d07dc8d875",
+      "skillId": "skill:local-global-hyperframes-cli:2fd6756e314b",
+      "basis": [
+        "legacy-skill-category",
+        "legacy-unit"
+      ]
+    },
+    {
+      "categoryId": "category:record:c6d07dc8d875",
       "skillId": "skill:plugin-browser-control-in-app-browse:972d2a7f7ed6",
       "basis": [
         "legacy-skill-category",
@@ -7055,6 +7693,244 @@
       },
       "skill": "beautify-github-readme",
       "visibility": "public"
+    },
+    {
+      "id": "agent-reach-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published agent-reach to the Skills Library",
+      "summary": "agent-reach was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "agent-reach 已进入 Skills Library",
+        "en-US": "Published agent-reach to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "agent-reach 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "agent-reach was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "agent-reach",
+      "visibility": "public"
+    },
+    {
+      "id": "hatch-pet-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hatch-pet to the Skills Library",
+      "summary": "hatch-pet was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hatch-pet 已进入 Skills Library",
+        "en-US": "Published hatch-pet to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hatch-pet 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hatch-pet was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hatch-pet",
+      "visibility": "public"
+    },
+    {
+      "id": "humanizer-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published humanizer to the Skills Library",
+      "summary": "humanizer was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "humanizer 已进入 Skills Library",
+        "en-US": "Published humanizer to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "humanizer 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "humanizer was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "humanizer",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes to the Skills Library",
+      "summary": "hyperframes was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes 已进入 Skills Library",
+        "en-US": "Published hyperframes to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-animation-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-animation to the Skills Library",
+      "summary": "hyperframes-animation was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-animation 已进入 Skills Library",
+        "en-US": "Published hyperframes-animation to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-animation 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-animation was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-animation",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-cli-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-cli to the Skills Library",
+      "summary": "hyperframes-cli was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-cli 已进入 Skills Library",
+        "en-US": "Published hyperframes-cli to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-cli 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-cli was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-cli",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-core-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-core to the Skills Library",
+      "summary": "hyperframes-core was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-core 已进入 Skills Library",
+        "en-US": "Published hyperframes-core to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-core 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-core was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-core",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-creative-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-creative to the Skills Library",
+      "summary": "hyperframes-creative was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-creative 已进入 Skills Library",
+        "en-US": "Published hyperframes-creative to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-creative 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-creative was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-creative",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-keyframes-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-keyframes to the Skills Library",
+      "summary": "hyperframes-keyframes was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-keyframes 已进入 Skills Library",
+        "en-US": "Published hyperframes-keyframes to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-keyframes 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-keyframes was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-keyframes",
+      "visibility": "public"
+    },
+    {
+      "id": "hyperframes-registry-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published hyperframes-registry to the Skills Library",
+      "summary": "hyperframes-registry was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "hyperframes-registry 已进入 Skills Library",
+        "en-US": "Published hyperframes-registry to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "hyperframes-registry 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "hyperframes-registry was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "hyperframes-registry",
+      "visibility": "public"
+    },
+    {
+      "id": "manage-skill-cosmos-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published manage-skill-cosmos to the Skills Library",
+      "summary": "manage-skill-cosmos was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "manage-skill-cosmos 已进入 Skills Library",
+        "en-US": "Published manage-skill-cosmos to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "manage-skill-cosmos 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "manage-skill-cosmos was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "manage-skill-cosmos",
+      "visibility": "public"
+    },
+    {
+      "id": "media-use-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published media-use to the Skills Library",
+      "summary": "media-use was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "media-use 已进入 Skills Library",
+        "en-US": "Published media-use to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "media-use 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "media-use was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "media-use",
+      "visibility": "public"
+    },
+    {
+      "id": "motion-graphics-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published motion-graphics to the Skills Library",
+      "summary": "motion-graphics was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "motion-graphics 已进入 Skills Library",
+        "en-US": "Published motion-graphics to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "motion-graphics 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "motion-graphics was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "motion-graphics",
+      "visibility": "public"
+    },
+    {
+      "id": "skills-library-maintenance-2026-07-25T04-37-42-572Z-published",
+      "date": "2026-07-25",
+      "type": "published",
+      "title": "Published skills-library-maintenance to the Skills Library",
+      "summary": "skills-library-maintenance was added to the local Skills Library and sanitized Public Export staging data.",
+      "title_i18n": {
+        "zh-CN": "skills-library-maintenance 已进入 Skills Library",
+        "en-US": "Published skills-library-maintenance to the Skills Library"
+      },
+      "summary_i18n": {
+        "zh-CN": "skills-library-maintenance 已加入本地 Skills Library，并以净化后的公开字段写入 Public Export 暂存数据。",
+        "en-US": "skills-library-maintenance was added to the local Skills Library and sanitized Public Export staging data."
+      },
+      "skill": "skills-library-maintenance",
+      "visibility": "public"
     }
   ],
   "starredSkills": [],
@@ -7123,10 +7999,10 @@
   ],
   "maintenanceStatus": {
     "schemaVersion": 1,
-    "snapshotDate": "2026-07-24",
+    "snapshotDate": "2026-07-25",
     "privacy": "sanitized",
-    "catalogSkills": 142,
-    "publicGlobalSkills": 22,
+    "catalogSkills": 153,
+    "publicGlobalSkills": 36,
     "publicationHandoff": {
       "productionAuthority": "public-github-main",
       "publicRepository": "Lucifer-St/silent-orbit-skills-library",
@@ -7137,8 +8013,8 @@
     "channels": [
       {
         "id": "source-managed-global",
-        "state": "current",
-        "checkedSources": 2,
+        "state": "unchecked",
+        "checkedSources": 0,
         "execution": "local-codex"
       },
       {
@@ -7157,5 +8033,5 @@
       "en-US": "Use $skills-library-maintenance to check all Skill updates and show the plan before changing anything."
     }
   },
-  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:511941a8e84a"
+  "snapshotId": "library-snapshot:schemaversion-1-projectid-silent-orb:0a7cd9f5a394"
 }

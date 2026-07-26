@@ -14,7 +14,7 @@ const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const controlFiles = new Set([
   "PUBLIC_RELEASE_MANIFEST.json",
   "PUBLIC_RELEASE_MANIFEST.md",
-  "PHASE2_COMPLETION_RECEIPT.md",
+  "PUBLIC_RELEASE_RECEIPT.md",
 ]);
 const generatedRoots = new Set([
   "node_modules",
@@ -27,6 +27,7 @@ const requiredFiles = [
   ".github/workflows/public-release-gate.yml",
   ".github/ISSUE_TEMPLATE/bug_report.yml",
   ".github/ISSUE_TEMPLATE/experience_feedback.yml",
+  ".github/ISSUE_TEMPLATE/v1_rc_acceptance.yml",
   ".gitattributes",
   ".gitignore",
   ".node-version",
@@ -47,7 +48,7 @@ const requiredFiles = [
   "INSTALLATION_AND_UPGRADE.md",
   "INSTALLATION_AND_UPGRADE.zh-CN.md",
   "LICENSE",
-  "PHASE2_COMPLETION_RECEIPT.md",
+  "PUBLIC_RELEASE_RECEIPT.md",
   "PRIVACY.md",
   "PRIVACY.zh-CN.md",
   "PRIVACY_AUDIT.md",
@@ -58,10 +59,12 @@ const requiredFiles = [
   "RECOVERY.md",
   "RECOVERY.zh-CN.md",
   "RELEASE_NOTES_v0.11.0-beta.5.md",
+  "RELEASE_NOTES_v0.11.0-beta.6.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "VERSIONING_AND_MIGRATIONS.md",
   "VERSIONING_AND_MIGRATIONS.zh-CN.md",
+  "V1_RC_ACCEPTANCE.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
@@ -192,7 +195,7 @@ function assertManifest(rootDir, { repositoryAware = false } = {}) {
     throw new Error("Public release manifest must explicitly record its self-reference exclusions.");
   }
 
-  const receipt = fs.readFileSync(path.join(rootDir, "PHASE2_COMPLETION_RECEIPT.md"), "utf8");
+  const receipt = fs.readFileSync(path.join(rootDir, "PUBLIC_RELEASE_RECEIPT.md"), "utf8");
   if (!receipt.includes(sha256(manifestBytes))) throw new Error("Completion receipt is missing the JSON manifest SHA-256.");
   if (!receipt.includes(manifest.releaseDigest)) throw new Error("Completion receipt is missing the canonical release digest.");
   const markdownManifest = fs.readFileSync(path.join(rootDir, "PUBLIC_RELEASE_MANIFEST.md"));
@@ -281,6 +284,8 @@ function assertDataBoundary(rootDir) {
   const projectConfig = validateProjectConfigV1(readJson(rootDir, "data/project-config.json"));
   const inventorySnapshot = validateInventorySnapshotV1(readJson(rootDir, "data/inventory.snapshot.json"));
   const librarySnapshot = validateLibrarySnapshotV1(readJson(rootDir, "data/library.snapshot.json"));
+  const libraries = readJson(rootDir, "data/libraries.json");
+  const categoryUnits = readJson(rootDir, "data/category-units.json");
   validateSiteManifestV1(readJson(rootDir, "data/site-manifest.json"), { projectConfig, inventorySnapshot, librarySnapshot });
   for (const [fileName, value] of [
     ["inventory.snapshot.json", inventorySnapshot],
@@ -288,8 +293,12 @@ function assertDataBoundary(rootDir) {
   ]) {
     assertNoForbiddenJsonKeys(value, fileName);
   }
-  if (librarySnapshot.skills.length !== 142 || librarySnapshot.libraries.length !== 28 || librarySnapshot.categories.length !== 9) {
-    throw new Error("Generated Public contract projection lost 142/28/9 parity.");
+  if (
+    librarySnapshot.skills.length !== skills.length
+    || librarySnapshot.libraries.length !== libraries.length
+    || librarySnapshot.categories.length !== categoryUnits.length
+  ) {
+    throw new Error("Generated Public contract projection lost current catalog parity.");
   }
 }
 
@@ -328,7 +337,8 @@ function assertPrivacyAndSecrets(rootDir, { repositoryAware = false } = {}) {
     if (!textExtensions.has(extension)) continue;
     const absolutePath = path.join(rootDir, ...relativePath.split("/"));
     const text = fs.readFileSync(absolutePath, "utf8");
-    if (windowsHome.test(text) || unixHome.test(text) || /file:\/\//i.test(text)) {
+    const pathScanText = text.replaceAll("/tmp/home", "<container-home>");
+    if (windowsHome.test(pathScanText) || unixHome.test(pathScanText) || /file:\/\//i.test(pathScanText)) {
       throw new Error(`${relativePath} contains an absolute local path.`);
     }
     if (text.includes(keyMarker) || tokenPrefixes.some((prefix) => text.includes(prefix)) || assignedSecret.test(text)) {
@@ -343,11 +353,19 @@ function assertPrivacyAndSecrets(rootDir, { repositoryAware = false } = {}) {
 
 function assertWorkflowContract(rootDir) {
   const workflow = fs.readFileSync(path.join(rootDir, ".github", "workflows", "public-release-gate.yml"), "utf8");
-  if ((workflow.match(/^\s*runs-on:/gm) ?? []).length !== 1 || !/runs-on:\s*windows-latest/.test(workflow)) {
-    throw new Error("Public release workflow must contain exactly one windows-latest job.");
+  for (const required of [
+    "node-version: 24",
+    "npm run preflight:v1 -- --mode public-core",
+    "npm run preflight:v1 -- --mode package-smoke",
+    "npm run preflight:v1 -- --mode docker",
+    "os: [windows-latest, ubuntu-latest, macos-latest]",
+    "needs: [v1-core, package-smoke, docker-smoke]",
+    "name: release-gate",
+  ]) {
+    if (!workflow.includes(required)) throw new Error(`Public release workflow is missing ${required}.`);
   }
-  if (/ubuntu-|pull_request_target|permissions:[\s\S]*?\bwrite\b|NETLIFY|upload-artifact/i.test(workflow)) {
-    throw new Error("Public release workflow contains a disallowed runner, trigger, permission, deploy secret, or artifact upload.");
+  if (/pull_request_target|permissions:[\s\S]*?\bwrite\b|NETLIFY|upload-artifact|netlify\s+deploy/i.test(workflow)) {
+    throw new Error("Public release workflow contains a disallowed trigger, permission, deploy secret, artifact upload, or direct deploy.");
   }
   if (!/permissions:\s*[\r\n]+\s+contents:\s*read/.test(workflow)) {
     throw new Error("Public release workflow must use contents: read least privilege.");
