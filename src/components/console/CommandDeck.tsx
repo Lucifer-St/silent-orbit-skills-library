@@ -1,4 +1,5 @@
-import { Filter, Search, Sparkles, X } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, Filter, Search, Sparkles, X } from "lucide-react";
 import { categoryGroups, sourceKinds } from "../../data/indexes";
 import { useLocale } from "../../i18n/LocaleContext";
 
@@ -29,6 +30,11 @@ export function CommandDeck({
   onReset: () => void;
 }) {
   const { category: categoryLabel, metadataLabel, text } = useLocale();
+  const [filtersExpanded, setFiltersExpanded] = useState(false);
+  const activeFilterCount = Number(categoryFilter !== allCategories)
+    + Number(sourceFilter !== allSources)
+    + Number(starredOnly);
+
   return (
     <section className="command-deck" aria-label={text("搜索和筛选", "Search and filters")}>
       <label className="command-search">
@@ -41,7 +47,24 @@ export function CommandDeck({
         />
       </label>
 
-      <div className="command-filter-row">
+      <button
+        aria-controls="command-filter-controls"
+        aria-expanded={filtersExpanded}
+        className="command-filter-toggle"
+        type="button"
+        onClick={() => setFiltersExpanded((expanded) => !expanded)}
+      >
+        <Filter aria-hidden="true" size={14} />
+        <span>{text("筛选", "FILTERS")}</span>
+        <strong>{activeFilterCount}</strong>
+        <ChevronDown aria-hidden="true" size={14} strokeWidth={1.4} />
+      </button>
+
+      <div
+        className="command-filter-row"
+        data-expanded={filtersExpanded}
+        id="command-filter-controls"
+      >
         <label>
           <span>{text("分类", "Category")}</span>
           <select value={categoryFilter} onChange={(event) => onCategoryChange(event.target.value)}>
@@ -76,7 +99,14 @@ export function CommandDeck({
           {text("只看高价值", "High value only")}
         </button>
 
-        <button className="ghost-button" type="button" onClick={onReset}>
+        <button
+          className="ghost-button"
+          type="button"
+          onClick={() => {
+            onReset();
+            setFiltersExpanded(false);
+          }}
+        >
           <X size={16} />
           {text("清除", "Clear")}
         </button>

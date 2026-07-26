@@ -13,7 +13,11 @@ export interface AgentConsoleShellProps {
 export function AgentConsoleShell(props: AgentConsoleShellProps) {
   const isLibrarianHome = props.page === "librarian";
   return (
-    <div className={`agent-console ${isLibrarianHome ? "is-librarian-home" : ""}`} data-surface="console">
+    <div
+      className={`agent-console ${isLibrarianHome ? "is-librarian-home" : ""}`}
+      data-console-page={props.page}
+      data-surface="console"
+    >
       <header className="console-topbar">
         <button className="console-brand" type="button" onClick={props.onHome}>
           SKILLS LIBRARY

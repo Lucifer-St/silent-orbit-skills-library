@@ -30,16 +30,18 @@ export const cosmosAssetPools = {
     `${cosmosRoot}/signals/12-parallax-cluster.png`,
     `${cosmosRoot}/signals/16-fading-data-echo.png`,
   ],
+  // Keep the original nine-slot cadence so saved orbit indices stay stable;
+  // facility slots now echo approved relics instead of dishes, probes, or domes.
   relics: [
     `${cosmosRoot}/relics/11-data-vault-capsule.png`,
     `${cosmosRoot}/relics/10-incomplete-orbital-gate.png`,
-    `${cosmosRoot}/relics/07-satellite.png`,
+    `${cosmosRoot}/relics/03-archive-beacon.png`,
     `${cosmosRoot}/relics/09-silent-monolith.png`,
     `${cosmosRoot}/relics/03-archive-beacon.png`,
-    `${cosmosRoot}/relics/15-ruined-telescope.png`,
+    `${cosmosRoot}/relics/10-incomplete-orbital-gate.png`,
     `${cosmosRoot}/relics/16-archive-obelisk.png`,
-    `${cosmosRoot}/relics/08-deep-space-probe.png`,
-    `${cosmosRoot}/relics/01-observatory-dome.png`,
+    `${cosmosRoot}/relics/09-silent-monolith.png`,
+    `${cosmosRoot}/relics/16-archive-obelisk.png`,
   ],
   catalogArrivals: [
     `${cosmosRoot}/environments/lost-relay-v01.png`,

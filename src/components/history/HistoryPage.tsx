@@ -81,6 +81,7 @@ export function HistoryPage({ data, error, onDelete, onExport, onImport }: Histo
                 data-completed-at={outcome.completedAt}
                 key={outcome.id}
               >
+                <span className="outcome-commit-line" aria-hidden="true" />
                 <div className="outcome-history-meta">
                   <span className="archive-heading">
                     <CosmosAsset className="archive-icon" src={cosmosIcons.recordedOutcome} />

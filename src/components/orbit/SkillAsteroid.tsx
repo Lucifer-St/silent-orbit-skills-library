@@ -7,10 +7,11 @@ interface SkillAsteroidProps {
   readonly node: OrbitSkillNode;
   readonly desktopPosition: MapPoint;
   readonly mobilePosition: MapPoint;
+  readonly showLabel: boolean;
   readonly onSelect: (node: OrbitSkillNode) => void;
 }
 
-export function SkillAsteroid({ node, desktopPosition, mobilePosition, onSelect }: SkillAsteroidProps) {
+export function SkillAsteroid({ node, desktopPosition, mobilePosition, showLabel, onSelect }: SkillAsteroidProps) {
   const visual = getSkillVisual(`${node.stationId}:${node.id}`);
   const style = {
     left: `${desktopPosition.x}%`,
@@ -22,6 +23,7 @@ export function SkillAsteroid({ node, desktopPosition, mobilePosition, onSelect 
   return (
     <button
       className="skill-asteroid"
+      data-label-visible={showLabel ? "true" : undefined}
       data-skill-id={node.id}
       data-station-id={node.stationId}
       style={style}

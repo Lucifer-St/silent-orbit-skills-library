@@ -117,6 +117,11 @@ test("cosmos visual mappings are deterministic and stay inside their semantic po
   assert.ok(cosmosAssetPools.libraries.includes(getLibraryVisual("station:library:local:obsidian")));
   assert.ok(cosmosAssetPools.skills.includes(getSkillVisual("skill:obsidian-vault")));
   assert.ok(cosmosAssetPools.relics.includes(getRelicVisual(7)));
+  assert.equal(cosmosAssetPools.relics.length, 9);
+  assert.ok(
+    cosmosAssetPools.relics.every((asset) => !/(satellite|telescope|probe|observatory)/i.test(asset)),
+    "relic visuals must stay within the restrained celestial/archive language",
+  );
   assert.ok(cosmosAssetPools.catalogArrivals.includes(getCatalogArrivalVisual("skill:obsidian-vault")));
   assert.equal(cosmosAssetPools.catalogArrivals.length, 12);
   assert.equal(
