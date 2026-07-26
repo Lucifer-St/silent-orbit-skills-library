@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "b6314877bb40f734fe6dedacd22c4ec0b158f493",
-  "inputCommitTimestamp": "2026-07-26T03:55:06-04:00",
+  "inputCommit": "41a6607ec663980a6b09da7c4fae9a34ea985f0f",
+  "inputCommitTimestamp": "2026-07-26T04:04:09-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "b01083a20b27bdeed70165270acb19eaae5ab6152961b6fa7c69f946ae5abef9",
+  "releaseDigest": "b09ad2371e61fab564f9e228e47301b5b120dec886868952e3b76823b4343f2f",
   "fileCount": 284,
-  "totalBytes": 11825631,
+  "totalBytes": 11825891,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "660d89f4865fd087b2ece1e46fe878244a190a999eb12dea78e6c31ddbd38e5c"
+      "sha256": "42136f8f42601a21ac3befc332038bda79ac0a0607de724ce967ae7692f38724"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -105,7 +105,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "df95304ce4f83ddc94c2f7b86490e183c987e37e37087a81e6495a9383d06f1e"
+      "sha256": "92e76bc3cc76b88b4d632b29ff1734dc376d939403c9799618a6f2009c6ca2ce"
     },
     {
       "path": "README.md",
@@ -779,8 +779,8 @@
     },
     {
       "path": "scripts/capture-visual-qa.mjs",
-      "bytes": 87183,
-      "sha256": "1e3681b177960af8477bee8deccc92a6c639f8f36ed58e6617b5cfc6f62c6aa4"
+      "bytes": 87317,
+      "sha256": "c61be1d5a6f1200f2b1927ce10858229bdf5f54ed359cf27e22fc94017c57e5f"
     },
     {
       "path": "scripts/lib/generator-contracts.mjs",
@@ -849,8 +849,8 @@
     },
     {
       "path": "scripts/smoke-ui.mjs",
-      "bytes": 117916,
-      "sha256": "d8f439ff6d8baa4dc8a58f09da8a752d633644794d4d1e12387ccd9631adc36d"
+      "bytes": 118042,
+      "sha256": "c955a30902cb979f5aade67190eb77429d6ecf9cea4e72bf9ed3bb8c79a6c468"
     },
     {
       "path": "scripts/sync-data.mjs",

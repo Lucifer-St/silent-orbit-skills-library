@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `b6314877bb40f734fe6dedacd22c4ec0b158f493`
-- Input commit timestamp: `2026-07-26T03:55:06-04:00`
+- Input commit: `41a6607ec663980a6b09da7c4fae9a34ea985f0f`
+- Input commit timestamp: `2026-07-26T04:04:09-04:00`
 - Payload files: 284
-- Payload bytes: 11825631
-- Canonical SHA-256 release digest: `b01083a20b27bdeed70165270acb19eaae5ab6152961b6fa7c69f946ae5abef9`
+- Payload bytes: 11825891
+- Canonical SHA-256 release digest: `b09ad2371e61fab564f9e228e47301b5b120dec886868952e3b76823b4343f2f`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,7 +17,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 144 | `43e881bf9f7141c323d6d35cdeb5d842a09eedec428b9db59fb8dc4409696671` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `660d89f4865fd087b2ece1e46fe878244a190a999eb12dea78e6c31ddbd38e5c` |
+| ASSET_PROVENANCE.json | 31108 | `42136f8f42601a21ac3befc332038bda79ac0a0607de724ce967ae7692f38724` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1742 | `4c177abd31431cbcbf92dd82c44d87332e3ee5076e63309b89bad0251a8244ab` |
 | CONTRIBUTING.md | 3346 | `84cc00b713253308d149d37dd5515e9ecc29504e2880a4114e8facefb8408fe0` |
@@ -28,7 +28,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
 | PRIVACY.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
 | PRIVACY.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
-| PRIVACY_AUDIT.md | 615 | `df95304ce4f83ddc94c2f7b86490e183c987e37e37087a81e6495a9383d06f1e` |
+| PRIVACY_AUDIT.md | 615 | `92e76bc3cc76b88b4d632b29ff1734dc376d939403c9799618a6f2009c6ca2ce` |
 | README.md | 8131 | `5582069a5b961e0a00b27b77066d5b173b60770f17f03ed78c50a1ab1f441802` |
 | README.zh-CN.md | 7482 | `2f4b429070400dcd27595c359bb5b084be2fda1fb9079c6b2c95af5d0369c831` |
 | RECOVERY.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
@@ -163,7 +163,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
 | schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
 | scripts/build-alpha-preview.mjs | 2159 | `857fe9b9ae52883e15d71921d51d5b59b712987be111b31d5f09ee9164985170` |
-| scripts/capture-visual-qa.mjs | 87183 | `1e3681b177960af8477bee8deccc92a6c639f8f36ed58e6617b5cfc6f62c6aa4` |
+| scripts/capture-visual-qa.mjs | 87317 | `c61be1d5a6f1200f2b1927ce10858229bdf5f54ed359cf27e22fc94017c57e5f` |
 | scripts/lib/generator-contracts.mjs | 22075 | `5cdf4575bb62baa87f7e50d56565539aae3e787177f2aa84487478efd0401ff3` |
 | scripts/lib/library-analyzer.mjs | 29499 | `d1219efd12869f1b8d16207b75109f12aa00ac0372892fb676ace9772533cda6` |
 | scripts/lib/npx-skills-source-managed-evaluation.mjs | 16376 | `e867c0f8894bcc528514d226c00486eaf3d7f930032677d05e379d1cf79648bc` |
@@ -177,7 +177,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
 | scripts/public-release-config.mjs | 7096 | `86a10a948b80146ab044e10e9474779b178769da5a0e6f05829a4b5056e63fc8` |
 | scripts/silent-orbit.mjs | 11189 | `b4d5787f6c1ef938c5167a69ca839b813e0ba9e056d64e650c891735fe0ced5f` |
-| scripts/smoke-ui.mjs | 117916 | `d8f439ff6d8baa4dc8a58f09da8a752d633644794d4d1e12387ccd9631adc36d` |
+| scripts/smoke-ui.mjs | 118042 | `c955a30902cb979f5aade67190eb77429d6ecf9cea4e72bf9ed3bb8c79a6c468` |
 | scripts/sync-data.mjs | 5529 | `a681c9f13e66040ab1f1754bd983fb1425a0d25aa5fb5bb82f93e89bb1f562d7` |
 | scripts/tests/audit-skill-cosmos.test.mjs | 2839 | `99581f194daeb72d20a1948f2bc0c169f2385960e797c6ee21f1984400e0b751` |
 | scripts/tests/build-skill-cosmos.test.mjs | 3154 | `3a996698e9a096b104f63c357df61720f26b5ec60134953848d75617b7a844ba` |

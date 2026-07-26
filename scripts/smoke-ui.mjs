@@ -407,6 +407,9 @@ try {
   await cdp("Page.enable");
   await cdp("Runtime.enable");
   await cdp("Log.enable");
+  await cdp("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-motion", value: "no-preference" }],
+  });
   await cdp("Page.navigate", { url: targetUrl });
   await wait(1200);
 

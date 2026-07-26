@@ -1748,7 +1748,9 @@ async function assertReducedMotion() {
       "(() => { const stars = [...document.querySelectorAll('.orbit-star,.orbit-star-field circle')]; return stars.length > 0 && stars.every((node) => getComputedStyle(node).animationName === 'none'); })()",
     );
   } finally {
-    await cdp("Emulation.setEmulatedMedia", { features: [] });
+    await cdp("Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-reduced-motion", value: "no-preference" }],
+    });
   }
   await resetToConsole("desktop restored-motion");
   await assertPage(
@@ -1863,7 +1865,9 @@ try {
   await cdp("Page.enable");
   await cdp("Runtime.enable");
   await cdp("Log.enable");
-  await cdp("Emulation.setEmulatedMedia", { features: [] });
+  await cdp("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-motion", value: "no-preference" }],
+  });
 
   for (const viewport of viewports) {
     manifest.viewports.push(viewport);
