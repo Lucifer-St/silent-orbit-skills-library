@@ -155,6 +155,7 @@ function getFreePort() {
 
 let preview = null;
 let chrome = null;
+let chromeStderr = "";
 let socket = null;
 let targetUrl = null;
 let id = 0;
@@ -186,7 +187,7 @@ async function waitForHttp(url, tries = 50) {
   throw new Error(`Timed out waiting for ${url}`);
 }
 
-async function getJson(url, tries = 30) {
+async function getJson(url, tries = 120) {
   for (let index = 0; index < tries; index += 1) {
     try {
       const response = await fetch(url);
@@ -224,13 +225,19 @@ try {
       "--disable-gpu",
       "--hide-scrollbars",
       "--force-device-scale-factor=1",
+      "--no-first-run",
+      "--no-default-browser-check",
       "--window-size=1440,1100",
       `--user-data-dir=${profileDir}`,
+      "--remote-debugging-address=127.0.0.1",
       `--remote-debugging-port=${debugPort}`,
       "about:blank",
     ],
-    { stdio: "ignore" },
+    { stdio: ["ignore", "ignore", "pipe"] },
   );
+  chrome.stderr?.on("data", (chunk) => {
+    chromeStderr = `${chromeStderr}${chunk}`.slice(-8000);
+  });
 
   await waitForHttp(targetUrl);
   const targets = await getJson(`http://127.0.0.1:${debugPort}/json/list`);
@@ -291,6 +298,9 @@ try {
 
   await new Promise((resolve) => socket.addEventListener("open", resolve, { once: true }));
 } catch (error) {
+  if (chromeStderr.trim()) {
+    console.error(`Chrome stderr:\n${chromeStderr.trim()}`);
+  }
   manifest.consoleIssues.push({ type: "setup", text: error instanceof Error ? error.message : String(error) });
   updateSummary();
   writeOutputs();

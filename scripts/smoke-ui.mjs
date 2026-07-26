@@ -48,6 +48,7 @@ function getFreePort() {
 
 let preview = null;
 let chrome = null;
+let chromeStderr = "";
 let socket = null;
 let targetUrl = null;
 
@@ -65,7 +66,7 @@ async function cleanup() {
   }
 }
 
-async function getJson(url, tries = 30) {
+async function getJson(url, tries = 120) {
   for (let i = 0; i < tries; i += 1) {
     try {
       const response = await fetch(url);
@@ -105,13 +106,19 @@ try {
       "--headless=new",
       "--disable-gpu",
       "--hide-scrollbars",
+      "--no-first-run",
+      "--no-default-browser-check",
       "--window-size=1440,1100",
       `--user-data-dir=${profileDir}`,
+      "--remote-debugging-address=127.0.0.1",
       `--remote-debugging-port=${debugPort}`,
       "about:blank",
     ],
-    { stdio: "ignore" },
+    { stdio: ["ignore", "ignore", "pipe"] },
   );
+  chrome.stderr?.on("data", (chunk) => {
+    chromeStderr = `${chromeStderr}${chunk}`.slice(-8000);
+  });
 
   const targets = await getJson(`http://127.0.0.1:${debugPort}/json/list`);
   const pageTarget = targets.find((target) => target.type === "page");
@@ -147,6 +154,9 @@ try {
 
   await new Promise((resolve) => socket.addEventListener("open", resolve, { once: true }));
 } catch (error) {
+  if (chromeStderr.trim()) {
+    console.error(`Chrome stderr:\n${chromeStderr.trim()}`);
+  }
   await cleanup();
   throw error;
 }
