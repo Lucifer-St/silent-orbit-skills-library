@@ -11,7 +11,7 @@ import {
   scanSilentOrbitProject,
 } from "./lib/silent-orbit-project.mjs";
 import fs from "node:fs";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import {
   createManagementPlanV1,
   createUnknownManagementProvider,
@@ -213,7 +213,16 @@ async function main() {
   process.exitCode = execution.exitCode;
 }
 
-if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
+export function isSilentOrbitCliEntrypoint(candidate = process.argv[1]) {
+  if (!candidate) return false;
+  try {
+    return fs.realpathSync(candidate) === fs.realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (isSilentOrbitCliEntrypoint()) {
   main().catch((error) => {
     process.stderr.write(`${error.message}\n`);
     process.exitCode = 1;

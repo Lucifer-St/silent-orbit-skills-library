@@ -256,6 +256,13 @@ export function createCodexGlobalSkillsAdapter({ sourceKey = "codex-global", lab
         diagnostics.push({ severity: "error", code: "provider-output-invalid", message: "Codex global Skill discovery returned an unsupported JSON shape." });
         return createSourceResult({ sourceKey: portableKey, providerKind: "codex-global", label, updateChannel: "source-managed", diagnostics, failed: true });
       }
+      if (liveEntries.length === 0) {
+        diagnostics.push({
+          severity: "warning",
+          code: "no-global-skills-found",
+          message: "No Codex global Skills were discovered. In Docker, mount the host .agents/skills directory and set HOME or USERPROFILE to the mounted profile before scanning.",
+        });
+      }
       const items = [];
       for (const entry of liveEntries) {
         if (!isRecord(entry)) {

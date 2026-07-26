@@ -276,7 +276,10 @@ function reuseStableGeneratedAt(projectRoot, nextSnapshot, requestedGeneratedAt)
 
 export function scanSilentOrbitProject({ projectDirectory = ".", generatedAt } = {}) {
   const { projectRoot, config, overrides } = loadSilentOrbitProject(projectDirectory);
-  invariant(config.sources.length > 0, "scan needs at least one configured or imported source.");
+  invariant(
+    config.sources.length > 0,
+    "scan needs at least one configured or imported source. Run silent-orbit import --project <directory> --file <source-import.json>, or configure a skill-folder/codex-global source. In Docker, mount the host Skills directory before scanning.",
+  );
   const firstGeneratedAt = generatedAt ?? new Date().toISOString();
   let result = scanInventorySources({
     projectConfig: config.project,
@@ -311,7 +314,10 @@ export function scanSilentOrbitProject({ projectDirectory = ".", generatedAt } =
 
 export function auditSilentOrbitProject({ projectDirectory = ".", generatedAt, staleAfterDays } = {}) {
   const { projectRoot, config, overrides } = loadSilentOrbitProject(projectDirectory);
-  invariant(config.sources.length > 0, "audit needs at least one configured or imported source.");
+  invariant(
+    config.sources.length > 0,
+    "audit needs at least one configured or imported source. Import or configure a source, then run scan first. In Docker, mount the host Skills directory before auditing.",
+  );
   const evaluatedAt = generatedAt ?? new Date().toISOString();
   const { snapshot } = scanInventorySources({
     projectConfig: config.project,
@@ -572,7 +578,11 @@ export function doctorSilentOrbitProject({ projectDirectory = "." } = {}) {
   const { projectRoot, config } = project;
   for (const source of config.sources) {
     if (source.type === "codex-global") {
-      checks.push({ id: `source:${source.key}`, state: "unchecked", message: "Provider command health is checked by scan." });
+      checks.push({
+        id: `source:${source.key}`,
+        state: "unchecked",
+        message: "Provider command health is checked by scan. In Docker, mount the host .agents/skills directory and set HOME or USERPROFILE to that mounted profile.",
+      });
       continue;
     }
     const target = resolveReadPath(projectRoot, source.path);

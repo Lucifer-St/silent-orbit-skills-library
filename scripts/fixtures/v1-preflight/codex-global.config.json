@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "schemaVersion": 1,
+    "projectId": "v1-docker-codex-global",
+    "title": {
+      "en-US": "Silent Orbit v1 Docker smoke"
+    },
+    "locales": [
+      "en-US"
+    ],
+    "defaultLocale": "en-US",
+    "renderer": {
+      "theme": "reference-index",
+      "defaultRoute": "/"
+    },
+    "privacy": {
+      "defaultVisibility": "review-required",
+      "publicVisibilities": [
+        "public",
+        "creator-showcase"
+      ],
+      "publishRawPaths": false,
+      "publishHashes": false,
+      "publishUsageEvidence": false
+    }
+  },
+  "sources": [
+    {
+      "key": "codex-global",
+      "type": "codex-global",
+      "label": "Codex Global Skills"
+    }
+  ]
+}

@@ -172,6 +172,52 @@
   opacity: 0.52;
 }
 
+.librarian-onboarding {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  width: calc(100% - 18px);
+  justify-self: center;
+  border-bottom: 1px dotted rgba(233, 232, 224, 0.28);
+  padding: 0 0 9px;
+}
+
+.librarian-onboarding div {
+  display: grid;
+  gap: 3px;
+  max-width: 760px;
+}
+
+.librarian-onboarding strong,
+.librarian-onboarding button {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.librarian-onboarding p {
+  margin: 0;
+  color: rgba(233, 232, 224, 0.74);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.librarian-onboarding button {
+  flex: 0 0 auto;
+  min-height: 32px;
+  border: 1px dotted rgba(233, 232, 224, 0.58);
+  background: transparent;
+  color: var(--signal);
+  padding: 5px 9px;
+}
+
+.librarian-onboarding button:hover,
+.librarian-onboarding button:focus-visible {
+  outline: 1px dashed var(--signal);
+  outline-offset: 2px;
+}
+
 .librarian-page .librarian-galaxy-portal {
   min-height: clamp(530px, calc(100dvh - 154px), 690px);
   width: 100%;
@@ -719,6 +765,19 @@
 
   .librarian-search-shell {
     width: 100%;
+  }
+
+  .librarian-onboarding {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .librarian-onboarding p {
+    font-size: 10px;
+  }
+
+  .librarian-onboarding button {
+    max-width: 128px;
   }
 
   .librarian-page .librarian-galaxy-portal {

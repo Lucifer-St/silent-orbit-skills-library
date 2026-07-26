@@ -1,7 +1,7 @@
 [
   {
     "category": "个人知识库与本地工具",
-    "skill_count": 10,
+    "skill_count": 11,
     "units": [
       {
         "type": "library",
@@ -41,12 +41,21 @@
         "skills": [
           "interview-prep"
         ]
+      },
+      {
+        "type": "skill",
+        "title": "skills-library-maintenance",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "skills-library-maintenance"
+        ]
       }
     ]
   },
   {
     "category": "产品与前端开发",
-    "skill_count": 22,
+    "skill_count": 19,
     "units": [
       {
         "type": "library",
@@ -64,12 +73,9 @@
         "type": "library",
         "title": "Plugin: hyperframes",
         "kind": "插件包",
-        "skill_count": 5,
+        "skill_count": 2,
         "skills": [
           "gsap",
-          "hyperframes",
-          "hyperframes-cli",
-          "hyperframes-registry",
           "website-to-hyperframes"
         ]
       },
@@ -275,7 +281,7 @@
   },
   {
     "category": "效率与元工作流",
-    "skill_count": 12,
+    "skill_count": 13,
     "units": [
       {
         "type": "library",
@@ -287,12 +293,21 @@
           "skill-creator",
           "skill-installer"
         ]
+      },
+      {
+        "type": "skill",
+        "title": "manage-skill-cosmos",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "manage-skill-cosmos"
+        ]
       }
     ]
   },
   {
     "category": "数据分析与研究",
-    "skill_count": 20,
+    "skill_count": 21,
     "units": [
       {
         "type": "library",
@@ -327,12 +342,21 @@
         "skills": [
           "jupyter-notebook"
         ]
+      },
+      {
+        "type": "skill",
+        "title": "agent-reach",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "agent-reach"
+        ]
       }
     ]
   },
   {
     "category": "文档与办公",
-    "skill_count": 7,
+    "skill_count": 9,
     "units": [
       {
         "type": "library",
@@ -387,12 +411,30 @@
         "skills": [
           "transcribe"
         ]
+      },
+      {
+        "type": "skill",
+        "title": "humanizer",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "humanizer"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-core",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-core"
+        ]
       }
     ]
   },
   {
     "category": "浏览器与自动化",
-    "skill_count": 4,
+    "skill_count": 5,
     "units": [
       {
         "type": "library",
@@ -411,12 +453,21 @@
         "skills": [
           "control-in-app-browser"
         ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-cli",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-cli"
+        ]
       }
     ]
   },
   {
     "category": "设计与创意生产",
-    "skill_count": 33,
+    "skill_count": 41,
     "units": [
       {
         "type": "library",
@@ -492,6 +543,78 @@
         "skill_count": 1,
         "skills": [
           "beautify-github-readme"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hatch-pet",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hatch-pet"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-animation",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-animation"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-creative",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-creative"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-keyframes",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-keyframes"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "hyperframes-registry",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "hyperframes-registry"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "media-use",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "media-use"
+        ]
+      },
+      {
+        "type": "skill",
+        "title": "motion-graphics",
+        "kind": "单独 skill",
+        "skill_count": 1,
+        "skills": [
+          "motion-graphics"
         ]
       }
     ]

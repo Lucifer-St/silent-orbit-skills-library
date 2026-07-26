@@ -1,6 +1,6 @@
 {
   "name": "silent-orbit-skills-library",
-  "version": "0.11.0-beta.5",
+  "version": "0.11.0-beta.6",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -9,6 +9,7 @@
   },
   "files": [
     "scripts/silent-orbit.mjs",
+    "scripts/create-v1-acceptance-summary.mjs",
     "scripts/lib/generator-contracts.mjs",
     "scripts/lib/source-adapters.mjs",
     "scripts/lib/skill-health.mjs",
@@ -47,6 +48,7 @@
     "test:public-data": "node --test scripts/tests/public-data.test.mjs",
     "test:maintenance": "node --test scripts/tests/public-maintenance.test.mjs",
     "test:site-release": "node --test scripts/tests/site-release.test.mjs",
+    "test:v1-receipt": "node --test scripts/tests/v1-acceptance-receipt.test.mjs",
     "test:contracts": "node --test scripts/tests/generator-core.test.mjs",
     "test:adapters": "node --test scripts/tests/source-adapters.test.mjs",
     "test:health": "node --test scripts/tests/skill-health.test.mjs",
@@ -64,6 +66,8 @@
     "validate:public-release": "node scripts/validate-public-release.mjs --root .",
     "validate:public-repository": "node scripts/validate-public-release.mjs --root . --repository-aware",
     "validate:readme": "node scripts/validate-readme.mjs --root .",
+    "preflight:v1": "node scripts/run-v1-preflight.mjs",
+    "smoke:release-tarball": "node scripts/run-release-tarball-smoke.mjs",
     "smoke:ui": "npm run build && node scripts/smoke-ui.mjs",
     "qa:visual": "npm run build && node scripts/capture-visual-qa.mjs",
     "build:alpha-preview": "node scripts/build-alpha-preview.mjs",

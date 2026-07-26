@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  release-gate:
-    name: release-gate
+  v1-core:
+    name: v1-core
     runs-on: windows-latest
     timeout-minutes: 35
 
@@ -28,40 +28,70 @@ jobs:
       - name: Install pinned dependencies
         run: npm ci
 
-      - name: Validate public data
-        run: npm run validate:data
-
-      - name: Validate public assets
-        run: npm run validate:assets
-
-      - name: Validate repository contract
-        run: npm run validate:public-repository
-
-      - name: Validate README
-        run: npm run validate:readme
-
-      - name: Run domain tests
-        run: npm run test:mvp
-
-      - name: Type-check
-        run: npx tsc --noEmit
-
-      - name: Build
-        run: npm run build
-
-      - name: Build Alpha Preview
-        run: npm run build:alpha-preview
-
-      - name: Browser smoke
-        run: npm run smoke:ui
-
-      - name: Visual QA
-        run: npm run qa:visual
-
-      - name: Revalidate after generated checks
-        run: |
-          npm run validate:public-repository
-          npm run validate:readme
+      - name: Run the v1 public core
+        run: npm run preflight:v1 -- --mode public-core
 
       - name: Reject tracked-file drift
         run: git diff --exit-code
+
+  package-smoke:
+    name: package-smoke (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the public release
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install pinned dependencies
+        run: npm ci
+
+      - name: Run the release-tarball smoke
+        run: npm run preflight:v1 -- --mode package-smoke
+
+  docker-smoke:
+    name: docker-smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the public release
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install pinned dependencies
+        run: npm ci
+
+      - name: Run unmounted and mounted Docker smoke
+        run: npm run preflight:v1 -- --mode docker
+
+  release-gate:
+    name: release-gate
+    if: always()
+    needs: [v1-core, package-smoke, docker-smoke]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every v1 gate
+        env:
+          V1_CORE: ${{ needs.v1-core.result }}
+          PACKAGE_SMOKE: ${{ needs.package-smoke.result }}
+          DOCKER_SMOKE: ${{ needs.docker-smoke.result }}
+        run: |
+          test "$V1_CORE" = success
+          test "$PACKAGE_SMOKE" = success
+          test "$DOCKER_SMOKE" = success

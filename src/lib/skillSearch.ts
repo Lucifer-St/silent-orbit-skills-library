@@ -6,12 +6,26 @@ const NOISE_PHRASES = ["帮我找", "帮我", "找一下", "查一下", "我想"
 const AI_NEWS_EQUIVALENTS = ["新闻", "消息", "资讯"] as const;
 const CURATED_INTENTS = [
   {
+    signals: ["ai", "新闻", "消息", "资讯", "一周", "news", "weekly"],
+    boosts: new Map([
+      ["aihot", 200],
+      ["fengxue-ai-weekly", 150],
+    ]),
+  },
+  {
     signals: ["ui", "界面", "网页", "网站", "审美", "交互", "体验", "设计审查", "视觉检查"],
     boosts: new Map([
       ["audit", 180],
       ["frontend-testing-debugging", 170],
       ["web-design-guidelines", 160],
       ["frontend-app-builder", 80],
+    ]),
+  },
+  {
+    signals: ["安装", "install", "codex", "skill"],
+    boosts: new Map([
+      ["skill-installer", 180],
+      ["skills-library-maintenance", 40],
     ]),
   },
 ] as const;
@@ -58,6 +72,11 @@ export function tokenizeSearchText(value: string) {
   });
 }
 
+function fieldContainsToken(text: string, token: string) {
+  if (token !== "ai") return text.includes(token);
+  return /(^|[^a-z0-9])ai(?=$|[^a-z0-9])/.test(text);
+}
+
 export function rankSkillRecords(
   skills: readonly SkillRecord[],
   librariesByKey: ReadonlyMap<string, LibraryRecord>,
@@ -87,8 +106,8 @@ export function rankSkillRecords(
       const text = normalizeSearchText(raw ?? "");
       if (!text) continue;
       if (text.includes(phrase)) score += weight * 3;
-      for (const group of tokenGroups) if (group.some((token) => text.includes(token))) score += weight;
-      if (tokenGroups.every((group) => group.some((token) => text.includes(token)))) score += weight * tokenGroups.length;
+      for (const group of tokenGroups) if (group.some((token) => fieldContainsToken(text, token))) score += weight;
+      if (tokenGroups.every((group) => group.some((token) => fieldContainsToken(text, token)))) score += weight * tokenGroups.length;
     }
     return score > 0 ? [{ skill, score }] : [];
   }).sort((left, right) => right.score - left.score || left.skill.name.localeCompare(right.skill.name, "zh-CN"));

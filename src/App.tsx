@@ -319,6 +319,7 @@ export function App() {
             setQueryDraft("");
             setSubmittedQuery("");
           }}
+          onBrowseCatalog={() => navigatePage("catalog")}
           onOpenSystem={openOrbitSystem}
           onOpenSkill={openSkill}
         />

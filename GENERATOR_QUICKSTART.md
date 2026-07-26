@@ -1,21 +1,31 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.11.0-beta.5` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.11.0-beta.6` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
 
 ## 1. Download and verify the artifact
 
-Requirements: Node.js 24 and npm.
+Requirements: Node.js 24 and npm. Native Windows, Linux, and macOS are the v1
+support targets.
 
-Download these two assets from the [`v0.11.0-beta.5` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.5):
+Docker uses its own Home and cannot see host Skills automatically. Before a
+`codex-global` scan, mount the host `.agents/skills` directory into the
+container profile and set `HOME` (or `USERPROFILE`) to that profile. Treat the
+mount as read-only for scan/generate/audit work. An unmounted scan must not be
+interpreted as proof that the host has zero Skills.
 
-- `silent-orbit-skills-library-0.11.0-beta.5.tgz`
+The hosted Silent Orbit site is browse-only. It cannot inspect or change a
+visitor's local Skill environment.
+
+Download these two assets from the [`v0.11.0-beta.6` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.6):
+
+- `silent-orbit-skills-library-0.11.0-beta.6.tgz`
 - `SHA256SUMS.txt`
 
 In PowerShell, keep both files in the same directory and verify the tarball before installing it:
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.5\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.5.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.6\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.6.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -24,18 +34,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.5.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.6.tgz
 silent-orbit --version
 ```
 
-The package/repository release version is `0.11.0-beta.5`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
+The package/repository release version is `0.11.0-beta.6`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional Agent Skills
 
@@ -57,7 +67,7 @@ The release also contains the `skills-library-maintenance` host. A global
 handoff replaces an existing named copy, so first compare it with the verified
 release and preserve a complete folder backup. If the existing difference is
 not traceable to a known release or reviewed source commit, stop.
-Use beta.5 or newer: beta.4 is preserved as the failed copy-install candidate.
+Use beta.6 or newer: beta.5 is preserved as the Phase 6A package candidate.
 
 ```powershell
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\skills-library-maintenance\SKILL.md')
@@ -140,6 +150,6 @@ and receipts are private and must never enter Public Export data.
 
 ## Release boundary
 
-The Public repository retains a 44-Skill NVIDIA Alpha as a fixed historical acceptance fixture, but it is not part of the installable Generator package and is not Production content. Git-connected Netlify Deploy Previews build that fixture with `npm run build:alpha-preview`. Production continues to build the reviewed 142-Skill projection with `npm run build`; the editable personal inventory and curation remain Private.
+The Public repository retains a 44-Skill NVIDIA Alpha as a fixed historical acceptance fixture, but it is not part of the installable Generator package and is not Production content. Git-connected Netlify Deploy Previews build that fixture with `npm run build:alpha-preview`. Production builds the reviewed 153-Skill projection with `npm run build`; the editable personal inventory and curation remain Private.
 
 Historical Phase 4A/4B labels refer to the **Website Release Track**, not Generator phases. Website Release Phase 4A launched the public beta; Website Release Phase 4B still requires external-human evidence. Generator work uses its own Phase 1A-1E, Phase 2A, and Phase 2B sequence.

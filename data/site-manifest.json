@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "projectId": "silent-orbit-skills-library",
-  "generatedAt": "2026-07-24T12:00:00.000Z",
+  "generatedAt": "2026-07-25T12:00:00.000Z",
   "snapshotRefs": {
-    "inventory": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4ae09aa6ca94",
-    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:511941a8e84a"
+    "inventory": "inventory-snapshot:schemaversion-1-projectid-silent-orb:4d1cb2d6cf14",
+    "library": "library-snapshot:schemaversion-1-projectid-silent-orb:0a7cd9f5a394"
   },
   "renderer": {
     "theme": "silent-orbit",
@@ -15,7 +15,7 @@
     "en-US"
   ],
   "summary": {
-    "skills": 142,
+    "skills": 153,
     "libraries": 28,
     "categories": 9,
     "collections": 1

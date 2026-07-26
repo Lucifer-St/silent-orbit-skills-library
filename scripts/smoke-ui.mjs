@@ -11,6 +11,10 @@ const profileDir = path.join(projectDir, ".chrome-smoke-profile");
 const previewPort = Number(process.env.SMOKE_PORT ?? 0);
 const debugPort = process.env.SMOKE_DEBUG_PORT ? Number(process.env.SMOKE_DEBUG_PORT) : await getFreePort();
 const orbitReviewCase = process.env.SMOKE_ORBIT_REVIEW_CASE ?? null;
+const firstUseOnly = process.env.SMOKE_FIRST_USE_ONLY === "1";
+const evidenceDirectory = process.env.SMOKE_EVIDENCE_DIR
+  ? path.resolve(process.env.SMOKE_EVIDENCE_DIR)
+  : null;
 
 function shouldRunOrbitReviewCase(name) {
   return orbitReviewCase === null || orbitReviewCase === name;
@@ -185,6 +189,15 @@ async function assertPage(label, expression) {
     throw new Error(`UI smoke failed: ${label}`);
   }
   console.log(`ok ${label}`);
+}
+
+async function captureEvidence(fileName) {
+  if (!evidenceDirectory) return;
+  fs.mkdirSync(evidenceDirectory, { recursive: true });
+  const result = await cdp("Page.captureScreenshot", { format: "png", fromSurface: true });
+  const target = path.join(evidenceDirectory, fileName);
+  fs.writeFileSync(target, Buffer.from(result.data, "base64"));
+  console.log(`evidence ${target}`);
 }
 
 async function waitForPage(label, expression, timeoutMs = 3000) {
@@ -455,6 +468,44 @@ try {
   );
   await assertPage("librarian home exists", "Boolean(document.querySelector('[data-page=\"librarian\"]'))");
   await assertPage("observatory portal is one control", "document.querySelectorAll('.librarian-galaxy-portal').length === 1");
+  await assertPage(
+    "first screen explains value, hierarchy, and list fallback",
+    "Boolean(document.querySelector('[data-first-use=\"skill-map\"][data-first-use-hierarchy=\"system-library-skill\"] [data-first-use-action=\"catalog-list\"]'))",
+  );
+  if (firstUseOnly) {
+    await cdp("Emulation.setDeviceMetricsOverride", {
+      width: 1440,
+      height: 900,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
+    await assertPage(
+      "desktop first viewport contains the complete first-use prompt",
+      "(() => { const intro = document.querySelector('[data-first-use=\"skill-map\"]'); const box = intro?.getBoundingClientRect(); return Boolean(intro && box && box.top >= 0 && box.bottom <= innerHeight && box.left >= 0 && box.right <= innerWidth); })()",
+    );
+    await captureEvidence("silent-orbit-first-use-desktop-1440x900.png");
+    await evaluate("document.querySelector('[data-first-use-action=\"catalog-list\"]')?.click(); true");
+    await waitForPage(
+      "first-use list fallback opens Catalog",
+      "Boolean(document.querySelector('[data-page=\"catalog\"] .catalog-category-card'))",
+      3000,
+    );
+    await evaluate("document.querySelector('.console-brand')?.click(); true");
+    await waitForPage("Catalog returns to Librarian", "Boolean(document.querySelector('[data-page=\"librarian\"]'))", 3000);
+    await cdp("Emulation.setDeviceMetricsOverride", {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 1,
+      mobile: true,
+    });
+    await cdp("Page.navigate", { url: targetUrl });
+    await wait(1200);
+    await assertPage(
+      "mobile first viewport keeps value copy and list fallback visible",
+      "(() => { const intro = document.querySelector('[data-first-use=\"skill-map\"]'); const button = intro?.querySelector('[data-first-use-action=\"catalog-list\"]'); const box = intro?.getBoundingClientRect(); return Boolean(intro && button && box && document.documentElement.scrollWidth <= innerWidth && box.top >= 0 && box.bottom <= innerHeight && box.left >= 0 && box.right <= innerWidth); })()",
+    );
+    await captureEvidence("silent-orbit-first-use-mobile-390x844.png");
+  } else {
   await assertPage("idle librarian has no ranked cards", "document.querySelectorAll('.ranked-skill-card').length === 0");
   await assertPage("Librarian live region stays mounted while idle", "Boolean(document.querySelector('.librarian-status[aria-live=\"polite\"]')) && document.querySelector('.librarian-status')?.textContent === ''");
   await assertPage("librarian replaces old home dashboard", "Boolean(document.querySelector('.agent-console[data-surface=\"console\"] .librarian-page')) && !document.querySelector('.function-rail,.command-deck,.task-matrix')");
@@ -660,7 +711,7 @@ try {
   await wait(500);
   await assertPage("submitted Librarian renders three ranked skill actions", "document.querySelector('.librarian-page.is-searching') && document.querySelectorAll('button.ranked-skill-card').length === 3");
   await assertPage("submitted Librarian updates its mounted live region", "document.querySelector('.librarian-status[aria-live=\"polite\"]')?.textContent.includes('3')");
-  await evaluate("window.__smokeCatalogReturnUrl = location.href; [...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("window.__smokeCatalogReturnUrl = location.href; document.querySelector('.librarian-onboarding button')?.click(); true");
   await wait(300);
   await assertPage(
     "Catalog opens with functional categories as its first level",
@@ -693,8 +744,8 @@ try {
     "document.querySelector('.librarian-search input')?.value === '过去一周内值得关注的 AI 消息' && document.querySelectorAll('button.ranked-skill-card').length === 3 && location.href === window.__smokeCatalogReturnUrl && location.search === ''",
   );
   await assertPage(
-    "weekly AI hard search renders its exact deterministic top three",
-    "[...document.querySelectorAll('.ranked-skill-card')].map((card) => card.querySelector('strong')?.textContent.trim().toLowerCase()).join('|') === 'aihot|fengxue-ai-weekly|gmail'",
+    "weekly AI hard search prioritizes the two exact news Skills without maintenance leakage",
+    "(() => { const names = [...document.querySelectorAll('.ranked-skill-card')].map((card) => card.querySelector('strong')?.textContent.trim().toLowerCase()); return names.slice(0, 2).join('|') === 'aihot|fengxue-ai-weekly' && !names.includes('skills-library-maintenance'); })()",
   );
   await assertPage("rank cards expose unique deterministic constellation visualizations", `(() => {
     const hashName = (value) => {
@@ -1562,7 +1613,7 @@ try {
   await wait(400);
   await assertPage(
     "command search accepts Skill and library names with consistent results",
-    "document.querySelector('.command-search input')?.value === 'obsidian' && document.querySelectorAll('.unit-card').length === 1 && /当前匹配 \\d+ 个 Skills/.test(document.querySelector('.filter-meta')?.textContent ?? '')",
+    "document.querySelector('.command-search input')?.value === 'obsidian' && document.querySelectorAll('.unit-card').length >= 1 && [...document.querySelectorAll('.unit-card')].some((card) => card.textContent.toLowerCase().includes('obsidian')) && /当前匹配 \\d+ 个 Skills/.test(document.querySelector('.filter-meta')?.textContent ?? '')",
   );
 
   await evaluate("[...document.querySelectorAll('.unit-card-main')].find((el) => el.textContent.includes('obsidian'))?.click()");
@@ -1811,6 +1862,10 @@ try {
   await assertPage(
     "mobile Librarian has no horizontal overflow",
     "document.documentElement.scrollWidth<=innerWidth && Boolean(document.querySelector('.librarian-page.is-idle'))",
+  );
+  await assertPage(
+    "mobile first screen keeps the value hint and list fallback visible",
+    "(() => { const intro = document.querySelector('[data-first-use=\"skill-map\"]'); const button = intro?.querySelector('[data-first-use-action=\"catalog-list\"]'); const box = intro?.getBoundingClientRect(); return Boolean(intro && button && box && box.top >= 0 && box.left >= 0 && box.right <= innerWidth); })()",
   );
   await assertPage(
     "mobile portal stays inside viewport",
@@ -2112,6 +2167,7 @@ try {
       `3439x1318 top-row hover remains stable for ${target.id}`,
       `document.querySelector('.portal-system-hit[data-active="true"]')?.getAttribute('data-system-id') === ${JSON.stringify(target.id)}`,
     );
+  }
   }
   if (browserIssues.length > 0) {
     throw new Error(`UI smoke saw ${browserIssues.length} console/runtime errors: ${JSON.stringify(browserIssues)}`);

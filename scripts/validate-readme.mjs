@@ -57,9 +57,9 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
 function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.11.0-beta.5",
-    "silent-orbit-skills-library-0.11.0-beta.5.tgz",
-    "silent-orbit-skills-library-0\\.11\\.0-beta\\.5\\.tgz$",
+    "v0.11.0-beta.6",
+    "silent-orbit-skills-library-0.11.0-beta.6.tgz",
+    "silent-orbit-skills-library-0\\.11\\.0-beta\\.6\\.tgz$",
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",
@@ -80,7 +80,7 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
     "review-required",
     "local-only",
     "44-Skill",
-    "142-Skill",
+    "153-Skill",
   ]) {
     if (!content.includes(required)) throw new Error(`${fileName} is missing ${required}.`);
   }
