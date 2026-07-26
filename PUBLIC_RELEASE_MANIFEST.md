@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `797315bb5cc260d5be6410d2f8b2d2f57bd48cef`
-- Input commit timestamp: `2026-07-24T23:45:13-04:00`
-- Payload files: 281
-- Payload bytes: 11748677
-- Canonical SHA-256 release digest: `db49e08141a7a898e87e53ba9c4c4c7070e2e8d30c9da8678a71d726a192a437`
+- Input commit: `c8e4690776367de4455e248f5a57cb10badb2450`
+- Input commit timestamp: `2026-07-26T03:40:40-04:00`
+- Payload files: 284
+- Payload bytes: 11824931
+- Canonical SHA-256 release digest: `5b07bb5c395380b2baa073998ccbd31a07cfebd08187da5fc03ccf3bb10e68ac`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -17,7 +17,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 144 | `43e881bf9f7141c323d6d35cdeb5d842a09eedec428b9db59fb8dc4409696671` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `b164b1b3797b0c95fe628adc53850a19a62bed56b98cb27fa97870054f1f7771` |
+| ASSET_PROVENANCE.json | 31108 | `5b10f7a92707c071e8c11f8a0171b894eaee12c47802d29db914944d7585d89f` |
 | BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | BETA_TESTING.md | 1742 | `4c177abd31431cbcbf92dd82c44d87332e3ee5076e63309b89bad0251a8244ab` |
 | CONTRIBUTING.md | 3346 | `84cc00b713253308d149d37dd5515e9ecc29504e2880a4114e8facefb8408fe0` |
@@ -28,7 +28,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
 | PRIVACY.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
 | PRIVACY.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
-| PRIVACY_AUDIT.md | 615 | `f7d44e60549388081671695a8352c926d143d422c787266d0a56ff4c7e40657c` |
+| PRIVACY_AUDIT.md | 615 | `814eee4c95a73958a63af037970db5603689524539f00fb76f2d5b6ecb064295` |
 | README.md | 8131 | `5582069a5b961e0a00b27b77066d5b173b60770f17f03ed78c50a1ab1f441802` |
 | README.zh-CN.md | 7482 | `2f4b429070400dcd27595c359bb5b084be2fda1fb9079c6b2c95af5d0369c831` |
 | RECOVERY.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
@@ -163,7 +163,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
 | schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
 | scripts/build-alpha-preview.mjs | 2159 | `857fe9b9ae52883e15d71921d51d5b59b712987be111b31d5f09ee9164985170` |
-| scripts/capture-visual-qa.mjs | 84418 | `9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c` |
+| scripts/capture-visual-qa.mjs | 86833 | `e110ffd5505c9dbded70ff9384a95cb6434b7f62234f906169799f3bc519399e` |
 | scripts/lib/generator-contracts.mjs | 22075 | `5cdf4575bb62baa87f7e50d56565539aae3e787177f2aa84487478efd0401ff3` |
 | scripts/lib/library-analyzer.mjs | 29499 | `d1219efd12869f1b8d16207b75109f12aa00ac0372892fb676ace9772533cda6` |
 | scripts/lib/npx-skills-source-managed-evaluation.mjs | 16376 | `e867c0f8894bcc528514d226c00486eaf3d7f930032677d05e379d1cf79648bc` |
@@ -177,7 +177,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
 | scripts/public-release-config.mjs | 7096 | `86a10a948b80146ab044e10e9474779b178769da5a0e6f05829a4b5056e63fc8` |
 | scripts/silent-orbit.mjs | 11189 | `b4d5787f6c1ef938c5167a69ca839b813e0ba9e056d64e650c891735fe0ced5f` |
-| scripts/smoke-ui.mjs | 101463 | `35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda` |
+| scripts/smoke-ui.mjs | 117566 | `e7198c7dc5c706a531acdc2e8b5c1fc48d09de259b857768397a66bbed991691` |
 | scripts/sync-data.mjs | 5529 | `a681c9f13e66040ab1f1754bd983fb1425a0d25aa5fb5bb82f93e89bb1f562d7` |
 | scripts/tests/audit-skill-cosmos.test.mjs | 2839 | `99581f194daeb72d20a1948f2bc0c169f2385960e797c6ee21f1984400e0b751` |
 | scripts/tests/build-skill-cosmos.test.mjs | 3154 | `3a996698e9a096b104f63c357df61720f26b5ec60134953848d75617b7a844ba` |
@@ -187,7 +187,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/library-analyzer.test.mjs | 7344 | `f658020241a1e99015a438696df47a6e1637043b722818d88fb559372f0e8094` |
 | scripts/tests/manage-skill-cosmos.test.mjs | 3801 | `024981d53409bcb1decac2908b35d10bb1e38150f267335ed6c393e1f7255740` |
 | scripts/tests/npx-skills-source-managed-evaluation.test.mjs | 22142 | `0af8b44af600ec39ad9824740bae3702b8b5bc021b184da84f3c8ea26f8ff300` |
-| scripts/tests/orbit-layout.test.mjs | 12962 | `376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c` |
+| scripts/tests/orbit-layout.test.mjs | 13214 | `40150ba6c225cb7c38b6018f09ba1917b848d785e3f7c03f0d184702f7132b44` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
 | scripts/tests/phase1e-alpha.test.mjs | 6446 | `f329f04004dff2a6ea382fa369281e9e6efa21bde21ba5963bd2b01b404e99e7` |
 | scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
@@ -222,24 +222,25 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | skills/skills-library-maintenance/references/system-contract.md | 6377 | `eb3edaf88bceee2215b0258b303fa58ad91490231c366c9ed4c7cb947695965f` |
 | skills/skills-library-maintenance/scripts/lib/trusted-source-maintenance.mjs | 27242 | `e69f9d7cf79c26ae0912aa93f894bb152816b35eeceae71f52197949ea57e9bc` |
 | skills/skills-library-maintenance/scripts/skills-library.mjs | 62858 | `c210e483ba98050ecd34ccefb146f0631783161ad3c4e659a14f9ad645e800c2` |
-| src/App.tsx | 27428 | `2d3f61a639726b77803b0ac3787c680e6f81f0b063ed07ce05e452d03b0ac03a` |
+| src/App.tsx | 28422 | `52d987d21cfe21ec688ee6bcde9e1a83da16c9d65e4f0b4d1ad33107c698dcb0` |
 | src/components/CosmosAsset.tsx | 531 | `1721d7f182ef2a8ed7960e018eae66ec27601dccf1948c44948c559ea7b0d492` |
 | src/components/badges/StarSkillMarker.tsx | 415 | `5d83c913966ce34891427bf5cc303e9cf3f74612aff03cf49e31c52cbcf803fb` |
 | src/components/catalog/AbilityUnitCard.tsx | 2465 | `95a6735929b02718b99aba0c34e0f8ed0049e137615d5082f55d38816c94052e` |
-| src/components/catalog/CatalogPage.tsx | 10425 | `4f91b4f4df520719723112950730bae819d00084509d1759b9e94780ac16c8fc` |
-| src/components/catalog/SkillList.tsx | 1500 | `8396d57c47c0dfa95e55cde8b441b538f7b1db2f941a009d0b8f008b68c17d38` |
+| src/components/catalog/CatalogPage.tsx | 13726 | `8f396adb22f7dafb7529e51099e12de4d9d2d021b2872520f0187f40eed8c670` |
+| src/components/catalog/SkillList.tsx | 1600 | `63a692032ae975a27aeb3e6955f6345a26397c4d5e4a57776148c6d6548f6183` |
 | src/components/catalog/StandaloneSkillGrid.tsx | 1133 | `02a2f909d27a1c444001718e87da9e9248120c665f934a77b3126f80b010c6a4` |
-| src/components/console/AgentConsoleShell.tsx | 1100 | `bd7967301c7792e794c67ba54de190e90a32f41a149757b35585433a579e7a8b` |
-| src/components/console/CommandDeck.tsx | 3129 | `9d8317a8919eb32fee8cc82892622ccaee3c94dbe11b15948b6e9ded7d7f8361` |
-| src/components/console/FunctionRail.tsx | 1349 | `47da7d4eba2bc8de3c1a3515b073950c089fcdc0cfad5d5edec3575af1bedeb1` |
-| src/components/console/SilentOrbitPortal.tsx | 5475 | `926f09d65b84a8c9ec6a3293830a575344b2c2ac2a84a51d9371c2a87dba8b06` |
+| src/components/console/AgentConsoleShell.tsx | 1154 | `d9beca4ada4153ede36cf5ea1bc94c97234943918226b701688e02b594bb015d` |
+| src/components/console/CommandDeck.tsx | 4057 | `4f2666b10d9f0559c40d473c32b96c4540a50c8e7dd1aaa8212aa51805c7c5f3` |
+| src/components/console/FunctionRail.tsx | 2544 | `75021adf38a7884be615c9eba6913682f2a6e65cb29b12bfa2b9ef268cebb04d` |
+| src/components/console/SilentOrbitPortal.tsx | 5310 | `b727b671de9d62b3d7cbdb70d874d65719f5ac669bfda7e04cd033ea2ceb12b0` |
 | src/components/console/TaskMatrix.tsx | 772 | `3bba3d6b23b24a768827159b0e07a28d66675924b641b315193dc05d3ad8528c` |
-| src/components/history/HistoryPage.tsx | 7823 | `b30149ac59a963027f06d7f19fb0dfb72d230207227725d70d18a5bf9eae0603` |
+| src/components/history/HistoryPage.tsx | 7899 | `41b7812f656d4b2b3b2a2df78f18f5d77b9fc559e5e297ba06453b8366a7037d` |
 | src/components/history/OutcomeComposer.tsx | 6393 | `e64af2e8a3fd6ac96f16b2d11feae73294c86b1171a9bd70c28ddf146ec71376` |
-| src/components/inspector/SkillInspector.tsx | 16890 | `09eead6fd02c1a70e3ed57979274acee731c5796e7814ed021b8a2d89793d199` |
+| src/components/inspector/SkillDetailAtmosphere.tsx | 1609 | `d946614a59d75d6c98e8358e2d1a3bf3a9b2d7d9ccb78460794e61b5ea0af4ff` |
+| src/components/inspector/SkillInspector.tsx | 20086 | `3ce6b6cea8a18a2790f43fe1937db6c547b13807f5e16265bf763eb11cbd854b` |
 | src/components/librarian/LibrarianPage.tsx | 2787 | `53f2ffa1b40850b55b2bb48b9351108bf56fe6942bb9bc70f93b3ed4299e686b` |
 | src/components/librarian/LibrarianSearch.tsx | 1892 | `1be6c7714006b1c2becf7b704c9cc4df7fd1b1b8e3f8ab5dabbdfb9e8a7b226c` |
-| src/components/librarian/RankedSkillCard.tsx | 2593 | `ad1d16b08e8645fd046db628b1f1767d6491f878f11659ac6f3b7d4a7f6cd5c5` |
+| src/components/librarian/RankedSkillCard.tsx | 2726 | `2a3d485e3fee610aa66cc92ee634cf34c8f8ac7b888c5b04b54cf0901c23587f` |
 | src/components/map/FunctionZoneNode.tsx | 1344 | `0227e7fe41148e626ac7da486555bb56a7238c9ab9cab1e7d3531f37453c0a2c` |
 | src/components/map/LibraryStation.tsx | 1654 | `c02e8677dd3a77b340e61610f6e05dd8f78f6abd25c9abde0e82d4b689f0942a` |
 | src/components/map/MapBreadcrumb.tsx | 808 | `fc554f542241275378c5b298b649e738b116d97cf681c0e1c6b6e2e58ab3a468` |
@@ -250,17 +251,18 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/components/orbit/CelestialSystem.tsx | 1341 | `be600146da330c89818b24a942ab4e37dbc31a1b3044272cf4d2d706ee6dd468` |
 | src/components/orbit/LibraryMoon.tsx | 1524 | `6c52a45073622d7fa0832a9c7ccea00d947356bb91b2d204661b3f13fa200195` |
 | src/components/orbit/OrbitControls.tsx | 1152 | `d0ed0d99cee1959b4ecb8c667f1aabc110ceb3dcaa3d07a2584a4d4ecf22de0f` |
-| src/components/orbit/OrbitScene.tsx | 14925 | `a9c5d349c8ba40f74e2d2faa781b5a1ee4bd6a22b484c748ec5962837a84fe6a` |
+| src/components/orbit/OrbitScene.tsx | 17890 | `c3f7935303f6db24df41b2e487ce5ce775ed30793ee5cb616859706f335924e5` |
 | src/components/orbit/SilentOrbitPage.tsx | 4531 | `25d38f56da3f0fca1f8814eeeb92b60855e7da7f98043384dc8d9272916a137e` |
-| src/components/orbit/SkillAsteroid.tsx | 1231 | `fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857` |
+| src/components/orbit/SkillAsteroid.tsx | 1331 | `e3b05cdc194a9eb58244dbae29d2667145cf661d90c884df1529b972e62b506e` |
 | src/core/contracts.ts | 8133 | `242e00a30065d9c4d66f56dcb3f9c527c56b0eeebad67a00e1dbe30af2136fa7` |
 | src/data/indexes.ts | 3157 | `0018933bc60789de3c7fa7280908a82b1300018e1b07015bc4521d7f86bc8ac4` |
 | src/generated/data.generated.ts | 392599 | `da31649e0117fd4667b66af0405aab8bad760baed2ddc107af0d31f7babe34d2` |
 | src/hooks/useOrbitSurface.ts | 4573 | `75fc2964bbc196e8e1f953fc31041dfe7f31a9f71fd2bb065378f1b64c10a148` |
 | src/hooks/usePersonalOutcomes.ts | 4166 | `b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d` |
+| src/hooks/useSkillDetailSceneCycle.ts | 1097 | `7158a55bc810817db4aaf3ed98d158577a0f5a5269ba224f85f5b0ff6d4022b9` |
 | src/i18n/LocaleContext.tsx | 7202 | `0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51` |
 | src/lib/catalogRevision.ts | 499 | `8fb147d5a088bf7bdd1dadf92549923a261b52b51ebcd903533c51fca14f7656` |
-| src/lib/cosmosAssets.ts | 4185 | `72e2be4ff5e427a49afb8096fee6b62688851f77dbea09fbcbd189f94c049e35` |
+| src/lib/cosmosAssets.ts | 4354 | `2393082f9985a504aa9dfd24c732c040d24afa80716a8c90f5b720481248aada` |
 | src/lib/dataSelectors.ts | 4754 | `e54d3905c0a5a1ed67e5227420b3a0dce97e16df98e74e6d8ac82ef9fc05db4a` |
 | src/lib/mapModel.ts | 6877 | `cdc4ef00d60b98259b435169b430bec4a326a0e922b2499c30f2360b55a4f38e` |
 | src/lib/mapViewport.ts | 2143 | `c47e81790012172d96363562e9da26bbf99273d4dfe22c30fe779e5412775d05` |
@@ -268,16 +270,17 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/lib/orbitModel.ts | 2021 | `077c8814196f6a2c44315a68cc9f46d930874b106660451758c5c1a77a728e56` |
 | src/lib/outcomePolicy.ts | 7494 | `dce7bb15c43bd0653388c22a3a0fe441927953ba552deb61d49949cec4bb25aa` |
 | src/lib/personalStore.ts | 4446 | `68855bfec3aabf7c6b1c9ada4974a8aea0b514473d9b5ca4fbaf2159b372eb43` |
+| src/lib/skillDetailScenes.ts | 2680 | `03992e1e2186fa33fe0fe4d3ba941e1ea0c621c96d22ad574ed70192b3a59f39` |
 | src/lib/skillSearch.ts | 4543 | `57d038d581e64f49cc39f9a180a7ca713ee22946bb80ab8e7a83dcd04a94e44f` |
 | src/main.tsx | 560 | `0c4695db3b14ae0148042bada5f61748d5ea4545e915cdbf50655f6c193f63d8` |
 | src/styles.css | 33365 | `1943f0c7fb702daa64877b9d0e04f1ea3a1df5213d40600fcd5fde2bca172936` |
-| src/styles/console.css | 24066 | `f5785949f10e653dc5b98f11f2618c6e79f4950245082778e2332a41efe55aa9` |
+| src/styles/console.css | 53013 | `722d012d060c44fb3716f9704ddb8615f60922edda4ba27a6de07e12ad427149` |
 | src/styles/fonts.css | 1179 | `821964ce5d47e815198bd8f969f487e3ef194235c54877da879f0fd332d34af7` |
-| src/styles/history.css | 7100 | `54bc1fe1e76c5d1cd418506231e711c1f0f923609a91a01ca104445ea6a9f842` |
-| src/styles/librarian.css | 13491 | `05e37df8f3335a925641ed229ae1fa4662323e82de8ff48e26eee736f44e337a` |
+| src/styles/history.css | 7824 | `068700d2f37f7349b75c6d815c015a14bfa699c9e872b702f1ee4e9bbf8f4d7d` |
+| src/styles/librarian.css | 17042 | `af3c54fd580134b430939d0aea7e8ed6ee82acc0371207f31c32cd9728ffae3a` |
 | src/styles/one-bit.css | 884 | `99c7b5b6f240c113792155d101fc48df7762b57aec7ba28c69b5f7c6494c4346` |
-| src/styles/orbit.css | 18235 | `05e9f4377c77735074d3c6224f86c102143ab62840aa69d53e2483d1672bf2f4` |
-| src/styles/responsive.css | 7282 | `46b51792df0e5f6d7715c8ea3fc5cf17926b5a1e2f939060048ad0c81874a134` |
+| src/styles/orbit.css | 21609 | `188bafa59661deb6eb9d384ed1543f8cf0052085f6df84b6f61c52981625ce1d` |
+| src/styles/responsive.css | 9738 | `107c48b7c2d503ed634ac6ab42af168dd4e581d57ab3828b44cb45dbdf7dd0f8` |
 | src/types.ts | 7561 | `77ae6745911b14e4d586048a7f0acff7de09457b07b6ed62532fcac4ccc11e36` |
 | src/types/view-transitions.d.ts | 270 | `31941eba1a962e7c2780cf1fab631e6cfd79e2885914ff0a3be5505a3da79107` |
 | templates/reference-index-v1/app.js | 25802 | `886e98520afd956649d5ec650f89589150e44df412c54cfaa52ffb803557ce01` |

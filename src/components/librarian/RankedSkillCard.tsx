@@ -59,7 +59,8 @@ export function RankedSkillCard({ order, result, onOpen }: RankedSkillCardProps)
         focusable="false"
         data-skill-signature={constellation.signature}
       >
-        <path d={constellation.path} />
+        <path className="ranked-constellation-base" d={constellation.path} />
+        <path className="ranked-constellation-signal" d={constellation.path} pathLength="1" />
         {constellation.points.map((point, index) => (
           <circle key={index} cx={point.x} cy={point.y} r={index === 0 || index === constellation.points.length - 1 ? 1.5 : 1} />
         ))}

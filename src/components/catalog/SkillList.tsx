@@ -1,4 +1,3 @@
-import { Sparkles } from "lucide-react";
 import { isHighValueSkill } from "../../data/indexes";
 import { useLocale } from "../../i18n/LocaleContext";
 import type { SkillRecord } from "../../types";
@@ -18,10 +17,11 @@ export function SkillList({ skills, onSkill, compact = false, showGovernance = f
 
   return (
     <div className={compact ? "skill-list compact" : "skill-list"}>
-      {skills.map((skill) => (
+      {skills.map((skill, index) => (
         <button className="skill-row" key={skill.name} type="button" onClick={() => onSkill(skill)}>
+          <span className="skill-row-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
           <span className="skill-row-title">
-            {isHighValueSkill(skill) ? <Sparkles size={14} /> : null}
+            {isHighValueSkill(skill) ? <span className="skill-signal-mark">SIGNAL</span> : null}
             {skill.name}
           </span>
           <span className="skill-row-desc">{skillDescription(skill)}</span>

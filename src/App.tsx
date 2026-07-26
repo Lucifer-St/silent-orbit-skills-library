@@ -37,6 +37,7 @@ import { appData } from "./generated/data.generated";
 import { useLocale } from "./i18n/LocaleContext";
 import { useOrbitSurface } from "./hooks/useOrbitSurface";
 import { usePersonalOutcomes } from "./hooks/usePersonalOutcomes";
+import { useSkillDetailSceneCycle } from "./hooks/useSkillDetailSceneCycle";
 import { catalogRevision } from "./lib/catalogRevision";
 import { filterCategorySkills } from "./lib/dataSelectors";
 import { buildOrbitMapModel } from "./lib/orbitModel";
@@ -78,7 +79,7 @@ export function App() {
   const [categoryFilter, setCategoryFilter] = useState(allCategories);
   const [sourceFilter, setSourceFilter] = useState(allSources);
   const [starredOnly, setStarredOnly] = useState(false);
-  const [expandedUnitId, setExpandedUnitId] = useState<string | null>(null);
+  const [selectedCategoryUnitId, setSelectedCategoryUnitId] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<SkillRecord | null>(() => skillFromHistoryState(history.state));
   const [composerOpen, setComposerOpen] = useState(false);
   const [composerOutcomeId, setComposerOutcomeId] = useState<string | null>(null);
@@ -88,6 +89,7 @@ export function App() {
   const composerTriggerRef = useRef<HTMLButtonElement | null>(null);
   const personalOutcomes = usePersonalOutcomes();
   const { surface, orbitRef, openOrbit, closeOrbit } = useOrbitSurface();
+  const { advanceScene: advanceDetailScene, scene: detailScene } = useSkillDetailSceneCycle();
 
   useEffect(() => {
     const currentState = history.state ?? {};
@@ -110,14 +112,16 @@ export function App() {
       setPage(nextPage);
       setActiveCategory(nextCategory);
       setCategoryFilter(nextPage === "category" ? nextCategory : allCategories);
-      setSelectedSkill(skillFromHistoryState(event.state));
+      const nextSkill = skillFromHistoryState(event.state);
+      if (nextSkill) advanceDetailScene();
+      setSelectedSkill(nextSkill);
       setComposerOpen(false);
       setComposerOutcomeId(null);
     }
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  }, [advanceDetailScene]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -146,6 +150,16 @@ export function App() {
   const siblingSkills = useMemo(
     () => selectedSkill ? appData.skills.filter((skill) => skill.library_key === selectedSkill.library_key) : [],
     [selectedSkill],
+  );
+  const orbitSiblingSkills = useMemo(
+    () => {
+      if (!selectedSkill) return [];
+      return orbitModel.skills
+        .filter((skill) => skill.libraryKey === selectedSkill.library_key)
+        .map((skill) => skillByName.get(skill.name))
+        .filter((skill): skill is SkillRecord => Boolean(skill));
+    },
+    [orbitModel, selectedSkill, skillByName],
   );
   const siblingIndex = selectedSkill ? siblingSkills.findIndex((skill) => skill.name === selectedSkill.name) : -1;
   const previousSkill = siblingSkills.length > 1 && siblingIndex >= 0
@@ -184,7 +198,7 @@ export function App() {
       setCategoryFilter(allCategories);
       setSourceFilter(allSources);
       setStarredOnly(false);
-      setExpandedUnitId(null);
+      setSelectedCategoryUnitId(null);
     }
     if (page !== nextPage || selectedSkill) {
       history.pushState(consoleHistoryState(nextPage), "");
@@ -202,7 +216,7 @@ export function App() {
     setPage("category");
     setActiveCategory(categoryName);
     setCategoryFilter(categoryName);
-    setExpandedUnitId(null);
+    setSelectedCategoryUnitId(null);
   }
 
   function openCategoryFromOrbit(categoryName: string) {
@@ -210,7 +224,7 @@ export function App() {
     setPage("category");
     setActiveCategory(categoryName);
     setCategoryFilter(categoryName);
-    setExpandedUnitId(null);
+    setSelectedCategoryUnitId(null);
     closeOrbit();
   }
 
@@ -229,6 +243,7 @@ export function App() {
     else history.pushState(nextState, "");
     setComposerOpen(false);
     setComposerOutcomeId(null);
+    advanceDetailScene();
     setSelectedSkill(skill);
   }
 
@@ -248,6 +263,7 @@ export function App() {
     history.replaceState({ ...(history.state ?? {}), agentOsSkill: skill.name }, "");
     setComposerOpen(false);
     setComposerOutcomeId(null);
+    advanceDetailScene();
     setSelectedSkill(skill);
   }
 
@@ -290,36 +306,6 @@ export function App() {
       page={page}
       onHome={() => navigatePage("librarian")}
       nav={<ConsoleNav page={page} onPage={navigatePage} />}
-      rail={
-        page === "category" ? (
-          <FunctionRail
-            page={page}
-            activeCategory={activeCategory}
-            categories={categoryGroups}
-            onCategory={openCategory}
-          />
-        ) : undefined
-      }
-      commandDeck={
-        page === "category" ? (
-          <CommandDeck
-            query={query}
-            categoryFilter={categoryFilter}
-            sourceFilter={sourceFilter}
-            starredOnly={starredOnly}
-            resultCount={categoryResultCount}
-            onQueryChange={setQuery}
-            onCategoryChange={(value) => {
-              setCategoryFilter(value);
-              if (value === allCategories) navigatePage("catalog");
-              else openCategory(value);
-            }}
-            onSourceChange={setSourceFilter}
-            onStarredChange={setStarredOnly}
-            onReset={resetFilters}
-          />
-        ) : null
-      }
     >
       {page === "librarian" && (
         <LibrarianPage
@@ -350,12 +336,39 @@ export function App() {
       {page === "category" && activeCategoryGroup && (
         <CategoryPage
           category={activeCategoryGroup}
+          coordinateRail={(
+            <FunctionRail
+              page={page}
+              activeCategory={activeCategory}
+              categories={categoryGroups}
+              onCategory={openCategory}
+            />
+          )}
+          commandDeck={(
+            <CommandDeck
+              query={query}
+              categoryFilter={categoryFilter}
+              sourceFilter={sourceFilter}
+              starredOnly={starredOnly}
+              resultCount={categoryResultCount}
+              onQueryChange={setQuery}
+              onCategoryChange={(value) => {
+                setCategoryFilter(value);
+                if (value === allCategories) navigatePage("catalog");
+                else openCategory(value);
+              }}
+              onSourceChange={setSourceFilter}
+              onStarredChange={setStarredOnly}
+              onReset={resetFilters}
+            />
+          )}
           query={query}
           sourceFilter={sourceFilter}
           starredOnly={starredOnly}
-          expandedUnitId={expandedUnitId}
-          onExpand={setExpandedUnitId}
+          selectedUnitId={selectedCategoryUnitId}
+          onSelectUnit={setSelectedCategoryUnitId}
           onSkill={openSkill}
+          onBackToCatalog={() => navigatePage("catalog")}
         />
       )}
       {page === "private" && <PrivateToolboxPage onSkill={openSkill} />}
@@ -387,10 +400,12 @@ export function App() {
       {selectedSkill && (
         <SkillInspector
           skill={selectedSkill}
+          detailScene={detailScene}
           latestOutcome={latestSelectedOutcome}
           composerOpen={composerOpen}
           showCatalogArrival={surface === "console" && page === "category"}
           showOrbitCaption={surface === "orbit"}
+          librarySkills={surface === "orbit" ? orbitSiblingSkills : undefined}
           previousSkill={previousSkill}
           nextSkill={nextSkill}
           returnFocusTo={skillTriggerRef.current}
@@ -621,7 +636,7 @@ function MaintenancePage() {
         </p>
       </section>
 
-      <section className="maintenance-handoff" aria-labelledby="maintenance-handoff-title">
+      <section className="maintenance-handoff" data-copy-state={copyState} aria-labelledby="maintenance-handoff-title">
         <div className="maintenance-handoff-copy">
           <TerminalSquare size={20} />
           <div>
@@ -637,6 +652,7 @@ function MaintenancePage() {
           <Copy size={16} />
           {copyState === "copied" ? text("已复制", "COPIED") : text("复制维护请求", "COPY MAINTENANCE REQUEST")}
         </button>
+        <span className="maintenance-signal-line" aria-hidden="true" />
         <span className={`maintenance-copy-status ${copyState}`} aria-live="polite">
           {copyState === "copied" ? text("请求已复制到剪贴板。", "Request copied to the clipboard.") : null}
           {copyState === "error" ? text("浏览器无法访问剪贴板，请手动复制上方文本。", "Clipboard access failed; copy the text above manually.") : null}

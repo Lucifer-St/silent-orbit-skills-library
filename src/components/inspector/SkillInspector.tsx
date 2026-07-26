@@ -2,17 +2,31 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import { librariesByKey, skillDetailsByName } from "../../data/indexes";
-import { cosmosIcons, getCatalogArrivalVisual, getSkillVisual } from "../../lib/cosmosAssets";
+import {
+  cosmosIcons,
+  getCatalogArrivalVisual,
+  getSkillVisual,
+} from "../../lib/cosmosAssets";
+import {
+  getSkillDetailSceneDefinition,
+  type SkillDetailScene,
+} from "../../lib/skillDetailScenes";
 import type { SkillOutcome, SkillRecord } from "../../types";
 import { CosmosAsset } from "../CosmosAsset";
+import {
+  getSkillDetailSceneSeal,
+  SkillDetailAtmosphere,
+} from "./SkillDetailAtmosphere";
 import { useLocale } from "../../i18n/LocaleContext";
 
 interface SkillInspectorProps {
   readonly skill: SkillRecord;
+  readonly detailScene: SkillDetailScene;
   readonly latestOutcome?: SkillOutcome;
   readonly composerOpen: boolean;
   readonly showCatalogArrival: boolean;
   readonly showOrbitCaption: boolean;
+  readonly librarySkills?: readonly SkillRecord[];
   readonly previousSkill?: SkillRecord;
   readonly nextSkill?: SkillRecord;
   readonly returnFocusTo: HTMLElement | null;
@@ -23,10 +37,12 @@ interface SkillInspectorProps {
 
 export function SkillInspector({
   skill,
+  detailScene,
   latestOutcome,
   composerOpen,
   showCatalogArrival,
   showOrbitCaption,
+  librarySkills = [],
   previousSkill,
   nextSkill,
   returnFocusTo,
@@ -45,15 +61,22 @@ export function SkillInspector({
     text,
     visibility,
   } = useLocale();
-  const dialogRef = useRef<HTMLElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(returnFocusTo);
   const [displayedArrivalVisual, setDisplayedArrivalVisual] = useState<string>();
   const titleId = useId();
   const descriptionId = useId();
   const library = librariesByKey.get(skill.library_key);
   const verifiedDetails = skillDetailsByName.get(skill.name);
-  const skillVisual = getSkillVisual(skill.name);
-  const catalogArrivalVisual = showCatalogArrival ? getCatalogArrivalVisual(skill.name) : undefined;
+  const arrivalActive = showCatalogArrival || showOrbitCaption;
+  const detailLayout = getSkillDetailSceneDefinition(detailScene).layout;
+  const skillVisual = showOrbitCaption
+    ? getSkillDetailSceneSeal(detailScene)
+    : getSkillVisual(skill.name);
+  const catalogArrivalVisual = showCatalogArrival
+    ? getCatalogArrivalVisual(skill.name)
+    : undefined;
   const hasRelatedDetails = Boolean(
     library?.kind_label ||
       library?.source_label ||
@@ -78,8 +101,11 @@ export function SkillInspector({
     };
     image.onload = revealDecodedImage;
     image.src = catalogArrivalVisual;
-    if (typeof image.decode === "function") void image.decode().then(revealDecodedImage).catch(() => undefined);
-    else if (image.complete) revealDecodedImage();
+    if (typeof image.decode === "function") {
+      void image.decode().then(revealDecodedImage).catch(() => undefined);
+    } else if (image.complete) {
+      revealDecodedImage();
+    }
 
     return () => {
       cancelled = true;
@@ -88,7 +114,7 @@ export function SkillInspector({
   }, [catalogArrivalVisual]);
 
   useEffect(() => {
-    dialogRef.current?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    drawerRef.current?.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [skill.name]);
 
   useEffect(() => {
@@ -126,7 +152,7 @@ export function SkillInspector({
       dialogRef.current.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ),
-    );
+    ).filter((element) => element.getClientRects().length > 0 && !element.closest('[inert],[aria-hidden="true"]'));
     if (focusable.length === 0) {
       event.preventDefault();
       dialogRef.current.focus();
@@ -146,15 +172,18 @@ export function SkillInspector({
 
   return (
     <>
-      {showCatalogArrival && displayedArrivalVisual && (
+      {showCatalogArrival && displayedArrivalVisual ? (
         <CosmosAsset
           key={displayedArrivalVisual}
           className="silent-horizon-environment"
           dataArrivalSkill={skill.name}
           src={displayedArrivalVisual}
         />
-      )}
-      {(showCatalogArrival || showOrbitCaption) && (
+      ) : null}
+      {showOrbitCaption ? (
+        <SkillDetailAtmosphere scene={detailScene} skillName={skill.name} />
+      ) : null}
+      {arrivalActive && (
         <div
           className="silent-horizon-caption"
           data-arrival-context={showCatalogArrival ? "catalog" : "orbit"}
@@ -171,9 +200,12 @@ export function SkillInspector({
         </div>
       )}
       <div className="drawer-backdrop" aria-hidden="true" />
-      <aside
+      <div
         ref={dialogRef}
-        className="drawer"
+        className="skill-inspector-dialog"
+        data-detail-layout={showOrbitCaption ? detailLayout : undefined}
+        data-detail-scene={showOrbitCaption ? detailScene : undefined}
+        data-rotation-scene={arrivalActive ? detailScene : undefined}
         data-surface="skill-inspector"
         role="dialog"
         aria-modal={composerOpen ? undefined : true}
@@ -184,12 +216,58 @@ export function SkillInspector({
         tabIndex={-1}
         onKeyDown={keepFocusInDialog}
       >
+        {showOrbitCaption && librarySkills.length > 0 ? (
+          <nav
+            className="orbit-library-signal-index inspector-library-signal-index"
+            aria-label={`${libraryTitle(library, skill.library_title)} skill signals`}
+          >
+            <header>
+              <span>LIBRARY SIGNALS</span>
+              <strong>{libraryTitle(library, skill.library_title)}</strong>
+              <small>{librarySkills.length} SKILLS</small>
+            </header>
+            <div>
+              {librarySkills.map((librarySkill, index) => (
+                <button
+                  data-skill-id={`skill:${librarySkill.name}`}
+                  data-skill-name={librarySkill.name}
+                  type="button"
+                  aria-current={librarySkill.name === skill.name ? "page" : undefined}
+                  onClick={() => {
+                    if (librarySkill.name !== skill.name) onSelectSkill(librarySkill);
+                  }}
+                  key={librarySkill.name}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{librarySkill.name}</strong>
+                </button>
+              ))}
+            </div>
+          </nav>
+        ) : null}
+
+        <aside
+          ref={drawerRef}
+          className="drawer"
+          data-orbit-index-active={showOrbitCaption && librarySkills.length > 0 ? "true" : undefined}
+          data-detail-layout={showOrbitCaption ? detailLayout : undefined}
+          data-detail-scene={showOrbitCaption ? detailScene : undefined}
+          data-rotation-scene={arrivalActive ? detailScene : undefined}
+        >
       <div className="drawer-header">
-        <div className="inspector-title-lockup">
-          <CosmosAsset className="inspector-title-signal" src={skillVisual} />
-          <div>
-            <span className="pixel-label">SKILL DETAIL</span>
-            <h2 id={titleId} aria-live="polite" aria-atomic="true">{skill.name}</h2>
+        <div className="inspector-header-main">
+          {arrivalActive ? (
+            <button className="inspector-return-button" type="button" onClick={onClose}>
+              <ChevronLeft size={14} />
+              <span>{showCatalogArrival ? "RETURN TO CATALOG" : "RETURN TO LIBRARY"}</span>
+            </button>
+          ) : null}
+          <div className="inspector-title-lockup">
+            <CosmosAsset className="inspector-title-signal" src={skillVisual} />
+            <div>
+              <span className="pixel-label">SKILL DETAIL</span>
+              <h2 id={titleId} aria-live="polite" aria-atomic="true">{skill.name}</h2>
+            </div>
           </div>
         </div>
         <button className="icon-button" type="button" onClick={onClose} aria-label={text("关闭详情", "Close detail")}>
@@ -220,39 +298,41 @@ export function SkillInspector({
         </nav>
       ) : null}
 
-      <section className="drawer-section inspector-purpose">
-        <h3>{text("用途", "Purpose")}</h3>
-        <p className="drawer-desc" id={descriptionId}>{skillDescription(skill)}</p>
-      </section>
+      <div className="inspector-core">
+        <section className="drawer-section inspector-purpose">
+          <h3>{text("用途", "Purpose")}</h3>
+          <p className="drawer-desc" id={descriptionId}>{skillDescription(skill)}</p>
+        </section>
 
-      <div className="detail-grid inspector-quick-facts">
-        <DetailItem label={text("功能分类", "Category")} value={category(skill.category)} />
-        <DetailItem label={text("来源单元", "Source unit")} value={libraryTitle(library, skill.library_title)} />
-        <DetailItem label={text("创作来源", "Origin")} value={origin(skill.origin)} />
-        <DetailItem label={text("公开边界", "Visibility")} value={visibility(skill.visibility)} />
-        <DetailItem label={text("安装状态", "Install status")} value={installStatus(skill.status)} />
-        {skill.frequency ? <DetailItem label={text("使用信号", "Usage signal")} value={humanizeFrequency(skill.frequency, text)} /> : null}
-      </div>
-
-      <section className="drawer-section inspector-trigger">
-        <h3>{text("何时触发", "When to Trigger")}</h3>
-        <p>{text("任务与下面的边界一致时，直接点名触发词，并补充目标、输入材料和期望输出。", "Use the trigger when the task matches this boundary, then provide the goal, inputs, and expected output.")}</p>
-        <code>{skill.trigger}</code>
-      </section>
-
-      <section className="drawer-section inspector-boundaries">
-        <h3>{text("适合 / 不适合", "Good Fit / Poor Fit")}</h3>
-        <div>
-          <article>
-            <span>{text("适合", "GOOD FIT")}</span>
-            <p>{makeUseCase(skill, skillDescription(skill), text)}</p>
-          </article>
-          <article>
-            <span>{text("不适合", "POOR FIT")}</span>
-            <p>{makeBoundary(skill, text)}</p>
-          </article>
+        <div className="detail-grid inspector-quick-facts">
+          <DetailItem label={text("功能分类", "Category")} value={category(skill.category)} />
+          <DetailItem label={text("来源单元", "Source unit")} value={libraryTitle(library, skill.library_title)} />
+          <DetailItem label={text("创作来源", "Origin")} value={origin(skill.origin)} />
+          <DetailItem label={text("公开边界", "Visibility")} value={visibility(skill.visibility)} />
+          <DetailItem label={text("安装状态", "Install status")} value={installStatus(skill.status)} />
+          {skill.frequency ? <DetailItem label={text("使用信号", "Usage signal")} value={humanizeFrequency(skill.frequency, text)} /> : null}
         </div>
-      </section>
+
+        <section className="drawer-section inspector-trigger">
+          <h3>{text("何时触发", "When to Trigger")}</h3>
+          <p>{text("任务与下面的边界一致时，直接点名触发词，并补充目标、输入材料和期望输出。", "Use the trigger when the task matches this boundary, then provide the goal, inputs, and expected output.")}</p>
+          <code>{skill.trigger}</code>
+        </section>
+
+        <section className="drawer-section inspector-boundaries">
+          <h3>{text("适合 / 不适合", "Good Fit / Poor Fit")}</h3>
+          <div>
+            <article>
+              <span>{text("适合", "GOOD FIT")}</span>
+              <p>{makeUseCase(skill, skillDescription(skill), text)}</p>
+            </article>
+            <article>
+              <span>{text("不适合", "POOR FIT")}</span>
+              <p>{makeBoundary(skill, text)}</p>
+            </article>
+          </div>
+        </section>
+      </div>
 
       {verifiedDetails && (
         <section className="drawer-section inspector-source-details">
@@ -313,7 +393,8 @@ export function SkillInspector({
           <code data-wrap-kind="path">{skill.skill_page}</code>
         </section>
       )}
-      </aside>
+        </aside>
+      </div>
     </>
   );
 }

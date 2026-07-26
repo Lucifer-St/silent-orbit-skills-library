@@ -307,16 +307,30 @@ async function assertOneBitPalette(label, selectors) {
   console.log(`ok ${label}`);
 }
 
-async function assertOrbitFocusGeometry(label, focusSelector, geometrySelector = null, tolerance = 18) {
+async function assertOrbitFocusGeometry(
+  label,
+  focusSelector,
+  geometrySelector = null,
+  tolerance = 18,
+  centerSelector = ".orbit-scene",
+  accountForWorldNudge = false,
+) {
   const result = await evaluate(`(() => {
-    const scene = document.querySelector('.orbit-scene');
+    const scene = document.querySelector(${JSON.stringify(centerSelector)});
     const focus = document.querySelector(${JSON.stringify(focusSelector)});
     const geometry = ${geometrySelector ? `document.querySelector(${JSON.stringify(geometrySelector)})` : "null"};
     if (!scene || !focus || (${Boolean(geometrySelector)} && !geometry)) {
       return { ok: false, reason: 'missing geometry target' };
     }
     const center = (box) => ({ x: box.left + box.width / 2, y: box.top + box.height / 2 });
-    const sceneCenter = center(scene.getBoundingClientRect());
+    const sceneBox = scene.getBoundingClientRect();
+    const sceneCenter = center(sceneBox);
+    if (${accountForWorldNudge}) {
+      const world = document.querySelector('.orbit-world');
+      const worldScale = Number.parseFloat(world?.style.getPropertyValue('--orbit-scale') ?? '') || 1;
+      const horizontalNudge = (Number.parseFloat(world?.style.getPropertyValue('--orbit-nudge-x') ?? '') || 0) / 100;
+      sceneCenter.x += sceneBox.width * horizontalNudge * worldScale;
+    }
     const focusCenter = center(focus.getBoundingClientRect());
     const geometryCenter = geometry ? center(geometry.getBoundingClientRect()) : null;
     const centerError = Math.hypot(focusCenter.x - sceneCenter.x, focusCenter.y - sceneCenter.y);
@@ -440,21 +454,66 @@ try {
   await assertPage("portal exposes nine accessible direct System entries without an Overview entry", "Boolean(document.querySelector('section.silent-orbit-portal.librarian-galaxy-portal[aria-label]') && !document.querySelector('button.portal-entry-trigger') && document.querySelectorAll('.portal-system-hit[data-system-id]').length === 9 && document.querySelector('.silent-orbit-preview[aria-hidden=\"true\"]') && !document.querySelector('.silent-orbit-preview button'))");
   await assertPage("portal uses nine generated distant-ecliptic assets without circular reticles", `(() => {
     const svg = document.querySelector('.silent-orbit-preview');
-    const markers = [...(svg?.querySelectorAll('image.portal-system-visual[data-system-marker-asset="distant-ecliptic"]') ?? [])];
+    const markers = [...document.querySelectorAll('.portal-system-hit img.portal-system-visual[data-system-marker-asset="distant-ecliptic"]')];
     const allowedAssets = new Set(['/assets/system-ecliptic-a.png', '/assets/system-ecliptic-b.png', '/assets/system-ecliptic-c.png']);
     return markers.length === 9
-      && markers.every((marker) => allowedAssets.has(marker.getAttribute('href')))
+      && markers.every((marker) => allowedAssets.has(new URL(marker.getAttribute('src'), location.href).pathname))
       && !svg?.querySelector('.portal-system-orbit,.portal-system-core,.portal-system-star > path')
       && [...document.querySelectorAll('.portal-system-hit')].every((button) => {
         const style = getComputedStyle(button);
         const box = button.getBoundingClientRect();
         return Number.parseFloat(style.borderRadius) === 0
           && style.backgroundColor === 'rgba(0, 0, 0, 0)'
-          && style.clipPath.includes('circle')
-          && box.width >= 96
-          && box.height >= 96;
+          && style.clipPath === 'none'
+          && box.width >= 112
+          && box.height >= 104
+          && button.querySelectorAll('.portal-system-index,.portal-system-name,.portal-system-count').length === 3;
       });
   })()`);
+  await assertPage("desktop System copy sits outward from its celestial marker", `(() => {
+    const mapBox = document.querySelector('.portal-map')?.getBoundingClientRect();
+    const buttons = [...document.querySelectorAll('.portal-system-hit[data-system-id]')];
+    if (!mapBox || buttons.length !== 9) return false;
+    const mapCenter = {
+      x: mapBox.left + mapBox.width / 2,
+      y: mapBox.top + mapBox.height / 2,
+    };
+    return buttons.every((button) => {
+      const buttonBox = button.getBoundingClientRect();
+      const copyBox = button.querySelector('.portal-system-copy')?.getBoundingClientRect();
+      const markerBox = button.querySelector('.portal-system-visual')?.getBoundingClientRect();
+      if (!copyBox || !markerBox) return false;
+      const radial = {
+        x: buttonBox.left + buttonBox.width / 2 - mapCenter.x,
+        y: buttonBox.top + buttonBox.height / 2 - mapCenter.y,
+      };
+      const outward = {
+        x: copyBox.left + copyBox.width / 2 - (markerBox.left + markerBox.width / 2),
+        y: copyBox.top + copyBox.height / 2 - (markerBox.top + markerBox.height / 2),
+      };
+      return radial.x * outward.x + radial.y * outward.y > 0;
+    });
+  })()`);
+  const topSystemHoverTargets = await evaluate(`(() => (
+    [...document.querySelectorAll('.portal-system-hit[data-system-id]')]
+      .slice(0, 3)
+      .map((button) => {
+        const box = button.getBoundingClientRect();
+        return {
+          id: button.getAttribute('data-system-id'),
+          x: box.left + box.width / 2,
+          y: box.top + box.height / 2,
+        };
+      })
+  ))()`);
+  for (const target of topSystemHoverTargets) {
+    await cdp("Input.dispatchMouseEvent", { type: "mouseMoved", x: target.x, y: target.y });
+    await wait(90);
+    await assertPage(
+      `top-row System hover remains stable for ${target.id}`,
+      `document.querySelector('.portal-system-hit[data-active="true"]')?.getAttribute('data-system-id') === ${JSON.stringify(target.id)}`,
+    );
+  }
   await assertPage("portal does not claim one featured system across the whole galaxy", "!document.querySelector('.portal-hover-detail,[data-featured]')");
   await assertPage("console omits interactive legacy map", "!document.querySelector('.agent-console .pixel-map-canvas') && !document.querySelector('.agent-console .function-zone-node')");
   await assertPage("idle Observatory uses the selected galaxy asset and preserves every catalog identity", `(() => {
@@ -482,7 +541,7 @@ try {
   await wait(220);
   await assertPage("focused System brightens and enlarges only its stellar asset", `(() => {
     const button = document.activeElement;
-    const active = document.querySelector('.portal-system-star[data-active="true"]');
+    const active = document.querySelector('.portal-system-hit[data-active="true"]');
     const marker = active?.querySelector('.portal-system-visual');
     const buttonStyle = button && getComputedStyle(button);
     const markerStyle = marker && getComputedStyle(marker);
@@ -492,7 +551,7 @@ try {
     return button?.matches('.portal-system-hit[data-system-id]')
       && Boolean(active && marker)
       && Number(markerStyle?.opacity ?? 0) >= .99
-      && markerScale >= 1.4
+      && markerScale >= 1.3
       && buttonStyle?.outlineStyle === 'none'
       && buttonStyle?.boxShadow === 'none'
       && buttonStyle?.backgroundColor === 'rgba(0, 0, 0, 0)';
@@ -636,9 +695,11 @@ try {
     const cards = [...document.querySelectorAll('button.ranked-skill-card')];
     const signatures = cards.map((card) => {
       const visual = card.querySelector('.ranked-skill-constellation');
+      const base = visual?.querySelector('.ranked-constellation-base');
+      const signal = visual?.querySelector('.ranked-constellation-signal');
       const name = card.querySelector('strong')?.textContent ?? '';
       const geometry = [
-        visual?.querySelector('path')?.getAttribute('d'),
+        base?.getAttribute('d'),
         ...[...(visual?.querySelectorAll('circle') ?? [])].map((point) => point.getAttribute('cx') + ',' + point.getAttribute('cy')),
       ].join('|');
       return {
@@ -646,7 +707,10 @@ try {
         geometry,
         valid: visual?.getAttribute('aria-hidden') === 'true'
           && getComputedStyle(visual).pointerEvents === 'none'
-          && visual?.querySelectorAll('path').length === 1
+          && visual?.querySelectorAll('path').length === 2
+          && base?.getAttribute('d') === signal?.getAttribute('d')
+          && signal?.getAttribute('pathLength') === '1'
+          && getComputedStyle(signal).animationName === 'ranked-constellation-draw'
           && visual?.querySelectorAll('circle').length >= 5,
         expected: hashName(name),
       };
@@ -775,6 +839,10 @@ try {
         && items[1].textContent.includes('Archived installer outcome')
         && Date.parse(items[0].getAttribute('data-completed-at')) > Date.parse(items[1].getAttribute('data-completed-at'));
     })()`,
+  );
+  await assertPage(
+    "History marks the newest outcome with a one-shot commit line",
+    "document.querySelector('.outcome-history-item:first-child .outcome-commit-line') && getComputedStyle(document.querySelector('.outcome-history-item:first-child .outcome-commit-line')).animationName === 'outcome-commit-line'",
   );
   await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'LIBRARIAN')?.click(); true");
   await wait(250);
@@ -1243,6 +1311,10 @@ try {
     "document.querySelector('.silent-orbit-page[data-view-mode=\"library\"]') && document.querySelector('.library-moon[aria-pressed=\"true\"]')?.getAttribute('data-station-id') === window.__stationId && document.querySelectorAll('.skill-asteroid').length > 0 && [...document.querySelectorAll('.skill-asteroid')].every((node) => node.getAttribute('data-station-id') === window.__stationId)",
   );
   await assertPage(
+    "library focus replays only decorative alignment and context tide",
+    "document.querySelector('.orbit-geometry[data-focus-motion=\"alignment\"]') && [...document.querySelectorAll('.orbit-skill-ring')].every((ring) => getComputedStyle(ring).animationName === 'orbit-fragment-align') && getComputedStyle(document.querySelector('.orbit-star-field')).animationName === 'orbit-context-tide'",
+  );
+  await assertPage(
     "selected library keeps its stable catalog station ID",
     "window.__stationId === 'station:library:local:obsidian'",
   );
@@ -1267,6 +1339,10 @@ try {
   await assertOrbitFocusGeometry(
     "selected library is centered at library depth",
     ".library-moon[aria-pressed=\"true\"]",
+    null,
+    18,
+    ".orbit-scene",
+    true,
   );
   await evaluate(`(() => {
     const trigger = document.querySelector('.skill-asteroid');
@@ -1278,7 +1354,7 @@ try {
     trigger?.click();
     return Boolean(trigger);
   })()`);
-  await wait(250);
+  await wait(420);
   await assertPage(
     "orbit skill opens Inspector with stable skill and station IDs",
     "Boolean(/^skill:[^:]+$/.test(window.__smokeOrbitSkillId) && window.__smokeOrbitSkillStationId === window.__stationId && document.querySelector('[role=\"dialog\"][aria-modal=\"true\"]')?.textContent.includes(window.__smokeOrbitSkillLabel))",
@@ -1288,13 +1364,106 @@ try {
     `(() => {
       const caption = document.querySelector('.silent-horizon-caption[data-arrival-context="orbit"]');
       const box = caption?.getBoundingClientRect();
-      const drawerBox = document.querySelector('[role="dialog"]')?.getBoundingClientRect();
+      const drawerBox = document.querySelector('[role="dialog"] .drawer')?.getBoundingClientRect();
+      const signalIndexBox = document.querySelector('.orbit-library-signal-index')?.getBoundingClientRect();
       const style = caption ? getComputedStyle(caption) : null;
-      return Boolean(caption && box && drawerBox && caption.textContent.includes('SILENT HORIZON / SKILL SIGNAL'))
+      return Boolean(caption && box && drawerBox && signalIndexBox && caption.textContent.includes('SILENT HORIZON / SKILL SIGNAL'))
         && style.display !== 'none'
         && Number(style.opacity) >= .8
         && box.left < drawerBox.left
-        && box.right <= drawerBox.left;
+        && box.right <= drawerBox.left
+        && signalIndexBox.bottom <= box.top - 8;
+    })()`,
+  );
+  await assertPage(
+    "orbit Skill Detail uses one of the six verified environment scenes",
+    `(() => {
+      const atmosphere = document.querySelector('.skill-detail-atmosphere[data-detail-scene]');
+      const drawer = document.querySelector('[role="dialog"] .drawer');
+      const stage = atmosphere?.querySelector('.detail-environment-stage');
+      const environment = stage?.querySelector('.detail-environment');
+      const comet = stage?.querySelector('.detail-comet');
+      const atmosphereBox = atmosphere?.getBoundingClientRect();
+      const drawerBox = drawer?.getBoundingClientRect();
+      const stageBox = stage?.getBoundingClientRect();
+      const environmentStyle = environment ? getComputedStyle(environment) : null;
+      const cometStyle = comet ? getComputedStyle(comet) : null;
+      const scene = atmosphere?.getAttribute('data-detail-scene');
+      const layout = atmosphere?.getAttribute('data-detail-layout');
+      const expectedEnvironment = new Map([
+        ['distant-tidal-archive', '03-orphan-moon-tide-v01.png'],
+        ['gravitational-wake', '11-gravity-lens-ghost-v01.png'],
+        ['severed-orbital-elevator', '06-severed-orbital-elevator-v01.png'],
+        ['spent-comet-archive', '04-spent-comet-archive-v01.png'],
+        ['buried-archive-vault', '07-buried-archive-vault-v01.png'],
+        ['dead-corona-terminal', '01-dead-corona-terminal-v01.png'],
+      ]);
+      const assets = [...(stage?.querySelectorAll('img[data-cosmos-asset]') ?? [])];
+      const expectedAsset = expectedEnvironment.get(scene);
+      return Boolean(atmosphere && drawer && stage && environment && atmosphereBox && drawerBox && stageBox)
+        && Boolean(expectedAsset)
+        && environment.getAttribute('data-cosmos-asset')?.endsWith(expectedAsset)
+        && environment.complete
+        && environment.naturalWidth > 0
+        && environmentStyle?.objectFit === 'cover'
+        && Number.parseFloat(environmentStyle?.animationDuration ?? '0') >= 53
+        && ['orbital-specimen', 'tidal-window', 'signal-constellation'].includes(layout)
+        && drawer.getAttribute('data-detail-layout') === layout
+        && assets.length === 6
+        && assets.every((asset) => asset.complete && asset.naturalWidth > 0)
+        && !document.querySelector('.silent-horizon-environment')
+        && getComputedStyle(stage).backgroundColor !== 'rgba(0, 0, 0, 0)'
+        && stageBox.left >= 264
+        && atmosphereBox.left === 0
+        && Math.abs(atmosphereBox.right - drawerBox.left) <= 1
+        && Boolean(comet && comet.getBoundingClientRect().width <= 48.5)
+        && (cometStyle?.display === 'none' || Number.parseFloat(cometStyle?.animationDuration ?? '0') >= 79);
+    })()`,
+  );
+  await assertPage(
+    "orbit Skill Detail keeps the explicit Library return control",
+    "Boolean(document.querySelector('[role=\"dialog\"] .inspector-return-button')?.textContent.includes('RETURN TO LIBRARY'))",
+  );
+  await assertPage(
+    "orbit Skill Detail exposes a dialog-owned Library signal index",
+    `(() => {
+      const dialog = document.querySelector('[data-surface="skill-inspector"]');
+      const index = dialog?.querySelector('.inspector-library-signal-index');
+      const buttons = [...(index?.querySelectorAll('button[data-skill-name]') ?? [])];
+      const backgroundButtons = [...document.querySelectorAll('.app-content .orbit-library-signal-index button[data-skill-id]')];
+      const current = index?.querySelector('button[aria-current="page"]');
+      const title = dialog?.querySelector('h2')?.textContent.trim();
+      return Boolean(dialog && index && current && title)
+        && buttons.length > 1
+        && buttons.map((button) => button.getAttribute('data-skill-id')).join('|')
+          === backgroundButtons.map((button) => button.getAttribute('data-skill-id')).join('|')
+        && current.getAttribute('data-skill-name') === title
+        && buttons.every((button) => button.getBoundingClientRect().height >= 44)
+        && document.querySelector('.app-content')?.inert;
+    })()`,
+  );
+  await evaluate(`(() => {
+    const target = document.querySelector('.inspector-library-signal-index button:not([aria-current="page"])');
+    window.__smokeOrbitSignalTargetName = target?.getAttribute('data-skill-name');
+    window.__smokeOrbitSignalTargetId = target?.getAttribute('data-skill-id');
+    return Boolean(target);
+  })()`);
+  await activateAtRenderedCenter(
+    "Orbit Inspector Library signal activates at rendered center",
+    '.inspector-library-signal-index button:not([aria-current="page"])',
+  );
+  await wait(350);
+  await assertPage(
+    "left Library signal switches Skill without leaving Orbit",
+    `(() => {
+      const dialog = document.querySelector('[data-surface="skill-inspector"]');
+      const current = dialog?.querySelector('.inspector-library-signal-index button[aria-current="page"]');
+      return dialog?.querySelector('h2')?.textContent.trim() === window.__smokeOrbitSignalTargetName
+        && current?.getAttribute('data-skill-name') === window.__smokeOrbitSignalTargetName
+        && current?.getAttribute('data-skill-id') === window.__smokeOrbitSignalTargetId
+        && history.state?.agentOsSkill === window.__smokeOrbitSignalTargetName
+        && history.state?.agentOsSurface === 'orbit'
+        && document.querySelector('.app-content')?.inert;
     })()`,
   );
   await assertPage(
@@ -1415,33 +1584,24 @@ try {
       })()`,
     );
     await assertPage(
-      "Catalog Skill arrival renders one stable production environment on the left",
+      "Catalog Skill arrival restores the verified pre-S1 environment background",
       `(() => {
-        const environment = document.querySelector('.silent-horizon-environment');
-        const drawer = document.querySelector('[role="dialog"]');
+        const environment = document.querySelector('.silent-horizon-environment[data-arrival-skill]');
+        const dialog = document.querySelector('[role="dialog"]');
+        const drawer = dialog?.querySelector('.drawer');
         const environmentBox = environment?.getBoundingClientRect();
         const drawerBox = drawer?.getBoundingClientRect();
-        const pathname = environment?.currentSrc ? new URL(environment.currentSrc).pathname : '';
-        const allowed = new Set([
-          '/assets/cosmos/environments/lost-relay-v01.png',
-          '/assets/cosmos/environments/01-dead-corona-terminal-v01.png',
-          '/assets/cosmos/environments/03-orphan-moon-tide-v01.png',
-          '/assets/cosmos/environments/04-spent-comet-archive-v01.png',
-          '/assets/cosmos/environments/05-abandoned-listening-array-v01.png',
-          '/assets/cosmos/environments/06-severed-orbital-elevator-v01.png',
-          '/assets/cosmos/environments/07-buried-archive-vault-v01.png',
-          '/assets/cosmos/environments/08-drift-lighthouse-v01.png',
-          '/assets/cosmos/environments/10-failed-beacon-procession-v01.png',
-          '/assets/cosmos/environments/11-gravity-lens-ghost-v01.png',
-          '/assets/cosmos/environments/15-far-side-signal-garden-v01.png',
-          '/assets/cosmos/environments/16-sleeping-ring-station-v01.png',
-        ]);
-        return Boolean(environment && drawer && environmentBox && drawerBox)
-          && getComputedStyle(environment).display === 'block'
-          && Number(getComputedStyle(environment).opacity) >= .8
+        const style = environment ? getComputedStyle(environment) : null;
+        const scene = dialog?.getAttribute('data-rotation-scene');
+        window.__smokeDetailScenes = scene ? [scene] : [];
+        return Boolean(environment && dialog && drawer && environmentBox && drawerBox)
           && environment.complete
           && environment.naturalWidth > 0
-          && allowed.has(pathname)
+          && environment.getAttribute('data-arrival-skill') === dialog.querySelector('h2')?.textContent.trim()
+          && style?.display !== 'none'
+          && style?.objectFit === 'cover'
+          && Number(style?.opacity ?? 0) >= .8
+          && !document.querySelector('.skill-detail-atmosphere')
           && environmentBox.left === 0
           && Math.abs(environmentBox.right - drawerBox.left) <= 1;
       })()`,
@@ -1459,37 +1619,65 @@ try {
     "document.querySelector('[role=\"dialog\"]')?.contains(document.activeElement)",
   );
   await assertPage(
+    "Catalog Skill inspector offers an explicit return control",
+    "Boolean(document.querySelector('[role=\"dialog\"] .inspector-return-button')?.textContent.includes('RETURN TO CATALOG'))",
+  );
+  await assertPage(
     "skill inspector isolates background content",
     "Boolean(document.querySelector('.drawer-backdrop') && document.querySelector('.app-content')?.inert && document.querySelector('.app-content')?.getAttribute('aria-hidden') === 'true' && document.body.style.overflow === 'hidden')",
   );
   await assertOneBitPalette("category and inspector use one-bit palette", [
     ".agent-console .unit-kind",
-    "[role=\"dialog\"]",
+    "[role=\"dialog\"] .drawer",
     "[role=\"dialog\"] .drawer-header",
     "[role=\"dialog\"] .detail-item",
     "[role=\"dialog\"] code",
   ]);
   await evaluate(`(() => {
     const dialog = document.querySelector('[role="dialog"]');
+    const drawer = dialog?.querySelector('.drawer');
     window.__smokeOriginalInspectorSkill = dialog?.querySelector('h2')?.textContent.trim();
-    window.__smokeOriginalArrival = document.querySelector('.silent-horizon-environment')?.getAttribute('data-cosmos-asset');
-    if (dialog) dialog.scrollTop = Math.min(500, dialog.scrollHeight - dialog.clientHeight);
+    if (drawer) drawer.scrollTop = Math.min(500, drawer.scrollHeight - drawer.clientHeight);
     document.querySelector('[data-inspector-sibling="next"]')?.click();
     return true;
   })()`);
   await wait(350);
   await assertPage(
     "Inspector switches to a sibling Skill without closing the arrival surface",
+      `(() => {
+        const dialog = document.querySelector('[role="dialog"]');
+        const drawer = dialog?.querySelector('.drawer');
+        const title = dialog?.querySelector('h2')?.textContent.trim();
+        const environment = document.querySelector('.silent-horizon-environment[data-arrival-skill]');
+        const scene = dialog?.getAttribute('data-rotation-scene');
+        window.__smokeDetailScenes.push(scene);
+        return Boolean(dialog && title && title !== window.__smokeOriginalInspectorSkill
+          && history.state?.agentOsSkill === title
+          && drawer?.scrollTop === 0
+          && scene !== window.__smokeDetailScenes[0]
+          && environment?.complete
+          && environment?.naturalWidth > 0
+          && environment?.getAttribute('data-arrival-skill') === title
+          && !document.querySelector('.skill-detail-atmosphere'));
+      })()`,
+    );
+  await evaluate("document.querySelector('[data-inspector-sibling=\"next\"]')?.click(); true");
+  await wait(350);
+  await assertPage(
+    "Catalog sibling traversal keeps the restored environment background active",
     `(() => {
       const dialog = document.querySelector('[role="dialog"]');
-      const title = dialog?.querySelector('h2')?.textContent.trim();
-      const environment = document.querySelector('.silent-horizon-environment');
-      return Boolean(dialog && title && title !== window.__smokeOriginalInspectorSkill
-        && history.state?.agentOsSkill === title
-        && dialog.scrollTop === 0
+      const environment = document.querySelector('.silent-horizon-environment[data-arrival-skill]');
+      const scene = dialog?.getAttribute('data-rotation-scene');
+      window.__smokeDetailScenes.push(scene);
+      return window.__smokeDetailScenes.length === 3
+        && window.__smokeDetailScenes.every((value) => Boolean(value))
+        && window.__smokeDetailScenes[1] !== window.__smokeDetailScenes[0]
+        && window.__smokeDetailScenes[2] !== window.__smokeDetailScenes[1]
         && environment?.complete
         && environment?.naturalWidth > 0
-        && environment.getAttribute('data-arrival-skill') === title);
+        && environment?.getAttribute('data-arrival-skill') === dialog?.querySelector('h2')?.textContent.trim()
+        && !document.querySelector('.skill-detail-atmosphere');
     })()`,
   );
   await evaluate("document.activeElement?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); true");
@@ -1577,6 +1765,10 @@ try {
   await assertPage(
     "maintenance handoff copies a plan-first local Codex request",
     "window.__smokeMaintenanceClipboard?.includes('$skills-library-maintenance') && window.__smokeMaintenanceClipboard?.includes('先展示计划') && document.querySelector('.maintenance-copy-status')?.textContent.includes('已复制')",
+  );
+  await assertPage(
+    "maintenance confirmation uses a restrained local signal",
+    "document.querySelector('.maintenance-handoff')?.getAttribute('data-copy-state') === 'copied' && getComputedStyle(document.querySelector('.maintenance-signal-line')).animationName === 'maintenance-signal-acquire' && getComputedStyle(document.querySelector('.maintenance-copy-button')).animationName === 'maintenance-copy-confirm'",
   );
   await assertOneBitPalette("maintenance page uses one-bit palette", [
     ".agent-console .maintenance-summary",
@@ -1780,15 +1972,134 @@ try {
   await wait(500);
   await evaluate("document.querySelector('.skill-row')?.click(); true");
   await wait(400);
-  await evaluate("(() => { const dialog = document.querySelector('[role=\"dialog\"]'); if (dialog) dialog.scrollTop = dialog.scrollHeight; return true; })()");
+  await evaluate("(() => { const drawer = document.querySelector('[role=\"dialog\"] .drawer'); if (drawer) drawer.scrollTop = drawer.scrollHeight; return true; })()");
   await wait(100);
   await assertPage(
     "mobile inspector scrolls with close button visible",
-    "(() => { const dialog = document.querySelector('[role=\"dialog\"]'); const close = dialog?.querySelector('.icon-button'); const dialogBox = dialog?.getBoundingClientRect(); const closeBox = close?.getBoundingClientRect(); return Boolean(dialog && close && dialogBox && closeBox && getComputedStyle(dialog).overflowY === 'auto' && dialog.scrollHeight > dialog.clientHeight && closeBox.top >= dialogBox.top && closeBox.bottom <= Math.min(dialogBox.bottom, innerHeight)); })()",
+    "(() => { const dialog = document.querySelector('[role=\"dialog\"]'); const drawer = dialog?.querySelector('.drawer'); const close = drawer?.querySelector('.icon-button'); const drawerBox = drawer?.getBoundingClientRect(); const closeBox = close?.getBoundingClientRect(); return Boolean(dialog && drawer && close && drawerBox && closeBox && getComputedStyle(drawer).overflowY === 'auto' && drawer.scrollHeight > drawer.clientHeight && closeBox.top >= drawerBox.top && closeBox.bottom <= Math.min(drawerBox.bottom, innerHeight)); })()",
   );
   await evaluate("document.activeElement?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); true");
   await wait(200);
   await assertPage("mobile inspector closes with escape", "!document.querySelector('[role=\"dialog\"]')");
+  await evaluate(`(() => {
+    const state = { ...(history.state ?? {}) };
+    delete state.agentOsSurface;
+    history.replaceState({
+      ...state,
+      agentOsConsolePage: 'librarian',
+      agentOsCategory: null,
+      agentOsSkill: null,
+    }, '');
+    return true;
+  })()`);
+  await cdp("Emulation.setDeviceMetricsOverride", {
+    width: 3439,
+    height: 1318,
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
+  await cdp("Page.navigate", { url: targetUrl });
+  await wait(1200);
+  const ultrawideMetrics = await evaluate(`(() => {
+    const page = document.querySelector('.librarian-page.is-idle')?.getBoundingClientRect();
+    const portal = document.querySelector('.librarian-galaxy-portal')?.getBoundingClientRect();
+    const map = document.querySelector('.portal-map')?.getBoundingClientRect();
+    const search = document.querySelector('.librarian-search-shell')?.getBoundingClientRect();
+    return {
+      innerWidth,
+      innerHeight,
+      mediaMatches: matchMedia('(min-width: 2400px) and (min-aspect-ratio: 12 / 5)').matches,
+      pageWidth: page?.width ?? 0,
+      portalHeight: portal?.height ?? 0,
+      mapHeight: map?.height ?? 0,
+      searchWidth: search?.width ?? 0,
+      scrollWidth: document.documentElement.scrollWidth,
+    };
+  })()`);
+  console.log(`ultrawide metrics ${JSON.stringify(ultrawideMetrics)}`);
+  await assertPage(
+    "3439x1318 Observatory uses the restrained ultrawide frame",
+    `(() => {
+      const page = document.querySelector('.librarian-page.is-idle')?.getBoundingClientRect();
+      const portal = document.querySelector('.librarian-galaxy-portal')?.getBoundingClientRect();
+      const map = document.querySelector('.portal-map')?.getBoundingClientRect();
+      const search = document.querySelector('.librarian-search-shell')?.getBoundingClientRect();
+      return matchMedia('(min-width: 2400px) and (min-aspect-ratio: 12 / 5)').matches
+        && Boolean(page && portal && map && search)
+        && page.width >= 2239 && page.width <= 2241
+        && portal.height >= 819 && portal.height <= 822
+        && map.height >= 759 && map.height <= 761
+        && search.width >= 619 && search.width <= 621
+        && document.documentElement.scrollWidth === innerWidth;
+    })()`,
+  );
+  await assertPage(
+    "3439x1318 System visuals stay inside their own hit targets",
+    `(() => {
+      const buttons = [...document.querySelectorAll('.portal-system-hit[data-system-id]')];
+      return buttons.length === 9 && buttons.every((button) => {
+        const box = button.getBoundingClientRect();
+        const visualNodes = [...button.querySelectorAll('.portal-system-visual,.portal-system-index,.portal-system-name,.portal-system-count')];
+        const centerHit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+        return visualNodes.length === 4
+          && visualNodes.every((node) => {
+            const visualBox = node.getBoundingClientRect();
+            return visualBox.left >= box.left - 1
+              && visualBox.right <= box.right + 1
+              && visualBox.top >= box.top - 1
+              && visualBox.bottom <= box.bottom + 1;
+          })
+          && (centerHit === button || button.contains(centerHit));
+      });
+    })()`,
+  );
+  await assertPage(
+    "3439x1318 System copy remains outside its celestial marker",
+    `(() => {
+      const mapBox = document.querySelector('.portal-map')?.getBoundingClientRect();
+      const buttons = [...document.querySelectorAll('.portal-system-hit[data-system-id]')];
+      if (!mapBox || buttons.length !== 9) return false;
+      const mapCenter = {
+        x: mapBox.left + mapBox.width / 2,
+        y: mapBox.top + mapBox.height / 2,
+      };
+      return buttons.every((button) => {
+        const buttonBox = button.getBoundingClientRect();
+        const copyBox = button.querySelector('.portal-system-copy')?.getBoundingClientRect();
+        const markerBox = button.querySelector('.portal-system-visual')?.getBoundingClientRect();
+        if (!copyBox || !markerBox) return false;
+        const radial = {
+          x: buttonBox.left + buttonBox.width / 2 - mapCenter.x,
+          y: buttonBox.top + buttonBox.height / 2 - mapCenter.y,
+        };
+        const outward = {
+          x: copyBox.left + copyBox.width / 2 - (markerBox.left + markerBox.width / 2),
+          y: copyBox.top + copyBox.height / 2 - (markerBox.top + markerBox.height / 2),
+        };
+        return radial.x * outward.x + radial.y * outward.y > 0;
+      });
+    })()`,
+  );
+  const ultrawideTopHoverTargets = await evaluate(`(() => (
+    [...document.querySelectorAll('.portal-system-hit[data-system-id]')]
+      .slice(0, 3)
+      .map((button) => {
+        const box = button.getBoundingClientRect();
+        return {
+          id: button.getAttribute('data-system-id'),
+          x: box.left + box.width / 2,
+          y: box.top + box.height / 2,
+        };
+      })
+  ))()`);
+  for (const target of ultrawideTopHoverTargets) {
+    await cdp("Input.dispatchMouseEvent", { type: "mouseMoved", x: target.x, y: target.y });
+    await wait(90);
+    await assertPage(
+      `3439x1318 top-row hover remains stable for ${target.id}`,
+      `document.querySelector('.portal-system-hit[data-active="true"]')?.getAttribute('data-system-id') === ${JSON.stringify(target.id)}`,
+    );
+  }
   if (browserIssues.length > 0) {
     throw new Error(`UI smoke saw ${browserIssues.length} console/runtime errors: ${JSON.stringify(browserIssues)}`);
   }

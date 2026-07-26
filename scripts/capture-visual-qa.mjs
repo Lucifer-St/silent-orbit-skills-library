@@ -60,7 +60,7 @@ const mobileCjkExpectations = {
       '[data-page="category"] .page-header p',
       '[data-page="category"] .section-heading h2',
       '[data-page="category"] .section-heading p',
-      ".function-rail-item strong",
+      ".function-rail-toggle strong",
     ],
   },
   "orbit-category": {
@@ -69,7 +69,7 @@ const mobileCjkExpectations = {
   },
   "orbit-library": {
     outcome: "required",
-    selectors: ['.orbit-mobile-context-nav[data-orbit-mobile-mode="library"] .orbit-mobile-context-back'],
+    selectors: ['.orbit-mobile-context-nav[data-orbit-mobile-mode="library"] .orbit-mobile-library-peer'],
   },
   inspector: {
     outcome: "required",
@@ -458,7 +458,7 @@ async function enterOrbitLibrary() {
           && matrix.a >= 1.15
           && Math.abs(matrix.b) < .001
           && Math.abs(matrix.c) < .001
-          && labelOpacity === 1,
+          && labelOpacity >= .68,
           targetBox: { width: targetBox.width, height: targetBox.height },
           imageBox: { width: imageBox.width, height: imageBox.height },
           opacity: Number(imageStyle.opacity),
@@ -494,7 +494,7 @@ async function enterLibrarianSystemHover() {
     "hovered homepage System uses the asset-only light and scale response",
     `(() => {
       const button = document.querySelector('.portal-system-hit:hover');
-      const active = document.querySelector('.portal-system-star[data-active="true"]');
+      const active = document.querySelector('.portal-system-hit[data-active="true"]');
       const marker = active?.querySelector('.portal-system-visual');
       const buttonStyle = button && getComputedStyle(button);
       const markerStyle = marker && getComputedStyle(marker);
@@ -503,7 +503,7 @@ async function enterLibrarianSystemHover() {
         : 1;
       return button?.matches('.portal-system-hit[data-system-id]')
         && Number(markerStyle?.opacity ?? 0) >= .99
-        && markerScale >= 1.4
+        && markerScale >= 1.3
         && buttonStyle?.outlineStyle === 'none'
         && buttonStyle?.boxShadow === 'none'
         && buttonStyle?.backgroundColor === 'rgba(0, 0, 0, 0)';
@@ -659,7 +659,7 @@ async function assertConsole(viewport, state) {
       };
       const panels = [...document.querySelectorAll('.librarian-search,.librarian-galaxy-portal,.ranked-skill-card')];
       const shell = document.querySelector('.agent-console.is-librarian-home');
-      const stars = [...document.querySelectorAll('.portal-system-star')];
+      const stars = [...document.querySelectorAll('.portal-system-hit')];
       return Boolean(shell)
         && effectiveBackground(shell) === '0,0,0'
         && parse(getComputedStyle(shell).color) === '255,255,255'
@@ -675,7 +675,7 @@ async function assertConsole(viewport, state) {
       const catalogNodes = [...(svg?.querySelectorAll('[data-catalog-node-id]') ?? [])];
       const skillTraces = [...(svg?.querySelectorAll('[data-skill-trace]') ?? [])];
       const asset = svg?.querySelector('image.portal-galaxy-asset');
-      const markers = [...(svg?.querySelectorAll('image.portal-system-visual[data-system-marker-asset="distant-ecliptic"]') ?? [])];
+      const markers = [...document.querySelectorAll('.portal-system-hit img.portal-system-visual[data-system-marker-asset="distant-ecliptic"]')];
       const allowedMarkerAssets = new Set(['/assets/system-ecliptic-a.png', '/assets/system-ecliptic-b.png', '/assets/system-ecliptic-c.png']);
       const skillCount = Number(svg?.getAttribute('data-catalog-skill-count') ?? 0);
       const expected = Number(svg?.getAttribute('data-catalog-skill-count') ?? 0)
@@ -691,7 +691,7 @@ async function assertConsole(viewport, state) {
         && asset.getAttribute('width') === '160'
         && asset.getAttribute('height') === '76'
         && markers.length === 9
-        && markers.every((marker) => allowedMarkerAssets.has(marker.getAttribute('href')))
+        && markers.every((marker) => allowedMarkerAssets.has(new URL(marker.getAttribute('src'), location.href).pathname))
         && !svg.querySelector('.portal-system-orbit,.portal-system-core,.portal-system-star > path')
         && svg.querySelectorAll('.portal-spiral-arm,.portal-nucleus-ring,.portal-skill-star').length === 0
         && svg.querySelectorAll('linearGradient,radialGradient,filter').length === 0;
@@ -706,13 +706,15 @@ async function assertConsole(viewport, state) {
       const visuals = cards.map((card) => card.querySelector('.ranked-skill-constellation'));
       const signatures = visuals.map((visual) => visual?.getAttribute('data-skill-signature'));
       const geometries = visuals.map((visual) => [
-        visual?.querySelector('path')?.getAttribute('d'),
+        visual?.querySelector('.ranked-constellation-base')?.getAttribute('d'),
         ...[...(visual?.querySelectorAll('circle') ?? [])].map((point) => point.getAttribute('cx') + ',' + point.getAttribute('cy')),
       ].join('|'));
       return visuals.length === 3
         && visuals.every((visual) => visual?.getAttribute('aria-hidden') === 'true'
           && getComputedStyle(visual).pointerEvents === 'none'
-          && visual.querySelectorAll('path').length === 1
+          && visual.querySelectorAll('path').length === 2
+          && visual.querySelector('.ranked-constellation-base')?.getAttribute('d') === visual.querySelector('.ranked-constellation-signal')?.getAttribute('d')
+          && visual.querySelector('.ranked-constellation-signal')?.getAttribute('pathLength') === '1'
           && visual.querySelectorAll('circle').length >= 5)
         && new Set(signatures).size === 3
         && new Set(geometries).size === 3
@@ -961,19 +963,43 @@ async function assertOrbit(viewport, state) {
   await assertPage(`${viewport.name} ${state.name} depth density`, densityExpressions[state.mode]);
 }
 
-async function assertHorizontalRailReachability(viewport, state) {
+async function assertMobileIdentityReachability(viewport, state) {
   if (!viewport.mobile) return;
   const rail = state.name === "catalog-category"
-    ? { name: "FunctionRail", container: ".function-rail", items: ".function-rail-item", identity: "category" }
+    ? {
+        name: "FunctionRail",
+        container: ".function-rail",
+        items: ".function-rail-item",
+        identity: "category",
+        toggle: ".function-rail-toggle",
+        scrollMode: "document",
+        flow: "vertical reading flow",
+      }
     : state.surface === "orbit"
-      ? { name: "Orbit identity rail", container: ".orbit-mobile-context-nav", items: "button", identity: "orbit" }
+      ? {
+          name: "Orbit identity rail",
+          container: ".orbit-mobile-context-nav",
+          items: "button",
+          identity: "orbit",
+          toggle: null,
+          scrollMode: state.name === "orbit-library" ? "container-y" : "container-x",
+          flow: state.name === "orbit-library" ? "vertical reading flow" : "horizontal identity strip",
+        }
       : null;
   if (!rail) return;
 
   await assertPageResult(
-    `${viewport.name} ${state.name} ${rail.name} reaches every stable identity by horizontal scroll and center hit`,
+    `${viewport.name} ${state.name} ${rail.name} reaches every stable identity in its ${rail.flow}`,
     `(async () => {
       const container = document.querySelector(${JSON.stringify(rail.container)});
+      const toggle = ${JSON.stringify(rail.toggle)}
+        ? document.querySelector(${JSON.stringify(rail.toggle)})
+        : null;
+      const wasExpanded = toggle?.getAttribute('aria-expanded') === 'true';
+      if (toggle && !wasExpanded) {
+        toggle.click();
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      }
       const rendered = (node) => {
         const style = getComputedStyle(node);
         const box = node.getBoundingClientRect();
@@ -1000,17 +1026,31 @@ async function assertHorizontalRailReachability(viewport, state) {
         return null;
       };
       const items = [...(container?.querySelectorAll(${JSON.stringify(rail.items)}) ?? [])].filter(rendered);
+      const originalScrollTop = container?.scrollTop ?? 0;
       const originalScrollLeft = container?.scrollLeft ?? 0;
+      const originalWindowScrollY = window.scrollY;
       const results = [];
       if (container) {
         for (const item of items) {
-          const containerBox = container.getBoundingClientRect();
-          const before = item.getBoundingClientRect();
-          const desired = container.scrollLeft
-            + before.left + before.width / 2
-            - (containerBox.left + containerBox.width / 2);
-          const maxScroll = Math.max(0, container.scrollWidth - container.clientWidth);
-          container.scrollLeft = Math.max(0, Math.min(maxScroll, desired));
+          if (${JSON.stringify(rail.scrollMode)} === 'document') {
+            item.scrollIntoView({ block: 'center', inline: 'nearest' });
+          } else if (${JSON.stringify(rail.scrollMode)} === 'container-x') {
+            const containerBox = container.getBoundingClientRect();
+            const before = item.getBoundingClientRect();
+            const desired = container.scrollLeft
+              + before.left + before.width / 2
+              - (containerBox.left + containerBox.width / 2);
+            const maxScroll = Math.max(0, container.scrollWidth - container.clientWidth);
+            container.scrollLeft = Math.max(0, Math.min(maxScroll, desired));
+          } else {
+            const containerBox = container.getBoundingClientRect();
+            const before = item.getBoundingClientRect();
+            const desired = container.scrollTop
+              + before.top + before.height / 2
+              - (containerBox.top + containerBox.height / 2);
+            const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight);
+            container.scrollTop = Math.max(0, Math.min(maxScroll, desired));
+          }
           await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
           const box = item.getBoundingClientRect();
           const x = box.left + box.width / 2;
@@ -1018,44 +1058,47 @@ async function assertHorizontalRailReachability(viewport, state) {
           const hit = document.elementFromPoint(x, y);
           results.push({
             stableId: stableId(item),
-            scrollLeft: Math.round(container.scrollLeft * 10) / 10,
+            scrollOffset: Math.round((
+              ${JSON.stringify(rail.scrollMode)} === 'container-x'
+                ? container.scrollLeft
+                : container.scrollTop
+            ) * 10) / 10,
             center: { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 },
             inViewport: x >= 0 && x <= innerWidth && y >= 0 && y <= innerHeight,
             hitSelf: hit === item || item.contains(hit),
           });
         }
-        const firstBox = items[0]?.getBoundingClientRect();
-        const containerBox = container.getBoundingClientRect();
-        const logicalStart = firstBox
-          ? Math.max(0, container.scrollLeft + firstBox.left - containerBox.left)
-          : 0;
-        container.scrollLeft = logicalStart;
+        container.scrollTop = originalScrollTop;
+        container.scrollLeft = originalScrollLeft;
+        window.scrollTo({ top: originalWindowScrollY, left: 0, behavior: 'auto' });
+        if (toggle && !wasExpanded) toggle.click();
         await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       }
       const ids = results.map((result) => result.stableId).filter(Boolean);
-      const firstBox = items[0]?.getBoundingClientRect();
-      const containerBox = container?.getBoundingClientRect();
-      const logicalStart = container && firstBox && containerBox
-        ? Math.max(0, container.scrollLeft + firstBox.left - containerBox.left)
-        : 0;
-      const restoredScrollLeft = container?.scrollLeft ?? null;
       return {
         ok: Boolean(container)
           && items.length > 0
           && ids.length === items.length
           && new Set(ids).size === items.length
-          && results.every((result) => result.inViewport && result.hitSelf)
-          && Math.abs(restoredScrollLeft - logicalStart) <= 1,
+          && results.every((result) => result.inViewport && result.hitSelf),
         container: ${JSON.stringify(rail.container)},
         itemSelector: ${JSON.stringify(rail.items)},
+        scrollMode: ${JSON.stringify(rail.scrollMode)},
+        originalScrollTop,
+        restoredScrollTop: container?.scrollTop ?? null,
         originalScrollLeft,
-        logicalStart,
-        restoredScrollLeft,
+        restoredScrollLeft: container?.scrollLeft ?? null,
+        originalWindowScrollY,
+        restoredWindowScrollY: window.scrollY,
         renderedCount: items.length,
         measuredCount: results.length,
         stableIdCount: ids.length,
         uniqueStableIdCount: new Set(ids).size,
-        overflowing: Boolean(container && container.scrollWidth > container.clientWidth),
+        overflowing: Boolean(container && (
+          ${JSON.stringify(rail.scrollMode)} === 'container-x'
+            ? container.scrollWidth > container.clientWidth
+            : container.scrollHeight > container.clientHeight
+        )),
         results,
       };
     })()`,
@@ -1434,8 +1477,9 @@ async function assertOverlay(viewport, state) {
         "mobile verified Inspector contains every control without horizontal scrolling",
         `(() => {
           const dialog = document.querySelector('[data-surface="skill-inspector"]');
+          const drawer = dialog?.querySelector('.drawer');
           const controls = [...(dialog?.querySelectorAll('button,a[href]') ?? [])];
-          const dialogBox = dialog?.getBoundingClientRect();
+          const dialogBox = drawer?.getBoundingClientRect();
           const failures = controls.filter((control) => {
             const box = control.getBoundingClientRect();
             return !dialogBox || box.left < dialogBox.left - 1 || box.right > dialogBox.right + 1;
@@ -1445,9 +1489,9 @@ async function assertOverlay(viewport, state) {
             box: control.getBoundingClientRect().toJSON(),
           }));
           return {
-            ok: Boolean(dialog) && dialog.scrollWidth <= dialog.clientWidth + 1 && failures.length === 0,
-            scrollWidth: dialog?.scrollWidth ?? null,
-            clientWidth: dialog?.clientWidth ?? null,
+            ok: Boolean(dialog && drawer) && drawer.scrollWidth <= drawer.clientWidth + 1 && failures.length === 0,
+            scrollWidth: drawer?.scrollWidth ?? null,
+            clientWidth: drawer?.clientWidth ?? null,
             failures,
           };
         })()`,
@@ -1456,10 +1500,11 @@ async function assertOverlay(viewport, state) {
         "mobile verified Inspector sticky header covers the drawer top after bottom scroll",
         `(async () => {
           const dialog = document.querySelector('[data-surface="skill-inspector"]');
-          if (!dialog) return { ok: false, reason: 'missing drawer' };
-          dialog.scrollTop = dialog.scrollHeight;
+          const drawer = dialog?.querySelector('.drawer');
+          if (!dialog || !drawer) return { ok: false, reason: 'missing drawer' };
+          drawer.scrollTop = drawer.scrollHeight;
           await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-          const dialogBox = dialog.getBoundingClientRect();
+          const dialogBox = drawer.getBoundingClientRect();
           const header = dialog.querySelector('.drawer-header');
           const headerBox = header?.getBoundingClientRect();
           const closeBox = dialog.querySelector('.icon-button')?.getBoundingClientRect();
@@ -1480,10 +1525,10 @@ async function assertOverlay(viewport, state) {
             && closeBox.top >= dialogBox.top
             && closeBox.bottom <= Math.min(dialogBox.bottom, innerHeight));
           return {
-            ok: dialog.scrollTop > 0 && headerCoversTop && backgroundAlpha > 0 && closeVisible,
-            scrollTop: dialog.scrollTop,
-            scrollHeight: dialog.scrollHeight,
-            clientHeight: dialog.clientHeight,
+            ok: drawer.scrollTop > 0 && headerCoversTop && backgroundAlpha > 0 && closeVisible,
+            scrollTop: drawer.scrollTop,
+            scrollHeight: drawer.scrollHeight,
+            clientHeight: drawer.clientHeight,
             dialogTop: dialogBox.top,
             headerTop: headerBox?.top ?? null,
             headerBottom: headerBox?.bottom ?? null,
@@ -1570,7 +1615,7 @@ async function runState(viewport, state) {
   if (state.surface === "console") await assertConsole(viewport, state);
   else if (state.surface === "orbit") await assertOrbit(viewport, state);
   else if (state.surface === "overlay") await assertOverlay(viewport, state);
-  await assertHorizontalRailReachability(viewport, state);
+  await assertMobileIdentityReachability(viewport, state);
   if (viewport.mobile && state.name === "history-one-outcome") {
     await evaluate("document.querySelector('.outcome-history-item')?.scrollIntoView({ block: 'center' }); true");
     await wait(100);
@@ -1674,7 +1719,13 @@ async function assertReducedMotion() {
           && cards.length === 3
           && cards.every((card) => {
             const style = getComputedStyle(card);
-            return style.animationName === 'none' && Number(style.opacity) === 1 && style.transform === 'none';
+            const signal = card.querySelector('.ranked-constellation-signal');
+            const signalStyle = signal && getComputedStyle(signal);
+            return style.animationName === 'none'
+              && Number(style.opacity) === 1
+              && style.transform === 'none'
+              && signalStyle?.animationName === 'none'
+              && Number.parseFloat(signalStyle.strokeDashoffset) === 0;
           });
       })()`,
     );

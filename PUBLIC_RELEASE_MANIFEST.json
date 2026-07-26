@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "797315bb5cc260d5be6410d2f8b2d2f57bd48cef",
-  "inputCommitTimestamp": "2026-07-24T23:45:13-04:00",
+  "inputCommit": "c8e4690776367de4455e248f5a57cb10badb2450",
+  "inputCommitTimestamp": "2026-07-26T03:40:40-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "db49e08141a7a898e87e53ba9c4c4c7070e2e8d30c9da8678a71d726a192a437",
-  "fileCount": 281,
-  "totalBytes": 11748677,
+  "releaseDigest": "5b07bb5c395380b2baa073998ccbd31a07cfebd08187da5fc03ccf3bb10e68ac",
+  "fileCount": 284,
+  "totalBytes": 11824931,
   "excludedControlFiles": [
     "PHASE2_COMPLETION_RECEIPT.md",
     "PUBLIC_RELEASE_MANIFEST.json",
@@ -50,7 +50,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "b164b1b3797b0c95fe628adc53850a19a62bed56b98cb27fa97870054f1f7771"
+      "sha256": "5b10f7a92707c071e8c11f8a0171b894eaee12c47802d29db914944d7585d89f"
     },
     {
       "path": "BETA_FEEDBACK_TEMPLATE.md",
@@ -105,7 +105,7 @@
     {
       "path": "PRIVACY_AUDIT.md",
       "bytes": 615,
-      "sha256": "f7d44e60549388081671695a8352c926d143d422c787266d0a56ff4c7e40657c"
+      "sha256": "814eee4c95a73958a63af037970db5603689524539f00fb76f2d5b6ecb064295"
     },
     {
       "path": "README.md",
@@ -779,8 +779,8 @@
     },
     {
       "path": "scripts/capture-visual-qa.mjs",
-      "bytes": 84418,
-      "sha256": "9886ee5cbe31028ca56e92316385057a5fe9b14f4fc56e4356722eab527ec39c"
+      "bytes": 86833,
+      "sha256": "e110ffd5505c9dbded70ff9384a95cb6434b7f62234f906169799f3bc519399e"
     },
     {
       "path": "scripts/lib/generator-contracts.mjs",
@@ -849,8 +849,8 @@
     },
     {
       "path": "scripts/smoke-ui.mjs",
-      "bytes": 101463,
-      "sha256": "35637de2f058d541300c7debb7ad77e5368c2bfabc018d5f631c94ebdb88cbda"
+      "bytes": 117566,
+      "sha256": "e7198c7dc5c706a531acdc2e8b5c1fc48d09de259b857768397a66bbed991691"
     },
     {
       "path": "scripts/sync-data.mjs",
@@ -899,8 +899,8 @@
     },
     {
       "path": "scripts/tests/orbit-layout.test.mjs",
-      "bytes": 12962,
-      "sha256": "376ef7a9d112a0df9e87819bddcdcc45df34eaa22c8e4607932700d67aae984c"
+      "bytes": 13214,
+      "sha256": "40150ba6c225cb7c38b6018f09ba1917b848d785e3f7c03f0d184702f7132b44"
     },
     {
       "path": "scripts/tests/outcome-policy.test.mjs",
@@ -1074,8 +1074,8 @@
     },
     {
       "path": "src/App.tsx",
-      "bytes": 27428,
-      "sha256": "2d3f61a639726b77803b0ac3787c680e6f81f0b063ed07ce05e452d03b0ac03a"
+      "bytes": 28422,
+      "sha256": "52d987d21cfe21ec688ee6bcde9e1a83da16c9d65e4f0b4d1ad33107c698dcb0"
     },
     {
       "path": "src/components/CosmosAsset.tsx",
@@ -1094,13 +1094,13 @@
     },
     {
       "path": "src/components/catalog/CatalogPage.tsx",
-      "bytes": 10425,
-      "sha256": "4f91b4f4df520719723112950730bae819d00084509d1759b9e94780ac16c8fc"
+      "bytes": 13726,
+      "sha256": "8f396adb22f7dafb7529e51099e12de4d9d2d021b2872520f0187f40eed8c670"
     },
     {
       "path": "src/components/catalog/SkillList.tsx",
-      "bytes": 1500,
-      "sha256": "8396d57c47c0dfa95e55cde8b441b538f7b1db2f941a009d0b8f008b68c17d38"
+      "bytes": 1600,
+      "sha256": "63a692032ae975a27aeb3e6955f6345a26397c4d5e4a57776148c6d6548f6183"
     },
     {
       "path": "src/components/catalog/StandaloneSkillGrid.tsx",
@@ -1109,23 +1109,23 @@
     },
     {
       "path": "src/components/console/AgentConsoleShell.tsx",
-      "bytes": 1100,
-      "sha256": "bd7967301c7792e794c67ba54de190e90a32f41a149757b35585433a579e7a8b"
+      "bytes": 1154,
+      "sha256": "d9beca4ada4153ede36cf5ea1bc94c97234943918226b701688e02b594bb015d"
     },
     {
       "path": "src/components/console/CommandDeck.tsx",
-      "bytes": 3129,
-      "sha256": "9d8317a8919eb32fee8cc82892622ccaee3c94dbe11b15948b6e9ded7d7f8361"
+      "bytes": 4057,
+      "sha256": "4f2666b10d9f0559c40d473c32b96c4540a50c8e7dd1aaa8212aa51805c7c5f3"
     },
     {
       "path": "src/components/console/FunctionRail.tsx",
-      "bytes": 1349,
-      "sha256": "47da7d4eba2bc8de3c1a3515b073950c089fcdc0cfad5d5edec3575af1bedeb1"
+      "bytes": 2544,
+      "sha256": "75021adf38a7884be615c9eba6913682f2a6e65cb29b12bfa2b9ef268cebb04d"
     },
     {
       "path": "src/components/console/SilentOrbitPortal.tsx",
-      "bytes": 5475,
-      "sha256": "926f09d65b84a8c9ec6a3293830a575344b2c2ac2a84a51d9371c2a87dba8b06"
+      "bytes": 5310,
+      "sha256": "b727b671de9d62b3d7cbdb70d874d65719f5ac669bfda7e04cd033ea2ceb12b0"
     },
     {
       "path": "src/components/console/TaskMatrix.tsx",
@@ -1134,8 +1134,8 @@
     },
     {
       "path": "src/components/history/HistoryPage.tsx",
-      "bytes": 7823,
-      "sha256": "b30149ac59a963027f06d7f19fb0dfb72d230207227725d70d18a5bf9eae0603"
+      "bytes": 7899,
+      "sha256": "41b7812f656d4b2b3b2a2df78f18f5d77b9fc559e5e297ba06453b8366a7037d"
     },
     {
       "path": "src/components/history/OutcomeComposer.tsx",
@@ -1143,9 +1143,14 @@
       "sha256": "e64af2e8a3fd6ac96f16b2d11feae73294c86b1171a9bd70c28ddf146ec71376"
     },
     {
+      "path": "src/components/inspector/SkillDetailAtmosphere.tsx",
+      "bytes": 1609,
+      "sha256": "d946614a59d75d6c98e8358e2d1a3bf3a9b2d7d9ccb78460794e61b5ea0af4ff"
+    },
+    {
       "path": "src/components/inspector/SkillInspector.tsx",
-      "bytes": 16890,
-      "sha256": "09eead6fd02c1a70e3ed57979274acee731c5796e7814ed021b8a2d89793d199"
+      "bytes": 20086,
+      "sha256": "3ce6b6cea8a18a2790f43fe1937db6c547b13807f5e16265bf763eb11cbd854b"
     },
     {
       "path": "src/components/librarian/LibrarianPage.tsx",
@@ -1159,8 +1164,8 @@
     },
     {
       "path": "src/components/librarian/RankedSkillCard.tsx",
-      "bytes": 2593,
-      "sha256": "ad1d16b08e8645fd046db628b1f1767d6491f878f11659ac6f3b7d4a7f6cd5c5"
+      "bytes": 2726,
+      "sha256": "2a3d485e3fee610aa66cc92ee634cf34c8f8ac7b888c5b04b54cf0901c23587f"
     },
     {
       "path": "src/components/map/FunctionZoneNode.tsx",
@@ -1214,8 +1219,8 @@
     },
     {
       "path": "src/components/orbit/OrbitScene.tsx",
-      "bytes": 14925,
-      "sha256": "a9c5d349c8ba40f74e2d2faa781b5a1ee4bd6a22b484c748ec5962837a84fe6a"
+      "bytes": 17890,
+      "sha256": "c3f7935303f6db24df41b2e487ce5ce775ed30793ee5cb616859706f335924e5"
     },
     {
       "path": "src/components/orbit/SilentOrbitPage.tsx",
@@ -1224,8 +1229,8 @@
     },
     {
       "path": "src/components/orbit/SkillAsteroid.tsx",
-      "bytes": 1231,
-      "sha256": "fa1191f6d585ce51aa1560d1b34f0bc04c42ceae8968934cb91dba2c9f6a3857"
+      "bytes": 1331,
+      "sha256": "e3b05cdc194a9eb58244dbae29d2667145cf661d90c884df1529b972e62b506e"
     },
     {
       "path": "src/core/contracts.ts",
@@ -1253,6 +1258,11 @@
       "sha256": "b5131ae31b461db05aa004ccbe06591454d23bbefc11008c30035266b4a7307d"
     },
     {
+      "path": "src/hooks/useSkillDetailSceneCycle.ts",
+      "bytes": 1097,
+      "sha256": "7158a55bc810817db4aaf3ed98d158577a0f5a5269ba224f85f5b0ff6d4022b9"
+    },
+    {
       "path": "src/i18n/LocaleContext.tsx",
       "bytes": 7202,
       "sha256": "0211dba21cd0039e38b1f40773461be46b0846262811ac665551673a1b6bdc51"
@@ -1264,8 +1274,8 @@
     },
     {
       "path": "src/lib/cosmosAssets.ts",
-      "bytes": 4185,
-      "sha256": "72e2be4ff5e427a49afb8096fee6b62688851f77dbea09fbcbd189f94c049e35"
+      "bytes": 4354,
+      "sha256": "2393082f9985a504aa9dfd24c732c040d24afa80716a8c90f5b720481248aada"
     },
     {
       "path": "src/lib/dataSelectors.ts",
@@ -1303,6 +1313,11 @@
       "sha256": "68855bfec3aabf7c6b1c9ada4974a8aea0b514473d9b5ca4fbaf2159b372eb43"
     },
     {
+      "path": "src/lib/skillDetailScenes.ts",
+      "bytes": 2680,
+      "sha256": "03992e1e2186fa33fe0fe4d3ba941e1ea0c621c96d22ad574ed70192b3a59f39"
+    },
+    {
       "path": "src/lib/skillSearch.ts",
       "bytes": 4543,
       "sha256": "57d038d581e64f49cc39f9a180a7ca713ee22946bb80ab8e7a83dcd04a94e44f"
@@ -1319,8 +1334,8 @@
     },
     {
       "path": "src/styles/console.css",
-      "bytes": 24066,
-      "sha256": "f5785949f10e653dc5b98f11f2618c6e79f4950245082778e2332a41efe55aa9"
+      "bytes": 53013,
+      "sha256": "722d012d060c44fb3716f9704ddb8615f60922edda4ba27a6de07e12ad427149"
     },
     {
       "path": "src/styles/fonts.css",
@@ -1329,13 +1344,13 @@
     },
     {
       "path": "src/styles/history.css",
-      "bytes": 7100,
-      "sha256": "54bc1fe1e76c5d1cd418506231e711c1f0f923609a91a01ca104445ea6a9f842"
+      "bytes": 7824,
+      "sha256": "068700d2f37f7349b75c6d815c015a14bfa699c9e872b702f1ee4e9bbf8f4d7d"
     },
     {
       "path": "src/styles/librarian.css",
-      "bytes": 13491,
-      "sha256": "05e37df8f3335a925641ed229ae1fa4662323e82de8ff48e26eee736f44e337a"
+      "bytes": 17042,
+      "sha256": "af3c54fd580134b430939d0aea7e8ed6ee82acc0371207f31c32cd9728ffae3a"
     },
     {
       "path": "src/styles/one-bit.css",
@@ -1344,13 +1359,13 @@
     },
     {
       "path": "src/styles/orbit.css",
-      "bytes": 18235,
-      "sha256": "05e9f4377c77735074d3c6224f86c102143ab62840aa69d53e2483d1672bf2f4"
+      "bytes": 21609,
+      "sha256": "188bafa59661deb6eb9d384ed1543f8cf0052085f6df84b6f61c52981625ce1d"
     },
     {
       "path": "src/styles/responsive.css",
-      "bytes": 7282,
-      "sha256": "46b51792df0e5f6d7715c8ea3fc5cf17926b5a1e2f939060048ad0c81874a134"
+      "bytes": 9738,
+      "sha256": "107c48b7c2d503ed634ac6ab42af168dd4e581d57ab3828b44cb45dbdf7dd0f8"
     },
     {
       "path": "src/types.ts",

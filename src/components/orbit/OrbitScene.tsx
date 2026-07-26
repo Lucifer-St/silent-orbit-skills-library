@@ -116,6 +116,7 @@ export function OrbitScene({
   const worldStyle = {
     "--orbit-shift-x": `${viewMode === "overview" || viewMode === "search" ? 0 : 50 - focusPoint.x}%`,
     "--orbit-shift-y": `${viewMode === "overview" || viewMode === "search" ? 0 : 50 - focusPoint.y}%`,
+    "--orbit-nudge-x": viewMode === "library" ? "8%" : "0%",
     "--orbit-scale": zoom * focusScale,
   } as CSSProperties;
 
@@ -132,8 +133,18 @@ export function OrbitScene({
         onLibrary={onLibrary}
         onSkill={onSkill}
       />
+      {viewMode === "library" && selectedLibrary ? (
+        <LibrarySignalIndex library={selectedLibrary} skills={visibleSkills} onSkill={onSkill} />
+      ) : null}
       <div className="orbit-world" style={worldStyle}>
-        <svg className="orbit-geometry" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <svg
+          className="orbit-geometry"
+          data-focus-motion={viewMode === "library" ? "alignment" : undefined}
+          key={`orbit-geometry:${viewMode}:${selectedStationId ?? focusedCategoryId ?? "overview"}`}
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
           <StarField />
           {focusedSystem && Array.from({ length: libraryRingCount }, (_, index) => (
             <ellipse
@@ -148,11 +159,19 @@ export function OrbitScene({
           {selectedLibrary && Array.from({ length: skillRingCount }, (_, index) => (
             <ellipse
               className="orbit-skill-ring"
-              key={`skill-ring:${index}`}
+              key={`${selectedStationId}:skill-ring:${index}`}
               cx={selectedLibraryPosition?.x ?? selectedLibrary.position.x}
               cy={selectedLibraryPosition?.y ?? selectedLibrary.position.y}
               rx={skillOrbit.radiusX + index * skillOrbit.stepX}
               ry={skillOrbit.radiusY + index * skillOrbit.stepY}
+              style={{
+                "--orbit-align-x": `${index % 2 === 0 ? 2.8 : -2.8}px`,
+                "--orbit-align-y": `${index % 3 === 0 ? -1.4 : 1.4}px`,
+                "--orbit-align-rotation": `${index % 2 === 0 ? 0.8 : -0.8}deg`,
+                "--orbit-align-settle-x": `${index % 2 === 0 ? 0.7 : -0.7}px`,
+                "--orbit-align-settle-y": `${index % 3 === 0 ? -0.35 : 0.35}px`,
+                "--orbit-align-settle-rotation": `${index % 2 === 0 ? 0.2 : -0.2}deg`,
+              } as CSSProperties}
             />
           ))}
         </svg>
@@ -182,6 +201,7 @@ export function OrbitScene({
               node={node}
               desktopPosition={desktopSkillPositions.get(getSkillKey(node)) ?? node.position}
               mobilePosition={mobileSkillPositions.get(getSkillKey(node)) ?? node.position}
+              showLabel={viewMode === "library" && visibleSkills.length <= 8}
               onSelect={onSkill}
             />
           ))}
@@ -239,18 +259,20 @@ function MobileIdentityNav({
       ))}
       {viewMode === "library" && focusedSystem && (
         <button
+          aria-label={`Return to ${focusedSystem.category}`}
           className="orbit-mobile-context-back"
           data-system-id={focusedSystem.id}
           type="button"
           onClick={() => onSystem(focusedSystem)}
         >
-          ← {focusedSystem.category}
+          ←
         </button>
       )}
-      {viewMode === "library" && visibleLibraries.map((library) => {
+      {viewMode === "library" && visibleLibraries.filter((library) => library.id === selectedStationId).map((library) => {
         const current = library.id === selectedStationId;
         return (
           <button
+            className="orbit-mobile-library-current"
             data-station-id={library.id}
             type="button"
             aria-current={current ? "page" : undefined}
@@ -258,10 +280,35 @@ function MobileIdentityNav({
             onClick={() => onLibrary(library)}
             key={library.id}
           >
-            {library.title}
+            <span>{library.title}</span>
+            <small>{library.skillCount} SKILLS</small>
           </button>
         );
       })}
+      {viewMode === "library" && visibleSkills.map((skill, index) => (
+        <button
+          className="orbit-mobile-skill-link"
+          data-skill-id={skill.id}
+          type="button"
+          onClick={() => onSkill(skill)}
+          key={getSkillKey(skill)}
+        >
+          <small>{String(index + 1).padStart(2, "0")}</small>
+          {skill.name}
+        </button>
+      ))}
+      {viewMode === "library" && visibleLibraries.filter((library) => library.id !== selectedStationId).map((library) => (
+        <button
+          className="orbit-mobile-library-peer"
+          data-station-id={library.id}
+          type="button"
+          aria-pressed={false}
+          onClick={() => onLibrary(library)}
+          key={library.id}
+        >
+          {library.title}
+        </button>
+      ))}
       {viewMode === "search" && visibleSkills.map((skill) => (
         <button
           data-skill-id={skill.id}
@@ -273,6 +320,39 @@ function MobileIdentityNav({
           {skill.name}
         </button>
       ))}
+    </nav>
+  );
+}
+
+function LibrarySignalIndex({
+  library,
+  skills,
+  onSkill,
+}: {
+  readonly library: OrbitLibraryNode;
+  readonly skills: readonly OrbitSkillNode[];
+  readonly onSkill: (node: OrbitSkillNode) => void;
+}) {
+  return (
+    <nav className="orbit-library-signal-index" aria-label={`${library.title} skill signals`}>
+      <header>
+        <span>LIBRARY SIGNALS</span>
+        <strong>{library.title}</strong>
+        <small>{skills.length} SKILLS</small>
+      </header>
+      <div>
+        {skills.map((skill, index) => (
+          <button
+            data-skill-id={skill.id}
+            type="button"
+            onClick={() => onSkill(skill)}
+            key={getSkillKey(skill)}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{skill.name}</strong>
+          </button>
+        ))}
+      </div>
     </nav>
   );
 }

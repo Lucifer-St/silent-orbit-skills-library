@@ -109,7 +109,7 @@
 }
 
 .orbit-world {
-  transform: scale(var(--orbit-scale)) translate(var(--orbit-shift-x), var(--orbit-shift-y));
+  transform: scale(var(--orbit-scale)) translate(calc(var(--orbit-shift-x) + var(--orbit-nudge-x, 0%)), var(--orbit-shift-y));
   transform-origin: center;
   transition: transform var(--motion-depth) var(--ease-orbit);
 }
@@ -136,6 +136,43 @@
   fill: var(--signal);
   stroke: none;
   opacity: .72;
+}
+
+.silent-orbit-page[data-view-mode="library"] .orbit-star-field {
+  opacity: .22;
+}
+
+.silent-orbit-page[data-view-mode="library"] .orbit-geometry[data-focus-motion="alignment"] .orbit-star-field {
+  animation: orbit-context-tide 980ms cubic-bezier(.2, .72, .16, 1) both;
+}
+
+.silent-orbit-page[data-view-mode="library"] .orbit-geometry[data-focus-motion="alignment"] .orbit-skill-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: orbit-fragment-align 680ms cubic-bezier(.2, .72, .16, 1) both;
+}
+
+@keyframes orbit-context-tide {
+  0%, 100% { opacity: .22; }
+  34% { opacity: .1; }
+}
+
+@keyframes orbit-fragment-align {
+  0% {
+    transform: translate(var(--orbit-align-x), var(--orbit-align-y)) rotate(var(--orbit-align-rotation));
+  }
+
+  18% {
+    transform: translate(0, 0) rotate(0);
+  }
+
+  36% {
+    transform: translate(var(--orbit-align-settle-x), var(--orbit-align-settle-y)) rotate(var(--orbit-align-settle-rotation));
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
 }
 
 .celestial-system,
@@ -253,7 +290,7 @@
   min-height: 142px;
   transform: translate(-50%, -50%) scale(1.04);
   border-color: transparent;
-  background: var(--void);
+  background: transparent;
   color: var(--signal);
 }
 
@@ -641,6 +678,106 @@
   transition: opacity var(--motion-ui) ease;
 }
 
+.orbit-controls {
+  z-index: 9;
+}
+
+/* Library depth exposes real Skill names without replacing the celestial field. */
+.orbit-library-signal-index {
+  position: absolute;
+  inset: 24px auto 24px 24px;
+  z-index: 5;
+  width: clamp(220px, 22vw, 292px);
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto minmax(0, 1fr);
+  border-left: 1px solid rgba(255, 255, 255, .58);
+  background: rgba(0, 0, 0, .9);
+  color: var(--signal);
+  padding: 10px 0 10px 13px;
+}
+
+.orbit-library-signal-index header {
+  display: grid;
+  gap: 5px;
+  border-bottom: 1px dotted var(--orbit-dim);
+  padding: 2px 10px 13px 7px;
+}
+
+.orbit-library-signal-index header span,
+.orbit-library-signal-index header small {
+  font-size: 8px;
+  letter-spacing: .08em;
+  opacity: .58;
+}
+
+.orbit-library-signal-index header strong {
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.orbit-library-signal-index > div {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242, 241, 233, .38) transparent;
+}
+
+.orbit-library-signal-index > div::-webkit-scrollbar {
+  width: 3px;
+}
+
+.orbit-library-signal-index > div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.orbit-library-signal-index > div::-webkit-scrollbar-thumb {
+  background: rgba(242, 241, 233, .38);
+}
+
+.orbit-library-signal-index button {
+  width: 100%;
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 9px;
+  align-items: baseline;
+  border: 0;
+  border-bottom: 1px dotted var(--orbit-faint);
+  background: var(--void);
+  color: var(--signal);
+  padding: 9px 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.orbit-library-signal-index button > span {
+  font-size: 9px;
+  opacity: .48;
+}
+
+.orbit-library-signal-index button > strong {
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.orbit-library-signal-index button:hover,
+.orbit-library-signal-index button:focus-visible {
+  background: var(--signal);
+  color: var(--void);
+  outline: 0;
+}
+
+.skill-asteroid[data-label-visible="true"] .asteroid-label {
+  opacity: .68;
+  transform: translate(-50%, 0);
+}
+
 /* Library depth keeps the selected body and its Skill signals primary. */
 @media (min-width: 701px) {
   .silent-orbit-page[data-view-mode="library"] .orbit-star-field {
@@ -717,6 +854,14 @@
 }
 
 @media (max-width: 700px) {
+  .orbit-world {
+    --orbit-nudge-x: 0% !important;
+  }
+
+  .orbit-library-signal-index {
+    display: none;
+  }
+
   .orbit-controls {
     grid-template-columns: minmax(0, 1fr) auto auto;
   }

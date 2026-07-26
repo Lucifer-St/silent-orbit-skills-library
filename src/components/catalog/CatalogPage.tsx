@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import {
   getLibraryForUnit,
   getSkillsForUnit,
@@ -8,9 +9,11 @@ import {
 } from "../../data/indexes";
 import type { CategoryGroup, CategoryUnit, SkillRecord } from "../../types";
 import { filterCategorySkills, getCanonicalUnitIdentity } from "../../lib/dataSelectors";
+import { getLibraryVisual, getRelicVisual, getSkillVisual } from "../../lib/cosmosAssets";
 import { appData } from "../../generated/data.generated";
 import { useLocale } from "../../i18n/LocaleContext";
-import { AbilityUnitCard } from "./AbilityUnitCard";
+import { CosmosAsset } from "../CosmosAsset";
+import { SkillList } from "./SkillList";
 import { StandaloneSkillGrid } from "./StandaloneSkillGrid";
 
 export interface CatalogPageProps {
@@ -113,24 +116,36 @@ export function CatalogPage({ categories, onCategory, onPrivate, onSources, onCh
 
 export interface CategoryPageProps {
   category: CategoryGroup;
+  coordinateRail: ReactNode;
+  commandDeck: ReactNode;
   query: string;
   sourceFilter: string;
   starredOnly: boolean;
-  expandedUnitId: string | null;
-  onExpand: (id: string | null) => void;
+  selectedUnitId: string | null;
+  onSelectUnit: (id: string) => void;
   onSkill: (skill: SkillRecord) => void;
+  onBackToCatalog: () => void;
 }
 
 export function CategoryPage({
   category,
+  coordinateRail,
+  commandDeck,
   query,
   sourceFilter,
   starredOnly,
-  expandedUnitId,
-  onExpand,
+  selectedUnitId,
+  onSelectUnit,
   onSkill,
+  onBackToCatalog,
 }: CategoryPageProps) {
-  const { category: categoryLabel, text } = useLocale();
+  const {
+    category: categoryLabel,
+    libraryDescription,
+    libraryTitle,
+    metadataLabel,
+    text,
+  } = useLocale();
   const matchingSkills = useMemo(
     () => filterCategorySkills(appData.skills, librariesByKey, category, query, sourceFilter, starredOnly, appData.categorySkillNames),
     [category, query, sourceFilter, starredOnly],
@@ -152,57 +167,135 @@ export function CategoryPage({
 
   const priorityUnits = units.filter(isHighValueUnit);
   const normalUnits = units.filter((unit) => !isHighValueUnit(unit));
+  const orderedUnits = [...priorityUnits, ...normalUnits];
+  const selectedUnit = orderedUnits.find((unit) => getStableUnitId(category.category, unit) === selectedUnitId)
+    ?? orderedUnits[0];
+  const resolvedUnitId = selectedUnit ? getStableUnitId(category.category, selectedUnit) : null;
+  const selectedLibrary = selectedUnit ? getLibraryForUnit(selectedUnit) : undefined;
+  const selectedSkills = selectedUnit
+    ? getSkillsForUnit(selectedUnit).filter((skill) => matchingSkillNames.has(skill.name))
+    : [];
+  const categoryIndex = Math.max(0, appData.categoryUnits.findIndex((item) => item.category === category.category));
+  const totalSkillCount = filterCategorySkills(
+    appData.skills,
+    librariesByKey,
+    category,
+    "",
+    "all",
+    false,
+    appData.categorySkillNames,
+  ).length;
   const hasAnyCategoryResult = priorityUnits.length > 0 || normalUnits.length > 0 || orphanSkills.length > 0;
 
   return (
-    <div className="page-stack" data-page="category">
-      <section className="page-header">
-        <span className="pixel-label">FUNCTION ZONE</span>
+    <div className="page-stack category-folio-page" data-page="category">
+      <section className="page-header category-folio-header">
+        <button className="category-folio-back" type="button" onClick={onBackToCatalog}>
+          <ArrowLeft aria-hidden="true" size={13} strokeWidth={1.5} />
+          {text("返回全部目录", "ALL CATALOG")}
+        </button>
+        <span className="pixel-label">FUNCTION CATALOG / {String(categoryIndex + 1).padStart(2, "0")}</span>
         <h1>{categoryLabel(category.category)}</h1>
         <p>
           {text(
-            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false, appData.categorySkillNames).length} 个可查看 Skills，${category.units.length} 个能力单元。库会作为整体出现，展开后查看库内 Skills。`,
-            `${filterCategorySkills(appData.skills, librariesByKey, category, "", "all", false, appData.categorySkillNames).length} visible Skills across ${category.units.length} capability units. Expand a Library to inspect its Skills.`,
+            `${totalSkillCount} 个可查看 Skills，${category.units.length} 个能力单元。库会作为整体出现，展开后查看库内 Skills。`,
+            `${totalSkillCount} visible Skills across ${category.units.length} capability units. Expand a Library to inspect its Skills.`,
           )}
         </p>
       </section>
 
-      {priorityUnits.length > 0 ? (
-        <section className="unit-section priority-section">
-          <div className="section-heading">
-            <h2>{text("优先能力单元", "Priority Units")}</h2>
-            <p>{text("按频率、重要性和来源信号自动抬高展示。", "Elevated by frequency, importance, and source signals.")}</p>
-          </div>
-          <UnitGrid
-            units={priorityUnits}
-            categoryName={category.category}
-            matchingSkillNames={matchingSkillNames}
-            expandedUnitId={expandedUnitId}
-            onExpand={onExpand}
-            onSkill={onSkill}
-          />
-        </section>
-      ) : null}
+      <div className="category-coordinate-rail">{coordinateRail}</div>
+      <div className="category-command-line">{commandDeck}</div>
 
-      {normalUnits.length > 0 ? (
-        <section className="unit-section">
-          <div className="section-heading">
-            <h2>{text("全部能力单元", "All Capability Units")}</h2>
-            <p>{text("点击单元展开，再进入单个 Skill 详情。", "Expand a unit, then open an individual Skill.")}</p>
-          </div>
-          <UnitGrid
-            units={normalUnits}
-            categoryName={category.category}
-            matchingSkillNames={matchingSkillNames}
-            expandedUnitId={expandedUnitId}
-            onExpand={onExpand}
-            onSkill={onSkill}
-          />
+      {orderedUnits.length > 0 && selectedUnit ? (
+        <section className="category-folio" aria-label={text("分类档案", "Category folio")}>
+          <aside className="category-library-index" aria-label={text("全部能力单元", "All capability units")}>
+            <div className="category-library-index-heading">
+              <span>{text("全部能力单元", "ALL LIBRARIES")}</span>
+              <strong>{orderedUnits.length}</strong>
+            </div>
+            <div className="unit-grid">
+              {orderedUnits.map((unit, index) => {
+                const unitId = getStableUnitId(category.category, unit);
+                const library = getLibraryForUnit(unit);
+                const unitSkills = getSkillsForUnit(unit).filter((skill) => matchingSkillNames.has(skill.name));
+                const active = unitId === resolvedUnitId;
+                return (
+                  <article
+                    className={`unit-card ${isHighValueUnit(unit) ? "priority" : ""}`}
+                    data-active={active}
+                    data-unit-id={unitId}
+                    key={unitId}
+                  >
+                    <button
+                      className="unit-card-main"
+                      type="button"
+                      aria-current={active ? "true" : undefined}
+                      onClick={() => onSelectUnit(unitId)}
+                    >
+                      <span className="unit-kind">{metadataLabel(unit.kind ?? unit.type)}</span>
+                      <strong>{libraryTitle(library, unit.title)}</strong>
+                      <small>{String(index + 1).padStart(2, "0")} / {unitSkills.length} SKILLS</small>
+                    </button>
+                  </article>
+                );
+              })}
+            </div>
+          </aside>
+
+          <section className="category-skill-folio" aria-labelledby="selected-library-title">
+            <header className="category-skill-folio-header">
+              <span>LIBRARY</span>
+              <h2 id="selected-library-title">{libraryTitle(selectedLibrary, selectedUnit.title)}</h2>
+              <p>{libraryDescription(selectedLibrary, text(
+                `包含 ${selectedSkills.length} 个相关 Skills，按真实来源归档。`,
+                `${selectedSkills.length} related Skills, preserved under their real source.`,
+              ))}</p>
+              <div>
+                <span>{selectedSkills.length} SKILLS</span>
+                <span>{metadataLabel(selectedLibrary?.source_label ?? selectedUnit.type)}</span>
+                {selectedLibrary?.source_url ? (
+                  <a href={selectedLibrary.source_url} target="_blank" rel="noreferrer">
+                    {text("查看来源", "VIEW SOURCE")}
+                  </a>
+                ) : null}
+              </div>
+            </header>
+            <SkillList skills={selectedSkills} onSkill={onSkill} compact />
+          </section>
+
+          <aside className="category-cosmos-specimen" aria-label={text("天体标本", "Celestial specimen")}>
+            <span className="category-specimen-kicker">ARCHIVE SPECIMEN</span>
+            <CosmosAsset
+              className="category-specimen-body"
+              src={getLibraryVisual(resolvedUnitId ?? category.category)}
+            />
+            <div className="category-specimen-fact">
+              <span>LIBRARY BODY</span>
+              <strong>{String(categoryIndex + 1).padStart(2, "0")}·{String(selectedSkills.length).padStart(2, "0")}</strong>
+            </div>
+            <CosmosAsset
+              className="category-specimen-echo"
+              src={getSkillVisual(`${resolvedUnitId ?? category.category}:echo`)}
+            />
+            <div className="category-specimen-fact">
+              <span>WEAK SIGNAL</span>
+              <strong>{matchingSkills.length} / {totalSkillCount}</strong>
+            </div>
+            <CosmosAsset
+              className="category-specimen-relic"
+              src={getRelicVisual(categoryIndex)}
+            />
+            <div className="category-specimen-fact">
+              <span>ARCHIVE RELIC</span>
+              <strong>{metadataLabel(selectedUnit.kind ?? selectedUnit.type)}</strong>
+            </div>
+          </aside>
         </section>
       ) : null}
 
       {orphanSkills.length > 0 ? (
-        <section className="unit-section standalone-skill-section">
+        <section className="unit-section standalone-skill-section category-orphan-signals">
           <div className="section-heading">
             <h2>{text("本分类的其他 Skills", "Other Skills in This Zone")}</h2>
             <p>{text("直接进入单个 Skill；保留真实来源，不把它们伪装成新的库单元。", "Open individual Skills directly while preserving their real source identity.")}</p>
@@ -212,41 +305,6 @@ export function CategoryPage({
       ) : null}
 
       {!hasAnyCategoryResult ? <div className="empty-state">{text("当前筛选下没有匹配的能力单元或单独 Skills。", "No capability units or standalone Skills match these filters.")}</div> : null}
-    </div>
-  );
-}
-
-interface UnitGridProps {
-  units: readonly CategoryUnit[];
-  categoryName: string;
-  matchingSkillNames: ReadonlySet<string>;
-  expandedUnitId: string | null;
-  onExpand: (id: string | null) => void;
-  onSkill: (skill: SkillRecord) => void;
-}
-
-function UnitGrid({ units, categoryName, matchingSkillNames, expandedUnitId, onExpand, onSkill }: UnitGridProps) {
-  const { text } = useLocale();
-  if (units.length === 0) {
-    return <div className="empty-state">{text("当前筛选下没有匹配的能力单元。", "No capability units match these filters.")}</div>;
-  }
-
-  return (
-    <div className="unit-grid">
-      {units.map((unit) => {
-        const unitId = getStableUnitId(categoryName, unit);
-        return (
-          <AbilityUnitCard
-            key={unitId}
-            unit={unit}
-            unitId={unitId}
-            skills={getSkillsForUnit(unit).filter((skill) => matchingSkillNames.has(skill.name))}
-            expanded={expandedUnitId === unitId}
-            onToggle={() => onExpand(expandedUnitId === unitId ? null : unitId)}
-            onSkill={onSkill}
-          />
-        );
-      })}
     </div>
   );
 }

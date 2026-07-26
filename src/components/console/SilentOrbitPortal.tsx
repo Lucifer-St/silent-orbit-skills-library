@@ -10,16 +10,16 @@ export interface SilentOrbitPortalProps {
 }
 
 const PORTAL_SYSTEM_POSITIONS = [
-  { x: 20, y: 14 },
-  { x: 78, y: 12 },
-  { x: 127, y: 14 },
-  { x: 142, y: 32 },
-  { x: 136, y: 52 },
-  { x: 108, y: 60 },
-  { x: 78, y: 61 },
-  { x: 46, y: 60 },
-  { x: 18, y: 52 },
-  { x: 16, y: 32 },
+  { x: 20, y: 6.5, sector: "northwest" },
+  { x: 78, y: 6.5, sector: "north" },
+  { x: 127, y: 6.5, sector: "northeast" },
+  { x: 142, y: 32, sector: "east" },
+  { x: 136, y: 52, sector: "southeast" },
+  { x: 108, y: 60, sector: "southeast" },
+  { x: 78, y: 61, sector: "south" },
+  { x: 46, y: 60, sector: "southwest" },
+  { x: 18, y: 52, sector: "southwest" },
+  { x: 16, y: 32, sector: "west" },
 ] as const;
 
 const PORTAL_SYSTEM_ASSETS = [
@@ -28,7 +28,7 @@ const PORTAL_SYSTEM_ASSETS = [
   "/assets/system-ecliptic-c.png",
 ] as const;
 
-const PORTAL_SYSTEM_MARKER_SIZE = 4.4;
+const PORTAL_SYSTEM_LABEL_OFFSET = 4;
 
 export function SilentOrbitPortal({
   className = "",
@@ -73,44 +73,22 @@ export function SilentOrbitPortal({
               />
             ))}
           </g>
-          {model.systems.map((system, index) => {
-            const position = PORTAL_SYSTEM_POSITIONS[index % PORTAL_SYSTEM_POSITIONS.length];
-            const x = position.x;
-            const y = position.y;
-            const systemNumber = String(index + 1).padStart(2, "0");
-            const markerAsset = PORTAL_SYSTEM_ASSETS[index % PORTAL_SYSTEM_ASSETS.length];
-            return (
-              <g
-                className="portal-system-star"
-                key={system.id}
-                data-active={activeSystemId === system.id ? "true" : undefined}
-                data-catalog-node-id={`system:${system.id}`}
-                data-galaxy-region="system"
-              >
-                <title>{`${category(system.category)}: ${system.skillCount} Skills`}</title>
-                <image
-                  className="portal-system-visual"
-                  data-system-marker-asset="distant-ecliptic"
-                  href={markerAsset}
-                  x={x - PORTAL_SYSTEM_MARKER_SIZE / 2}
-                  y={y - PORTAL_SYSTEM_MARKER_SIZE / 2}
-                  width={PORTAL_SYSTEM_MARKER_SIZE}
-                  height={PORTAL_SYSTEM_MARKER_SIZE}
-                  preserveAspectRatio="xMidYMid meet"
-                />
-                <text className="portal-system-index" x={x} y={y + 6} textAnchor="middle">{systemNumber}</text>
-                <text className="portal-system-name" x={x} y={y + 9.7} textAnchor="middle">{category(system.category)}</text>
-                <text className="portal-system-count" x={x} y={y + 13.5} textAnchor="middle">{system.skillCount} SKILLS</text>
-              </g>
-            );
-          })}
+          {model.systems.map((system) => (
+            <g
+              key={system.id}
+              data-catalog-node-id={`system:${system.id}`}
+              data-galaxy-region="system"
+            />
+          ))}
         </svg>
         <div className="portal-system-actions" aria-label={text("直接进入功能分区", "Open a functional zone directly")}>
           {model.systems.map((system, index) => {
             const position = PORTAL_SYSTEM_POSITIONS[index % PORTAL_SYSTEM_POSITIONS.length];
+            const systemNumber = String(index + 1).padStart(2, "0");
+            const markerAsset = PORTAL_SYSTEM_ASSETS[index % PORTAL_SYSTEM_ASSETS.length];
             const style = {
               left: `${(position.x / 160) * 100}%`,
-              top: `${(position.y / 76) * 100}%`,
+              top: `${((position.y + PORTAL_SYSTEM_LABEL_OFFSET) / 76) * 100}%`,
             } as CSSProperties;
             return (
               <button
@@ -119,8 +97,12 @@ export function SilentOrbitPortal({
                 style={style}
                 type="button"
                 aria-label={text(`打开 ${system.category}：${system.skillCount} Skills，${system.libraryCount} Libraries`, `Open ${category(system.category)}: ${system.skillCount} Skills, ${system.libraryCount} Libraries`)}
+                data-active={activeSystemId === system.id ? "true" : undefined}
                 data-system-id={system.id}
                 data-orbit-return-id={`system:${system.id}`}
+                data-system-sector={position.sector}
+                data-system-visual-x={position.x}
+                data-system-visual-y={position.y + PORTAL_SYSTEM_LABEL_OFFSET}
                 onBlur={() => setActiveSystemId(null)}
                 onClick={(event) => onOpenSystem(system, event.currentTarget)}
                 onFocus={() => setActiveSystemId(system.id)}
@@ -128,7 +110,20 @@ export function SilentOrbitPortal({
                 onMouseLeave={(event) => {
                   if (document.activeElement !== event.currentTarget) setActiveSystemId(null);
                 }}
-              />
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  className="portal-system-visual"
+                  data-system-marker-asset="distant-ecliptic"
+                  src={markerAsset}
+                />
+                <span aria-hidden="true" className="portal-system-copy">
+                  <span className="portal-system-index">{systemNumber}</span>
+                  <span className="portal-system-name">{category(system.category)}</span>
+                  <span className="portal-system-count">{system.skillCount} SKILLS</span>
+                </span>
+              </button>
             );
           })}
         </div>

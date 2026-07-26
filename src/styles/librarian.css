@@ -226,57 +226,60 @@
   display: none;
 }
 
-.librarian-page .portal-system-star {
-  fill: currentColor;
-  stroke: none;
-}
-
 .librarian-page .portal-system-visual {
+  grid-area: marker;
+  display: block;
+  width: clamp(24px, 2.3vw, 36px);
+  height: clamp(24px, 2.3vw, 36px);
+  margin-left: var(--portal-marker-shift, 0);
   opacity: .52;
   image-rendering: pixelated;
-  transform-box: fill-box;
   transform-origin: center;
   transition: opacity 180ms ease, transform 180ms cubic-bezier(.2, .75, .22, 1);
+}
+
+.librarian-page .portal-system-copy {
+  grid-area: copy;
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  margin-left: var(--portal-copy-shift, 0);
+  pointer-events: none;
 }
 
 .librarian-page .portal-system-index,
 .librarian-page .portal-system-name,
 .librarian-page .portal-system-count {
-  fill: currentColor;
-  stroke: none;
+  display: block;
+  color: currentColor;
   font-family: var(--font-pixel);
   letter-spacing: 0.03em;
+  line-height: 1.15;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .librarian-page .portal-system-index {
-  font-size: 1.55px;
+  font-size: 12px;
 }
 
 .librarian-page .portal-system-name {
   font-family: var(--font-reading);
-  font-size: 1.65px;
+  font-size: 14px;
 }
 
 .librarian-page .portal-system-count {
-  font-size: 1.25px;
+  margin-top: 3px;
+  font-size: 10px;
   opacity: 0.58;
 }
 
-.librarian-page .portal-system-star,
-.librarian-page .portal-system-star .portal-system-count {
-  transition: opacity 180ms ease;
-}
-
-.librarian-page .portal-system-star[data-active="true"] {
+.librarian-page .portal-system-hit[data-active="true"] .portal-system-visual {
   opacity: 1;
+  transform: scale(1.35);
 }
 
-.librarian-page .portal-system-star[data-active="true"] .portal-system-visual {
-  opacity: 1;
-  transform: scale(1.45);
-}
-
-.librarian-page .portal-system-star[data-active="true"] .portal-system-count {
+.librarian-page .portal-system-hit[data-active="true"] .portal-system-count {
   opacity: .88;
 }
 
@@ -289,10 +292,16 @@
 
 .portal-system-hit {
   position: absolute;
-  width: clamp(96px, 8.8vw, 128px);
-  height: clamp(96px, 8.8vw, 128px);
+  display: grid;
+  grid-template-areas:
+    "marker"
+    "copy";
+  align-content: center;
+  justify-items: center;
+  gap: 3px;
+  width: clamp(112px, 11vw, 180px);
+  height: clamp(104px, 8.5vw, 138px);
   transform: translate(-50%, -50%);
-  clip-path: circle(50%);
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -300,6 +309,49 @@
   pointer-events: auto;
   cursor: pointer;
   outline: 0;
+}
+
+.portal-system-hit[data-system-sector="north"],
+.portal-system-hit[data-system-sector="northwest"],
+.portal-system-hit[data-system-sector="northeast"] {
+  grid-template-areas:
+    "copy"
+    "marker";
+}
+
+.portal-system-hit[data-system-sector="northwest"] {
+  --portal-copy-shift: -24px;
+  --portal-marker-shift: 24px;
+}
+
+.portal-system-hit[data-system-sector="northeast"] {
+  --portal-copy-shift: 24px;
+  --portal-marker-shift: -24px;
+}
+
+.portal-system-hit[data-system-sector="east"],
+.portal-system-hit[data-system-sector="west"] {
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.portal-system-hit[data-system-sector="east"] {
+  grid-template-areas: "marker copy";
+}
+
+.portal-system-hit[data-system-sector="west"] {
+  grid-template-areas: "copy marker";
+}
+
+.portal-system-hit[data-system-sector="southeast"] {
+  --portal-copy-shift: 24px;
+  --portal-marker-shift: -24px;
+}
+
+.portal-system-hit[data-system-sector="southwest"] {
+  --portal-copy-shift: -24px;
+  --portal-marker-shift: 24px;
 }
 
 .portal-system-hit:hover,
@@ -371,11 +423,31 @@
   pointer-events: none;
 }
 
-.ranked-skill-constellation path {
+.ranked-constellation-base,
+.ranked-constellation-signal {
   fill: none;
   stroke: currentColor;
   stroke-width: 0.75;
+}
+
+.ranked-constellation-base {
   stroke-dasharray: 1.5 1.2;
+  opacity: .42;
+}
+
+.ranked-constellation-signal {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: .88;
+  animation: ranked-constellation-draw 460ms cubic-bezier(.2, .72, .16, 1) both;
+}
+
+.ranked-skill-card:nth-child(2) .ranked-constellation-signal {
+  animation-delay: 45ms;
+}
+
+.ranked-skill-card:nth-child(3) .ranked-constellation-signal {
+  animation-delay: 90ms;
 }
 
 .ranked-skill-constellation circle {
@@ -442,6 +514,10 @@
 
 @keyframes librarian-card-in {
   from { opacity: 0; transform: translateY(6px); }
+}
+
+@keyframes ranked-constellation-draw {
+  to { stroke-dashoffset: 0; }
 }
 
 @media (max-width: 760px) {
@@ -568,6 +644,11 @@
     opacity: 1 !important;
     transform: none !important;
   }
+
+  .ranked-constellation-signal {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Compact A-directed homepage: dense universe, quiet interface. */
@@ -654,18 +735,102 @@
   }
 
   .librarian-page .portal-system-index {
-    font-size: 2px;
+    font-size: 9px;
   }
 
   .librarian-page .portal-system-name {
-    font-size: 2.25px;
+    max-width: 94px;
+    overflow: hidden;
+    font-size: 10px;
+    text-overflow: ellipsis;
   }
 
   .librarian-page .portal-system-count {
-    font-size: 1.65px;
+    font-size: 8px;
+  }
+
+  .portal-system-hit[data-system-sector] {
+    grid-template-areas:
+      "marker"
+      "copy";
+    grid-template-columns: 1fr;
+    gap: 3px;
+    --portal-copy-shift: 0;
+    --portal-marker-shift: 0;
   }
 
   .librarian-page .portal-status {
     padding-top: 5px;
+  }
+}
+
+/*
+ * The user's external display renders a 3439 x 1318 browser viewport. This
+ * true-ultrawide frame grows the Observatory enough to preserve the laptop
+ * reading scale without turning the galaxy into a full-bleed wallpaper.
+ */
+@media (min-width: 2400px) and (min-aspect-ratio: 12 / 5) {
+  .agent-console.is-librarian-home .console-topbar {
+    min-height: 56px;
+    padding-inline: 32px;
+  }
+
+  .agent-console.is-librarian-home .console-brand {
+    font-size: 13px;
+  }
+
+  .agent-console.is-librarian-home .nav-button {
+    font-size: 12px;
+  }
+
+  .librarian-page,
+  .librarian-page.is-idle {
+    width: min(2240px, calc(100% - 320px));
+    min-height: calc(100dvh - 56px);
+    padding-top: 64px;
+  }
+
+  .librarian-search-shell {
+    width: min(620px, 42%);
+  }
+
+  .librarian-page.is-idle .librarian-search-shell {
+    margin-bottom: 0;
+  }
+
+  .librarian-page .librarian-galaxy-portal {
+    min-height: 820px;
+  }
+
+  .librarian-page .portal-map {
+    height: 760px;
+    min-height: 760px;
+    max-height: 760px;
+  }
+
+  .librarian-page.is-idle .portal-map {
+    background-size: 1980px auto;
+  }
+
+  .portal-system-hit {
+    width: 190px;
+    height: 142px;
+  }
+
+  .librarian-page .portal-system-visual {
+    width: 38px;
+    height: 38px;
+  }
+
+  .librarian-page .portal-system-index {
+    font-size: 13px;
+  }
+
+  .librarian-page .portal-system-name {
+    font-size: 16px;
+  }
+
+  .librarian-page .portal-system-count {
+    font-size: 10px;
   }
 }

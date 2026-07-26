@@ -15,6 +15,9 @@
 
 .outcome-history {
   min-height: 280px;
+  border-right: 0;
+  border-left: 0;
+  padding-inline: 0;
 }
 
 .history-empty {
@@ -22,7 +25,7 @@
   place-content: center;
   gap: 8px;
   min-height: 210px;
-  border: 1px dotted var(--signal);
+  border: 0;
   padding: 24px;
   text-align: center;
 }
@@ -142,6 +145,7 @@
 }
 
 .outcome-history-item {
+  position: relative;
   display: grid;
   gap: 10px;
   border: 0;
@@ -149,6 +153,28 @@
   padding: 16px 0 2px;
   content-visibility: auto;
   contain-intrinsic-size: auto 220px;
+}
+
+.outcome-commit-line {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: min(28%, 180px);
+  height: 1px;
+  background: var(--signal);
+  opacity: .22;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.outcome-history-item:first-child .outcome-commit-line {
+  animation: outcome-commit-line 320ms cubic-bezier(.2, .72, .16, 1) both;
+}
+
+@keyframes outcome-commit-line {
+  0% { opacity: .72; transform: scaleX(0); }
+  72% { opacity: .72; transform: scaleX(1); }
+  100% { opacity: .22; transform: scaleX(1); }
 }
 
 .outcome-history-item h2,
@@ -381,5 +407,13 @@
     padding-right: max(14px, env(safe-area-inset-right));
     padding-bottom: max(14px, env(safe-area-inset-bottom));
     padding-left: max(14px, env(safe-area-inset-left));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outcome-commit-line {
+    animation: none !important;
+    opacity: .22;
+    transform: scaleX(1);
   }
 }
