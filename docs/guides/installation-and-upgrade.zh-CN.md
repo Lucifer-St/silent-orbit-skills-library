@@ -10,7 +10,7 @@ Silent Orbit `v0.11.0-beta.6` 只通过 GitHub Pre-release 分发，不得按 pa
 - 已下载并通过 `SHA256SUMS.txt` 校验的 tarball；
 - 已复核的安装目标。CLI 默认使用项目级安装。
 
-SHA-256 校验与首次生成请按 `GENERATOR_QUICKSTART.zh-CN.md` 执行。
+SHA-256 校验与首次生成请按 `generator-quickstart.zh-CN.md` 执行。
 
 ## 安装或升级 CLI
 
@@ -68,5 +68,5 @@ handoff receipt 中。安装命令可能替换同名 Skill，因此先审阅和�
 4. 完成项目 `doctor`、`audit` 与一次确定性 sample generation；
 5. 继续阻止删除、freeze、Plugin/System mutation 与未知来源 mutation。
 
-真实 maintenance 之前阅读 `RECOVERY.zh-CN.md`、`PRIVACY.zh-CN.md` 与
-`VERSIONING_AND_MIGRATIONS.zh-CN.md`。
+真实 maintenance 之前阅读 `recovery.zh-CN.md`、`../policies/privacy.zh-CN.md` 与
+`../policies/versioning-and-migrations.zh-CN.md`。

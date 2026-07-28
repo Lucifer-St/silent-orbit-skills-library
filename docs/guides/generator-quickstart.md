@@ -79,7 +79,7 @@ node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
 
 The install is not approval to run `npx skills check`, `update`, or `upgrade`;
 with the pinned manager those names can mutate matching trusted sources. See
-`INSTALLATION_AND_UPGRADE.md` and `RECOVERY.md` for the reviewed handoff.
+`installation-and-upgrade.md` and `recovery.md` for the reviewed handoff.
 
 ## 4. First generation
 

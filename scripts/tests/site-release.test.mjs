@@ -12,9 +12,20 @@ function read(relativePath) {
   return fs.readFileSync(path.join(projectDir, ...relativePath.split("/")), "utf8");
 }
 
+const publicDocumentPaths = Object.freeze({
+  "BETA_TESTING.md": "docs/testing/beta-testing.md",
+  "BETA_FEEDBACK_TEMPLATE.md": "docs/testing/beta-feedback-template.md",
+  "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
+  "INSTALLATION_AND_UPGRADE.md": "docs/guides/installation-and-upgrade.md",
+  "VERSIONING_AND_MIGRATIONS.md": "docs/policies/versioning-and-migrations.md",
+  "PRIVACY.md": "docs/policies/privacy.md",
+  "RECOVERY.md": "docs/guides/recovery.md",
+});
+
 function publicDocument(fileName) {
   const sourcePath = `docs/public-release/${fileName}`;
-  return fs.existsSync(path.join(projectDir, ...sourcePath.split("/"))) ? sourcePath : fileName;
+  if (fs.existsSync(path.join(projectDir, ...sourcePath.split("/")))) return sourcePath;
+  return publicDocumentPaths[fileName] ?? fileName;
 }
 
 function issueTemplate(fileName) {

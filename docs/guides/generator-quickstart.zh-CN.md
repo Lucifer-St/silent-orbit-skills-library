@@ -78,8 +78,8 @@ node (Join-Path $installedMaintenance 'scripts\skills-library.mjs') --help
 ```
 
 安装不授权执行 `npx skills check`、`update` 或 `upgrade`；固定 manager 的这些入口
-可能更新匹配的 trusted source。完整交接见 `INSTALLATION_AND_UPGRADE.zh-CN.md` 与
-`RECOVERY.zh-CN.md`。
+可能更新匹配的 trusted source。完整交接见 `installation-and-upgrade.zh-CN.md` 与
+`recovery.zh-CN.md`。
 
 ## 4. 首次生成
 

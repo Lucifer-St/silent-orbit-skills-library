@@ -15,7 +15,7 @@ The public catalog currently contains **153 Skills across 9 systems and 28 libra
 
 ## Install the Public Generator
 
-The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./GENERATOR_QUICKSTART.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. Independent v1 candidates should use the single [15–25 minute RC acceptance checklist](./V1_RC_ACCEPTANCE.md). The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
+The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./docs/guides/generator-quickstart.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. Independent v1 candidates should use the single [15–25 minute RC acceptance checklist](./docs/testing/v1-rc-acceptance.md). The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
 
 ## Capability boundary
 
@@ -35,9 +35,9 @@ The Draft PR also builds a separate **44-Skill Reference Preview** from a pinned
 
 This Reference Renderer is a functional starting point, not an official visual theme. Generated projects include `frontend-handoff.md` so users can retain the public data, keyboard behavior, deep links, and privacy boundary while rebuilding the interface with any visual style and frontend Skill they prefer.
 
-- [Phase 1E architecture and acceptance boundary](./docs/architecture/GENERATOR_PHASE1E.md)
-- [Phase 2B dogfood and source-of-truth boundary](./docs/architecture/GENERATOR_PHASE2B.md)
-- [Install and first-use guide](./GENERATOR_QUICKSTART.md)
+- [Phase 1E architecture and acceptance boundary](./docs/notes/20260721-181423-generator-phase-1e-independent-alpha-reference-preview.md)
+- [Phase 2B dogfood and source-of-truth boundary](./docs/notes/20260722-100249-generator-phase-2b-dogfooding-source-of-truth-boundary.md)
+- [Install and first-use guide](./docs/guides/generator-quickstart.md)
 - The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
 - Production remains the reviewed 153-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
 
@@ -102,19 +102,20 @@ The development server runs locally. The production build is written to `dist/`.
 
 ## Public beta
 
-- [Beta testing guide](./BETA_TESTING.md)
-- [Beta feedback template](./BETA_FEEDBACK_TEMPLATE.md)
-- [V1 RC independent acceptance](./V1_RC_ACCEPTANCE.md)
+- [Documentation index](./docs/README.md)
+- [Beta testing guide](./docs/testing/beta-testing.md)
+- [Beta feedback template](./docs/testing/beta-feedback-template.md)
+- [V1 RC independent acceptance](./docs/testing/v1-rc-acceptance.md)
 - GitHub issue forms are available for reproducible bugs and experience feedback.
 
 The public beta uses no third-party analytics, cookies, or behavior tracking. Safari remains an external beta coverage item.
 
 ## Operational handoff
 
-- [Installation and upgrade](./INSTALLATION_AND_UPGRADE.md)
-- [Versioning, compatibility, migrations, and deprecation](./VERSIONING_AND_MIGRATIONS.md)
-- [Privacy policy and data boundary](./PRIVACY.md)
-- [Recovery and rollback](./RECOVERY.md)
+- [Installation and upgrade](./docs/guides/installation-and-upgrade.md)
+- [Versioning, compatibility, migrations, and deprecation](./docs/policies/versioning-and-migrations.md)
+- [Privacy policy and data boundary](./docs/policies/privacy.md)
+- [Recovery and rollback](./docs/guides/recovery.md)
 - [Security policy](./SECURITY.md)
 - [Contribution policy](./CONTRIBUTING.md)
 

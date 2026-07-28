@@ -10,7 +10,7 @@ Pre-release. Do not install it by package name from the npm registry.
 - the downloaded release tarball and `SHA256SUMS.txt`;
 - a reviewed destination. Project-local CLI installation is the default.
 
-Follow `GENERATOR_QUICKSTART.md` to verify the SHA-256 value and complete a
+Follow `generator-quickstart.md` to verify the SHA-256 value and complete a
 first generation.
 
 ## Install or upgrade the CLI
@@ -76,5 +76,5 @@ check-and-update path.
 5. Keep deletion, freeze, Plugin/System mutation, and unknown-source mutation
    blocked.
 
-See `RECOVERY.md`, `PRIVACY.md`, and `VERSIONING_AND_MIGRATIONS.md` before a
+See `recovery.md`, `../policies/privacy.md`, and `../policies/versioning-and-migrations.md` before a
 real maintenance run.

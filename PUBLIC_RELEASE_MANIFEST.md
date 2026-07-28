@@ -2,9 +2,9 @@
 
 - Input commit: `55e8057f0dc0564cf2776bd00e74b212c207f4a4`
 - Input commit timestamp: `2026-07-26T14:37:24-04:00`
-- Payload files: 295
-- Payload bytes: 12101076
-- Canonical SHA-256 release digest: `e64b2281db0d9fedb5499255af391ae2cae77b5f894e11cd3560c2bcd7b395c7`
+- Payload files: 296
+- Payload bytes: 12107148
+- Canonical SHA-256 release digest: `b695133babfaac036482fd4e5c48d9071946145c8544aa450cd0508526d1274a`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -19,28 +19,12 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
 | ASSET_PROVENANCE.json | 31108 | `a0c71970af5962013bbc6bafc331dca21fc65e067eaf73647b3191a02050ccc2` |
-| BETA_FEEDBACK_TEMPLATE.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
-| BETA_TESTING.md | 1742 | `4c177abd31431cbcbf92dd82c44d87332e3ee5076e63309b89bad0251a8244ab` |
-| CONTRIBUTING.md | 3346 | `6e77f7104cece55b2a23b93f9d5804a048226f8a8bfea18aef697dc9d30165c0` |
-| GENERATOR_QUICKSTART.md | 8527 | `e3351187b7b42087afd19e168aa18e51a656ab4a46b1a7948ea10423a54efa72` |
-| GENERATOR_QUICKSTART.zh-CN.md | 7870 | `e8eef7fc12aea3d8f23d95ddbd91fd0e624cf52bbace61c849fbb81ce42fcab7` |
-| INSTALLATION_AND_UPGRADE.md | 3347 | `97ab1d1766c79c5722a61502e2e920391286ec25eb1f6255e8430a8f0a781a8b` |
-| INSTALLATION_AND_UPGRADE.zh-CN.md | 3066 | `f4a3b4707264cf7ad4634679487c2577e79d44f6ef2807501189deb259bebf3a` |
+| CONTRIBUTING.md | 3374 | `5d777b5611c5649cc151025e7d3ba1aa4078d16911c94aa0e6d486a96e081bf5` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
-| PRIVACY.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
-| PRIVACY.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
-| PRIVACY_AUDIT.md | 615 | `36e8132be135b39722ad71a2655b4e257ca9f888cd0751359227b2f2e47c701f` |
-| README.md | 8829 | `f7876008ff63f49688a4d6c4a7d80ebd40b13527a8e480fb80453845526cc99a` |
-| README.zh-CN.md | 8090 | `eb8ec84e9fc06d888953cbff58e7f407eb8ec3ad037943b2efebb894a95b6838` |
-| RECOVERY.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
-| RECOVERY.zh-CN.md | 2183 | `d81e0ede1f878335cbc8ddb3b3ddf0b7fe232621658d0a0472dbca8751057d3d` |
-| RELEASE_NOTES_v0.11.0-beta.5.md | 2285 | `de81cc22bc3361af51dc20c2920b4da9b78e8d6b7e54a9ae6179fc0551ce5dcc` |
-| RELEASE_NOTES_v0.11.0-beta.6.md | 1889 | `2fe25774b9b5511a5529157f346dcdb5612e96357d01635bf3e84dbc6f50856b` |
-| SECURITY.md | 2589 | `116cc2088b7036be2e6e26174616d78e69b71f86fdb8ac5371049eab8113e616` |
+| README.md | 9091 | `1a4c793bec9107e1533952ce25f2ce3a11167cd3e850e9a269fe4d336782fcf2` |
+| README.zh-CN.md | 8345 | `c207d0d514d32fa9b28f0b059ea6242e4cd405fc4c1b6475f8f349251cd1a299` |
+| SECURITY.md | 2601 | `cc4e01f27b8c5fb1d77ddd1e4ba1aac23526163fd0ac851884aa4a794d71aa99` |
 | THIRD_PARTY_NOTICES.md | 13510 | `a93aecb8c558c828868d0e581b8fa60a8c918a34661e64bab120e64bd69a046e` |
-| V1_RC_ACCEPTANCE.md | 7483 | `6541d858d8521cfff70b4e5ba1177344a0bd710caca9f08d10593b42bcc186ce` |
-| VERSIONING_AND_MIGRATIONS.md | 4120 | `a9abde4a61fbfa8827120afcc2244c52d5fd314232407073b3040a84929c8fda` |
-| VERSIONING_AND_MIGRATIONS.zh-CN.md | 3306 | `3054956e7c30c97587ad451dada6bb360567c4cff9d43cf93f2201e4f96a1eba` |
 | alpha/phase1e/alpha-receipt.json | 2436 | `b5be1d86c1e3303fc5c1a48fbc5c00f546e07f49c994c11451926671db1983c4` |
 | alpha/phase1e/alpha-source-lock.json | 12120 | `3f6826ae52f269a39d931a7997b70bb7297cab1fdfe7d457a595e265aaea05ca` |
 | alpha/phase1e/frontend-handoff.md | 1252 | `0488ade9a2238c445fcf451bd1c59932bc701028e1efb8f9e352710ef7a95db0` |
@@ -65,22 +49,39 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | data/skill-details.json | 1873 | `49468f8acf19b49fd2314c60f135b76081cfa0d3eb182afff15781f563f7c4ef` |
 | data/skills.json | 87638 | `84f9ae8e1a4143850cff5ce7277596b01efd4a349575ceface865616426533cb` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
-| docs/architecture/GENERATOR_PHASE1A.md | 4616 | `d36f869d819c452bb2f0f3e032e228b644c89795cb455449edafe5c45de3c72d` |
-| docs/architecture/GENERATOR_PHASE1B.md | 6645 | `1fc995309e4d9b49db81210fe7f82b37b6ceff5773cccc003197d1071515c628` |
-| docs/architecture/GENERATOR_PHASE1C.md | 5564 | `45bb9c560d4300d3e2799d53819348da29565c3f5f9607214cc80b8e9f7d791d` |
-| docs/architecture/GENERATOR_PHASE1D.md | 2477 | `1dcf85a631892eb18f4869fa72054a85a7ead3bfd82144247db016dc4622881c` |
-| docs/architecture/GENERATOR_PHASE1E.md | 4725 | `f4c05681d6d0cbf14cc2a0a4fb740531b600146039d5e2c6d6ae634d098fd09b` |
-| docs/architecture/GENERATOR_PHASE2B.md | 6671 | `74e56bc5981a164911a6f19b45071515aecc8e18735004def445b4bf63652b60` |
-| docs/architecture/GENERATOR_PHASE4.md | 1941 | `d753d2d35d25e0de04438288359263b98553b759dd5239440ad9e87ba1af3a35` |
-| docs/architecture/GENERATOR_PHASE5A.md | 3526 | `7738988fb688de85400630b58b05f9f26b0c7f93ebd91180622521b2e0520090` |
-| docs/architecture/GENERATOR_PHASE5B.md | 5464 | `4a236bf2aa90e7e56ad3cb5a4990bd4fdf11e58b1e309b6ad7403ad52523a95e` |
-| docs/architecture/GENERATOR_PHASE5C.md | 3781 | `a285b97bb7b60b51cac5e1b7999d989cb4aba9d94efc1b9d630689b79de7af54` |
+| docs/README.md | 3971 | `24c88ff4e07491722ff1a7357891072e1abb8edbc27ef9a181ab9d77db1a7429` |
+| docs/audits/privacy-audit.md | 615 | `36e8132be135b39722ad71a2655b4e257ca9f888cd0751359227b2f2e47c701f` |
+| docs/guides/generator-quickstart.md | 8527 | `b2d24b87a3e83c35153d04c348b1f8f5e0fb21704a531292c001eff17e3cd726` |
+| docs/guides/generator-quickstart.zh-CN.md | 7870 | `2cf1f3b7b2c13f50ad7947adcc18f5284f70c6df0845a0bbd292245a16e09034` |
+| docs/guides/installation-and-upgrade.md | 3371 | `5d4c97d54bd933ce6b1da3767d2ae85e3533b75ff88acb8c8e912cf2802bdcf6` |
+| docs/guides/installation-and-upgrade.zh-CN.md | 3090 | `c370eb11964d71a0ce3737cacf6a20acef6854bbd2404991f036117954de08d5` |
+| docs/guides/recovery.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
+| docs/guides/recovery.zh-CN.md | 2183 | `d81e0ede1f878335cbc8ddb3b3ddf0b7fe232621658d0a0472dbca8751057d3d` |
+| docs/notes/20260721-181423-generator-phase-1a-contract-compatibility-boundary.md | 4616 | `d36f869d819c452bb2f0f3e032e228b644c89795cb455449edafe5c45de3c72d` |
+| docs/notes/20260721-181423-generator-phase-1b-portable-read-only-source-adapters.md | 6673 | `730c5715f73c15d471c933b6b22c9bab6b4f882118e168ad101f85d9017638c9` |
+| docs/notes/20260721-181423-generator-phase-1c-cli-generator-mvp.md | 5564 | `45bb9c560d4300d3e2799d53819348da29565c3f5f9607214cc80b8e9f7d791d` |
+| docs/notes/20260721-181423-generator-phase-1d-universal-agent-skill.md | 2477 | `1dcf85a631892eb18f4869fa72054a85a7ead3bfd82144247db016dc4622881c` |
+| docs/notes/20260721-181423-generator-phase-1e-independent-alpha-reference-preview.md | 4725 | `f4c05681d6d0cbf14cc2a0a4fb740531b600146039d5e2c6d6ae634d098fd09b` |
+| docs/notes/20260722-100249-generator-phase-2b-dogfooding-source-of-truth-boundary.md | 6671 | `74e56bc5981a164911a6f19b45071515aecc8e18735004def445b4bf63652b60` |
+| docs/notes/20260722-100249-generator-phase-4-read-only-skill-health.md | 1941 | `d753d2d35d25e0de04438288359263b98553b759dd5239440ad9e87ba1af3a35` |
+| docs/notes/20260724-141941-generator-phase-5a-guarded-skill-management-foundation.md | 3526 | `7738988fb688de85400630b58b05f9f26b0c7f93ebd91180622521b2e0520090` |
+| docs/notes/20260724-141941-generator-phase-5b-single-provider-evaluation.md | 5464 | `4a236bf2aa90e7e56ad3cb5a4990bd4fdf11e58b1e309b6ad7403ad52523a95e` |
+| docs/notes/20260724-141941-generator-phase-5c-trusted-source-maintenance.md | 3781 | `a285b97bb7b60b51cac5e1b7999d989cb4aba9d94efc1b9d630689b79de7af54` |
+| docs/policies/privacy.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
+| docs/policies/privacy.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
+| docs/policies/versioning-and-migrations.md | 4120 | `a9abde4a61fbfa8827120afcc2244c52d5fd314232407073b3040a84929c8fda` |
+| docs/policies/versioning-and-migrations.zh-CN.md | 3306 | `3054956e7c30c97587ad451dada6bb360567c4cff9d43cf93f2201e4f96a1eba` |
+| docs/releases/v0.11.0-beta.5.md | 2285 | `de81cc22bc3361af51dc20c2920b4da9b78e8d6b7e54a9ae6179fc0551ce5dcc` |
+| docs/releases/v0.11.0-beta.6.md | 1898 | `8228e0189cac01b44cb5682fe43ffb3a653dc71be2d4904b80fdd99855f430f7` |
+| docs/testing/beta-feedback-template.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
+| docs/testing/beta-testing.md | 1742 | `cc2816cc075a0204025a6bdea9a51cd98736ebca39b298c80bf318ef53c7d44d` |
+| docs/testing/v1-rc-acceptance.md | 7483 | `6541d858d8521cfff70b4e5ba1177344a0bd710caca9f08d10593b42bcc186ce` |
 | fixtures/phase4/external-provider.source-import.json | 676 | `6fc219a1c1680980bdf070a77a93ec95a153de5bf1ffd9154d59157b1ce8dc99` |
 | fixtures/phase4/source-managed.source-import.json | 1397 | `622e93bbeabcf9e5f50d743d9f09d73dac18f0ad5c48565ffaede8fae7eccee6` |
 | index.html | 2417 | `a89f2df9de245e70dfa3d12ea6a37e59a1a4c2d1e1d1e5f923d42677f60a54b5` |
 | netlify.toml | 1388 | `e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543` |
 | package-lock.json | 60660 | `7a3759e54c7fc51516ddf83975334669ca1ba1ee8db70a4fe10b1d4be407dbbc` |
-| package.json | 4744 | `e08c7a01564e02a18c953dbd05011be19ffe6df47e34a7ca196003a7a6555613` |
+| package.json | 4894 | `9be97a76e8277785b7caf2ad8542ee755b6324b8955041b37cfaca95b370529f` |
 | public/assets/branding/favicon.svg | 584 | `617fb99bda521b4681a46046d3ce34ce00124bd3d0e97c7271872b3108a781ea` |
 | public/assets/cosmos/celestial/01-cratered-planet.png | 1811 | `fe0eea7e8e9024ea4c96a32b1c1d66333602683cc8704114a22c8b3f5a781488` |
 | public/assets/cosmos/celestial/02-ringed-planet.png | 850 | `00219e0fde3c8452d27b30395cc909fde058a8959daaf3de6e93259c4434a05a` |
@@ -182,7 +183,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/lib/trusted-source-maintenance.mjs | 27242 | `e69f9d7cf79c26ae0912aa93f894bb152816b35eeceae71f52197949ea57e9bc` |
 | scripts/project-layout.mjs | 2300 | `3ee9c0f3043a9463f204ab78500cd130d706258216297a751274cab6ae7d22b0` |
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
-| scripts/public-release-config.mjs | 7472 | `0aa5c72cfe0aaca99c812134f09994ea2ec33c61afed9ec17cad8f49f1ca6378` |
+| scripts/public-release-config.mjs | 7884 | `90f3e42723bf6b6d142a78f8de399cc776de249ae4896d863926f55643ec3a72` |
 | scripts/run-release-tarball-smoke.mjs | 7408 | `7bd8cf583d65d05e275f96a183417ca4273a1a8058dbc3ba66332a138137fb90` |
 | scripts/run-v1-preflight.mjs | 6420 | `b297e6a08aed674a2f9101d94113a4d0883b77152b2f4451f5bee8b6fad68d0c` |
 | scripts/silent-orbit.mjs | 11385 | `529ddf36459c3d36734125d51cb493d33d506f09a3c24c25b4bc04b0da05d44b` |
@@ -202,13 +203,13 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
 | scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
 | scripts/tests/silent-orbit-cli.test.mjs | 12179 | `51d3b5589c6279e4e36fdf6373c55cc826b9b9ee578daf2b716fb00211c82e19` |
-| scripts/tests/site-release.test.mjs | 8352 | `3cd650f1fa72ab0103aca8eeedae91ba7218d9540094e06ba921d59e5b8560a2` |
+| scripts/tests/site-release.test.mjs | 8876 | `5e00c74b93b5c7294db74b80d0b1a521794ea1677a786d9bea0b155d6060a4c0` |
 | scripts/tests/skill-health.test.mjs | 6006 | `56e10c60260711d2bb1f6015f01b7f778720c8ddb0bbcd950e81228b5040158e` |
 | scripts/tests/skill-management-cli.test.mjs | 7947 | `5b15761124e0fc6f7f0320fcc937a603069ce6afe4e5bad7062d655a3213c59a` |
 | scripts/tests/skill-management.test.mjs | 20213 | `f6a6dae85a20803629581cfbe7988d908c6f2ec06dbb940dc2f6f4404a2869ea` |
 | scripts/tests/skill-search.test.mjs | 4809 | `591d27b5d91119dbf24b575edf2fa363136d314462bbb2702aa3bf5b99babe2b` |
 | scripts/tests/source-adapters.test.mjs | 12596 | `33921f40994d66a7c80772511d1be11977d510e5e1ef7a3c2cc6e2e54472c121` |
-| scripts/tests/source-of-truth-boundary.test.mjs | 4001 | `3e741f3072b442f037cc17f7388b900c48a8f114eaf9df6cf3bdc9e031d3fbfa` |
+| scripts/tests/source-of-truth-boundary.test.mjs | 4151 | `fc7b550923ed53409bbb455b84e2d5c4884bef683d9c667490f72823ab3f08d8` |
 | scripts/tests/sync-data.test.mjs | 948 | `b388085933d62c89e70e9772ccf041597df451715b1257b9bb3be935e5407451` |
 | scripts/tests/trusted-source-maintenance.test.mjs | 12938 | `897b536aa270c9566ec87fa44da081b27b86cc842cc2137bac47cb4372e55df3` |
 | scripts/tests/v1-acceptance-receipt.test.mjs | 1560 | `55fb8f9fd4a620a82a28c4554e94e08872c79c4c04f1192f9a765c208dfdab42` |
@@ -216,8 +217,8 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/validate-data.mjs | 15240 | `7d6fed27a34a33bbacb3a2bcc5a50d3d968dc9d1f9b3744fdc5df6f144a33c58` |
 | scripts/validate-generator-contracts.mjs | 3165 | `3641f321c74723f5b36db2ce3f7e63ad144685bd91decaec0def8cdce1a11dcb` |
 | scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
-| scripts/validate-public-release.mjs | 19579 | `c3ab7a674a6553e145c75c5e6469019a41c15ba96b3d2cda230cb8aefd01e9fd` |
-| scripts/validate-readme.mjs | 5583 | `2422b19a385add3c099f9b03adc19f0d29b1197e05a38f91f093e76c5284f353` |
+| scripts/validate-public-release.mjs | 19778 | `7f0df624eb50e148012bf9f8b7d1e2bf9167293ed218e36a97e7c6c0c917aa06` |
+| scripts/validate-readme.mjs | 5607 | `fcd8f529dfd0cf2b0eeb675241746c3a757bf3a5ac7ffe048ec889f1d2aa38d6` |
 | skills/audit-skill-cosmos/SKILL.md | 2834 | `3a03417d05342c3d919ce525076d51456867bcf4c4d8c2219e7619347b93e70d` |
 | skills/audit-skill-cosmos/agents/openai.yaml | 251 | `34583d764cc6efff15dd21bbc0d663a751b36c2e3b83a017ea32766b91fa493c` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |

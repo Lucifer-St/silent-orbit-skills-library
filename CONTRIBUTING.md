@@ -45,8 +45,8 @@ Released `*.v1.schema.json` files are frozen by
 `schemas/schema-lock.v1.json`. Do not edit a v1 Schema or its lock digest. A
 contract change requires a new versioned Schema family, deterministic dry-run
 migration, pre-write backup, validation receipt, and old/new fixtures. Update
-`VERSIONING_AND_MIGRATIONS.md`, both Quickstarts, and release notes in the same
-PR.
+`docs/policies/versioning-and-migrations.md`, both Quickstarts, and release
+notes in the same PR.
 
 The release gate must recompute the Schema lock and pass from a clean checkout.
 Generated RC files are outputs; never hand-patch them to make a migration pass.
@@ -55,8 +55,8 @@ Generated RC files are outputs; never hand-patch them to make a migration pass.
 
 The package/repository release version and CLI interface version are
 independent. For the current source, the package is `0.11.0-beta.6` while
-`silent-orbit --version` reports `0.4.0`. Apply the SemVer and deprecation
-policy in `VERSIONING_AND_MIGRATIONS.md`; document every compatibility change
+`silent-orbit --version` reports `0.4.0`. Apply the SemVer and deprecation policy in
+`docs/policies/versioning-and-migrations.md`; document every compatibility change
 in release notes.
 
 ## Catalog contributions

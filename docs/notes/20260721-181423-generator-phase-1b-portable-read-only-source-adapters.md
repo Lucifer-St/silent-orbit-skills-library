@@ -135,4 +135,4 @@ The adapter test suite proves:
 - a user-owned frontend implementation built from the public handoff contract.
 - install, update, disable, freeze, remove, watcher, daemon, or browser-to-filesystem control.
 
-Phase 1C now builds the analyzer, review overrides, static renderer, and installable CLI over this scanner boundary; see `docs/architecture/GENERATOR_PHASE1C.md`. The next stages should add the thin Agent Skill wrapper and then run the real external-user Alpha without weakening the review-first privacy boundary.
+Phase 1C now builds the analyzer, review overrides, static renderer, and installable CLI over this scanner boundary; see `docs/notes/20260721-181423-generator-phase-1c-cli-generator-mvp.md`. The next stages should add the thin Agent Skill wrapper and then run the real external-user Alpha without weakening the review-first privacy boundary.
