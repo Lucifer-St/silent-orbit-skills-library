@@ -1,6 +1,6 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.11.0-beta.7` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.11.0-beta.8` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
 
 ## 1. Download and verify the artifact
 
@@ -16,16 +16,16 @@ interpreted as proof that the host has zero Skills.
 The hosted Silent Orbit site is browse-only. It cannot inspect or change a
 visitor's local Skill environment.
 
-Download these two assets from the [`v0.11.0-beta.7` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.7):
+Download these two assets from the [`v0.11.0-beta.8` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8):
 
-- `silent-orbit-skills-library-0.11.0-beta.7.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.8.tgz`
 - `SHA256SUMS.txt`
 
 In PowerShell, keep both files in the same directory and verify the tarball before installing it:
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.7\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.7.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.8\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.8.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -34,18 +34,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.7.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.8.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.7.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.8.tgz
 silent-orbit --version
 ```
 
-The package/repository release version is `0.11.0-beta.7`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
+The package/repository release version is `0.11.0-beta.8`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional Agent Skills
 

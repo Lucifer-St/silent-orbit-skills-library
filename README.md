@@ -13,6 +13,14 @@ Silent Orbit turns a growing AI Skills collection into a navigable product: sear
 
 The public catalog currently contains **153 Skills across 9 systems and 28 libraries**.
 
+## Start independent acceptance here
+
+Send the tester only the
+[`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8).
+They download `V1_RC_ONE_FILE_HANDOFF.zh-CN.md` from Assets, upload it to a
+local Agent, and say `开始验收`. They do not fill templates, type the workflow
+commands, or receive author-local files.
+
 ## Install the Public Generator
 
 The Public Generator is distributed only as the verified GitHub Pre-release tarball; it is not published to the npm registry. Follow the [Generator Quickstart](./docs/guides/generator-quickstart.md) to verify the artifact, install the CLI from the downloaded file, optionally install the bundled project Skills, and complete a reviewed first generation. Independent v1 candidates should use the single [15–25 minute RC acceptance checklist](./docs/testing/v1-rc-acceptance.md). The same release contains `skills-library-maintenance` and `manage-skill-cosmos` for a backed-up, conflict-reviewed global handoff. Phase 5C supports one host-injected, reviewed `skills@1.5.20` check-and-update batch with private recovery, rescan, Library/Obsidian sync, and verification. The standalone CLI host remains empty; Plugin, System, deletion, freeze, and unknown-source mutation stay separately gated, and native update has no transaction guarantee.
@@ -106,6 +114,8 @@ The development server runs locally. The production build is written to `dist/`.
 - [Beta testing guide](./docs/testing/beta-testing.md)
 - [Beta feedback template](./docs/testing/beta-feedback-template.md)
 - [V1 RC independent acceptance](./docs/testing/v1-rc-acceptance.md)
+- [V1 RC acceptance (简体中文傻瓜版)](./docs/testing/v1-rc-acceptance.zh-CN.md)
+- [V1 RC one-file Agent handoff (简体中文)](./docs/testing/v1-rc-one-file-handoff.zh-CN.md)
 - GitHub issue forms are available for reproducible bugs and experience feedback.
 
 The public beta uses no third-party analytics, cookies, or behavior tracking. Safari remains an external beta coverage item.
@@ -119,7 +129,7 @@ The public beta uses no third-party analytics, cookies, or behavior tracking. Sa
 - [Security policy](./SECURITY.md)
 - [Contribution policy](./CONTRIBUTING.md)
 
-The `v0.11.0-beta.7` v1 Schemas are locked by
+The `v0.11.0-beta.8` v1 Schemas are locked by
 `schemas/schema-lock.v1.json`. This is a GitHub Pre-release, not `v1.0.0`, and
 Production authority remains Public `main` after the required `release-gate`.
 

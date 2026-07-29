@@ -53,7 +53,7 @@ export function HistoryPage({ data, error, onDelete, onExport, onImport }: Histo
   return (
     <div className="page-stack history-page" data-page="history">
       <section className="page-header history-header">
-        <span className="pixel-label">HISTORY</span>
+        <span className="pixel-label">{text("记录", "HISTORY")}</span>
         <h1>{text("使用轨迹", "Usage History")}</h1>
         <p>{text("你主动记录的 Skill 成果。按时间倒序排列，并且只保存在当前浏览器中。", "Skill outcomes you chose to record, newest first and stored only in this browser.")}</p>
       </section>
@@ -62,7 +62,7 @@ export function HistoryPage({ data, error, onDelete, onExport, onImport }: Histo
         <div className="history-list-heading">
           <span className="pixel-label archive-heading" id="outcome-history-title">
             <CosmosAsset className="archive-icon" src={cosmosIcons.recordedOutcome} />
-            <span>RECORDED OUTCOMES</span>
+            <span>{text("已记录成果", "RECORDED OUTCOMES")}</span>
           </span>
           <span>{outcomes.length}</span>
         </div>
@@ -136,11 +136,11 @@ export function HistoryPage({ data, error, onDelete, onExport, onImport }: Histo
           <span>
             <span className="pixel-label archive-heading" id="personal-data-transfer-title">
               <CosmosAsset className="archive-icon" src={cosmosIcons.privateLocal} />
-              <span>ADVANCED DATA</span>
+              <span>{text("高级数据", "ADVANCED DATA")}</span>
             </span>
             <strong>{text("导入与导出个人数据", "Import and export personal data")}</strong>
           </span>
-          <small>JSON / LOCAL ONLY</small>
+          <small>{text("JSON / 仅保存在本地", "JSON / LOCAL ONLY")}</small>
         </summary>
         <div className="history-transfer-body" aria-labelledby="personal-data-transfer-title">
           <p>{text("仅在迁移或备份时使用。导入会以完整 JSON 数据替换当前个人记录。", "Use only for migration or backup. Import replaces the current personal records with the complete JSON payload.")}</p>
@@ -148,7 +148,7 @@ export function HistoryPage({ data, error, onDelete, onExport, onImport }: Histo
             className="personal-data-transfer"
             value={transferJson}
             onChange={(event) => setTransferJson(event.target.value)}
-            aria-label="Personal data JSON"
+            aria-label={text("个人数据 JSON", "Personal data JSON")}
             spellCheck={false}
             rows={7}
           />

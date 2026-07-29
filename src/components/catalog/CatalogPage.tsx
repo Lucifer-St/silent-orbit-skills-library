@@ -28,10 +28,10 @@ export interface CatalogPageProps {
 export function CatalogPage({ categories, onCategory, onPrivate, onSources, onChanges, onMaintenance }: CatalogPageProps) {
   const { category: categoryLabel, text } = useLocale();
   const secondaryEntries = [
-    { key: "private", label: "PERSONAL DECK", detail: text("个人常用", "Personal curation") },
-    { key: "sources", label: "SOURCES", detail: text("来源库速查", "Source index") },
-    { key: "changes", label: "CHANGES", detail: text("变更记录", "Change log") },
-    { key: "maintenance", label: "MAINTENANCE", detail: text("检查更新与本地交接", "Update status and local handoff") },
+    { key: "private", label: text("个人收藏", "PERSONAL DECK"), detail: text("个人常用", "Personal curation") },
+    { key: "sources", label: text("来源", "SOURCES"), detail: text("来源库速查", "Source index") },
+    { key: "changes", label: text("变更", "CHANGES"), detail: text("变更记录", "Change log") },
+    { key: "maintenance", label: text("维护", "MAINTENANCE"), detail: text("检查更新与本地交接", "Update status and local handoff") },
   ] as const;
   const secondaryHandlers = {
     private: onPrivate,
@@ -43,7 +43,7 @@ export function CatalogPage({ categories, onCategory, onPrivate, onSources, onCh
   return (
     <div className="page-stack catalog-page" data-page="catalog">
       <section className="page-header">
-        <span className="pixel-label">FUNCTION CATALOG</span>
+        <span className="pixel-label">{text("功能目录", "FUNCTION CATALOG")}</span>
         <h1>{text("技能图鉴", "Skill Catalog")}</h1>
         <p>{text(
           "按真实工作目标进入一个星区，比较其中的能力单元、来源与单个 Skills。",
@@ -78,7 +78,7 @@ export function CatalogPage({ categories, onCategory, onPrivate, onSources, onCh
                 <span className="catalog-category-index">{String(index + 1).padStart(2, "0")}</span>
                 <span className="catalog-category-copy">
                   <strong>{categoryLabel(category.category)}</strong>
-                  <small>{availableSkillCount} SKILLS / {category.units.length} LIBRARIES</small>
+                  <small>{text(`${availableSkillCount} 个 Skills / ${category.units.length} 个能力单元`, `${availableSkillCount} SKILLS / ${category.units.length} LIBRARIES`)}</small>
                 </span>
                 <span className="catalog-category-enter" aria-hidden="true">
                   {text("进入星区", "ENTER ZONE")} <ArrowUpRight size={14} strokeWidth={1.4} />
@@ -194,7 +194,7 @@ export function CategoryPage({
           <ArrowLeft aria-hidden="true" size={13} strokeWidth={1.5} />
           {text("返回全部目录", "ALL CATALOG")}
         </button>
-        <span className="pixel-label">FUNCTION CATALOG / {String(categoryIndex + 1).padStart(2, "0")}</span>
+        <span className="pixel-label">{text("功能目录", "FUNCTION CATALOG")} / {String(categoryIndex + 1).padStart(2, "0")}</span>
         <h1>{categoryLabel(category.category)}</h1>
         <p>
           {text(
@@ -235,7 +235,7 @@ export function CategoryPage({
                     >
                       <span className="unit-kind">{metadataLabel(unit.kind ?? unit.type)}</span>
                       <strong>{libraryTitle(library, unit.title)}</strong>
-                      <small>{String(index + 1).padStart(2, "0")} / {unitSkills.length} SKILLS</small>
+                      <small>{String(index + 1).padStart(2, "0")} / {text(`${unitSkills.length} 个 Skills`, `${unitSkills.length} SKILLS`)}</small>
                     </button>
                   </article>
                 );
@@ -245,14 +245,14 @@ export function CategoryPage({
 
           <section className="category-skill-folio" aria-labelledby="selected-library-title">
             <header className="category-skill-folio-header">
-              <span>LIBRARY</span>
+              <span>{text("能力单元", "LIBRARY")}</span>
               <h2 id="selected-library-title">{libraryTitle(selectedLibrary, selectedUnit.title)}</h2>
               <p>{libraryDescription(selectedLibrary, text(
                 `包含 ${selectedSkills.length} 个相关 Skills，按真实来源归档。`,
                 `${selectedSkills.length} related Skills, preserved under their real source.`,
               ))}</p>
               <div>
-                <span>{selectedSkills.length} SKILLS</span>
+                <span>{text(`${selectedSkills.length} 个 Skills`, `${selectedSkills.length} SKILLS`)}</span>
                 <span>{metadataLabel(selectedLibrary?.source_label ?? selectedUnit.type)}</span>
                 {selectedLibrary?.source_url ? (
                   <a href={selectedLibrary.source_url} target="_blank" rel="noreferrer">
@@ -265,13 +265,13 @@ export function CategoryPage({
           </section>
 
           <aside className="category-cosmos-specimen" aria-label={text("天体标本", "Celestial specimen")}>
-            <span className="category-specimen-kicker">ARCHIVE SPECIMEN</span>
+            <span className="category-specimen-kicker">{text("档案标本", "ARCHIVE SPECIMEN")}</span>
             <CosmosAsset
               className="category-specimen-body"
               src={getLibraryVisual(resolvedUnitId ?? category.category)}
             />
             <div className="category-specimen-fact">
-              <span>LIBRARY BODY</span>
+              <span>{text("能力单元主体", "LIBRARY BODY")}</span>
               <strong>{String(categoryIndex + 1).padStart(2, "0")}·{String(selectedSkills.length).padStart(2, "0")}</strong>
             </div>
             <CosmosAsset
@@ -279,7 +279,7 @@ export function CategoryPage({
               src={getSkillVisual(`${resolvedUnitId ?? category.category}:echo`)}
             />
             <div className="category-specimen-fact">
-              <span>WEAK SIGNAL</span>
+              <span>{text("微弱信号", "WEAK SIGNAL")}</span>
               <strong>{matchingSkills.length} / {totalSkillCount}</strong>
             </div>
             <CosmosAsset
@@ -287,7 +287,7 @@ export function CategoryPage({
               src={getRelicVisual(categoryIndex)}
             />
             <div className="category-specimen-fact">
-              <span>ARCHIVE RELIC</span>
+              <span>{text("档案遗迹", "ARCHIVE RELIC")}</span>
               <strong>{metadataLabel(selectedUnit.kind ?? selectedUnit.type)}</strong>
             </div>
           </aside>

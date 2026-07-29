@@ -168,14 +168,15 @@ function validateGeneratedDirectory(root) {
 
 export function createDefaultSilentOrbitConfigV1({ projectId = "my-skill-library", title = "My Skill Library" } = {}) {
   const normalizedProjectId = portableSlug(projectId);
+  const displayTitle = String(title).trim() || "My Skill Library";
   return {
     schemaVersion: 1,
     project: {
       schemaVersion: 1,
       projectId: normalizedProjectId,
-      title: { "en-US": String(title).trim() || "My Skill Library" },
-      locales: ["en-US"],
-      defaultLocale: "en-US",
+      title: { "zh-CN": displayTitle, "en-US": displayTitle },
+      locales: ["zh-CN", "en-US"],
+      defaultLocale: "zh-CN",
       renderer: { theme: "reference-index", defaultRoute: "/" },
       privacy: {
         defaultVisibility: "review-required",

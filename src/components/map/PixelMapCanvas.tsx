@@ -16,6 +16,7 @@ import {
   zoomViewport,
 } from "../../lib/mapViewport";
 import type { LibraryStationMapNode, MapViewMode, SkillDotMapNode, SkillMapModel } from "../../types";
+import { useLocale } from "../../i18n/LocaleContext";
 
 interface PixelMapCanvasProps {
   readonly model: SkillMapModel;
@@ -44,6 +45,7 @@ export function PixelMapCanvas({
   onResetFocus,
   onOpenCategory,
 }: PixelMapCanvasProps) {
+  const { text } = useLocale();
   const selectedStation = selectedStationId
     ? model.stations.find((station) => station.id === selectedStationId)
     : undefined;
@@ -165,11 +167,11 @@ export function PixelMapCanvas({
             onCategory,
           })}
         />
-        <strong>{getModeLabel(viewMode)}</strong>
+        <strong>{getModeLabel(viewMode, text)}</strong>
       </div>
 
       <p className="sr-only" aria-live="polite">
-        {getSelectionTitle(viewMode, selectedCategory, selectedStation, matchedDots.length)}
+        {getSelectionTitle(viewMode, selectedCategory, selectedStation, matchedDots.length, text)}
       </p>
 
       <div
@@ -263,11 +265,11 @@ export function PixelMapCanvas({
         )}
 
         <div className="map-selection-label">
-          <strong>{getSelectionTitle(viewMode, selectedCategory, selectedStation, matchedDots.length)}</strong>
-          <span>{getSelectionHint(viewMode, selectedStation, matchedDots.length)}</span>
+          <strong>{getSelectionTitle(viewMode, selectedCategory, selectedStation, matchedDots.length, text)}</strong>
+          <span>{getSelectionHint(viewMode, selectedStation, matchedDots.length, text)}</span>
           {viewMode !== "overview" && viewMode !== "search" && onResetFocus && (
             <button className="map-mini-button" type="button" onClick={onResetFocus}>
-              Reset map
+              {text("重置地图", "Reset map")}
             </button>
           )}
         </div>
@@ -404,11 +406,13 @@ function getRouteFocusState(
   return stationState === "active" || stationState === "match" || stationState === "related" ? "is-focused" : "is-muted";
 }
 
-function getModeLabel(viewMode: MapViewMode) {
-  if (viewMode === "category") return "Category focus";
-  if (viewMode === "library") return "Library focus";
-  if (viewMode === "search") return "Search focus";
-  return "Pixel OS Map";
+type TextSelector = (zh: string, en: string) => string;
+
+function getModeLabel(viewMode: MapViewMode, text: TextSelector) {
+  if (viewMode === "category") return text("分类聚焦", "Category focus");
+  if (viewMode === "library") return text("能力单元聚焦", "Library focus");
+  if (viewMode === "search") return text("搜索聚焦", "Search focus");
+  return text("像素 OS 地图", "Pixel OS Map");
 }
 
 function getSelectionTitle(
@@ -416,18 +420,19 @@ function getSelectionTitle(
   selectedCategory: string | null,
   selectedStation: LibraryStationMapNode | undefined,
   matchedCount: number,
+  text: TextSelector,
 ) {
-  if (viewMode === "search") return `${matchedCount} matched skills`;
+  if (viewMode === "search") return text(`${matchedCount} 个匹配 Skills`, `${matchedCount} matched skills`);
   if (viewMode === "library" && selectedStation) return selectedStation.title;
   if (viewMode === "category" && selectedCategory) return selectedCategory;
-  return "All function zones";
+  return text("全部功能分区", "All function zones");
 }
 
-function getSelectionHint(viewMode: MapViewMode, selectedStation: LibraryStationMapNode | undefined, matchedCount: number) {
-  if (viewMode === "search") return `${matchedCount} skill dots highlighted with their stations and zones`;
-  if (viewMode === "library" && selectedStation) return `${selectedStation.skillCount} skills in this ability unit`;
-  if (viewMode === "category") return "Stations outside this function zone are softened for context";
-  return "Select a zone or station to focus the map";
+function getSelectionHint(viewMode: MapViewMode, selectedStation: LibraryStationMapNode | undefined, matchedCount: number, text: TextSelector) {
+  if (viewMode === "search") return text(`已高亮 ${matchedCount} 个 Skill 点及其能力单元和分区`, `${matchedCount} skill dots highlighted with their stations and zones`);
+  if (viewMode === "library" && selectedStation) return text(`这个能力单元包含 ${selectedStation.skillCount} 个 Skills`, `${selectedStation.skillCount} skills in this ability unit`);
+  if (viewMode === "category") return text("其他功能分区的能力单元已淡化，便于保留上下文", "Stations outside this function zone are softened for context");
+  return text("选择功能分区或能力单元来聚焦地图", "Select a zone or station to focus the map");
 }
 
 function LibraryFocusPanel({
@@ -441,14 +446,15 @@ function LibraryFocusPanel({
   readonly onResetFocus?: () => void;
   readonly onOpenCategory?: (category: string) => void;
 }) {
+  const { text } = useLocale();
   return (
-    <aside className="library-focus-panel" aria-label="Library focus panel">
-      <span className="pixel-label">LIBRARY FOCUS</span>
+    <aside className="library-focus-panel" aria-label={text("能力单元聚焦面板", "Library focus panel")}>
+      <span className="pixel-label">{text("能力单元聚焦", "LIBRARY FOCUS")}</span>
       <strong>{station.title}</strong>
       <p>
-        {station.category} / {station.skillCount} skills / {station.highValueCount} high-value
+        {station.category} / {text(`${station.skillCount} 个 Skills`, `${station.skillCount} skills`)} / {text(`${station.highValueCount} 个高价值`, `${station.highValueCount} high-value`)}
       </p>
-      <div className="library-focus-dots" aria-label="Visible skills in this library">
+      <div className="library-focus-dots" aria-label={text("这个能力单元中可见的 Skills", "Visible skills in this library")}>
         {skillDots.map((dot) => (
           <span key={dot.id}>{dot.name}</span>
         ))}
@@ -456,12 +462,12 @@ function LibraryFocusPanel({
       <div className="library-focus-actions">
         {onOpenCategory && (
           <button className="map-mini-button" type="button" onClick={() => onOpenCategory(station.category)}>
-            Open zone
+            {text("打开分区", "Open zone")}
           </button>
         )}
         {onResetFocus && (
           <button className="map-mini-button" type="button" onClick={onResetFocus}>
-            Overview
+            {text("总览", "Overview")}
           </button>
         )}
       </div>

@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Editorial Skill Atlas</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='white'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='black' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='black'/%3E%3C/svg%3E" />
+    <title>Skill 图书馆</title>
     <link rel="preload" href="./fonts/playfair-display/PlayfairDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="./fonts/lora/Lora-Variable.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="./fonts/inter/Inter-Variable.ttf" as="font" type="font/ttf" crossorigin />
@@ -15,66 +16,67 @@
     <div id="app" class="app-shell" data-view="map" data-detail-open="false">
       <header class="topbar">
         <div class="identity">
-          <span class="edition-label">Reference Preview / Phase 1E</span>
-          <strong id="atlas-title">Editorial Skill Atlas</strong>
+          <span class="edition-label" data-i18n="editionLabel">参考预览 / Phase 1E</span>
+          <strong id="atlas-title" data-i18n="atlasTitle">Skill 图书馆</strong>
           <span id="project-title" class="project-title">Skill Library</span>
         </div>
 
-        <nav class="view-switch" aria-label="Atlas view">
-          <button type="button" data-view-target="map" aria-pressed="true">Map</button>
-          <button type="button" data-view-target="library" aria-pressed="false">Library</button>
+        <nav class="view-switch" aria-label="图书馆视图" data-i18n-aria-label="atlasView">
+          <button type="button" data-view-target="map" aria-pressed="true" data-i18n="map">地图</button>
+          <button type="button" data-view-target="library" aria-pressed="false" data-i18n="library">目录</button>
+          <button id="locale-toggle" type="button" aria-label="切换为英文" data-i18n-aria-label="switchLanguage">EN</button>
         </nav>
 
         <label class="search-control">
-          <span class="sr-only">Search Skills</span>
-          <span class="search-label" aria-hidden="true">Search</span>
-          <input id="search" type="search" autocomplete="off" placeholder="Name, description, category, source" />
+          <span class="sr-only" data-i18n="searchSkills">搜索 Skills</span>
+          <span class="search-label" aria-hidden="true" data-i18n="search">搜索</span>
+          <input id="search" type="search" autocomplete="off" placeholder="名称、说明、分类或来源" data-i18n-placeholder="searchPlaceholder" />
           <kbd>/</kbd>
         </label>
 
         <span id="result-count" class="result-count" aria-live="polite"></span>
         <button id="mobile-filter-button" class="mobile-only filter-trigger" type="button">
-          Filters <span id="mobile-filter-count"></span>
+          <span data-i18n="filters">筛选</span> <span id="mobile-filter-count"></span>
         </button>
       </header>
 
       <main>
-        <section id="map-view" class="map-view" aria-label="Editorial taxonomy map">
+        <section id="map-view" class="map-view" aria-label="Skill 分类地图" data-i18n-aria-label="taxonomyMap">
           <div class="map-toolbar">
             <div>
-              <span class="section-label">Taxonomy spread</span>
-              <strong id="map-context">All Categories</strong>
+              <span class="section-label" data-i18n="taxonomySpread">分类总览</span>
+              <strong id="map-context">全部分类</strong>
             </div>
-            <button id="map-overview" type="button">Back to overview</button>
+            <button id="map-overview" type="button" data-i18n="backOverview">返回总览</button>
           </div>
           <div id="map-stage" class="map-stage">
-            <svg id="skill-map" viewBox="0 0 1200 800" role="tree" aria-label="Skills organized as editorial category chapters">
+            <svg id="skill-map" viewBox="0 0 1200 800" role="tree" aria-label="按分类章节组织的 Skills" data-i18n-aria-label="organizedSkills">
               <g id="map-viewport"></g>
             </svg>
-            <div class="zoom-controls" aria-label="Map zoom controls">
-              <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
-              <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
-              <button type="button" data-zoom="reset">Reset</button>
+            <div class="zoom-controls" aria-label="地图缩放控件" data-i18n-aria-label="zoomControls">
+              <button type="button" data-zoom="in" aria-label="放大" data-i18n-aria-label="zoomIn">+</button>
+              <button type="button" data-zoom="out" aria-label="缩小" data-i18n-aria-label="zoomOut">−</button>
+              <button type="button" data-zoom="reset" data-i18n="reset">重置</button>
             </div>
-            <p class="map-instruction">Drag to pan · use controls to zoom · select a chapter to enter</p>
+            <p class="map-instruction" data-i18n="mapInstruction">拖动平移 · 使用按钮缩放 · 选择一个分类进入</p>
           </div>
         </section>
 
-        <section id="library-view" class="library-view" aria-label="Editorial Skill index">
+        <section id="library-view" class="library-view" aria-label="Skill 目录" data-i18n-aria-label="skillIndex">
           <aside id="filter-panel" class="filter-panel">
             <div class="panel-heading">
               <div>
-                <span class="section-label">Index filters</span>
-                <strong>Refine the edition</strong>
+                <span class="section-label" data-i18n="indexFilters">目录筛选</span>
+                <strong data-i18n="refineEdition">缩小范围</strong>
               </div>
-              <button id="clear-filters" type="button">Clear</button>
+              <button id="clear-filters" type="button" data-i18n="clear">清除</button>
             </div>
             <fieldset>
-              <legend>Categories</legend>
+              <legend data-i18n="categories">分类</legend>
               <div id="category-filters"></div>
             </fieldset>
             <fieldset>
-              <legend>Sources</legend>
+              <legend data-i18n="sources">来源</legend>
               <div id="source-filters"></div>
             </fieldset>
           </aside>
@@ -82,27 +84,27 @@
           <div class="list-panel">
             <header class="library-heading">
               <div>
-                <span class="section-label">Library index</span>
-                <h1>Reviewed Skills</h1>
+                <span class="section-label" data-i18n="libraryIndex">图书馆目录</span>
+                <h1 data-i18n="reviewedSkills">已审阅 Skills</h1>
               </div>
               <div class="list-order">
                 <strong id="list-count"></strong>
-                <span>Alphabetical edition</span>
+                <span data-i18n="alphabeticalEdition">按名称排序</span>
               </div>
             </header>
-            <div id="skill-list" class="skill-list" role="listbox" aria-label="Skills"></div>
+            <div id="skill-list" class="skill-list" role="listbox" aria-label="Skills" data-i18n-aria-label="skills"></div>
             <div id="empty-state" class="empty-state" hidden>
-              <span class="section-label">No results</span>
-              <strong>No matching Skills</strong>
-              <span>Clear a filter or try another search.</span>
+              <span class="section-label" data-i18n="noResults">没有结果</span>
+              <strong data-i18n="noMatchingSkills">没有匹配的 Skills</strong>
+              <span data-i18n="emptyHint">清除筛选，或换一个关键词。</span>
             </div>
           </div>
         </section>
 
-        <aside id="detail-panel" class="detail-panel" aria-label="Skill article" aria-hidden="true">
+        <aside id="detail-panel" class="detail-panel" aria-label="Skill 详情" data-i18n-aria-label="skillArticle" aria-hidden="true">
           <div class="detail-actions">
-            <button id="detail-back" type="button">← Back</button>
-            <button id="detail-close" type="button" aria-label="Close detail">Close</button>
+            <button id="detail-back" type="button" data-i18n="back">← 返回</button>
+            <button id="detail-close" type="button" aria-label="关闭详情" data-i18n="close" data-i18n-aria-label="closeDetail">关闭</button>
           </div>
           <div id="detail-content"></div>
         </aside>
@@ -112,14 +114,14 @@
         <form method="dialog" class="sheet">
           <div class="panel-heading">
             <div>
-              <span class="section-label">Index filters</span>
-              <strong>Refine the edition</strong>
+              <span class="section-label" data-i18n="indexFilters">目录筛选</span>
+              <strong data-i18n="refineEdition">缩小范围</strong>
             </div>
-            <button id="mobile-clear-filters" type="button">Clear</button>
+            <button id="mobile-clear-filters" type="button" data-i18n="clear">清除</button>
           </div>
-          <fieldset><legend>Categories</legend><div id="mobile-category-filters"></div></fieldset>
-          <fieldset><legend>Sources</legend><div id="mobile-source-filters"></div></fieldset>
-          <button class="apply-button" value="close">Apply filters</button>
+          <fieldset><legend data-i18n="categories">分类</legend><div id="mobile-category-filters"></div></fieldset>
+          <fieldset><legend data-i18n="sources">来源</legend><div id="mobile-source-filters"></div></fieldset>
+          <button class="apply-button" value="close" data-i18n="applyFilters">应用筛选</button>
         </form>
       </dialog>
     </div>

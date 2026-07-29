@@ -57,9 +57,9 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
 function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.11.0-beta.7",
-    "silent-orbit-skills-library-0.11.0-beta.7.tgz",
-    "silent-orbit-skills-library-0\\.11\\.0-beta\\.7\\.tgz$",
+    "v0.11.0-beta.8",
+    "silent-orbit-skills-library-0.11.0-beta.8.tgz",
+    "silent-orbit-skills-library-0\\.11\\.0-beta\\.8\\.tgz$",
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",

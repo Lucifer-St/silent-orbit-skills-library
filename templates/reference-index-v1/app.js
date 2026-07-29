@@ -1,7 +1,139 @@
 const SVG_NS = "http://www.w3.org/2000/svg";
+const LOCALE_STORAGE_KEY = "silent-orbit-reference-locale-v1";
+const messages = {
+  "zh-CN": {
+    editionLabel: "参考预览 / Phase 1E",
+    atlasTitle: "Skill 图书馆",
+    atlasView: "图书馆视图",
+    map: "地图",
+    library: "目录",
+    switchLanguage: "切换为英文",
+    searchSkills: "搜索 Skills",
+    search: "搜索",
+    searchPlaceholder: "名称、说明、分类或来源",
+    filters: "筛选",
+    taxonomyMap: "Skill 分类地图",
+    taxonomySpread: "分类总览",
+    backOverview: "返回总览",
+    organizedSkills: "按分类章节组织的 Skills",
+    zoomControls: "地图缩放控件",
+    zoomIn: "放大",
+    zoomOut: "缩小",
+    reset: "重置",
+    mapInstruction: "拖动平移 · 使用按钮缩放 · 选择一个分类进入",
+    skillIndex: "Skill 目录",
+    indexFilters: "目录筛选",
+    refineEdition: "缩小范围",
+    clear: "清除",
+    categories: "分类",
+    sources: "来源",
+    libraryIndex: "图书馆目录",
+    reviewedSkills: "已审阅 Skills",
+    alphabeticalEdition: "按名称排序",
+    skills: "Skills",
+    noResults: "没有结果",
+    noMatchingSkills: "没有匹配的 Skills",
+    emptyHint: "清除筛选，或换一个关键词。",
+    skillArticle: "Skill 详情",
+    back: "← 返回",
+    close: "关闭",
+    closeDetail: "关闭详情",
+    applyFilters: "应用筛选",
+    allCategories: "全部分类",
+    uncategorized: "未分类",
+    unknownSource: "未知来源",
+    creatorShowcase: "作者展示",
+    public: "公开",
+    noDescription: "未提供公开说明。",
+    notSupplied: "未提供",
+    trigger: "触发方式",
+    category: "分类",
+    source: "来源",
+    publication: "公开范围",
+    reviewedMetadata: "这里只展示经过审阅的公开元数据 · 已安装 Skill 的完整说明不在本图书馆内",
+    matchingSkills: "个匹配 Skills",
+    inChapter: "个 Skills",
+    moreInChapter: "个更多 Skills",
+    noMatchingMap: "没有匹配的 Skills",
+    reopenChapter: "清除筛选或搜索词，重新打开这个分类。",
+    loadFailure: "无法载入 Skill 图书馆。",
+  },
+  "en-US": {
+    editionLabel: "Reference Preview / Phase 1E",
+    atlasTitle: "Editorial Skill Atlas",
+    atlasView: "Atlas view",
+    map: "Map",
+    library: "Library",
+    switchLanguage: "Switch to Chinese",
+    searchSkills: "Search Skills",
+    search: "Search",
+    searchPlaceholder: "Name, description, category, source",
+    filters: "Filters",
+    taxonomyMap: "Editorial taxonomy map",
+    taxonomySpread: "Taxonomy spread",
+    backOverview: "Back to overview",
+    organizedSkills: "Skills organized as editorial category chapters",
+    zoomControls: "Map zoom controls",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    reset: "Reset",
+    mapInstruction: "Drag to pan · use controls to zoom · select a chapter to enter",
+    skillIndex: "Editorial Skill index",
+    indexFilters: "Index filters",
+    refineEdition: "Refine the edition",
+    clear: "Clear",
+    categories: "Categories",
+    sources: "Sources",
+    libraryIndex: "Library index",
+    reviewedSkills: "Reviewed Skills",
+    alphabeticalEdition: "Alphabetical edition",
+    skills: "Skills",
+    noResults: "No results",
+    noMatchingSkills: "No matching Skills",
+    emptyHint: "Clear a filter or try another search.",
+    skillArticle: "Skill article",
+    back: "← Back",
+    close: "Close",
+    closeDetail: "Close detail",
+    applyFilters: "Apply filters",
+    allCategories: "All Categories",
+    uncategorized: "Uncategorized",
+    unknownSource: "Unknown source",
+    creatorShowcase: "Creator showcase",
+    public: "Public",
+    noDescription: "No public description supplied.",
+    notSupplied: "Not supplied",
+    trigger: "Trigger",
+    category: "Category",
+    source: "Source",
+    publication: "Publication",
+    reviewedMetadata: "Reviewed public metadata · installed Skill instructions remain outside this Atlas",
+    matchingSkills: "matching Skills",
+    inChapter: "Skills",
+    moreInChapter: "more in this chapter",
+    noMatchingMap: "No matching Skills",
+    reopenChapter: "Clear a filter or search phrase to reopen this chapter.",
+    loadFailure: "Unable to load the Skill library.",
+  },
+};
+const categoryTranslations = {
+  "Content & Communication": "内容与沟通",
+  "Documents & Communication": "文档与沟通",
+  "Data & Analytics": "数据与分析",
+  "Development & Delivery": "开发与交付",
+  "Software Development": "软件开发",
+  "Knowledge & Research": "知识与研究",
+  "Research & Knowledge": "研究与知识",
+  "Creative & Media": "创意与媒体",
+  "Automation & Operations": "自动化与运营",
+  "Productivity & Operations": "效率与运营",
+  "Review Required": "需要人工复核",
+};
 
 const state = {
   data: null,
+  locale: "zh-CN",
+  supportedLocales: ["zh-CN", "en-US"],
   view: "map",
   query: "",
   category: "",
@@ -19,7 +151,73 @@ const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const mobileViewport = matchMedia("(max-width: 760px)");
 const byId = (id) => document.getElementById(id);
 const normalized = (value) => String(value ?? "").normalize("NFKC").toLowerCase();
-const titleFor = (localized) => localized?.["en-US"] ?? localized?.["zh-CN"] ?? "Skill Library";
+const t = (key) => messages[state.locale]?.[key] ?? messages["en-US"][key] ?? key;
+const titleFor = (localized) => localized?.[state.locale] ?? localized?.["zh-CN"] ?? localized?.["en-US"] ?? "Skill Library";
+const categoryFor = (category) => state.locale === "zh-CN" ? categoryTranslations[category] ?? category : category;
+const descriptionFor = (skill) => skill.description_i18n?.[state.locale]
+  ?? skill.description_i18n?.["zh-CN"]
+  ?? skill.description_i18n?.["en-US"]
+  ?? skill.description
+  ?? t("noDescription");
+
+function applyLocale() {
+  document.documentElement.lang = state.locale;
+  document.documentElement.dataset.locale = state.locale;
+  for (const element of document.querySelectorAll("[data-i18n]")) {
+    element.textContent = t(element.dataset.i18n);
+  }
+  for (const element of document.querySelectorAll("[data-i18n-placeholder]")) {
+    element.setAttribute("placeholder", t(element.dataset.i18nPlaceholder));
+  }
+  for (const element of document.querySelectorAll("[data-i18n-aria-label]")) {
+    element.setAttribute("aria-label", t(element.dataset.i18nAriaLabel));
+  }
+  const localeToggle = byId("locale-toggle");
+  if (localeToggle) {
+    localeToggle.hidden = state.supportedLocales.length < 2;
+    localeToggle.textContent = state.locale === "zh-CN" ? "EN" : "中";
+  }
+}
+
+function resolveLocale() {
+  const configured = Array.isArray(state.data?.project?.locales)
+    ? state.data.project.locales.filter((locale) => messages[locale])
+    : [];
+  state.supportedLocales = configured.length ? configured : ["zh-CN", "en-US"];
+  let saved;
+  try {
+    saved = localStorage.getItem(LOCALE_STORAGE_KEY);
+  } catch {
+    saved = null;
+  }
+  const browserLocale = navigator.language?.toLowerCase().startsWith("zh") ? "zh-CN" : "en-US";
+  state.locale = [saved, state.data?.project?.defaultLocale, browserLocale, "zh-CN", "en-US"]
+    .find((locale) => state.supportedLocales.includes(locale)) ?? state.supportedLocales[0];
+}
+
+function toggleLocale() {
+  const currentIndex = state.supportedLocales.indexOf(state.locale);
+  state.locale = state.supportedLocales[(currentIndex + 1) % state.supportedLocales.length];
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, state.locale);
+  } catch {
+    // The interface still switches for this session when browser storage is unavailable.
+  }
+  applyLocale();
+  render();
+  updateProjectIdentity();
+}
+
+function updateProjectIdentity() {
+  const projectTitle = titleFor(state.data.project.title);
+  const skillCount = model().skills.length;
+  byId("project-title").textContent = state.locale === "zh-CN"
+    ? `${projectTitle} · ${skillCount} 个已审阅 Skills`
+    : `${projectTitle} · ${skillCount} reviewed Skills`;
+  document.title = state.locale === "zh-CN"
+    ? `Skill 图书馆 · ${projectTitle}`
+    : `Editorial Skill Atlas · ${projectTitle}`;
+}
 
 function model() {
   const appData = state.data.appData;
@@ -31,12 +229,12 @@ function model() {
   const skills = appData.skills.map((skill) => ({
     ...skill,
     categoryName: categoryBySkill.get(skill.name) ?? skill.category ?? "Uncategorized",
-    sourceName: sourceByKey.get(skill.library_key)?.title ?? skill.library_title ?? "Unknown source",
+    sourceName: sourceByKey.get(skill.library_key)?.title ?? skill.library_title ?? t("unknownSource"),
     sourceUrl: sourceByKey.get(skill.library_key)?.source_url ?? skill.repo_url,
-    publication: skill.visibility === "creator-showcase" ? "Creator showcase" : "Public",
-  })).sort((left, right) => left.name.localeCompare(right.name, "en"));
-  const categories = [...new Set(skills.map((skill) => skill.categoryName))].sort((left, right) => left.localeCompare(right, "en"));
-  const sources = [...new Set(skills.map((skill) => skill.sourceName))].sort((left, right) => left.localeCompare(right, "en"));
+    publication: skill.visibility === "creator-showcase" ? "creatorShowcase" : "public",
+  })).sort((left, right) => left.name.localeCompare(right.name, state.locale));
+  const categories = [...new Set(skills.map((skill) => skill.categoryName))].sort((left, right) => categoryFor(left).localeCompare(categoryFor(right), state.locale));
+  const sources = [...new Set(skills.map((skill) => skill.sourceName))].sort((left, right) => left.localeCompare(right, state.locale));
   return { skills, categories, sources };
 }
 
@@ -45,8 +243,11 @@ function matchesQuery(skill) {
   return !query || normalized([
     skill.name,
     skill.description,
+    skill.description_i18n?.["zh-CN"],
+    skill.description_i18n?.["en-US"],
     skill.trigger,
     skill.categoryName,
+    categoryFor(skill.categoryName),
     skill.sourceName,
   ].join(" ")).includes(query);
 }
@@ -114,7 +315,7 @@ function renderFilters() {
     const count = skills.filter((skill) => matchesQuery(skill)
       && (!state.source || skill.sourceName === state.source)
       && skill.categoryName === category).length;
-    categoryTargets.forEach((target) => target.append(filterButton(category, category, "category", count, state.category === category)));
+    categoryTargets.forEach((target) => target.append(filterButton(categoryFor(category), category, "category", count, state.category === category)));
   }
   for (const source of sources) {
     const count = skills.filter((skill) => matchesQuery(skill)
@@ -131,7 +332,9 @@ function renderList() {
   state.visibleSkills = skills;
   if (state.activeIndex >= skills.length) state.activeIndex = Math.max(0, skills.length - 1);
   byId("result-count").textContent = `${skills.length} / ${model().skills.length}`;
-  byId("list-count").textContent = `${skills.length} ${skills.length === 1 ? "Skill" : "Skills"}`;
+  byId("list-count").textContent = state.locale === "zh-CN"
+    ? `${skills.length} 个 Skills`
+    : `${skills.length} ${skills.length === 1 ? "Skill" : "Skills"}`;
   byId("empty-state").hidden = skills.length > 0;
   const list = byId("skill-list");
   list.replaceChildren();
@@ -148,13 +351,13 @@ function renderList() {
     const name = document.createElement("strong");
     name.textContent = skill.name;
     const description = document.createElement("span");
-    description.textContent = skill.description || "No public description supplied.";
+    description.textContent = descriptionFor(skill);
     copy.append(name, description);
 
     const meta = document.createElement("span");
     meta.className = "skill-meta";
     const category = document.createElement("span");
-    category.textContent = skill.categoryName;
+    category.textContent = categoryFor(skill.categoryName);
     const source = document.createElement("span");
     source.textContent = skill.sourceName;
     meta.append(category, source);
@@ -172,7 +375,7 @@ function detailField(label, value, href) {
   const title = document.createElement("strong");
   title.textContent = label;
   const content = href ? document.createElement("a") : document.createElement("span");
-  content.textContent = value || "Not supplied";
+  content.textContent = value || t("notSupplied");
   if (href) {
     content.href = href;
     content.target = "_blank";
@@ -195,24 +398,24 @@ function renderDetail() {
   const article = document.createElement("article");
   const kicker = document.createElement("div");
   kicker.className = "detail-kicker section-label";
-  kicker.textContent = "Skill article";
+  kicker.textContent = t("skillArticle");
   const title = document.createElement("h1");
   title.textContent = skill.name;
   const description = document.createElement("p");
   description.className = "detail-description";
-  description.textContent = skill.description || "No public description supplied.";
+  description.textContent = descriptionFor(skill);
   article.append(
     kicker,
     title,
     description,
-    detailField("Trigger", skill.trigger),
-    detailField("Category", skill.categoryName),
-    detailField("Source", skill.sourceName, skill.sourceUrl),
-    detailField("Publication", skill.publication),
+    detailField(t("trigger"), skill.trigger),
+    detailField(t("category"), categoryFor(skill.categoryName)),
+    detailField(t("source"), skill.sourceName, skill.sourceUrl),
+    detailField(t("publication"), t(skill.publication)),
   );
   const footer = document.createElement("p");
   footer.className = "detail-footer";
-  footer.textContent = "Reviewed public metadata · installed Skill instructions remain outside this Atlas";
+  footer.textContent = t("reviewedMetadata");
   article.append(footer);
   content.append(article);
 }
@@ -341,13 +544,15 @@ function renderOverview(viewport) {
       class: `map-node category-spread${skills.length ? "" : " is-empty"}`,
       tabindex: "0",
       role: "treeitem",
-      "aria-label": `${category}, ${skills.length} matching Skills`,
+      "aria-label": state.locale === "zh-CN"
+        ? `${categoryFor(category)}，${skills.length} 个匹配 Skills`
+        : `${category}, ${skills.length} matching Skills`,
       transform: `translate(${card.x} ${card.y})`,
     });
     group.append(svgElement("rect", { class: "chapter-hit", width: card.width, height: card.height }));
     svgText(group, `0${index + 1}`, 0, 18, "chapter-number");
-    svgText(group, `${skills.length} Skills`, card.width, 18, "chapter-count", { "text-anchor": "end" });
-    wrappedSvgText(group, category, {
+    svgText(group, state.locale === "zh-CN" ? `${skills.length} 个 Skills` : `${skills.length} Skills`, card.width, 18, "chapter-count", { "text-anchor": "end" });
+    wrappedSvgText(group, categoryFor(category), {
       x: 0,
       y: 62,
       maximumCharacters: mobileViewport.matches ? 26 : 34,
@@ -367,11 +572,23 @@ function renderOverview(viewport) {
       });
       sampleY += wrappedLines(skill.name, mobileViewport.matches ? 39 : 52).length * 15 + 7;
     });
-    if (skills.length > samples.length) svgText(group, `+ ${skills.length - samples.length} more in this chapter`, card.width, card.height - 4, "chapter-more", { "text-anchor": "end" });
+    if (skills.length > samples.length) {
+      const remaining = skills.length - samples.length;
+      svgText(
+        group,
+        state.locale === "zh-CN" ? `+ 本分类还有 ${remaining} 个` : `+ ${remaining} more in this chapter`,
+        card.width,
+        card.height - 4,
+        "chapter-more",
+        { "text-anchor": "end" },
+      );
+    }
     activateMapNode(group, () => enterCategory(category));
     viewport.append(group);
   });
-  byId("map-context").textContent = `All Categories · ${visible.length} reviewed Skills`;
+  byId("map-context").textContent = state.locale === "zh-CN"
+    ? `${t("allCategories")} · ${visible.length} 个已审阅 Skills`
+    : `${t("allCategories")} · ${visible.length} reviewed Skills`;
 }
 
 function renderCategory(viewport, category) {
@@ -389,19 +606,28 @@ function renderCategory(viewport, category) {
   const worldHeight = Math.max(mobile ? 1000 : 800, startY + rows * rowHeight + 70);
 
   viewport.append(svgElement("rect", { x: 20, y: 26, width: width - 40, height: 106, class: "focus-band" }));
-  wrappedSvgText(viewport, category, {
+  wrappedSvgText(viewport, categoryFor(category), {
     x: 42,
     y: 78,
     maximumCharacters: mobile ? 22 : 42,
     lineHeight: 38,
     className: "focus-title",
   });
-  svgText(viewport, `${skills.length} matching Skills`, width - 42, 108, "focus-count", { "text-anchor": "end" });
+  svgText(
+    viewport,
+    state.locale === "zh-CN" ? `${skills.length} 个匹配 Skills` : `${skills.length} matching Skills`,
+    width - 42,
+    108,
+    "focus-count",
+    { "text-anchor": "end" },
+  );
 
   if (!skills.length) {
-    svgText(viewport, "No matching Skills", 42, 230, "map-empty-title");
-    svgText(viewport, "Clear a filter or search phrase to reopen this chapter.", 42, 268, "map-empty-copy");
-    byId("map-context").textContent = `${category} · 0 matching Skills`;
+    svgText(viewport, t("noMatchingMap"), 42, 230, "map-empty-title");
+    svgText(viewport, t("reopenChapter"), 42, 268, "map-empty-copy");
+    byId("map-context").textContent = state.locale === "zh-CN"
+      ? `${categoryFor(category)} · 0 个匹配 Skills`
+      : `${category} · 0 matching Skills`;
     return { worldHeight };
   }
 
@@ -421,7 +647,7 @@ function renderCategory(viewport, category) {
       tabindex: "0",
       role: "treeitem",
       "aria-selected": String(active),
-      "aria-label": `${skill.name}. ${skill.categoryName}. ${skill.publication}.`,
+      "aria-label": `${skill.name}. ${categoryFor(skill.categoryName)}. ${t(skill.publication)}.`,
       transform: `translate(${x} ${y})`,
     });
     group.append(svgElement("rect", { class: "skill-hit", width: columnWidth, height: nodeHeight }));
@@ -432,12 +658,14 @@ function renderCategory(viewport, category) {
       lineHeight: 18,
       className: "map-skill-title",
     });
-    svgText(group, skill.publication, 16, nodeHeight - 13, "skill-publication");
+    svgText(group, t(skill.publication), 16, nodeHeight - 13, "skill-publication");
     activateMapNode(group, () => openSkill(skill.name));
     viewport.append(group);
     state.mapNodes.set(skill.name, { x, y, width: columnWidth, height: nodeHeight });
   });
-  byId("map-context").textContent = `${category} · ${skills.length} matching Skills`;
+  byId("map-context").textContent = state.locale === "zh-CN"
+    ? `${categoryFor(category)} · ${skills.length} 个匹配 Skills`
+    : `${category} · ${skills.length} matching Skills`;
   return { worldHeight };
 }
 
@@ -508,6 +736,7 @@ function focusSkill(name) {
 
 function render() {
   document.documentElement.dataset.ready = "true";
+  applyLocale();
   byId("app").dataset.view = state.view;
   for (const button of document.querySelectorAll("[data-view-target]")) {
     button.setAttribute("aria-pressed", String(button.dataset.viewTarget === state.view));
@@ -559,6 +788,7 @@ function bindEvents() {
   for (const button of document.querySelectorAll("[data-view-target]")) {
     button.addEventListener("click", () => switchView(button.dataset.viewTarget));
   }
+  byId("locale-toggle").addEventListener("click", toggleLocale);
   byId("clear-filters").addEventListener("click", clearFilters);
   byId("mobile-clear-filters").addEventListener("click", clearFilters);
   byId("mobile-filter-button").addEventListener("click", () => byId("mobile-filters").showModal());
@@ -641,9 +871,9 @@ async function start() {
   const response = await fetch("./site-data.json", { cache: "no-store" });
   if (!response.ok) throw new Error(`site-data.json returned ${response.status}`);
   state.data = await response.json();
-  const projectTitle = titleFor(state.data.project.title);
-  byId("project-title").textContent = `${projectTitle} · ${model().skills.length} reviewed Skills`;
-  document.title = `Editorial Skill Atlas · ${projectTitle}`;
+  resolveLocale();
+  applyLocale();
+  updateProjectIdentity();
   restoreHash();
   state.viewBox = state.mapFocus ? focusOverviewViewBox() : overviewViewBox();
   bindEvents();
@@ -655,7 +885,7 @@ start().catch((error) => {
   const message = document.createElement("main");
   message.className = "empty-state";
   const title = document.createElement("strong");
-  title.textContent = "Unable to load the Skill library.";
+  title.textContent = t("loadFailure");
   const detail = document.createElement("span");
   detail.textContent = error.message;
   message.append(title, detail);

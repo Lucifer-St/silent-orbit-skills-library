@@ -65,17 +65,21 @@ const requiredFiles = [
   "docs/releases/v0.11.0-beta.5.md",
   "docs/releases/v0.11.0-beta.6.md",
   "docs/releases/v0.11.0-beta.7.md",
+  "docs/releases/v0.11.0-beta.8.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "docs/policies/versioning-and-migrations.md",
   "docs/policies/versioning-and-migrations.zh-CN.md",
   "docs/testing/v1-rc-acceptance.md",
+  "docs/testing/v1-rc-acceptance.zh-CN.md",
+  "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
   "docs/README.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
   "package.json",
   "schemas/schema-lock.v1.json",
+  "scripts/prepare-v1-release-assets.mjs",
   "tsconfig.json",
   "vite.config.ts",
   "public/robots.txt",
@@ -334,6 +338,29 @@ function assertPackageContract(rootDir) {
   }
 }
 
+function assertHandoffContract(rootDir) {
+  const handoffPath = path.join(rootDir, "docs", "testing", "v1-rc-one-file-handoff.zh-CN.md");
+  const bytes = fs.readFileSync(handoffPath);
+  if (bytes.subarray(0, 3).toString("hex") !== "efbbbf") {
+    throw new Error("Public one-file handoff must be UTF-8 with BOM.");
+  }
+  const content = bytes.toString("utf8").replace(/^\uFEFF/, "");
+  for (const expected of [
+    `v${publicReleaseVersion}`,
+    `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v${publicReleaseVersion}`,
+    `silent-orbit-skills-library-${publicReleaseVersion}.tgz`,
+    "V1_RC_ONE_FILE_HANDOFF.zh-CN.md",
+    "开始验收",
+    "SILENT_ORBIT_RETURN_REPORT_V1",
+  ]) {
+    if (!content.includes(expected)) throw new Error(`Public one-file handoff is missing ${expected}.`);
+  }
+  if (content.includes("{{")) {
+    throw new Error("Public one-file handoff contains an unresolved template token.");
+  }
+  if (content.includes("\r")) throw new Error("Public one-file handoff must use LF line endings.");
+}
+
 export function assertLocalMarkdownLinks(rootDir) {
   const markdownFiles = walk(rootDir, "", { includeGenerated: false, repositoryAware: true })
     .filter((relativePath) => relativePath.endsWith(".md"))
@@ -444,6 +471,7 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   const manifest = assertManifest(resolvedRoot, { repositoryAware });
   assertDataBoundary(resolvedRoot);
   assertPackageContract(resolvedRoot);
+  assertHandoffContract(resolvedRoot);
   assertLocalMarkdownLinks(resolvedRoot);
   assertGitAttributesContract(resolvedRoot);
   assertCodeownersContract(resolvedRoot);

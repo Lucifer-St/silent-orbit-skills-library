@@ -1,6 +1,6 @@
 export const visualAssetPolicy = "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.";
 
-export const publicReleaseVersion = "0.11.0-beta.7";
+export const publicReleaseVersion = "0.11.0-beta.8";
 export const publicReleaseTag = `v${publicReleaseVersion}`;
 
 export const publicCodeownersText = [
@@ -107,6 +107,7 @@ export const publicScriptFiles = Object.freeze([
   "project-layout.mjs",
   "public-data.mjs",
   "public-release-config.mjs",
+  "prepare-v1-release-assets.mjs",
   "run-release-tarball-smoke.mjs",
   "run-v1-preflight.mjs",
   "smoke-ui.mjs",

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { PageKey } from "../../types";
+import { useLocale } from "../../i18n/LocaleContext";
 
 export interface AgentConsoleShellProps {
   page: PageKey;
@@ -11,6 +12,7 @@ export interface AgentConsoleShellProps {
 }
 
 export function AgentConsoleShell(props: AgentConsoleShellProps) {
+  const { text } = useLocale();
   const isLibrarianHome = props.page === "librarian";
   return (
     <div
@@ -20,7 +22,7 @@ export function AgentConsoleShell(props: AgentConsoleShellProps) {
     >
       <header className="console-topbar">
         <button className="console-brand" type="button" onClick={props.onHome}>
-          SKILLS LIBRARY
+          {text("SKILL 图书馆", "SKILLS LIBRARY")}
         </button>
         {props.nav}
       </header>

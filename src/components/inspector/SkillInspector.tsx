@@ -190,12 +190,12 @@ export function SkillInspector({
           key={`arrival-caption:${skill.name}`}
           aria-hidden="true"
         >
-          <span>SILENT HORIZON / SKILL SIGNAL</span>
+          <span>{text("寂静地平线 / SKILL 信号", "SILENT HORIZON / SKILL SIGNAL")}</span>
           <strong>{skill.name}</strong>
           <small>
             {showCatalogArrival
-              ? `${category(skill.category)} · ARRIVAL CONFIRMED`
-              : `${libraryTitle(library, skill.library_title)} · ORBIT LOCKED`}
+              ? `${category(skill.category)} · ${text("已确认抵达", "ARRIVAL CONFIRMED")}`
+              : `${libraryTitle(library, skill.library_title)} · ${text("已锁定轨道", "ORBIT LOCKED")}`}
           </small>
         </div>
       )}
@@ -219,12 +219,12 @@ export function SkillInspector({
         {showOrbitCaption && librarySkills.length > 0 ? (
           <nav
             className="orbit-library-signal-index inspector-library-signal-index"
-            aria-label={`${libraryTitle(library, skill.library_title)} skill signals`}
+            aria-label={text(`${libraryTitle(library, skill.library_title)} Skill 信号`, `${libraryTitle(library, skill.library_title)} skill signals`)}
           >
             <header>
-              <span>LIBRARY SIGNALS</span>
+              <span>{text("能力单元信号", "LIBRARY SIGNALS")}</span>
               <strong>{libraryTitle(library, skill.library_title)}</strong>
-              <small>{librarySkills.length} SKILLS</small>
+              <small>{text(`${librarySkills.length} 个 SKILLS`, `${librarySkills.length} SKILLS`)}</small>
             </header>
             <div>
               {librarySkills.map((librarySkill, index) => (
@@ -259,13 +259,13 @@ export function SkillInspector({
           {arrivalActive ? (
             <button className="inspector-return-button" type="button" onClick={onClose}>
               <ChevronLeft size={14} />
-              <span>{showCatalogArrival ? "RETURN TO CATALOG" : "RETURN TO LIBRARY"}</span>
+              <span>{showCatalogArrival ? text("返回目录", "RETURN TO CATALOG") : text("返回能力单元", "RETURN TO LIBRARY")}</span>
             </button>
           ) : null}
           <div className="inspector-title-lockup">
             <CosmosAsset className="inspector-title-signal" src={skillVisual} />
             <div>
-              <span className="pixel-label">SKILL DETAIL</span>
+              <span className="pixel-label">{text("SKILL 详情", "SKILL DETAIL")}</span>
               <h2 id={titleId} aria-live="polite" aria-atomic="true">{skill.name}</h2>
             </div>
           </div>
@@ -284,7 +284,7 @@ export function SkillInspector({
             onClick={() => onSelectSkill(previousSkill)}
           >
             <ChevronLeft size={16} />
-            <span><small>PREVIOUS</small><strong>{previousSkill.name}</strong></span>
+            <span><small>{text("上一个", "PREVIOUS")}</small><strong>{previousSkill.name}</strong></span>
           </button>
           <button
             type="button"
@@ -292,7 +292,7 @@ export function SkillInspector({
             aria-label={text(`下一个 Skill：${nextSkill.name}`, `Next Skill: ${nextSkill.name}`)}
             onClick={() => onSelectSkill(nextSkill)}
           >
-            <span><small>NEXT</small><strong>{nextSkill.name}</strong></span>
+            <span><small>{text("下一个", "NEXT")}</small><strong>{nextSkill.name}</strong></span>
             <ChevronRight size={16} />
           </button>
         </nav>
@@ -336,11 +336,11 @@ export function SkillInspector({
 
       {verifiedDetails && (
         <section className="drawer-section inspector-source-details">
-          <ArchiveSectionTitle asset={cosmosIcons.verified}>VERIFIED DETAILS</ArchiveSectionTitle>
+          <ArchiveSectionTitle asset={cosmosIcons.verified}>{text("已核实详情", "VERIFIED DETAILS")}</ArchiveSectionTitle>
           <p><strong>{verifiedDetails.author}</strong></p>
           <p>{verifiedDetails.sourceSummary}</p>
           <a className="source-link" href={verifiedDetails.sourceUrl} target="_blank" rel="noreferrer">
-            OPEN VERIFIED SOURCE
+            {text("打开已核实来源", "OPEN VERIFIED SOURCE")}
             <ExternalLink size={14} />
           </a>
           {verifiedDetails.examples.map((example) => (
@@ -354,7 +354,7 @@ export function SkillInspector({
 
       {latestOutcome && (
         <section className="drawer-section inspector-latest-outcome">
-          <ArchiveSectionTitle asset={cosmosIcons.recordedOutcome}>LATEST PERSONAL OUTCOME</ArchiveSectionTitle>
+          <ArchiveSectionTitle asset={cosmosIcons.recordedOutcome}>{text("最近一次个人成果", "LATEST PERSONAL OUTCOME")}</ArchiveSectionTitle>
           <time dateTime={latestOutcome.completedAt}>{new Date(latestOutcome.completedAt).toLocaleString(locale)}</time>
           <strong>{latestOutcome.title}</strong>
           {latestOutcome.note && <p className="outcome-note">{latestOutcome.note}</p>}

@@ -21,7 +21,7 @@ export function SkillList({ skills, onSkill, compact = false, showGovernance = f
         <button className="skill-row" key={skill.name} type="button" onClick={() => onSkill(skill)}>
           <span className="skill-row-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
           <span className="skill-row-title">
-            {isHighValueSkill(skill) ? <span className="skill-signal-mark">SIGNAL</span> : null}
+            {isHighValueSkill(skill) ? <span className="skill-signal-mark">{text("信号", "SIGNAL")}</span> : null}
             {skill.name}
           </span>
           <span className="skill-row-desc">{skillDescription(skill)}</span>

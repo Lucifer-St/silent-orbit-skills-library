@@ -56,9 +56,12 @@ timestamp does not change when the note is edited.
 - [Public beta testing](./testing/beta-testing.md)
 - [Beta feedback template](./testing/beta-feedback-template.md)
 - [V1 RC independent acceptance](./testing/v1-rc-acceptance.md)
+- [V1 RC acceptance (简体中文傻瓜版)](./testing/v1-rc-acceptance.zh-CN.md)
+- [V1 RC 单文件真人验收交接包（简体中文）](./testing/v1-rc-one-file-handoff.zh-CN.md)
 - [v0.11.0-beta.5 release notes](./releases/v0.11.0-beta.5.md)
 - [v0.11.0-beta.6 release notes](./releases/v0.11.0-beta.6.md)
 - [v0.11.0-beta.7 release notes](./releases/v0.11.0-beta.7.md)
+- [v0.11.0-beta.8 release notes](./releases/v0.11.0-beta.8.md)
 - [Privacy audit](./audits/privacy-audit.md)
 
 ## Historical notes

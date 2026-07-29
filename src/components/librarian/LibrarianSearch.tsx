@@ -19,7 +19,7 @@ export function LibrarianSearch({ draft, submittedQuery, onDraftChange, onSubmit
 
   return (
     <section className="librarian-search-shell" aria-labelledby="librarian-prompt">
-      <p className="librarian-motto">ASK. DISCOVER. ACT.</p>
+      <p className="librarian-motto">{text("提问 · 发现 · 行动", "ASK. DISCOVER. ACT.")}</p>
       <form className="librarian-search" role="search" onSubmit={handleSubmit}>
         <label className="librarian-search-label" id="librarian-prompt" htmlFor="librarian-query">
           {text("你想完成什么？", "WHAT DO YOU NEED?")}

@@ -13,9 +13,16 @@ Silent Orbit 把不断增长的 AI Skills 集合变成一个可以使用的产�
 
 当前公开目录包含 **153 个 Skills、9 个功能系统和 28 个 Libraries**。
 
+## 真人验收从这里开始
+
+只把 [`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8)
+这一个链接发给验收者。验收者在 Assets 下载
+`V1_RC_ONE_FILE_HANDOFF.zh-CN.md`，上传给本机 Agent，然后说
+`开始验收`；不需要自己输入命令、填写模板或接收作者本地文件。
+
 ## 安装 Public Generator
 
-Public Generator 只通过已验证的 GitHub Pre-release tarball 分发，不发布到 npm registry。请按 [Generator 快速开始](./docs/guides/generator-quickstart.zh-CN.md) 校验产物，从已下载文件进行项目级或全局 CLI 安装；独立 v1 候选验收统一使用 [15–25 分钟 RC 验收清单](./docs/testing/v1-rc-acceptance.md)。如有需要，再以项目级方式安装随包提供的 `build-skill-cosmos`、`audit-skill-cosmos` 与 `manage-skill-cosmos` Agent Skill，并完成一次经过公开边界复核的首次生成。Phase 5C 支持 host 注入的 `skills@1.5.20` reviewed check-and-update 批次，并要求私有恢复、rescan、Library/Obsidian sync 与验证。standalone host 仍为空；Plugin、System、删除与未知来源 mutation 保持单独门禁，原生 update 没有 native transaction guarantee。
+Public Generator 只通过已验证的 GitHub Pre-release tarball 分发，不发布到 npm registry。请按 [Generator 快速开始](./docs/guides/generator-quickstart.zh-CN.md) 校验产物，从已下载文件进行项目级或全局 CLI 安装；独立 v1 候选验收统一使用上面的 Release 单文件入口，详细中文合同见 [15–25 分钟中文傻瓜验收](./docs/testing/v1-rc-acceptance.zh-CN.md)，英文原始合同仍见[英文清单](./docs/testing/v1-rc-acceptance.md)。如有需要，再以项目级方式安装随包提供的 `build-skill-cosmos`、`audit-skill-cosmos` 与 `manage-skill-cosmos` Agent Skill，并完成一次经过公开边界复核的首次生成。Phase 5C 支持 host 注入的 `skills@1.5.20` reviewed check-and-update 批次，并要求私有恢复、rescan、Library/Obsidian sync 与验证。standalone host 仍为空；Plugin、System、删除与未知来源 mutation 保持单独门禁，原生 update 没有 native transaction guarantee。
 
 ## 能力边界
 
@@ -100,7 +107,9 @@ npm run dev
 - [文档索引](./docs/README.md)
 - [Beta 测试任务](./docs/testing/beta-testing.md)
 - [Beta 反馈模板](./docs/testing/beta-feedback-template.md)
-- [V1 RC 独立用户验收](./docs/testing/v1-rc-acceptance.md)
+- [V1 RC 中文傻瓜验收](./docs/testing/v1-rc-acceptance.zh-CN.md)
+- [直接发给验收者的单文件 Agent 交接包](./docs/testing/v1-rc-one-file-handoff.zh-CN.md)
+- [V1 RC 英文原始验收合同](./docs/testing/v1-rc-acceptance.md)
 - GitHub 已提供可复现 Bug 与体验反馈的 Issue Forms。
 
 Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍是外部 Beta 覆盖项。
@@ -114,7 +123,7 @@ Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍�
 - [Security policy](./SECURITY.md)
 - [贡献政策](./CONTRIBUTING.md)
 
-`v0.11.0-beta.7` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
+`v0.11.0-beta.8` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
 这是 GitHub Pre-release，不是 `v1.0.0`；Production authority 仍是通过必需
 `release-gate` 的 Public `main`。
 
