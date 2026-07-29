@@ -1,4 +1,5 @@
 * text=auto eol=lf
+*.sh text eol=lf
 assets/readme/** binary
 public/assets/** binary
 public/fonts/** binary

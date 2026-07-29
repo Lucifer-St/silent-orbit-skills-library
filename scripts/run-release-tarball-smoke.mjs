@@ -4,6 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { assertLocalMarkdownLinks } from "./lib/markdown-links.mjs";
 
 const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const fixturePath = path.join(projectDir, "scripts", "fixtures", "v1-preflight", "starter.source-import.json");
@@ -47,6 +48,9 @@ function run(command, args, { cwd, json = false } = {}) {
 
 function runNpm(args, options = {}) {
   const [command, expandedArgs] = npmInvocation(args);
+  if (process.platform === "win32" && /\.cmd$/i.test(command)) {
+    return runWindowsShim(command, expandedArgs, options);
+  }
   return run(command, expandedArgs, options);
 }
 
@@ -151,6 +155,11 @@ try {
   }
 
   const installedPackage = path.join(consumerRoot, "node_modules", "silent-orbit-skills-library");
+  assertLocalMarkdownLinks({
+    rootDir: installedPackage,
+    filePaths: walkFiles(installedPackage).filter((candidate) => candidate.endsWith(".md")),
+    context: "installed package",
+  });
   assertNoPrivatePaths([installedPackage, path.join(projectRoot, "dist")]);
 
   const receipt = {
@@ -168,6 +177,7 @@ try {
     finalDoctor: finalDoctor.status,
     auditSourceFailures: audit.summary.sourceFailures,
     secondDiff: secondDiff.summary,
+    markdownLinks: "pass",
     privatePathScan: "pass",
   };
   process.stdout.write(`${JSON.stringify(receipt, null, 2)}\n`);

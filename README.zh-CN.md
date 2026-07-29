@@ -15,7 +15,7 @@ Silent Orbit 把不断增长的 AI Skills 集合变成一个可以使用的产�
 
 ## 安装 Public Generator
 
-Public Generator 只通过已验证的 GitHub Pre-release tarball 分发，不发布到 npm registry。请按 [Generator 快速开始](./GENERATOR_QUICKSTART.zh-CN.md) 校验产物，从已下载文件进行项目级或全局 CLI 安装；独立 v1 候选验收统一使用 [15–25 分钟 RC 验收清单](./V1_RC_ACCEPTANCE.md)。如有需要，再以项目级方式安装随包提供的 `build-skill-cosmos`、`audit-skill-cosmos` 与 `manage-skill-cosmos` Agent Skill，并完成一次经过公开边界复核的首次生成。Phase 5C 支持 host 注入的 `skills@1.5.20` reviewed check-and-update 批次，并要求私有恢复、rescan、Library/Obsidian sync 与验证。standalone host 仍为空；Plugin、System、删除与未知来源 mutation 保持单独门禁，原生 update 没有 native transaction guarantee。
+Public Generator 只通过已验证的 GitHub Pre-release tarball 分发，不发布到 npm registry。请按 [Generator 快速开始](./docs/guides/generator-quickstart.zh-CN.md) 校验产物，从已下载文件进行项目级或全局 CLI 安装；独立 v1 候选验收统一使用 [15–25 分钟 RC 验收清单](./docs/testing/v1-rc-acceptance.md)。如有需要，再以项目级方式安装随包提供的 `build-skill-cosmos`、`audit-skill-cosmos` 与 `manage-skill-cosmos` Agent Skill，并完成一次经过公开边界复核的首次生成。Phase 5C 支持 host 注入的 `skills@1.5.20` reviewed check-and-update 批次，并要求私有恢复、rescan、Library/Obsidian sync 与验证。standalone host 仍为空；Plugin、System、删除与未知来源 mutation 保持单独门禁，原生 update 没有 native transaction guarantee。
 
 ## 能力边界
 
@@ -30,9 +30,9 @@ Draft PR 另外构建一份来自固定独立环境的 **44-Skill Reference Prev
 
 Reference Renderer 只是可用的功能底稿，不是官方美术主题。生成项目会包含 `frontend-handoff.md`，用户可以保留公开数据、键盘交互、深链和隐私边界，同时使用自己喜欢的视觉风格与 frontend Skill 重做界面。
 
-- [Phase 1E 架构与验收边界](./docs/architecture/GENERATOR_PHASE1E.md)
-- [Phase 2B dogfood 与 source-of-truth boundary](./docs/architecture/GENERATOR_PHASE2B.md)
-- [安装与首次使用指南](./GENERATOR_QUICKSTART.zh-CN.md)
+- [Phase 1E 架构与验收边界](./docs/notes/20260721-181423-generator-phase-1e-independent-alpha-reference-preview.md)
+- [Phase 2B dogfood 与 source-of-truth boundary](./docs/notes/20260722-100249-generator-phase-2b-dogfooding-source-of-truth-boundary.md)
+- [安装与首次使用指南](./docs/guides/generator-quickstart.zh-CN.md)
 - Alpha receipt 明确记录 `humanFeedback: false`；它证明固定独立环境，而不冒充真实外部用户反馈。
 - Production 保持经复核的 153-Skill 站点。Alpha 只是历史 acceptance evidence，不是第二个 catalog source，也不替代 Production。
 
@@ -97,23 +97,24 @@ npm run dev
 
 ## Public Beta
 
-- [Beta 测试任务](./BETA_TESTING.md)
-- [Beta 反馈模板](./BETA_FEEDBACK_TEMPLATE.md)
-- [V1 RC 独立用户验收](./V1_RC_ACCEPTANCE.md)
+- [文档索引](./docs/README.md)
+- [Beta 测试任务](./docs/testing/beta-testing.md)
+- [Beta 反馈模板](./docs/testing/beta-feedback-template.md)
+- [V1 RC 独立用户验收](./docs/testing/v1-rc-acceptance.md)
 - GitHub 已提供可复现 Bug 与体验反馈的 Issue Forms。
 
 Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍是外部 Beta 覆盖项。
 
 ## 安装与运行交接
 
-- [安装与升级](./INSTALLATION_AND_UPGRADE.zh-CN.md)
-- [版本、兼容、迁移与弃用政策](./VERSIONING_AND_MIGRATIONS.zh-CN.md)
-- [隐私政策与数据边界](./PRIVACY.zh-CN.md)
-- [恢复与回滚](./RECOVERY.zh-CN.md)
+- [安装与升级](./docs/guides/installation-and-upgrade.zh-CN.md)
+- [版本、兼容、迁移与弃用政策](./docs/policies/versioning-and-migrations.zh-CN.md)
+- [隐私政策与数据边界](./docs/policies/privacy.zh-CN.md)
+- [恢复与回滚](./docs/guides/recovery.zh-CN.md)
 - [Security policy](./SECURITY.md)
 - [贡献政策](./CONTRIBUTING.md)
 
-`v0.11.0-beta.6` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
+`v0.11.0-beta.7` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
 这是 GitHub Pre-release，不是 `v1.0.0`；Production authority 仍是通过必需
 `release-gate` 的 Public `main`。
 

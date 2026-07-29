@@ -27,4 +27,4 @@ The site has no third-party analytics, cookies, or behavior tracking. Outcome re
 
 Safari is an external beta check because Website Release Phase 4A did not have a local Safari runtime. Please include the browser name, version, device, and viewport when reporting a Safari result.
 
-Use the [beta feedback template](./BETA_FEEDBACK_TEMPLATE.md), the Bug Report issue form, or the Experience Feedback issue form in this repository.
+Use the [beta feedback template](./beta-feedback-template.md), the Bug Report issue form, or the Experience Feedback issue form in this repository.

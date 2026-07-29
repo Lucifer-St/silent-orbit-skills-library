@@ -3,12 +3,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { validatePublicAssets } from "./validate-public-assets.mjs";
+import { validateReadme } from "./validate-readme.mjs";
+import { publicCodeownersText, publicPackageFiles, publicReleaseVersion } from "./public-release-config.mjs";
 import {
   validateInventorySnapshotV1,
   validateLibrarySnapshotV1,
   validateProjectConfigV1,
   validateSiteManifestV1,
 } from "./lib/generator-contracts.mjs";
+import { assertLocalMarkdownLinks as assertMarkdownLinks } from "./lib/markdown-links.mjs";
 
 const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const controlFiles = new Set([
@@ -24,6 +27,7 @@ const generatedRoots = new Set([
   ".chrome-visual-qa-profile",
 ]);
 const requiredFiles = [
+  ".github/CODEOWNERS",
   ".github/workflows/public-release-gate.yml",
   ".github/ISSUE_TEMPLATE/bug_report.yml",
   ".github/ISSUE_TEMPLATE/experience_feedback.yml",
@@ -40,31 +44,33 @@ const requiredFiles = [
   "assets/readme/social-preview.png",
   "ASSET_LICENSE.md",
   "ASSET_PROVENANCE.json",
-  "BETA_FEEDBACK_TEMPLATE.md",
-  "BETA_TESTING.md",
+  "docs/testing/beta-feedback-template.md",
+  "docs/testing/beta-testing.md",
   "CONTRIBUTING.md",
-  "GENERATOR_QUICKSTART.md",
-  "GENERATOR_QUICKSTART.zh-CN.md",
-  "INSTALLATION_AND_UPGRADE.md",
-  "INSTALLATION_AND_UPGRADE.zh-CN.md",
+  "docs/guides/generator-quickstart.md",
+  "docs/guides/generator-quickstart.zh-CN.md",
+  "docs/guides/installation-and-upgrade.md",
+  "docs/guides/installation-and-upgrade.zh-CN.md",
   "LICENSE",
   "PUBLIC_RELEASE_RECEIPT.md",
-  "PRIVACY.md",
-  "PRIVACY.zh-CN.md",
-  "PRIVACY_AUDIT.md",
+  "docs/policies/privacy.md",
+  "docs/policies/privacy.zh-CN.md",
+  "docs/audits/privacy-audit.md",
   "PUBLIC_RELEASE_MANIFEST.json",
   "PUBLIC_RELEASE_MANIFEST.md",
   "README.md",
   "README.zh-CN.md",
-  "RECOVERY.md",
-  "RECOVERY.zh-CN.md",
-  "RELEASE_NOTES_v0.11.0-beta.5.md",
-  "RELEASE_NOTES_v0.11.0-beta.6.md",
+  "docs/guides/recovery.md",
+  "docs/guides/recovery.zh-CN.md",
+  "docs/releases/v0.11.0-beta.5.md",
+  "docs/releases/v0.11.0-beta.6.md",
+  "docs/releases/v0.11.0-beta.7.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
-  "VERSIONING_AND_MIGRATIONS.md",
-  "VERSIONING_AND_MIGRATIONS.zh-CN.md",
-  "V1_RC_ACCEPTANCE.md",
+  "docs/policies/versioning-and-migrations.md",
+  "docs/policies/versioning-and-migrations.zh-CN.md",
+  "docs/testing/v1-rc-acceptance.md",
+  "docs/README.md",
   "index.html",
   "netlify.toml",
   "package-lock.json",
@@ -320,6 +326,23 @@ function assertPackageContract(rootDir) {
   if (packageJson.scripts["test:maintenance"].includes("../..")) {
     throw new Error("Public RC tests must not depend on the private repository layout.");
   }
+  if (packageJson.version !== publicReleaseVersion) {
+    throw new Error(`Public package version must be ${publicReleaseVersion}.`);
+  }
+  if (JSON.stringify(packageJson.files) !== JSON.stringify(publicPackageFiles)) {
+    throw new Error("Public package file allowlist does not match the governed release surface.");
+  }
+}
+
+export function assertLocalMarkdownLinks(rootDir) {
+  const markdownFiles = walk(rootDir, "", { includeGenerated: false, repositoryAware: true })
+    .filter((relativePath) => relativePath.endsWith(".md"))
+    .map((relativePath) => path.join(rootDir, ...relativePath.split("/")));
+  assertMarkdownLinks({
+    rootDir,
+    filePaths: markdownFiles,
+    context: "Public release",
+  });
 }
 
 function assertPrivacyAndSecrets(rootDir, { repositoryAware = false } = {}) {
@@ -361,14 +384,36 @@ function assertWorkflowContract(rootDir) {
     "os: [windows-latest, ubuntu-latest, macos-latest]",
     "needs: [v1-core, package-smoke, docker-smoke]",
     "name: release-gate",
+    "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+    "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+    "persist-credentials: false",
   ]) {
     if (!workflow.includes(required)) throw new Error(`Public release workflow is missing ${required}.`);
   }
-  if (/pull_request_target|permissions:[\s\S]*?\bwrite\b|NETLIFY|upload-artifact|netlify\s+deploy/i.test(workflow)) {
-    throw new Error("Public release workflow contains a disallowed trigger, permission, deploy secret, artifact upload, or direct deploy.");
+  if (/pull_request_target|workflow_dispatch|paths-ignore\s*:|^\s+paths\s*:|permissions:[\s\S]*?\bwrite\b|NETLIFY|upload-artifact|netlify\s+deploy/im.test(workflow)) {
+    throw new Error("Public release workflow contains a disallowed trigger, path filter, permission, deploy secret, artifact upload, or direct deploy.");
   }
   if (!/permissions:\s*[\r\n]+\s+contents:\s*read/.test(workflow)) {
     throw new Error("Public release workflow must use contents: read least privilege.");
+  }
+  if (/uses:\s+\S+@(?:v\d+|main|master)\b/.test(workflow)) {
+    throw new Error("Public release workflow must pin every Action to a full commit SHA.");
+  }
+  const allowedActions = new Set([
+    "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+    "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+  ]);
+  for (const match of workflow.matchAll(/uses:\s+([^\s#]+)/g)) {
+    if (!allowedActions.has(match[1])) {
+      throw new Error(`Public release workflow uses an unreviewed Action: ${match[1]}`);
+    }
+  }
+}
+
+export function assertCodeownersContract(rootDir) {
+  const codeowners = fs.readFileSync(path.join(rootDir, ".github", "CODEOWNERS"), "utf8");
+  if (codeowners !== publicCodeownersText) {
+    throw new Error("Public CODEOWNERS must exactly match the canonical owner-only policy.");
   }
 }
 
@@ -376,6 +421,7 @@ function assertGitAttributesContract(rootDir) {
   const attributes = fs.readFileSync(path.join(rootDir, ".gitattributes"), "utf8");
   const requiredRules = [
     "* text=auto eol=lf",
+    "*.sh text eol=lf",
     "assets/readme/** binary",
     "public/assets/** binary",
     "public/fonts/** binary",
@@ -398,16 +444,20 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   const manifest = assertManifest(resolvedRoot, { repositoryAware });
   assertDataBoundary(resolvedRoot);
   assertPackageContract(resolvedRoot);
+  assertLocalMarkdownLinks(resolvedRoot);
   assertGitAttributesContract(resolvedRoot);
+  assertCodeownersContract(resolvedRoot);
   assertPrivacyAndSecrets(resolvedRoot, { repositoryAware });
   assertWorkflowContract(resolvedRoot);
   const assets = validatePublicAssets(resolvedRoot);
+  const readme = validateReadme(resolvedRoot);
   const result = {
     inputCommit: manifest.inputCommit,
     files: manifest.fileCount,
     bytes: manifest.totalBytes,
     releaseDigest: manifest.releaseDigest,
     assets: assets.files,
+    readmes: readme.readmes,
   };
   console.log(`Public release validation passed. files=${result.files} bytes=${result.bytes} digest=${result.releaseDigest}`);
   return result;

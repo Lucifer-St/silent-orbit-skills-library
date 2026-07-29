@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { publicScriptFiles, publicSourceFiles } from "../public-release-config.mjs";
+import { publicPackageFiles, publicScriptFiles, publicSourceFiles } from "../public-release-config.mjs";
 
 const projectDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const repositoryRoot = path.resolve(projectDir, "..", "..");
@@ -11,7 +11,7 @@ const packageJson = JSON.parse(fs.readFileSync(path.join(projectDir, "package.js
 const read = (relative) => fs.readFileSync(path.join(projectDir, ...relative.split("/")), "utf8");
 
 test("the installable package owns only public Core, Schemas, CLI, Agent Skill, docs, and reference renderer", () => {
-  assert.deepEqual(packageJson.files, [
+  const privateSourceFiles = [
     "scripts/silent-orbit.mjs",
     "scripts/create-v1-acceptance-summary.mjs",
     "scripts/lib/generator-contracts.mjs",
@@ -40,8 +40,12 @@ test("the installable package owns only public Core, Schemas, CLI, Agent Skill, 
     "skills/audit-skill-cosmos",
     "skills/manage-skill-cosmos",
     "skills/skills-library-maintenance",
-  ]);
-  assert.equal(packageJson.version, "0.11.0-beta.6");
+  ];
+  assert.deepEqual(
+    packageJson.files,
+    packageJson.name === "silent-orbit-skills-library" ? publicPackageFiles : privateSourceFiles,
+  );
+  assert.equal(packageJson.version, "0.11.0-beta.7");
   assert.equal(packageJson.devDependencies.skills, "1.5.20");
   assert.equal(packageJson.bin["silent-orbit"], "scripts/silent-orbit.mjs");
   assert.equal(packageJson.files.some((entry) => /alpha\/phase1e|silent-orbit-v1|outputs|obsidian|receipt/i.test(entry)), false);
@@ -60,7 +64,10 @@ test("Private inventory, curation, Outcomes, usage, Obsidian, and run evidence a
     "tests/generator-contracts.test.mjs",
   ];
   for (const relative of forbidden) assert.equal(publicScriptFiles.includes(relative), false, `${relative} crossed the Public script boundary`);
-  assert.equal(publicSourceFiles.some((relative) => /outputs\/data|\.dogfood|obsidian|phase2b-dogfood-receipt/i.test(relative)), false);
+  assert.equal(
+    publicSourceFiles.some(({ source, target }) => /outputs\/data|\.dogfood|obsidian|phase2b-dogfood-receipt/i.test(`${source}\n${target}`)),
+    false,
+  );
   const privateLayout = fs.existsSync(path.join(repositoryRoot, "outputs", "data", "skills.json"));
   if (privateLayout) {
     assert.equal(fs.existsSync(path.join(projectDir, "scripts", "lib", "phase2b-private-library.mjs")), true);

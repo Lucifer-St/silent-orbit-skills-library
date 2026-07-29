@@ -18,6 +18,24 @@ must not be contributed here.
 
 The checked-in catalog and browser data are sanitized generated projections used to reproduce the public site. They are not a second authoring source. Propose catalog corrections through the Private curation/Export workflow; do not hand-edit a drifting public copy.
 
+## Contribution intake and release provenance
+
+An external Public pull request is a reviewable proposal, not a new source of
+truth and not a release authorization. The maintainer ports accepted changes
+into the Private authoritative source, creates a new Private commit, runs the
+deterministic export twice, and opens an owner-controlled Public export PR.
+
+Do not hand-edit or copy `PUBLIC_RELEASE_MANIFEST.json`,
+`PUBLIC_RELEASE_MANIFEST.md`, `PUBLIC_RELEASE_RECEIPT.md`, or generated privacy
+audit values between commits. Those controls must be regenerated from the exact
+Private input commit. The owner-controlled export PR should credit the original
+proposal and explain any necessary differences. The proposal can then be
+closed in favor of that provenance-preserving PR.
+
+Contributor testing, maintainer testing, automation, CI, and agent-assisted
+checks are useful evidence, but none of them is independent-human acceptance
+or permission to publish, tag, release, merge, or deploy.
+
 ## Local verification
 
 Use Node.js 24. Browser smoke and visual QA currently require Windows with Google Chrome installed.
@@ -45,8 +63,8 @@ Released `*.v1.schema.json` files are frozen by
 `schemas/schema-lock.v1.json`. Do not edit a v1 Schema or its lock digest. A
 contract change requires a new versioned Schema family, deterministic dry-run
 migration, pre-write backup, validation receipt, and old/new fixtures. Update
-`VERSIONING_AND_MIGRATIONS.md`, both Quickstarts, and release notes in the same
-PR.
+`docs/policies/versioning-and-migrations.md`, both Quickstarts, and release
+notes in the same PR.
 
 The release gate must recompute the Schema lock and pass from a clean checkout.
 Generated RC files are outputs; never hand-patch them to make a migration pass.
@@ -54,10 +72,10 @@ Generated RC files are outputs; never hand-patch them to make a migration pass.
 ## Package and CLI versions
 
 The package/repository release version and CLI interface version are
-independent. For the current source, the package is `0.11.0-beta.6` while
+independent. For the current source, the package is `0.11.0-beta.7` while
 `silent-orbit --version` reports `0.4.0`. Apply the SemVer and deprecation
-policy in `VERSIONING_AND_MIGRATIONS.md`; document every compatibility change
-in release notes.
+policy in `docs/policies/versioning-and-migrations.md`; document every
+compatibility change in release notes.
 
 ## Catalog contributions
 
