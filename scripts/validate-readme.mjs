@@ -57,9 +57,9 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
 function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.11.0-beta.6",
-    "silent-orbit-skills-library-0.11.0-beta.6.tgz",
-    "silent-orbit-skills-library-0\\.11\\.0-beta\\.6\\.tgz$",
+    "v0.11.0-beta.7",
+    "silent-orbit-skills-library-0.11.0-beta.7.tgz",
+    "silent-orbit-skills-library-0\\.11\\.0-beta\\.7\\.tgz$",
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",
@@ -106,8 +106,8 @@ export function validateReadme(rootDir = projectDir) {
   }
   assertReadme(rootDir, "README.md");
   assertReadme(rootDir, "README.zh-CN.md", { chinese: true });
-  assertGeneratorQuickstart(rootDir, "GENERATOR_QUICKSTART.md");
-  assertGeneratorQuickstart(rootDir, "GENERATOR_QUICKSTART.zh-CN.md", { chinese: true });
+  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.md");
+  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.zh-CN.md", { chinese: true });
 
   const social = readPng(path.join(assetRoot, "social-preview.png"), "social-preview.png");
   if (social.width !== 1280 || social.height !== 640 || social.bytes >= 1_000_000) {

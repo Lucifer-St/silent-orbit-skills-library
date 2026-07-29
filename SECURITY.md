@@ -45,4 +45,4 @@ Stop writes when verification, source identity, or digest checks fail. Preserve
 private evidence, restore only from a verified bounded backup, and report
 `rollback-failed` as a terminal fault. Production recovery must go through a
 reviewed Public PR, `release-gate`, Public `main`, and the existing Git-connected
-Netlify site. See `RECOVERY.md` for the complete rollback boundary.
+Netlify site. See `docs/guides/recovery.md` for the complete rollback boundary.

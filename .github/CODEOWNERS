@@ -1,0 +1,13 @@
+# Public release ownership stays with the Private-source export operator.
+* @Lucifer-St
+
+# These paths control release provenance, validation, deployment, and supply chain.
+/.github/ @Lucifer-St
+/scripts/ @Lucifer-St
+/schemas/ @Lucifer-St
+/package.json @Lucifer-St
+/package-lock.json @Lucifer-St
+/netlify.toml @Lucifer-St
+/PUBLIC_RELEASE_MANIFEST.json @Lucifer-St
+/PUBLIC_RELEASE_MANIFEST.md @Lucifer-St
+/PUBLIC_RELEASE_RECEIPT.md @Lucifer-St

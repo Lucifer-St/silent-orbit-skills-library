@@ -83,6 +83,9 @@ function runPackageSmoke(tarball) {
 
 function runDockerSmoke(tarball) {
   const scriptPath = path.join(projectDir, "scripts", "v1-docker-smoke.sh");
+  if (fs.readFileSync(scriptPath).includes(13)) {
+    throw new Error("Docker smoke runner must use LF line endings before it is mounted into Linux.");
+  }
   const configPath = path.join(projectDir, "scripts", "fixtures", "v1-preflight", "codex-global.config.json");
   const mountedAgents = path.join(projectDir, "scripts", "fixtures", "v1-preflight", "docker-home", ".agents");
   const containerHome = ["", "tmp", "home"].join("/");

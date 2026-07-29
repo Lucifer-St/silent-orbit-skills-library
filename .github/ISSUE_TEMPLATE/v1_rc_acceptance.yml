@@ -5,7 +5,7 @@ labels: ["public-beta"]
 body:
   - type: markdown
     attributes:
-      value: "Use only the v0.11.0-beta.6 GitHub Pre-release checklist. Do not include raw logs, absolute paths, Skill names, prompts, private memories, or account data."
+      value: "Use only the v0.11.0-beta.7 GitHub Pre-release checklist. Do not include raw logs, absolute paths, Skill names, prompts, private memories, or account data."
   - type: checkboxes
     id: independence
     attributes:

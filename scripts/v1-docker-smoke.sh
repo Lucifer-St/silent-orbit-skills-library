@@ -1,4 +1,5 @@
 #!/bin/sh
+# This script must remain LF-only so Windows release operators can mount it into Linux containers.
 set -eu
 
 : "${SILENT_ORBIT_TARBALL:=/input/release.tgz}"

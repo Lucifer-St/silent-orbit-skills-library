@@ -12,9 +12,20 @@ function read(relativePath) {
   return fs.readFileSync(path.join(projectDir, ...relativePath.split("/")), "utf8");
 }
 
+const publicDocumentPaths = Object.freeze({
+  "BETA_TESTING.md": "docs/testing/beta-testing.md",
+  "BETA_FEEDBACK_TEMPLATE.md": "docs/testing/beta-feedback-template.md",
+  "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
+  "INSTALLATION_AND_UPGRADE.md": "docs/guides/installation-and-upgrade.md",
+  "VERSIONING_AND_MIGRATIONS.md": "docs/policies/versioning-and-migrations.md",
+  "PRIVACY.md": "docs/policies/privacy.md",
+  "RECOVERY.md": "docs/guides/recovery.md",
+});
+
 function publicDocument(fileName) {
   const sourcePath = `docs/public-release/${fileName}`;
-  return fs.existsSync(path.join(projectDir, ...sourcePath.split("/"))) ? sourcePath : fileName;
+  if (fs.existsSync(path.join(projectDir, ...sourcePath.split("/")))) return sourcePath;
+  return publicDocumentPaths[fileName] ?? fileName;
 }
 
 function issueTemplate(fileName) {
@@ -123,7 +134,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.11.0-beta.6");
+  assert.equal(packageJson.version, "0.11.0-beta.7");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -141,7 +152,7 @@ test("beta version, root-safe Vite base, and publication handoff are explicit", 
 test("v1 schemas are frozen by the Phase 6A release lock", () => {
   const lock = JSON.parse(read("schemas/schema-lock.v1.json"));
   assert.equal(lock.schemaVersion, 1);
-  assert.equal(lock.releaseVersion, "0.11.0-beta.6");
+  assert.equal(lock.releaseVersion, "0.11.0-beta.7");
   assert.equal(lock.cliInterfaceVersion, "0.4.0");
   assert.equal(lock.compatibilityFamily, "v1");
   assert.equal(lock.hashAlgorithm, "sha256");
