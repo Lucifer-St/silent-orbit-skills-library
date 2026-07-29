@@ -141,14 +141,14 @@ export function SilentOrbitPortal({
                 <span aria-hidden="true" className="portal-system-copy">
                   <span className="portal-system-index">{systemNumber}</span>
                   <span className="portal-system-name">{category(system.category)}</span>
-                  <span className="portal-system-count">{system.skillCount} SKILLS</span>
+                  <span className="portal-system-count">{text(`${system.skillCount} 个 SKILLS`, `${system.skillCount} SKILLS`)}</span>
                 </span>
               </button>
             );
           })}
         </div>
       </div>
-      <span className="portal-status">{model.systems.length} SYSTEMS / {model.skills.length} SKILLS</span>
+      <span className="portal-status">{text(`${model.systems.length} 个系统 / ${model.skills.length} 个 SKILLS`, `${model.systems.length} SYSTEMS / ${model.skills.length} SKILLS`)}</span>
     </section>
   );
 }

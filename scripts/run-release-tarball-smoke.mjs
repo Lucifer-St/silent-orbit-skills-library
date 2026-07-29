@@ -110,10 +110,65 @@ function sha256(filePath) {
   return createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
 }
 
+function normalizeHandoff(bytes) {
+  return bytes.toString("utf8")
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n?/g, "\n");
+}
+
+function assertHandoffContract(installedPackage, expectedHandoffPath) {
+  const packageJson = JSON.parse(fs.readFileSync(path.join(installedPackage, "package.json"), "utf8"));
+  const installedPath = path.join(
+    installedPackage,
+    "docs",
+    "testing",
+    "v1-rc-one-file-handoff.zh-CN.md",
+  );
+  if (!fs.existsSync(installedPath)) {
+    throw new Error("Installed package is missing docs/testing/v1-rc-one-file-handoff.zh-CN.md.");
+  }
+
+  const installedBytes = fs.readFileSync(installedPath);
+  if (installedBytes.subarray(0, 3).toString("hex") !== "efbbbf") {
+    throw new Error("Installed handoff must be UTF-8 with BOM for Windows compatibility.");
+  }
+  const installed = normalizeHandoff(installedBytes);
+  const expectedTokens = [
+    `v${packageJson.version}`,
+    `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v${packageJson.version}`,
+    `silent-orbit-skills-library-${packageJson.version}.tgz`,
+    "V1_RC_ONE_FILE_HANDOFF.zh-CN.md",
+    "SILENT_ORBIT_RETURN_REPORT_V1",
+  ];
+  for (const token of expectedTokens) {
+    if (!installed.includes(token)) throw new Error(`Installed handoff is missing its release contract token: ${token}`);
+  }
+  if (installed.includes("{{")) {
+    throw new Error("Installed handoff contains an unresolved release template token.");
+  }
+
+  if (expectedHandoffPath) {
+    if (!fs.existsSync(expectedHandoffPath)) throw new Error("Expected Release handoff asset does not exist.");
+    const expectedBytes = fs.readFileSync(expectedHandoffPath);
+    if (expectedBytes.subarray(0, 3).toString("hex") !== "efbbbf") {
+      throw new Error("Expected Release handoff asset must be UTF-8 with BOM.");
+    }
+    if (normalizeHandoff(expectedBytes) !== installed) {
+      throw new Error("Release handoff asset and installed package handoff do not match.");
+    }
+  }
+
+  return packageJson;
+}
+
 const requestedTarball = option("--tarball") ?? process.env.SILENT_ORBIT_TARBALL;
-if (!requestedTarball) throw new Error("Usage: node scripts/run-release-tarball-smoke.mjs --tarball <release.tgz>");
+if (!requestedTarball) {
+  throw new Error("Usage: node scripts/run-release-tarball-smoke.mjs --tarball <release.tgz> [--handoff <V1_RC_ONE_FILE_HANDOFF.zh-CN.md>]");
+}
 const tarball = path.resolve(requestedTarball);
 if (!fs.existsSync(tarball)) throw new Error(`Release tarball does not exist: ${tarball}`);
+const requestedHandoff = option("--handoff") ?? process.env.SILENT_ORBIT_HANDOFF;
+const expectedHandoff = requestedHandoff ? path.resolve(requestedHandoff) : undefined;
 
 const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "silent-orbit-v1-package-"));
 const consumerRoot = path.join(tempRoot, "consumer");
@@ -124,6 +179,8 @@ try {
   runNpm(["init", "-y"], { cwd: consumerRoot });
   runNpm(["install", "--ignore-scripts", "--no-save", tarball], { cwd: consumerRoot });
 
+  const installedPackage = path.join(consumerRoot, "node_modules", "silent-orbit-skills-library");
+  const installedPackageJson = assertHandoffContract(installedPackage, expectedHandoff);
   const binPath = path.join(consumerRoot, "node_modules", ".bin", process.platform === "win32" ? "silent-orbit.cmd" : "silent-orbit");
   const cli = (args, { json = true } = {}) => process.platform === "win32"
     ? runWindowsShim(binPath, args, { cwd: consumerRoot, json })
@@ -154,7 +211,6 @@ try {
     throw new Error("Second scan/diff is not stable.");
   }
 
-  const installedPackage = path.join(consumerRoot, "node_modules", "silent-orbit-skills-library");
   assertLocalMarkdownLinks({
     rootDir: installedPackage,
     filePaths: walkFiles(installedPackage).filter((candidate) => candidate.endsWith(".md")),
@@ -169,7 +225,7 @@ try {
     platform: process.platform,
     architecture: process.arch,
     nodeMajor: Number(process.versions.node.split(".")[0]),
-    packageVersion: JSON.parse(fs.readFileSync(path.join(installedPackage, "package.json"), "utf8")).version,
+    packageVersion: installedPackageJson.version,
     cliVersion,
     tarballSha256: sha256(tarball),
     firstScanItems: firstScan.report.observedItems,
@@ -177,6 +233,8 @@ try {
     finalDoctor: finalDoctor.status,
     auditSourceFailures: audit.summary.sourceFailures,
     secondDiff: secondDiff.summary,
+    handoffContract: "pass",
+    handoffUtf8Bom: "pass",
     markdownLinks: "pass",
     privatePathScan: "pass",
   };

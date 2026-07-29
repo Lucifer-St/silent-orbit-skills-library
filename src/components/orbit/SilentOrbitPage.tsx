@@ -3,6 +3,7 @@ import type { KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent
 import type { CategoryGroup, MapViewMode, OrbitMapModel, SkillRecord } from "../../types";
 import { OrbitControls } from "./OrbitControls";
 import { OrbitScene } from "./OrbitScene";
+import { useLocale } from "../../i18n/LocaleContext";
 
 interface SilentOrbitPageProps {
   readonly model: OrbitMapModel;
@@ -29,6 +30,7 @@ export function SilentOrbitPage({
   onClose,
   orbitRef,
 }: SilentOrbitPageProps) {
+  const { text } = useLocale();
   const titleId = useId();
   const [focusedCategoryId, setFocusedCategoryId] = useState<string | null>(() => {
     if (model.systems.some((item) => item.id === initialCategoryId)) return initialCategoryId;
@@ -109,7 +111,7 @@ export function SilentOrbitPage({
       onKeyDown={handleKeyDown}
       onContextMenu={handleContextMenu}
     >
-      <h1 className="sr-only" id={titleId}>Silent Orbit skill map</h1>
+      <h1 className="sr-only" id={titleId}>{text("Silent Orbit Skill 地图", "Silent Orbit skill map")}</h1>
       <OrbitControls
         viewMode={viewMode}
         zoom={zoom}

@@ -61,7 +61,10 @@ function packPublicRelease(destination) {
   const records = JSON.parse(output);
   const record = Array.isArray(records) ? records[0] : records;
   if (!record?.filename) throw new Error("npm pack did not report a tarball filename.");
-  return path.join(destination, record.filename);
+  return {
+    publicRoot,
+    tarball: path.join(destination, record.filename),
+  };
 }
 
 function withPackedCurrentRepository(callback) {
@@ -73,12 +76,14 @@ function withPackedCurrentRepository(callback) {
   }
 }
 
-function runPackageSmoke(tarball) {
-  run(process.execPath, [
+function runPackageSmoke({ tarball, handoff }) {
+  const args = [
     path.join(projectDir, "scripts", "run-release-tarball-smoke.mjs"),
     "--tarball",
     tarball,
-  ], { label: `package-smoke-${process.platform}` });
+  ];
+  if (handoff) args.push("--handoff", handoff);
+  run(process.execPath, args, { label: `package-smoke-${process.platform}` });
 }
 
 function runDockerSmoke(tarball) {
@@ -135,13 +140,23 @@ function runCore({ publicRepository }) {
 assertNode24();
 const mode = option("--mode", "private");
 const providedTarball = option("--tarball", process.env.SILENT_ORBIT_TARBALL);
+const providedHandoff = option("--handoff", process.env.SILENT_ORBIT_HANDOFF);
 
 if (mode === "package-smoke") {
-  if (providedTarball) runPackageSmoke(path.resolve(providedTarball));
-  else withPackedCurrentRepository(runPackageSmoke);
+  if (providedTarball) {
+    runPackageSmoke({
+      tarball: path.resolve(providedTarball),
+      handoff: providedHandoff ? path.resolve(providedHandoff) : undefined,
+    });
+  } else {
+    withPackedCurrentRepository(({ publicRoot, tarball }) => runPackageSmoke({
+      tarball,
+      handoff: path.join(publicRoot, "docs", "testing", "v1-rc-one-file-handoff.zh-CN.md"),
+    }));
+  }
 } else if (mode === "docker") {
   if (providedTarball) runDockerSmoke(path.resolve(providedTarball));
-  else withPackedCurrentRepository(runDockerSmoke);
+  else withPackedCurrentRepository(({ tarball }) => runDockerSmoke(tarball));
 } else if (mode === "public-core") {
   runCore({ publicRepository: true });
 } else if (mode === "private") {
@@ -149,8 +164,11 @@ if (mode === "package-smoke") {
   runNpm(["run", "test:public-release"], { label: "deterministic-double-public-export" });
   runNpm(["run", "export:public"], { label: "materialize-public-rc" });
   runNpm(["run", "validate:public-release"], { label: "validate-public-rc" });
-  withPackedCurrentRepository((tarball) => {
-    runPackageSmoke(tarball);
+  withPackedCurrentRepository(({ publicRoot, tarball }) => {
+    runPackageSmoke({
+      tarball,
+      handoff: path.join(publicRoot, "docs", "testing", "v1-rc-one-file-handoff.zh-CN.md"),
+    });
     runDockerSmoke(tarball);
   });
 } else {

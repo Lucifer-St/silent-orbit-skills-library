@@ -45,7 +45,7 @@ test("the installable package owns only public Core, Schemas, CLI, Agent Skill, 
     packageJson.files,
     packageJson.name === "silent-orbit-skills-library" ? publicPackageFiles : privateSourceFiles,
   );
-  assert.equal(packageJson.version, "0.11.0-beta.7");
+  assert.equal(packageJson.version, "0.11.0-beta.8");
   assert.equal(packageJson.devDependencies.skills, "1.5.20");
   assert.equal(packageJson.bin["silent-orbit"], "scripts/silent-orbit.mjs");
   assert.equal(packageJson.files.some((entry) => /alpha\/phase1e|silent-orbit-v1|outputs|obsidian|receipt/i.test(entry)), false);

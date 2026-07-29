@@ -26,9 +26,9 @@ export function AbilityUnitCard({ unit, unitId, skills, expanded, onToggle, onSk
         <strong>{libraryTitle(library, unit.title)}</strong>
         <p>{libraryDescription(library, describeUnit(unit, unitSkills, skillDescription, text))}</p>
         <div className="unit-meta">
-          <span>{unitSkills.length} skills</span>
+          <span>{text(`${unitSkills.length} 个 Skills`, `${unitSkills.length} skills`)}</span>
           <span>{metadataLabel(library?.source_label ?? unit.type)}</span>
-          {highValue ? <span className="priority-chip">PRIORITY</span> : null}
+          {highValue ? <span className="priority-chip">{text("优先", "PRIORITY")}</span> : null}
         </div>
       </button>
 

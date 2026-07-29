@@ -24,7 +24,7 @@ export function FunctionRail({ page, activeCategory, categories, onCategory }: F
       data-mobile-expanded={mobileExpanded}
       data-rail-page={page}
     >
-      <span className="console-kicker">FUNCTION INDEX</span>
+      <span className="console-kicker">{text("功能索引", "FUNCTION INDEX")}</span>
       {currentCategory ? (
         <button
           aria-controls={itemListId}
@@ -35,7 +35,7 @@ export function FunctionRail({ page, activeCategory, categories, onCategory }: F
         >
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
           <strong>{categoryLabel(currentCategory.category)}</strong>
-          <small>{currentCategory.skill_count} SKILLS</small>
+          <small>{text(`${currentCategory.skill_count} 个 Skills`, `${currentCategory.skill_count} SKILLS`)}</small>
           <ChevronDown aria-hidden="true" size={14} strokeWidth={1.4} />
         </button>
       ) : null}

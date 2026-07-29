@@ -1,6 +1,6 @@
 # Silent Orbit v1 RC independent acceptance (15–25 minutes)
 
-Use only the [`v0.11.0-beta.7` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.7).
+Use only the [`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8).
 That one page is the authoritative handoff. Do not accept a local path, an
 unpublished archive, or a separately sent PowerShell bundle.
 
@@ -12,7 +12,7 @@ conversation are not external acceptance.
 
 Download these Release assets:
 
-- `silent-orbit-skills-library-0.11.0-beta.7.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.8.tgz`
 - `SHA256SUMS.txt`
 - `silent-orbit-v1-starter.source-import.json`
 - `v1-docker-smoke.sh` and `codex-global.config.json` when testing Docker
@@ -27,7 +27,7 @@ Windows PowerShell:
 
 ```powershell
 $expected = ((Get-Content .\SHA256SUMS.txt) -split '\s+')[0]
-$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.7.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
+$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.8.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
 if ($actual -ne $expected) { throw "Checksum mismatch" }
 ```
 
@@ -39,7 +39,7 @@ In a new empty directory:
 
 ```sh
 npm init -y
-npm install ./silent-orbit-skills-library-0.11.0-beta.7.tgz
+npm install ./silent-orbit-skills-library-0.11.0-beta.8.tgz
 npx silent-orbit --version
 ```
 
@@ -93,13 +93,13 @@ From the Release asset directory on macOS or Linux:
 
 ```sh
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=unmounted \
-  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.11.0-beta.7.tgz",dst=/input/release.tgz,readonly \
+  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.11.0-beta.8.tgz",dst=/input/release.tgz,readonly \
   --mount type=bind,src="$PWD/codex-global.config.json",dst=/fixture/codex-global.config.json,readonly \
   --mount type=bind,src="$PWD/v1-docker-smoke.sh",dst=/runner/v1-docker-smoke.sh,readonly \
   node:24-bookworm-slim sh /runner/v1-docker-smoke.sh
 
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=mounted \
-  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.11.0-beta.7.tgz",dst=/input/release.tgz,readonly \
+  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.11.0-beta.8.tgz",dst=/input/release.tgz,readonly \
   --mount type=bind,src="$PWD/codex-global.config.json",dst=/fixture/codex-global.config.json,readonly \
   --mount type=bind,src="$PWD/v1-docker-smoke.sh",dst=/runner/v1-docker-smoke.sh,readonly \
   --mount type=bind,src="$HOME/.agents",dst=/tmp/home/.agents,readonly \
@@ -112,12 +112,12 @@ On Windows PowerShell, use the same two commands with absolute bind sources:
 $assets = (Get-Location).Path
 $agents = Join-Path $env:USERPROFILE ".agents"
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=unmounted `
-  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.11.0-beta.7.tgz,dst=/input/release.tgz,readonly" `
+  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.11.0-beta.8.tgz,dst=/input/release.tgz,readonly" `
   --mount "type=bind,src=$assets\codex-global.config.json,dst=/fixture/codex-global.config.json,readonly" `
   --mount "type=bind,src=$assets\v1-docker-smoke.sh,dst=/runner/v1-docker-smoke.sh,readonly" `
   node:24-bookworm-slim sh /runner/v1-docker-smoke.sh
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=mounted `
-  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.11.0-beta.7.tgz,dst=/input/release.tgz,readonly" `
+  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.11.0-beta.8.tgz,dst=/input/release.tgz,readonly" `
   --mount "type=bind,src=$assets\codex-global.config.json,dst=/fixture/codex-global.config.json,readonly" `
   --mount "type=bind,src=$assets\v1-docker-smoke.sh,dst=/runner/v1-docker-smoke.sh,readonly" `
   --mount "type=bind,src=$agents,dst=/tmp/home/.agents,readonly" `

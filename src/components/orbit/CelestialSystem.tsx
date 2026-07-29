@@ -11,7 +11,7 @@ interface CelestialSystemProps {
 }
 
 export function CelestialSystem({ node, active, onSelect }: CelestialSystemProps) {
-  const { category } = useLocale();
+  const { category, text } = useLocale();
   const style = { left: `${node.position.x}%`, top: `${node.position.y}%` } as CSSProperties;
   const visual = getSystemVisual(node.orbitIndex);
 
@@ -23,14 +23,14 @@ export function CelestialSystem({ node, active, onSelect }: CelestialSystemProps
       style={style}
       type="button"
       aria-pressed={active}
-      aria-label={`${category(node.category)}: ${node.skillCount} Skills, ${node.libraryCount} Libraries`}
+      aria-label={text(`${category(node.category)}：${node.skillCount} 个 Skills，${node.libraryCount} 个能力单元`, `${category(node.category)}: ${node.skillCount} Skills, ${node.libraryCount} Libraries`)}
       onClick={() => onSelect(node)}
     >
       <CosmosAsset className="system-cosmos-asset" src={visual} />
       <span className="orbit-focus-frame" aria-hidden="true" />
       <span className="system-copy">
         <strong>{category(node.category)}</strong>
-        <small>{node.skillCount} SKILLS / {node.libraryCount} LIBRARIES</small>
+        <small>{text(`${node.skillCount} 个 SKILLS / ${node.libraryCount} 个能力单元`, `${node.skillCount} SKILLS / ${node.libraryCount} LIBRARIES`)}</small>
       </span>
     </button>
   );

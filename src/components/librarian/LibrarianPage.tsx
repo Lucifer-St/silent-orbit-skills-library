@@ -60,7 +60,7 @@ export function LibrarianPage({
         <section aria-label={text("匹配 Skills", "Matching Skills")} className="librarian-results">
           <p className="librarian-results-heading archive-heading">
             <CosmosAsset className="archive-icon" src={cosmosIcons.skillSpark} />
-            <span>TOP MATCHING SKILLS</span>
+            <span>{text("最匹配的 Skills", "TOP MATCHING SKILLS")}</span>
           </p>
           {visibleResults.length > 0 ? (
             <div className="librarian-result-grid">

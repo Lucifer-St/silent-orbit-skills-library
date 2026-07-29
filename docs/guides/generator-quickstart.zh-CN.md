@@ -1,6 +1,6 @@
 # Silent Orbit Public Generator 快速开始
 
-本指南从 GitHub Pre-release 安装 `v0.11.0-beta.7` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
+本指南从 GitHub Pre-release 安装 `v0.11.0-beta.8` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
 
 ## 1. 下载并校验产物
 
@@ -14,16 +14,16 @@ Docker 使用独立 Home，默认看不到宿主 Skills。在执行 `codex-globa
 
 Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Skill 环境。
 
-从 [`v0.11.0-beta.7` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.7) 下载：
+从 [`v0.11.0-beta.8` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8) 下载：
 
-- `silent-orbit-skills-library-0.11.0-beta.7.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.8.tgz`
 - `SHA256SUMS.txt`
 
 把两个文件放在同一目录，使用 PowerShell 在安装前校验 tarball：
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.7\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.7.tgz).Hash.ToLowerInvariant()
+$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.8\.tgz$' }).Split()[0]
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.8.tgz).Hash.ToLowerInvariant()
 if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
 ```
 
@@ -32,18 +32,18 @@ if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball chec
 优先选择项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.7.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.8.tgz
 npx silent-orbit --version
 ```
 
 只有确实需要把 `silent-orbit` 放进用户 PATH 时才使用全局安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.7.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.8.tgz
 silent-orbit --version
 ```
 
-package / repository release version 是 `0.11.0-beta.7`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
+package / repository release version 是 `0.11.0-beta.8`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
 
 ## 3. 可选 Agent Skills
 

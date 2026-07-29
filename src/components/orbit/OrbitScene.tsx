@@ -13,6 +13,7 @@ import { CosmosAsset } from "../CosmosAsset";
 import { CelestialSystem } from "./CelestialSystem";
 import { LibraryMoon } from "./LibraryMoon";
 import { SkillAsteroid } from "./SkillAsteroid";
+import { useLocale } from "../../i18n/LocaleContext";
 
 interface OrbitSceneProps {
   readonly model: OrbitMapModel;
@@ -38,7 +39,10 @@ interface MobileIdentityNavProps {
   readonly onSystem: (node: OrbitSystemNode) => void;
   readonly onLibrary: (node: OrbitLibraryNode) => void;
   readonly onSkill: (node: OrbitSkillNode) => void;
+  readonly text: TextSelector;
 }
+
+type TextSelector = (zh: string, en: string) => string;
 
 const fixedStars = [
   [4, 8], [11, 29], [18, 58], [24, 92], [31, 37], [36, 73], [42, 5], [47, 26],
@@ -75,10 +79,11 @@ export function OrbitScene({
   onSkill,
   onFallbackCategory,
 }: OrbitSceneProps) {
+  const { text } = useLocale();
   if (model.systems.length === 0) {
     return (
       <nav className="orbit-fallback" aria-label="功能分类回退列表">
-        <p>ORBIT DATA UNAVAILABLE</p>
+        <p>{text("轨道数据不可用", "ORBIT DATA UNAVAILABLE")}</p>
         {fallbackCategories.map((category) => (
           <button key={category.category} type="button" onClick={() => onFallbackCategory(category.category)}>
             {category.category} / {category.skill_count}
@@ -121,7 +126,7 @@ export function OrbitScene({
   } as CSSProperties;
 
   return (
-    <section className="orbit-scene" aria-label="Silent Orbit skill galaxy">
+    <section className="orbit-scene" aria-label={text("Silent Orbit Skill 星图", "Silent Orbit skill galaxy")}>
       <MobileIdentityNav
         viewMode={viewMode}
         systems={model.systems}
@@ -132,9 +137,10 @@ export function OrbitScene({
         onSystem={onSystem}
         onLibrary={onLibrary}
         onSkill={onSkill}
+        text={text}
       />
       {viewMode === "library" && selectedLibrary ? (
-        <LibrarySignalIndex library={selectedLibrary} skills={visibleSkills} onSkill={onSkill} />
+        <LibrarySignalIndex library={selectedLibrary} skills={visibleSkills} onSkill={onSkill} text={text} />
       ) : null}
       <div className="orbit-world" style={worldStyle}>
         <svg
@@ -208,10 +214,10 @@ export function OrbitScene({
         </div>
       </div>
       {viewMode === "search" && visibleSkills.length === 0 && (
-        <div className="orbit-empty-state" role="status">NO MATCHING SIGNALS</div>
+        <div className="orbit-empty-state" role="status">{text("没有匹配信号", "NO MATCHING SIGNALS")}</div>
       )}
       <p className="sr-only" aria-live="polite">
-        {getOrbitStatus(viewMode, model.systems.length, focusedSystem, selectedLibrary, visibleSkills.length)}
+        {getOrbitStatus(viewMode, model.systems.length, focusedSystem, selectedLibrary, visibleSkills.length, text)}
       </p>
     </section>
   );
@@ -227,12 +233,13 @@ function MobileIdentityNav({
   onSystem,
   onLibrary,
   onSkill,
+  text,
 }: MobileIdentityNavProps) {
   return (
     <nav
       className="orbit-mobile-context-nav"
       data-orbit-mobile-mode={viewMode}
-      aria-label={`Orbit ${viewMode} identities`}
+      aria-label={text(`轨道 ${viewMode} 项目`, `Orbit ${viewMode} identities`)}
     >
       {viewMode === "overview" && systems.map((system) => (
         <button
@@ -259,7 +266,7 @@ function MobileIdentityNav({
       ))}
       {viewMode === "library" && focusedSystem && (
         <button
-          aria-label={`Return to ${focusedSystem.category}`}
+          aria-label={text(`返回 ${focusedSystem.category}`, `Return to ${focusedSystem.category}`)}
           className="orbit-mobile-context-back"
           data-system-id={focusedSystem.id}
           type="button"
@@ -281,7 +288,7 @@ function MobileIdentityNav({
             key={library.id}
           >
             <span>{library.title}</span>
-            <small>{library.skillCount} SKILLS</small>
+            <small>{text(`${library.skillCount} 个 SKILLS`, `${library.skillCount} SKILLS`)}</small>
           </button>
         );
       })}
@@ -328,17 +335,19 @@ function LibrarySignalIndex({
   library,
   skills,
   onSkill,
+  text,
 }: {
   readonly library: OrbitLibraryNode;
   readonly skills: readonly OrbitSkillNode[];
   readonly onSkill: (node: OrbitSkillNode) => void;
+  readonly text: TextSelector;
 }) {
   return (
-    <nav className="orbit-library-signal-index" aria-label={`${library.title} skill signals`}>
+    <nav className="orbit-library-signal-index" aria-label={text(`${library.title} Skill 信号`, `${library.title} skill signals`)}>
       <header>
-        <span>LIBRARY SIGNALS</span>
+        <span>{text("能力单元信号", "LIBRARY SIGNALS")}</span>
         <strong>{library.title}</strong>
-        <small>{skills.length} SKILLS</small>
+        <small>{text(`${skills.length} 个 SKILLS`, `${skills.length} SKILLS`)}</small>
       </header>
       <div>
         {skills.map((skill, index) => (
@@ -424,11 +433,12 @@ function getOrbitStatus(
   focusedSystem: OrbitSystemNode | undefined,
   selectedLibrary: OrbitLibraryNode | undefined,
   skillCount: number,
+  text: TextSelector,
 ) {
-  if (viewMode === "search") return `${skillCount} matching skill signals`;
-  if (viewMode === "library" && selectedLibrary) return `${selectedLibrary.title}, ${skillCount} skills`;
-  if (viewMode === "category" && focusedSystem) return `${focusedSystem.category}, ${focusedSystem.libraryCount} libraries`;
-  return `Silent Orbit overview, ${systemCount} functional category systems`;
+  if (viewMode === "search") return text(`${skillCount} 个匹配的 Skill 信号`, `${skillCount} matching skill signals`);
+  if (viewMode === "library" && selectedLibrary) return text(`${selectedLibrary.title}，${skillCount} 个 Skills`, `${selectedLibrary.title}, ${skillCount} skills`);
+  if (viewMode === "category" && focusedSystem) return text(`${focusedSystem.category}，${focusedSystem.libraryCount} 个能力单元`, `${focusedSystem.category}, ${focusedSystem.libraryCount} libraries`);
+  return text(`Silent Orbit 总览，${systemCount} 个功能分类系统`, `Silent Orbit overview, ${systemCount} functional category systems`);
 }
 
 function buildDesktopSkillPositions(

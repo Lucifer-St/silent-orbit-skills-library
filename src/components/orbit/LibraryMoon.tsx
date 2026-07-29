@@ -12,7 +12,7 @@ interface LibraryMoonProps {
 }
 
 export function LibraryMoon({ node, desktopPosition = node.position, active, onSelect }: LibraryMoonProps) {
-  const { isEnglish } = useLocale();
+  const { isEnglish, text } = useLocale();
   const title = isEnglish && node.title === "个人常用" ? "Personal Deck" : node.title;
   const visual = getLibraryVisual(node.id);
   const style = {
@@ -30,14 +30,14 @@ export function LibraryMoon({ node, desktopPosition = node.position, active, onS
       style={style}
       type="button"
       aria-pressed={active}
-      aria-label={`${title}: ${node.skillCount} Skills`}
+      aria-label={text(`${title}：${node.skillCount} 个 Skills`, `${title}: ${node.skillCount} Skills`)}
       onClick={() => onSelect(node)}
     >
       <CosmosAsset className="library-cosmos-asset" src={visual} />
       <span className="orbit-focus-frame" aria-hidden="true" />
       <span className="moon-copy">
         <strong>{title}</strong>
-        <small>{node.skillCount} SKILLS</small>
+        <small>{text(`${node.skillCount} 个 SKILLS`, `${node.skillCount} SKILLS`)}</small>
       </span>
     </button>
   );

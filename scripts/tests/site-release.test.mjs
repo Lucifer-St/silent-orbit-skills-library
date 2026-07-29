@@ -16,6 +16,8 @@ const publicDocumentPaths = Object.freeze({
   "BETA_TESTING.md": "docs/testing/beta-testing.md",
   "BETA_FEEDBACK_TEMPLATE.md": "docs/testing/beta-feedback-template.md",
   "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
+  "V1_RC_ACCEPTANCE.zh-CN.md": "docs/testing/v1-rc-acceptance.zh-CN.md",
+  "V1_RC_ONE_FILE_HANDOFF.zh-CN.md": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
   "INSTALLATION_AND_UPGRADE.md": "docs/guides/installation-and-upgrade.md",
   "VERSIONING_AND_MIGRATIONS.md": "docs/policies/versioning-and-migrations.md",
   "PRIVACY.md": "docs/policies/privacy.md",
@@ -53,7 +55,7 @@ function readPng(relativePath) {
 test("production metadata uses the exact public canonical and social assets", () => {
   const html = read("index.html");
   for (const required of [
-    '<html lang="en">',
+    '<html lang="zh-CN">',
     '<title>Silent Orbit Skills Library</title>',
     `<link rel="canonical" href="${canonicalUrl}" />`,
     'name="description"',
@@ -69,6 +71,23 @@ test("production metadata uses the exact public canonical and social assets", ()
     assert.ok(html.includes(required), `index.html is missing ${required}`);
   }
   assert.doesNotMatch(html, /data:,|localhost|example\.com/i);
+});
+
+test("public and generated interfaces are Chinese-first with a reversible language switch", () => {
+  const templateHtml = read("templates/reference-index-v1/index.html");
+  const templateApp = read("templates/reference-index-v1/app.js");
+  const projectRuntime = read("scripts/lib/silent-orbit-project.mjs");
+
+  assert.match(templateHtml, /<html lang="zh-CN">/);
+  assert.match(templateHtml, /id="locale-toggle"/);
+  assert.match(templateHtml, /data-i18n="map">地图</);
+  assert.match(templateHtml, /data-i18n-placeholder="searchPlaceholder"/);
+  assert.match(templateApp, /silent-orbit-reference-locale-v1/);
+  assert.match(templateApp, /description_i18n/);
+  assert.match(templateApp, /localStorage\.setItem\(LOCALE_STORAGE_KEY/);
+  assert.match(templateApp, /defaultLocale/);
+  assert.match(projectRuntime, /locales:\s*\["zh-CN",\s*"en-US"\]/);
+  assert.match(projectRuntime, /defaultLocale:\s*"zh-CN"/);
 });
 
 test("robots, sitemap, favicon, and social preview are public-safe", () => {
@@ -130,11 +149,30 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(v1Acceptance, /SHA256SUMS\.txt/);
   assert.match(v1Acceptance, /second scan\/diff/i);
   assert.match(v1Acceptance, /npx skills@1\.5\.20 check/);
+
+  const v1AcceptanceZh = read(publicDocument("V1_RC_ACCEPTANCE.zh-CN.md"));
+  assert.match(v1AcceptanceZh, /中文傻瓜验收/);
+  assert.match(v1AcceptanceZh, /Codex \/ Claude Code \/ Kimi Code/);
+  assert.match(v1AcceptanceZh, /SHA256SUMS\.txt/);
+  assert.match(v1AcceptanceZh, /added: 0[\s\S]*changed: 0[\s\S]*removed: 0/);
+  assert.match(v1AcceptanceZh, /同意执行这一批可信来源维护/);
+  assert.match(v1AcceptanceZh, /privacy-safe receipt/);
+
+  const oneFileHandoffZh = read(publicDocument("V1_RC_ONE_FILE_HANDOFF.zh-CN.md"));
+  assert.match(oneFileHandoffZh, /单文件真人验收交接包/);
+  assert.match(oneFileHandoffZh, /你不需要输入命令/);
+  assert.match(oneFileHandoffZh, /开始验收/);
+  assert.match(oneFileHandoffZh, /V1_RC_ONE_FILE_HANDOFF\.zh-CN\.md/);
+  assert.match(oneFileHandoffZh, /UTF-8/);
+  assert.match(oneFileHandoffZh, /我同意执行这一批可信来源维护/);
+  assert.match(oneFileHandoffZh, /SILENT_ORBIT_RETURN_REPORT_V1/);
+  assert.match(oneFileHandoffZh, /handoffContract: \[PASS\/FAIL\/NOT_RUN\]/);
+  assert.match(oneFileHandoffZh, /不得附加原始日志/);
 });
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.11.0-beta.7");
+  assert.equal(packageJson.version, "0.11.0-beta.8");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -152,7 +190,7 @@ test("beta version, root-safe Vite base, and publication handoff are explicit", 
 test("v1 schemas are frozen by the Phase 6A release lock", () => {
   const lock = JSON.parse(read("schemas/schema-lock.v1.json"));
   assert.equal(lock.schemaVersion, 1);
-  assert.equal(lock.releaseVersion, "0.11.0-beta.7");
+  assert.equal(lock.releaseVersion, "0.11.0-beta.8");
   assert.equal(lock.cliInterfaceVersion, "0.4.0");
   assert.equal(lock.compatibilityFamily, "v1");
   assert.equal(lock.hashAlgorithm, "sha256");

@@ -442,9 +442,9 @@ function ConsoleNav({
 
   return (
     <nav className="topnav" aria-label={text("主导航", "Main navigation")}>
-      <NavButton active={page === "librarian"} icon={<BookOpen size={16} />} label="LIBRARIAN" onClick={() => onPage("librarian")} />
-      <NavButton active={catalogActive} icon={<Database size={16} />} label="CATALOG" onClick={() => onPage("catalog")} />
-      <NavButton active={page === "history"} icon={<Clock3 size={16} />} label="HISTORY" onClick={() => onPage("history")} />
+      <NavButton active={page === "librarian"} dataLabel="LIBRARIAN" icon={<BookOpen size={16} />} label={text("图书馆", "LIBRARIAN")} onClick={() => onPage("librarian")} />
+      <NavButton active={catalogActive} dataLabel="CATALOG" icon={<Database size={16} />} label={text("目录", "CATALOG")} onClick={() => onPage("catalog")} />
+      <NavButton active={page === "history"} dataLabel="HISTORY" icon={<Clock3 size={16} />} label={text("记录", "HISTORY")} onClick={() => onPage("history")} />
       <button
         className="nav-button language-toggle"
         data-locale={locale}
@@ -461,11 +461,13 @@ function ConsoleNav({
 
 function NavButton({
   active,
+  dataLabel,
   icon,
   label,
   onClick,
 }: {
   active: boolean;
+  dataLabel: string;
   icon: ReactNode;
   label: string;
   onClick: () => void;
@@ -473,7 +475,7 @@ function NavButton({
   return (
     <button
       className={`nav-button ${active ? "active" : ""}`}
-      data-nav-label={label}
+      data-nav-label={dataLabel}
       type="button"
       onClick={onClick}
     >
@@ -488,7 +490,7 @@ function PrivateToolboxPage({ onSkill }: { onSkill: (skill: SkillRecord) => void
   return (
     <div className="page-stack" data-page="private">
       <section className="page-header private-header">
-        <span className="pixel-label">PERSONAL DECK</span>
+        <span className="pixel-label">{text("个人收藏", "PERSONAL DECK")}</span>
         <h1>{text("个人常用", "Personal Deck")}</h1>
         <p>{text(
           "这里收纳长期使用的自建与第三方 Skills；作者来源与公开边界分别标注。",
@@ -505,7 +507,7 @@ function SourcesPage() {
   return (
     <div className="page-stack" data-page="sources">
       <section className="page-header">
-        <span className="pixel-label">SOURCE INDEX</span>
+        <span className="pixel-label">{text("来源索引", "SOURCE INDEX")}</span>
         <h1>{text("来源库速查", "Source Index")}</h1>
         <p>{text(
           "查看每个能力单元的来源、类型和范围。global 只作为来源记录，不合并成大型能力单元。",
@@ -531,8 +533,8 @@ function SourceRow({ library }: { library: LibraryRecord }) {
       </div>
       <div className="source-facts">
         <span>{metadataLabel(library.kind_label ?? library.kind)}</span>
-        <span>{library.skills.length} skills</span>
-        <span>{library.primary_category ? category(library.primary_category) : "multi"}</span>
+        <span>{text(`${library.skills.length} 个 Skills`, `${library.skills.length} skills`)}</span>
+        <span>{library.primary_category ? category(library.primary_category) : text("多分类", "multi")}</span>
       </div>
       {library.source_url && (
         <a href={library.source_url} target="_blank" rel="noreferrer" aria-label={text(`打开 ${library.title} 来源`, `Open source for ${library.title}`)}>
@@ -548,7 +550,7 @@ function ChangesPage() {
   return (
     <div className="page-stack" data-page="changes">
       <section className="page-header">
-        <span className="pixel-label">CHANGE LOG</span>
+        <span className="pixel-label">{text("变更记录", "CHANGE LOG")}</span>
         <h1>{text("变更记录", "Change Log")}</h1>
         <p>{text(
           "v0 先展示基础快照；后续安装、删除、更新和来源变化都会写入这里。",
@@ -589,7 +591,7 @@ function MaintenancePage() {
   return (
     <div className="page-stack maintenance-page" data-page="maintenance">
       <section className="page-header">
-        <span className="pixel-label">MAINTENANCE LINK</span>
+        <span className="pixel-label">{text("维护入口", "MAINTENANCE LINK")}</span>
         <h1>{text("维护与更新", "Maintenance & Updates")}</h1>
         <p>{text(
           "这里展示最近一次经过清洗的维护快照，并把更新任务安全地交给本地 Codex。网页不会直接读取或修改你的电脑。",
@@ -625,11 +627,11 @@ function MaintenancePage() {
           <p>{text("Private source 不直接覆盖 Production", "Private source never deploys directly to Production")}</p>
         </div>
         <ol className="publication-chain" aria-label={text("正式发布顺序", "Production publication order")}>
-          <li>PRIVATE SOURCE</li>
-          <li>PUBLIC EXPORT</li>
-          <li>GITHUB MAIN</li>
-          <li>RELEASE-GATE</li>
-          <li>NETLIFY</li>
+          <li>{text("私有源仓库", "PRIVATE SOURCE")}</li>
+          <li>{text("公开导出", "PUBLIC EXPORT")}</li>
+          <li>{text("GitHub 主分支", "GITHUB MAIN")}</li>
+          <li>{text("发布门禁", "RELEASE-GATE")}</li>
+          <li>{text("Netlify 正式站", "NETLIFY")}</li>
         </ol>
         <p className="publication-authority">
           {text("生产权威", "Production authority")}: <strong>{maintenanceStatus.publicationHandoff.productionAuthority}</strong>

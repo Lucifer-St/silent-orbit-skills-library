@@ -1,5 +1,6 @@
 import type { MapViewportState } from "../../lib/mapViewport";
 import type { LibraryStationMapNode, MapPoint, SkillMapModel } from "../../types";
+import { useLocale } from "../../i18n/LocaleContext";
 
 interface MiniMapProps {
   readonly model: SkillMapModel;
@@ -20,19 +21,20 @@ export function MiniMap({
   matchedSkillNames = new Set<string>(),
   onResetFocus,
 }: MiniMapProps) {
+  const { text } = useLocale();
   const matchedLibraryKeys = new Set(
     model.skillDots.filter((dot) => matchedSkillNames.has(dot.name)).map((dot) => dot.libraryKey),
   );
 
   const label = selectedStation
-    ? `Mini map. Current focus is ${selectedStation.title}. Press to return to overview.`
+    ? text(`缩略地图。当前聚焦 ${selectedStation.title}。点击返回总览。`, `Mini map. Current focus is ${selectedStation.title}. Press to return to overview.`)
     : selectedCategory
-      ? `Mini map. Current focus is ${selectedCategory}. Press to return to overview.`
-      : "Mini map overview.";
+      ? text(`缩略地图。当前聚焦 ${selectedCategory}。点击返回总览。`, `Mini map. Current focus is ${selectedCategory}. Press to return to overview.`)
+      : text("缩略地图总览。", "Mini map overview.");
 
   return (
-    <button className="mini-map" type="button" onClick={onResetFocus} aria-label={label} title="Mini map overview">
-      <span className="mini-map-label">MINI</span>
+    <button className="mini-map" type="button" onClick={onResetFocus} aria-label={label} title={text("缩略地图总览", "Mini map overview")}>
+      <span className="mini-map-label">{text("缩略图", "MINI")}</span>
       <svg viewBox="0 0 100 100" aria-hidden="true">
         {model.zones.map((zone) => (
           <rect
