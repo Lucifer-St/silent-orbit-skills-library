@@ -21,12 +21,41 @@ Download these two assets from the [`v0.11.0-beta.9` Pre-release](https://github
 - `silent-orbit-skills-library-0.11.0-beta.9.tgz`
 - `SHA256SUMS.txt`
 
-In PowerShell, keep both files in the same directory and verify the tarball before installing it:
+Keep both files in the same directory. Verify only the exact beta.9 tarball
+entry, and require that entry to occur exactly once.
+
+Windows PowerShell:
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.8\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.9.tgz).Hash.ToLowerInvariant()
-if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
+$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+if ($matches.Count -ne 1) { throw "Expected exactly one checksum entry for $tarball." }
+$expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
+if ($actual -ne $expected) { throw 'Silent Orbit tarball checksum mismatch.' }
+```
+
+Linux:
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
+printf '%s\n' "$checksum_line" | sha256sum --check -
+```
+
+macOS:
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
+expected="$(printf '%s\n' "$checksum_line" | awk '{ print tolower($1) }')"
+actual="$(shasum -a 256 "$tarball" | awk '{ print tolower($1) }')"
+[ "$actual" = "$expected" ] || { echo 'Silent Orbit tarball checksum mismatch.' >&2; exit 1; }
+printf 'Checksum passed: %s\n' "$actual"
 ```
 
 ## 2. Install the CLI

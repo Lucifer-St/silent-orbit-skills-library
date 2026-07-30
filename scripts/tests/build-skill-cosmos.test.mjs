@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { silentOrbitVersion } from "../silent-orbit.mjs";
 
 const projectDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const publicSkillDir = path.join(projectDir, "skills", "build-skill-cosmos");
@@ -58,4 +59,22 @@ test("the Agent Skill stays a thin CLI and review layer", () => {
   for (const visibility of ["public", "creator-showcase", "review-required", "local-only"]) assert.ok(allText.includes(visibility));
   for (const handoff of ["reference-index", "frontend-handoff.md", "preferred frontend Skill", "not an official art direction"]) assert.ok(allText.includes(handoff));
   assert.equal(collectFiles(skillDir).some((file) => /\.(?:js|mjs|py|ps1|sh)$/i.test(file)), false);
+});
+
+test("the bundled Skill advertises the current package and CLI compatibility", () => {
+  const packageVersion = JSON.parse(
+    fs.readFileSync(path.join(projectDir, "package.json"), "utf8"),
+  ).version;
+  const [cliMajor, cliMinor] = silentOrbitVersion.split(".");
+  const contract = read("references/cli-contract.md");
+
+  assert.ok(
+    contract.includes(`require version \`${cliMajor}.${cliMinor}.x\``),
+    "CLI compatibility family in the bundled Skill must match the executable",
+  );
+  assert.ok(
+    contract.includes(`package \`${packageVersion}\` contains CLI \`${silentOrbitVersion}\``),
+    "package and CLI versions in the bundled Skill must match the release",
+  );
+  assert.doesNotMatch(contract, /require version `0\.1\.x`|package `0\.9\.0-beta\.1`/);
 });

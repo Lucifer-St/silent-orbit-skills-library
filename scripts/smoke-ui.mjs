@@ -511,7 +511,14 @@ try {
   await assertPage("librarian replaces old home dashboard", "Boolean(document.querySelector('.agent-console[data-surface=\"console\"] .librarian-page')) && !document.querySelector('.function-rail,.command-deck,.task-matrix')");
   await assertPage(
     "top navigation exposes three surfaces plus locale control",
-    "[...document.querySelectorAll('.topnav > .nav-button')].map((button) => button.textContent.trim()).join('|') === 'LIBRARIAN|CATALOG|HISTORY|EN'",
+    `(() => {
+      const buttons = [...document.querySelectorAll('.topnav > .nav-button')];
+      return buttons.length === 4
+        && buttons.slice(0, 3).map((button) => button.getAttribute('data-nav-label')).join('|') === 'LIBRARIAN|CATALOG|HISTORY'
+        && buttons[3].classList.contains('language-toggle')
+        && buttons[3].getAttribute('data-locale') === 'zh-CN'
+        && buttons[3].textContent.trim() === 'EN';
+    })()`,
   );
   await assertKeyboardFocusOutline("librarian search shows keyboard focus outline", ".librarian-search input");
   await assertPage("system panels stay square", "[...document.querySelectorAll('.librarian-search,.ranked-skill-card,.silent-orbit-portal')].every((node)=>parseFloat(getComputedStyle(node).borderRadius)<=1)");
@@ -723,21 +730,21 @@ try {
   );
   await assertPage(
     "Catalog exposes its four reference-layer actions",
-    "[...document.querySelectorAll('.catalog-secondary-action')].map((button) => `${button.getAttribute('data-catalog-target')}:${button.querySelector('strong')?.textContent.trim()}`).join('|') === 'private:PERSONAL DECK|sources:SOURCES|changes:CHANGES|maintenance:MAINTENANCE'",
+    "(() => { const actions = [...document.querySelectorAll('.catalog-secondary-action')]; return actions.map((button) => button.getAttribute('data-catalog-target')).join('|') === 'private|sources|changes|maintenance' && actions.every((button) => Boolean(button.querySelector('strong')?.textContent.trim())); })()",
   );
   await assertPage("Catalog uses one primary browsing model", "Boolean(document.querySelector('[data-page=\"catalog\"]') && !document.querySelector('.function-rail'))");
   await evaluate("document.querySelector('.catalog-category-card')?.click(); true");
   await wait(300);
   await assertPage("focused Catalog category keeps the function rail", "Boolean(document.querySelector('[data-page=\"category\"]') && document.querySelector('.function-rail'))");
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(200);
   await evaluate("document.querySelector('.catalog-secondary-action[data-catalog-target=\"private\"]')?.click(); true");
   await wait(250);
   await assertPage("secondary Catalog pages omit the function rail", "Boolean(document.querySelector('[data-page=\"private\"]')) && !document.querySelector('.function-rail')");
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'HISTORY')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"HISTORY\"]')?.click(); true");
   await wait(250);
   await assertPage("History is a dedicated rail-free surface", "Boolean(document.querySelector('[data-page=\"history\"]')) && !document.querySelector('.function-rail')");
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'LIBRARIAN')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"LIBRARIAN\"]')?.click(); true");
   await wait(300);
   await assertPage(
     "returning to Librarian restores submitted search without URL state",
@@ -805,15 +812,14 @@ try {
   );
   await assertPage(
     "aihot Inspector exposes RECORD OUTCOME",
-    "[...document.querySelectorAll('[data-surface=\"skill-inspector\"] button')].some((button) => button.textContent.trim() === 'RECORD OUTCOME')",
+    "Boolean(document.querySelector('[data-surface=\"skill-inspector\"] .outcome-record-button'))",
   );
   await assertPage(
     "non-verified aihot renders no verified panel and no Inspector panel is empty",
     "!window.__smokeVerifiedDetails.some((record) => record.skill === 'aihot') && !document.querySelector('.inspector-source-details') && ![...document.querySelectorAll('.drawer-section')].some((section) => !section.textContent.trim())",
   );
   await evaluate(`(() => {
-    const trigger = [...document.querySelectorAll('[data-surface="skill-inspector"] button')]
-      .find((button) => button.textContent.trim() === 'RECORD OUTCOME');
+    const trigger = document.querySelector('[data-surface="skill-inspector"] .outcome-record-button');
     window.__smokeOutcomeTrigger = trigger;
     trigger?.click();
     return Boolean(trigger);
@@ -871,7 +877,7 @@ try {
     "closing aihot Inspector restores its ranked trigger",
     "!document.querySelector('[role=\"dialog\"]') && document.activeElement === window.__smokeAihotTrigger",
   );
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'HISTORY')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"HISTORY\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.history-transfer')?.setAttribute('open', ''); true");
   await evaluate(`(() => {
@@ -908,7 +914,7 @@ try {
     "History marks the newest outcome with a one-shot commit line",
     "document.querySelector('.outcome-history-item:first-child .outcome-commit-line') && getComputedStyle(document.querySelector('.outcome-history-item:first-child .outcome-commit-line')).animationName === 'outcome-commit-line'",
   );
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'LIBRARIAN')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"LIBRARIAN\"]')?.click(); true");
   await wait(250);
   await evaluate(`(() => {
     const trigger = [...document.querySelectorAll('.ranked-skill-card')]
@@ -918,8 +924,7 @@ try {
   })()`);
   await wait(250);
   await evaluate(`(() => {
-    const trigger = [...document.querySelectorAll('[data-surface="skill-inspector"] button')]
-      .find((button) => button.textContent.trim() === 'RECORD OUTCOME');
+    const trigger = document.querySelector('[data-surface="skill-inspector"] .outcome-record-button');
     window.__smokeOutcomeTrigger = trigger;
     trigger?.click();
     return Boolean(trigger);
@@ -952,7 +957,7 @@ try {
   );
   await evaluate("document.activeElement?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); true");
   await wait(250);
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'HISTORY')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"HISTORY\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.history-transfer')?.setAttribute('open', ''); true");
   await evaluate("document.querySelector('.outcome-export')?.click(); true");
@@ -1050,7 +1055,7 @@ try {
     "manual delete removes the personal outcome",
     "document.querySelectorAll('.outcome-history-item').length === 1 && JSON.parse(localStorage.getItem('personal-agent-os.personal-data.v1')).outcomes.length === 1 && ![...document.querySelectorAll('.outcome-history-item')].some((item) => item.textContent.includes('Weekly AI signal brief — revised'))",
   );
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'LIBRARIAN')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"LIBRARIAN\"]')?.click(); true");
   await wait(250);
   await assertPage("submitted search has no Overview or ENTER ORBIT action", "Boolean(document.querySelector('.librarian-page.is-searching')) && !document.querySelector('.portal-entry-trigger,.silent-orbit-page')");
   await evaluate("(() => { const input = document.querySelector('.librarian-search input'); input?.focus(); input?.select(); return true; })()");
@@ -1062,7 +1067,7 @@ try {
   await wait(500);
   await assertPage("empty resubmit clears submitted results", "Boolean(document.querySelector('.librarian-page.is-idle')) && document.querySelectorAll('.ranked-skill-card').length === 0 && document.querySelector('.librarian-status')?.textContent === '' && document.querySelector('.librarian-galaxy-portal')?.getBoundingClientRect().height >= 500");
   await assertPage("empty resubmit keeps Overview removed", "!document.querySelector('.portal-entry-trigger,.silent-orbit-page')");
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click()");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click()");
   await wait(300);
   await evaluate("[...document.querySelectorAll('.catalog-category-card')].find((el) => el.textContent.includes('工程质量与安全'))?.click()");
   await wait(400);
@@ -1078,7 +1083,7 @@ try {
   if (shouldRunOrbitReviewCase("origin")) {
     await assertPage(
       "removed Overview has no top navigation origin",
-      "![...document.querySelectorAll('.nav-button')].some((button) => button.textContent.trim() === 'SILENT ORBIT') && !document.querySelector('.portal-entry-trigger')",
+      "!document.querySelector('.nav-button[data-nav-label=\"SILENT ORBIT\"],.portal-entry-trigger')",
     );
   }
 
@@ -1351,7 +1356,7 @@ try {
     ".celestial-system[aria-pressed=\"true\"]",
     ".orbit-geometry ellipse",
   );
-  await evaluate("document.querySelector('.orbit-controls [aria-label=\"Zoom in\"]')?.click(); true");
+  await evaluate("document.querySelector('.orbit-controls [role=\"group\"] button:last-of-type')?.click(); true");
   await wait(650);
   await assertOrbitFocusGeometry(
     "category system stays centered after zoom",
@@ -1431,7 +1436,9 @@ try {
       const drawerBox = document.querySelector('[role="dialog"] .drawer')?.getBoundingClientRect();
       const signalIndexBox = document.querySelector('.orbit-library-signal-index')?.getBoundingClientRect();
       const style = caption ? getComputedStyle(caption) : null;
-      return Boolean(caption && box && drawerBox && signalIndexBox && caption.textContent.includes('SILENT HORIZON / SKILL SIGNAL'))
+      return Boolean(caption && box && drawerBox && signalIndexBox
+        && caption.getAttribute('data-arrival-context') === 'orbit'
+        && caption.querySelector('strong')?.textContent.trim())
         && style.display !== 'none'
         && Number(style.opacity) >= .8
         && box.left < drawerBox.left
@@ -1486,7 +1493,7 @@ try {
   );
   await assertPage(
     "orbit Skill Detail keeps the explicit Library return control",
-    "Boolean(document.querySelector('[role=\"dialog\"] .inspector-return-button')?.textContent.includes('RETURN TO LIBRARY'))",
+    "Boolean(document.querySelector('.silent-horizon-caption[data-arrival-context=\"orbit\"]') && document.querySelector('[role=\"dialog\"] .inspector-return-button'))",
   );
   await assertPage(
     "orbit Skill Detail exposes a dialog-owned Library signal index",
@@ -1563,7 +1570,7 @@ try {
   await evaluate("document.querySelector('.librarian-clear')?.click(); true");
   await wait(200);
 
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(300);
   await evaluate("document.querySelector('.catalog-category-card[data-category-id]')?.click()");
   await wait(500);
@@ -1629,7 +1636,7 @@ try {
     return Boolean(trigger);
   })()`);
   await wait(500);
-    await assertPage("skill drawer opens", "document.body.innerText.includes('SKILL DETAIL') && document.body.innerText.includes('何时触发')");
+    await assertPage("skill drawer opens", "Boolean(document.querySelector('[data-surface=\"skill-inspector\"][role=\"dialog\"] h2') && document.querySelector('[data-surface=\"skill-inspector\"] .detail-item'))");
     await assertPage(
       "Catalog Skill arrival preserves its Silent Horizon title",
       `(() => {
@@ -1684,7 +1691,7 @@ try {
   );
   await assertPage(
     "Catalog Skill inspector offers an explicit return control",
-    "Boolean(document.querySelector('[role=\"dialog\"] .inspector-return-button')?.textContent.includes('RETURN TO CATALOG'))",
+    "Boolean(document.querySelector('.silent-horizon-caption[data-arrival-context=\"catalog\"]') && document.querySelector('[role=\"dialog\"] .inspector-return-button'))",
   );
   await assertPage(
     "skill inspector isolates background content",
@@ -1757,7 +1764,7 @@ try {
   await wait(250);
   await assertPage("browser Back returns Catalog to Librarian", "Boolean(document.querySelector('[data-page=\"librarian\"]'))");
 
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.catalog-category-card')?.click(); true");
   await wait(250);
@@ -1775,18 +1782,18 @@ try {
   );
   await evaluate("document.querySelector('.catalog-secondary-action[data-catalog-target=\"private\"]')?.click()");
   await wait(400);
-  await assertPage("personal deck opens", "document.querySelector('[data-page=\"private\"]') && document.body.innerText.includes('PERSONAL DECK') && document.body.innerText.includes('个人常用') && !document.querySelector('.function-rail')");
+  await assertPage("personal deck opens", "Boolean(document.querySelector('[data-page=\"private\"] .private-header') && document.querySelector('[data-page=\"private\"] .skill-list') && !document.querySelector('.function-rail'))");
   await assertOneBitPalette("personal deck uses one-bit palette", [
     ".agent-console .private-header",
     ".agent-console .private-header p",
     ".agent-console .skill-row",
   ]);
 
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.catalog-secondary-action[data-catalog-target=\"sources\"]')?.click()");
   await wait(400);
-  await assertPage("sources page opens", "document.querySelector('[data-page=\"sources\"]') && document.body.innerText.includes('SOURCE INDEX') && document.body.innerText.includes('global') && !document.querySelector('.function-rail')");
+  await assertPage("sources page opens", "Boolean(document.querySelector('[data-page=\"sources\"] .source-table') && document.querySelector('[data-page=\"sources\"] .source-global') && !document.querySelector('.function-rail'))");
   await assertPage("html-ppt remains indexed", "document.body.innerText.toLowerCase().includes('html-ppt')");
   await assertOneBitPalette("sources page uses one-bit palette", [
     ".agent-console .source-global",
@@ -1794,24 +1801,24 @@ try {
     ".agent-console .source-global .source-facts span",
   ]);
 
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.catalog-secondary-action[data-catalog-target=\"changes\"]')?.click()");
   await wait(400);
-  await assertPage("changes page opens", "document.querySelector('[data-page=\"changes\"]') && document.body.innerText.includes('CHANGE LOG') && !document.querySelector('.function-rail')");
+  await assertPage("changes page opens", "Boolean(document.querySelector('[data-page=\"changes\"] .timeline-item') && !document.querySelector('.function-rail'))");
   await assertOneBitPalette("changes page uses one-bit palette", [
     ".agent-console .timeline-item",
     ".agent-console .timeline-item span",
     ".agent-console .timeline-item p",
   ]);
 
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(250);
   await evaluate("document.querySelector('.catalog-secondary-action[data-catalog-target=\"maintenance\"]')?.click()");
   await wait(400);
   await assertPage(
     "maintenance page exposes only the sanitized public snapshot",
-    "(async () => { const page = document.querySelector('[data-page=\"maintenance\"]'); const text = page?.innerText ?? ''; const status = await fetch(new URL('data/maintenance-status.json', location.href)).then((response) => response.json()); const metrics = [...(page?.querySelectorAll('.maintenance-metrics strong') ?? [])].map((node) => node.textContent.trim()); return Boolean(page && text.includes('MAINTENANCE LINK') && metrics[0] === String(status.catalogSkills) && metrics[1] === String(status.publicGlobalSkills) && metrics[2] === 'SAFE' && !/hatch-pet|humanizer/i.test(text) && !document.querySelector('.function-rail')); })()",
+    "(async () => { const page = document.querySelector('[data-page=\"maintenance\"]'); const text = page?.innerText ?? ''; const status = await fetch(new URL('data/maintenance-status.json', location.href)).then((response) => response.json()); const metrics = [...(page?.querySelectorAll('.maintenance-metrics strong') ?? [])].map((node) => node.textContent.trim()); return Boolean(page && page.querySelector('.maintenance-metrics') && metrics[0] === String(status.catalogSkills) && metrics[1] === String(status.publicGlobalSkills) && metrics[2] === 'SAFE' && !/hatch-pet|humanizer/i.test(text) && !document.querySelector('.function-rail')); })()",
   );
   await assertPage(
     "maintenance page explains all three update channels",
@@ -1912,7 +1919,7 @@ try {
   );
   await assertPage(
     "mobile keeps every system button accessible",
-    "document.querySelectorAll('.celestial-system').length===9 && [...document.querySelectorAll('.celestial-system')].every((button)=>{const label=button.getAttribute('aria-label')?.toLowerCase()??'';return Boolean(button.querySelector('strong')&&label.includes('skills')&&label.includes('libraries'))})",
+    "document.querySelectorAll('.celestial-system').length===9 && [...document.querySelectorAll('.celestial-system')].every((button)=>Boolean(button.getAttribute('data-system-id') && button.getAttribute('aria-label')?.trim() && button.querySelector('strong')?.textContent.trim() && button.querySelector('small')?.textContent.trim()))",
   );
   await assertPage(
     "mobile orbit controls stay inside viewport",
@@ -1920,7 +1927,7 @@ try {
   );
   await assertPage(
     "orbit marks only its current breadcrumb",
-    "document.querySelectorAll('.orbit-controls [aria-current=\"page\"]').length===1 && document.querySelector('.orbit-overview')?.textContent.includes('CATEGORY')",
+    "document.querySelectorAll('.orbit-controls [aria-current=\"page\"]').length===1 && Boolean(document.querySelector('.silent-orbit-page[data-view-mode=\"category\"] .orbit-overview'))",
   );
   await assertPage(
     "mobile category exposes non-empty visible library identities",
@@ -2006,7 +2013,7 @@ try {
   await evaluate("document.querySelector('.librarian-clear')?.click(); true");
   await wait(200);
   await assertPage("mobile search cleanup clears query", "document.querySelector('.librarian-search input')?.value === '' && document.querySelectorAll('.ranked-skill-card').length === 0");
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((el) => el.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(300);
   await assertPage(
     "mobile Catalog exposes a category entry in its first viewport with 44px navigation targets",
@@ -2089,13 +2096,17 @@ try {
     "3439x1318 Observatory uses the restrained ultrawide frame",
     `(() => {
       const page = document.querySelector('.librarian-page.is-idle')?.getBoundingClientRect();
-      const portal = document.querySelector('.librarian-galaxy-portal')?.getBoundingClientRect();
+      const portalElement = document.querySelector('.librarian-galaxy-portal');
+      const portal = portalElement?.getBoundingClientRect();
       const map = document.querySelector('.portal-map')?.getBoundingClientRect();
       const search = document.querySelector('.librarian-search-shell')?.getBoundingClientRect();
       return matchMedia('(min-width: 2400px) and (min-aspect-ratio: 12 / 5)').matches
         && Boolean(page && portal && map && search)
         && page.width >= 2239 && page.width <= 2241
-        && portal.height >= 819 && portal.height <= 822
+        && portal.height - map.height >= 100
+        && portal.height - map.height <= 120
+        && portal.height <= innerHeight * .68
+        && Boolean(portalElement.querySelector('[data-first-use="skill-map"]') && portalElement.querySelector('.portal-status'))
         && map.height >= 759 && map.height <= 761
         && search.width >= 619 && search.width <= 621
         && document.documentElement.scrollWidth === innerWidth;

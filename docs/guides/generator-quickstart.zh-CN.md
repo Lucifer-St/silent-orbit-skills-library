@@ -19,12 +19,41 @@ Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Sk
 - `silent-orbit-skills-library-0.11.0-beta.9.tgz`
 - `SHA256SUMS.txt`
 
-把两个文件放在同一目录，使用 PowerShell 在安装前校验 tarball：
+把两个文件放在同一目录。只校验文件名精确匹配 beta.9 tarball 且唯一的一行；
+缺行、重复行或旧版本行都不能代替它。
+
+Windows PowerShell：
 
 ```powershell
-$expected = (Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match 'silent-orbit-skills-library-0\.11\.0-beta\.8\.tgz$' }).Split()[0]
-$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath .\silent-orbit-skills-library-0.11.0-beta.9.tgz).Hash.ToLowerInvariant()
-if ($actual -ne $expected.ToLowerInvariant()) { throw 'Silent Orbit tarball checksum mismatch.' }
+$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+if ($matches.Count -ne 1) { throw "必须且只能找到一条 $tarball 校验记录。" }
+$expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
+if ($actual -ne $expected) { throw 'Silent Orbit tarball 校验失败。' }
+```
+
+Linux：
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
+printf '%s\n' "$checksum_line" | sha256sum --check -
+```
+
+macOS：
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
+expected="$(printf '%s\n' "$checksum_line" | awk '{ print tolower($1) }')"
+actual="$(shasum -a 256 "$tarball" | awk '{ print tolower($1) }')"
+[ "$actual" = "$expected" ] || { echo 'Silent Orbit tarball 校验失败。' >&2; exit 1; }
+printf '校验通过：%s\n' "$actual"
 ```
 
 ## 2. 安装 CLI

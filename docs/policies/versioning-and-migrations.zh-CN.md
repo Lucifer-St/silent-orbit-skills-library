@@ -18,7 +18,9 @@ CLI 与随包提供的 Agent Skills。
 `0.11.0-beta.9` 是 Phase 6B Windows 生成写入修复候选版本。它保留 beta.8
 的单文件验收合同、Windows 中文读取和首用引导，并为短暂文件访问拒绝增加重试、
 首轮生成的校验后复制后备，以及对已是最新的 `dist` 不再重复替换。CLI interface
-仍为 `0.4.0`，全部 v1 Schema digest 保持不变。
+仍为 `0.4.0`，全部 v1 Schema digest 保持不变。它还修正 checksum、回传渠道
+说明，并让 bundled `build-skill-cosmos` 合同与现有 CLI `0.4.x` family 对齐；
+这些文档修复不改变 CLI interface。
 
 ## SemVer 规则
 

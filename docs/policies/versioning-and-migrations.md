@@ -20,7 +20,10 @@ the npm registry.
 It preserves the executable handoff and onboarding corrections from beta.8,
 then adds transient file-operation retries, a validated first-generation copy
 fallback, and a no-rewrite path for already-current generated output. The CLI
-interface remains `0.4.0`, and every locked v1 Schema digest is unchanged.
+interface remains `0.4.0`, and every locked v1 Schema digest is unchanged. It
+also repairs checksum and return-channel instructions and aligns the bundled
+`build-skill-cosmos` contract with the existing CLI `0.4.x` family; those
+documentation repairs do not change the CLI interface.
 
 ## Semantic versioning
 

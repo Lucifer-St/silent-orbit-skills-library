@@ -15,6 +15,9 @@ function read(relativePath) {
 const publicDocumentPaths = Object.freeze({
   "BETA_TESTING.md": "docs/testing/beta-testing.md",
   "BETA_FEEDBACK_TEMPLATE.md": "docs/testing/beta-feedback-template.md",
+  "GENERATOR_QUICKSTART.md": "docs/guides/generator-quickstart.md",
+  "GENERATOR_QUICKSTART.zh-CN.md": "docs/guides/generator-quickstart.zh-CN.md",
+  "RELEASE_NOTES_v0.11.0-beta.9.md": "docs/releases/v0.11.0-beta.9.md",
   "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
   "V1_RC_ACCEPTANCE.zh-CN.md": "docs/testing/v1-rc-acceptance.zh-CN.md",
   "V1_RC_ONE_FILE_HANDOFF.zh-CN.md": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
@@ -35,6 +38,44 @@ function issueTemplate(fileName) {
   return fs.existsSync(path.join(projectDir, ...sourcePath.split("/")))
     ? sourcePath
     : `.github/ISSUE_TEMPLATE/${fileName}`;
+}
+
+function publicWorkflow(fileName) {
+  const sourcePath = `docs/public-release/github/${fileName}`;
+  return fs.existsSync(path.join(projectDir, ...sourcePath.split("/")))
+    ? sourcePath
+    : `.github/workflows/${fileName}`;
+}
+
+function escapeRegexLiteral(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function assertExactTarballChecksumInstructions(content, label, packageVersion) {
+  const tarball = `silent-orbit-skills-library-${packageVersion}.tgz`;
+  const escapedTarball = `${escapeRegexLiteral(tarball)}$`;
+  const escapedTarballs = content.match(
+    /silent-orbit-skills-library-\d+\\\.\d+\\\.\d+-beta\\\.\d+\\\.tgz\$/g,
+  ) ?? [];
+
+  assert.deepEqual(
+    escapedTarballs,
+    [escapedTarball],
+    `${label} must contain exactly one escaped checksum pattern for the current tarball.`,
+  );
+  assert.match(content, /\$matches\.Count -ne 1/);
+  assert.match(content, /sha256sum --check -/);
+  assert.match(content, /shasum -a 256/);
+  assert.doesNotMatch(
+    content,
+    /Get-Content[^\r\n]*SHA256SUMS\.txt[^\r\n]*-split\s+['"]\\s\+['"][^\r\n]*\[0\]/i,
+    `${label} must not treat the first hash in SHA256SUMS.txt as the tarball hash.`,
+  );
+  assert.doesNotMatch(
+    content,
+    /\b(?:sha256sum\s+(?:-c|--check)|shasum\s+-a\s+256\s+(?:-c|--check))\s+(?:\.\/)?SHA256SUMS\.txt\b/i,
+    `${label} must not verify all checksum rows when only a subset of assets is downloaded.`,
+  );
 }
 
 function readPng(relativePath) {
@@ -71,6 +112,54 @@ test("production metadata uses the exact public canonical and social assets", ()
     assert.ok(html.includes(required), `index.html is missing ${required}`);
   }
   assert.doesNotMatch(html, /data:,|localhost|example\.com/i);
+});
+
+test("full UI smoke drives localized controls through stable hooks", () => {
+  const smoke = read("scripts/smoke-ui.mjs");
+  const visualQa = read("scripts/capture-visual-qa.mjs");
+  const lines = smoke.split(/\r?\n/);
+  const visualQaLines = visualQa.split(/\r?\n/);
+
+  assert.equal(
+    lines.filter((line) => line.includes("nav-button") && line.includes("textContent.trim")).length,
+    0,
+    "Navigation smoke must not depend on translated button text.",
+  );
+  assert.equal(
+    lines.filter((line) => line.includes("inspector-return-button") && line.includes("textContent")).length,
+    0,
+    "Inspector return smoke must not depend on translated button text.",
+  );
+  assert.equal(
+    lines.filter((line) => line.includes("textContent.trim() === 'RECORD OUTCOME'")).length,
+    0,
+    "Outcome smoke must use the stable outcome-record-button hook.",
+  );
+  assert.doesNotMatch(smoke, /aria-label=\\?"Zoom in\\?"/);
+  assert.match(smoke, /data-nav-label=\\?"CATALOG\\?"/);
+  assert.match(smoke, /data-catalog-target=\\?"maintenance\\?"/);
+  assert.match(smoke, /outcome-record-button/);
+  assert.equal(
+    visualQaLines.filter((line) => line.includes("nav-button") && line.includes("textContent.trim")).length,
+    0,
+    "Visual QA navigation must not depend on translated button text.",
+  );
+  assert.match(visualQa, /data-nav-label=\\?"CATALOG\\?"/);
+  assert.match(visualQa, /data-nav-label=\\?"HISTORY\\?"/);
+});
+
+test("mobile first-use and Catalog metadata keep touch and CJK reading contracts", () => {
+  const librarianCss = read("src/styles/librarian.css");
+  const consoleCss = read("src/styles/console.css");
+
+  assert.match(
+    librarianCss,
+    /\.librarian-onboarding button\s*\{[^}]*min-height:\s*44px;/,
+  );
+  assert.match(
+    consoleCss,
+    /\.catalog-category-copy small\s*\{\s*letter-spacing:\s*normal;/,
+  );
 });
 
 test("public and generated interfaces are Chinese-first with a reversible language switch", () => {
@@ -128,6 +217,42 @@ test("tracked Netlify configuration defines one safe and consistent build", () =
   assert.doesNotMatch(config, /unsafe-eval|NETLIFY_AUTH_TOKEN|deploy\s+--prod/i);
 });
 
+test("required public gates execute Agent Skill, release-asset, and native checksum contracts", () => {
+  const workflow = read(publicWorkflow("public-release-gate.yml"));
+  const preflight = read("scripts/run-v1-preflight.mjs");
+
+  assert.match(workflow, /npm run preflight:v1 -- --mode public-core/);
+  assert.match(workflow, /matrix:[\s\S]*windows-latest[\s\S]*ubuntu-latest[\s\S]*macos-latest/);
+  assert.match(workflow, /npm run preflight:v1 -- --mode package-smoke/);
+  assert.match(preflight, /\["public-mvp", \["run", "test:mvp"\]\]/);
+  assert.match(preflight, /\["agent-skill-contract", \["run", "test:agent-skill"\]\]/);
+  assert.match(preflight, /if \(publicRepository\) runReleaseAssetsContract\(\)/);
+  assert.match(preflight, /checksumRows\.some\(\(row\) => row === null\)/);
+  assert.match(preflight, /documented-checksum-windows/);
+  assert.match(preflight, /documented-checksum-linux/);
+  assert.match(preflight, /documented-checksum-macos/);
+  assert.match(preflight, /\["pwsh\.exe", "powershell\.exe"\]/);
+  assert.match(preflight, /Get-Command Get-FileHash -ErrorAction SilentlyContinue/);
+  assert.match(preflight, /run\(resolveChecksumPowerShell\(\),/);
+  assert.match(
+    preflight,
+    /withPreparedReleaseAssets\(\(\{ outputDir, tarball, tarballName, handoff \}\) => \{[\s\S]*runDocumentedChecksumSmoke\(outputDir, tarballName\);[\s\S]*runPackageSmoke\(\{ tarball, handoff \}\);/,
+  );
+});
+
+test("release checksum instructions select one exact beta.9 tarball on each operating system", () => {
+  const packageVersion = JSON.parse(read("package.json")).version;
+  for (const fileName of [
+    "GENERATOR_QUICKSTART.md",
+    "GENERATOR_QUICKSTART.zh-CN.md",
+    "V1_RC_ACCEPTANCE.md",
+    "V1_RC_ACCEPTANCE.zh-CN.md",
+  ]) {
+    const relativePath = publicDocument(fileName);
+    assertExactTarballChecksumInstructions(read(relativePath), relativePath, packageVersion);
+  }
+});
+
 test("public beta materials cover tasks, severity, privacy, and both issue forms", () => {
   const testing = read(publicDocument("BETA_TESTING.md"));
   for (let task = 1; task <= 7; task += 1) assert.match(testing, new RegExp(`^${task}\\.`, "m"));
@@ -149,6 +274,8 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(v1Acceptance, /SHA256SUMS\.txt/);
   assert.match(v1Acceptance, /second scan\/diff/i);
   assert.match(v1Acceptance, /npx skills@1\.5\.20 check/);
+  assert.match(v1Acceptance, /private copy[\s\S]*only for privacy triage[\s\S]*not Phase 6B evidence/i);
+  assert.match(v1Acceptance, /independent user[\s\S]*personally submit the Issue[\s\S]*Form/i);
 
   const v1AcceptanceZh = read(publicDocument("V1_RC_ACCEPTANCE.zh-CN.md"));
   assert.match(v1AcceptanceZh, /中文傻瓜验收/);
@@ -157,6 +284,9 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(v1AcceptanceZh, /added: 0[\s\S]*changed: 0[\s\S]*removed: 0/);
   assert.match(v1AcceptanceZh, /同意执行这一批可信来源维护/);
   assert.match(v1AcceptanceZh, /privacy-safe receipt/);
+  assert.match(v1AcceptanceZh, /私下[\s\S]*只用于 privacy triage[\s\S]*不算 Phase 6B 验收证据/);
+  assert.match(v1AcceptanceZh, /独立用户本人提交 Issue Form/);
+  assert.doesNotMatch(v1AcceptanceZh, /短报告原样发回/);
 
   const oneFileHandoffZh = read(publicDocument("V1_RC_ONE_FILE_HANDOFF.zh-CN.md"));
   assert.match(oneFileHandoffZh, /单文件真人验收交接包/);
@@ -168,6 +298,18 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(oneFileHandoffZh, /SILENT_ORBIT_RETURN_REPORT_V1/);
   assert.match(oneFileHandoffZh, /handoffContract: \[PASS\/FAIL\/NOT_RUN\]/);
   assert.match(oneFileHandoffZh, /不得附加原始日志/);
+  assert.match(
+    oneFileHandoffZh,
+    /Windows PowerShell 单行：[\s\S]*create-v1-acceptance-summary\.mjs --project \.\\my-skill-cosmos[\s\S]*--out \.\\silent-orbit-v1-acceptance-receipt\.json/,
+  );
+  assert.match(oneFileHandoffZh, /私下回传[\s\S]*只用于 privacy triage[\s\S]*不构成 Phase 6B 验收证据/);
+  assert.match(oneFileHandoffZh, /独立用户本人提交 GitHub Issue Form/);
+
+  const beta9ReleaseNotes = read(publicDocument("RELEASE_NOTES_v0.11.0-beta.9.md"));
+  assert.match(beta9ReleaseNotes, /releases\/download\/(?:\{\{PUBLIC_RELEASE_TAG\}\}|v0\.11\.0-beta\.9)\/V1_RC_ONE_FILE_HANDOFF\.zh-CN\.md/);
+  assert.match(beta9ReleaseNotes, /docs\/testing\/v1-rc-acceptance\.zh-CN\.md/);
+  assert.match(beta9ReleaseNotes, /issues\/new\?template=v1_rc_acceptance\.yml/);
+  assert.match(beta9ReleaseNotes, /private copy[\s\S]*privacy triage[\s\S]*not completed Phase 6B evidence/i);
 });
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {

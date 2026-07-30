@@ -79,7 +79,10 @@ test("Alpha preview build is static, private-safe, and keeps Map plus Library mo
   const styles = fs.readFileSync(path.join(output, "styles.css"), "utf8");
   assert.match(html, /data-view-target="map"/);
   assert.match(html, /data-view-target="library"/);
-  assert.match(html, /Editorial Skill Atlas/);
+  assert.match(html, /<html lang="zh-CN">/);
+  assert.match(html, /<title>Skill 图书馆<\/title>/);
+  assert.match(html, /data-i18n="atlasTitle">Skill 图书馆/);
+  assert.match(script, /atlasTitle: "Editorial Skill Atlas"/);
   assert.match(script, /animateViewBox/);
   assert.match(script, /renderOverview/);
   assert.match(script, /renderCategory/);
