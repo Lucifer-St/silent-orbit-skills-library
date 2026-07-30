@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "515b95c326818d7fd0ebfc3242b8c004d745d799",
-  "inputCommitTimestamp": "2026-07-30T05:10:35-04:00",
+  "inputCommit": "8034b0b1b1b77022439c01465a4486f31faa915c",
+  "inputCommitTimestamp": "2026-07-30T05:21:04-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "59ef8f8f1e844cbd0db55e27a2deb0b2a34b2cb456e8709dce655434197a49cb",
+  "releaseDigest": "bdad80b32eab4046b95fa0f4c03764ae7b3dc903c3125fd69de51dba270120c8",
   "fileCount": 304,
-  "totalBytes": 12213364,
+  "totalBytes": 12214334,
   "excludedControlFiles": [
     "PUBLIC_RELEASE_MANIFEST.json",
     "PUBLIC_RELEASE_MANIFEST.md",
@@ -60,7 +60,7 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "69aa68defc7784efec00cf136dc1b7f0d213357dc4843c50c21bf05023cf2ac9"
+      "sha256": "818964a456da692bfa32097d17ea9f7fe608d3c38ea13efa5e454bb16f158889"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -220,7 +220,7 @@
     {
       "path": "docs/audits/privacy-audit.md",
       "bytes": 615,
-      "sha256": "9be8af9f06e4523ca1ea3b789cdbd34e7d366562a3f5de7b5a9d927bbc779e3b"
+      "sha256": "9d5d660c5b03add59a181c1d5f423e6d85130c0bcb7af992a8deec28d6ad6a32"
     },
     {
       "path": "docs/guides/generator-quickstart.md",
@@ -929,8 +929,8 @@
     },
     {
       "path": "scripts/run-v1-preflight.mjs",
-      "bytes": 13657,
-      "sha256": "839532737cabe0bc1a68d58c1af7cb23a501a844b07f6f0cc96dfa3c2173bb56"
+      "bytes": 14411,
+      "sha256": "217b8507a850ed837f23bc6c8be37877a0ad9d8cb8ea563f4941729f20fd81cd"
     },
     {
       "path": "scripts/silent-orbit.mjs",
@@ -1019,8 +1019,8 @@
     },
     {
       "path": "scripts/tests/site-release.test.mjs",
-      "bytes": 17607,
-      "sha256": "d2056ba6ee6de011f47bcd5c0c6f2c6639cda0ffc6953f8b447b7fc97be0dc5c"
+      "bytes": 17823,
+      "sha256": "a78d7204dd304ad3a0e5b083ea32f1fe454bdd4e0544eac4a787c5b537d7cd94"
     },
     {
       "path": "scripts/tests/skill-health.test.mjs",

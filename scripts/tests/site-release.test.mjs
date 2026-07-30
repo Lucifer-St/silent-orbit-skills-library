@@ -231,6 +231,9 @@ test("required public gates execute Agent Skill, release-asset, and native check
   assert.match(preflight, /documented-checksum-windows/);
   assert.match(preflight, /documented-checksum-linux/);
   assert.match(preflight, /documented-checksum-macos/);
+  assert.match(preflight, /\["pwsh\.exe", "powershell\.exe"\]/);
+  assert.match(preflight, /Get-Command Get-FileHash -ErrorAction SilentlyContinue/);
+  assert.match(preflight, /run\(resolveChecksumPowerShell\(\),/);
   assert.match(
     preflight,
     /withPreparedReleaseAssets\(\(\{ outputDir, tarball, tarballName, handoff \}\) => \{[\s\S]*runDocumentedChecksumSmoke\(outputDir, tarballName\);[\s\S]*runPackageSmoke\(\{ tarball, handoff \}\);/,

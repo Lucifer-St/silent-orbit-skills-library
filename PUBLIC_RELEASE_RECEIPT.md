@@ -1,12 +1,12 @@
 # Public Release completion receipt
 
 - Public Release status: GO
-- Input commit: `515b95c326818d7fd0ebfc3242b8c004d745d799`
-- Input commit timestamp: `2026-07-30T05:10:35-04:00`
-- Canonical release digest: `59ef8f8f1e844cbd0db55e27a2deb0b2a34b2cb456e8709dce655434197a49cb`
-- JSON manifest SHA-256: `28dec09530ab002d7a5a0afabbda44135dcbe3b7f646dd777a41e0f9b8773544`
-- Markdown manifest SHA-256: `c53b38194cba1ba2f39aa840611debbb998f1d8a1c76864baa785bde8e42a255`
-- Payload: 304 files / 12213364 bytes
+- Input commit: `8034b0b1b1b77022439c01465a4486f31faa915c`
+- Input commit timestamp: `2026-07-30T05:21:04-04:00`
+- Canonical release digest: `bdad80b32eab4046b95fa0f4c03764ae7b3dc903c3125fd69de51dba270120c8`
+- JSON manifest SHA-256: `d553e1eb90bddddcf2cae32dd62bf51198943baef84aba1309fd54d874e9bbde`
+- Markdown manifest SHA-256: `f8ef8ddf32c8ec482a29c584f9d2920c8674e6875041a248ef9a95d34e3589ab`
+- Payload: 304 files / 12214334 bytes
 - Production bundles: `index-BkobVKMl.css`, `index-DQJPEK8T.js`
 
 ## Fresh-RC verification

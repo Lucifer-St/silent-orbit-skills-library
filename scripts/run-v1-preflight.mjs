@@ -106,10 +106,33 @@ function withPreparedReleaseAssets(callback) {
   }
 }
 
+function resolveChecksumPowerShell() {
+  const probe = [
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-Command",
+    "if (-not (Get-Command Get-FileHash -ErrorAction SilentlyContinue)) { exit 1 }",
+  ];
+  const failures = [];
+  for (const command of ["pwsh.exe", "powershell.exe"]) {
+    const result = spawnSync(command, probe, {
+      cwd: projectDir,
+      encoding: "utf8",
+      shell: false,
+      env: { ...process.env, NO_COLOR: "1" },
+      stdio: "pipe",
+    });
+    if (!result.error && result.status === 0) return command;
+    failures.push(`${command}: ${result.error?.code ?? result.status ?? "unknown"}`);
+  }
+  throw new Error(`No Windows PowerShell runtime exposes Get-FileHash (${failures.join(", ")}).`);
+}
+
 function runDocumentedChecksumSmoke(outputDir, tarballName) {
   if (process.platform === "win32") {
     const escapedTarball = tarballName.replaceAll(".", "\\.");
-    run("powershell.exe", [
+    run(resolveChecksumPowerShell(), [
       "-NoLogo",
       "-NoProfile",
       "-NonInteractive",
