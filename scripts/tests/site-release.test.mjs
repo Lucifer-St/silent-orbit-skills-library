@@ -172,7 +172,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.11.0-beta.8");
+  assert.equal(packageJson.version, "0.11.0-beta.9");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -190,7 +190,7 @@ test("beta version, root-safe Vite base, and publication handoff are explicit", 
 test("v1 schemas are frozen by the Phase 6A release lock", () => {
   const lock = JSON.parse(read("schemas/schema-lock.v1.json"));
   assert.equal(lock.schemaVersion, 1);
-  assert.equal(lock.releaseVersion, "0.11.0-beta.8");
+  assert.equal(lock.releaseVersion, "0.11.0-beta.9");
   assert.equal(lock.cliInterfaceVersion, "0.4.0");
   assert.equal(lock.compatibilityFamily, "v1");
   assert.equal(lock.hashAlgorithm, "sha256");

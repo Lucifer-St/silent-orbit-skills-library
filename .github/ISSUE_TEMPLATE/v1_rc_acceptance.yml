@@ -5,7 +5,7 @@ labels: ["public-beta"]
 body:
   - type: markdown
     attributes:
-      value: "只使用 v0.11.0-beta.8 GitHub Pre-release 的公开清单。请勿提交原始日志、绝对路径、Skill 名称、提示词、私人记忆或账号数据。"
+      value: "只使用 v0.11.0-beta.9 GitHub Pre-release 的公开清单。请勿提交原始日志、绝对路径、Skill 名称、提示词、私人记忆或账号数据。"
   - type: checkboxes
     id: independence
     attributes:

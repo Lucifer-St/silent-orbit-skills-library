@@ -3,11 +3,11 @@
 本政策适用于 Silent Orbit Public Generator、JSON contracts、`silent-orbit`
 CLI 与随包提供的 Agent Skills。
 
-## Phase 6A 候选版本
+## Phase 6B 候选版本
 
 | Surface | 候选版本 | 兼容承诺 |
 |---|---:|---|
-| Repository / package | `0.11.0-beta.8` | `0.11.x` beta 系列 |
+| Repository / package | `0.11.0-beta.9` | `0.11.x` beta 系列 |
 | CLI interface | `0.4.0` | `0.4.x` 命令与 JSON 系列 |
 | JSON Schemas | `v1` | 以 `schemas/schema-lock.v1.json` 为准 |
 | Runtime | Node.js 24 | 发布门禁验证版本 |
@@ -15,10 +15,10 @@ CLI 与随包提供的 Agent Skills。
 
 这是 Pre-release，不是 `v1.0.0`，也不会发布到 npm registry。
 
-`0.11.0-beta.8` 是 Phase 6B Release Candidate：修复单文件验收合同、Windows 中文读取与 Release 附件闭包，
-为零来源和 Docker 挂载提供可执行诊断，并在首屏说明 Skill map 的价值，
-同时提供 Catalog 列表后备入口。CLI interface 仍为 `0.4.0`，
-全部 v1 Schema digest 保持不变。
+`0.11.0-beta.9` 是 Phase 6B Windows 生成写入修复候选版本。它保留 beta.8
+的单文件验收合同、Windows 中文读取和首用引导，并为短暂文件访问拒绝增加重试、
+首轮生成的校验后复制后备，以及对已是最新的 `dist` 不再重复替换。CLI interface
+仍为 `0.4.0`，全部 v1 Schema digest 保持不变。
 
 ## SemVer 规则
 
@@ -46,7 +46,7 @@ SHA-256。release gate 会在 Windows、macOS 与 Linux 上重新计算，并拒
 
 ## 当前迁移基线
 
-v1 系列内部无需迁移。`0.11.0-beta.8` 读写固定的 v1 contracts。遇到不支持的
+v1 系列内部无需迁移。`0.11.0-beta.9` 读写固定的 v1 contracts。遇到不支持的
 新 schema 时必须停止，不能静默转换。
 
 未来 v2 迁移必须由用户显式启动并在本地完成；不得覆盖唯一副本，不得发布私有

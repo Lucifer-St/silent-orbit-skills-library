@@ -1,6 +1,6 @@
 # 安装与升级
 
-Silent Orbit `v0.11.0-beta.8` 只通过 GitHub Pre-release 分发，不得按 package
+Silent Orbit `v0.11.0-beta.9` 只通过 GitHub Pre-release 分发，不得按 package
 名称从 npm registry 安装。
 
 ## 要求
@@ -17,14 +17,14 @@ SHA-256 校验与首次生成请按 `generator-quickstart.zh-CN.md` 执行。
 项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.8.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.9.tgz
 npx silent-orbit --version
 ```
 
 已有全局文件安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.8.tgz
+npm install --global .\silent-orbit-skills-library-0.11.0-beta.9.tgz
 silent-orbit --version
 ```
 

@@ -42,6 +42,8 @@ const SECRET_PREFIXES = [
   ["github", "pat"].join("_") + "_",
   ["gh", "p_"].join(""),
 ];
+const TRANSIENT_IO_CODES = new Set(["EACCES", "EBUSY", "EIO", "ENOTEMPTY", "EPERM"]);
+const TRANSIENT_IO_RETRY_DELAYS_MS = Object.freeze([25, 50, 100, 200, 400]);
 
 function invariant(condition, message) {
   if (!condition) throw new Error(`Silent Orbit project violation: ${message}`);
@@ -90,29 +92,79 @@ function stableJson(value) {
 }
 
 function atomicWriteText(target, text) {
-  fs.mkdirSync(path.dirname(target), { recursive: true });
+  retryTransientIo(() => fs.mkdirSync(path.dirname(target), { recursive: true }));
   const temporary = `${target}.tmp-${process.pid}`;
   const backup = `${target}.bak-${process.pid}`;
-  fs.writeFileSync(temporary, text, "utf8");
+  retryTransientIo(() => fs.writeFileSync(temporary, text, "utf8"));
   let backedUp = false;
   try {
-    if (fs.existsSync(backup)) fs.rmSync(backup, { force: true });
+    if (fs.existsSync(backup)) removePathWithRetry(backup);
     if (fs.existsSync(target)) {
-      fs.renameSync(target, backup);
+      renameWithRetry(target, backup);
       backedUp = true;
     }
-    fs.renameSync(temporary, target);
-    if (backedUp) fs.rmSync(backup, { force: true });
+    renameWithRetry(temporary, target);
+    if (backedUp) removePathWithRetry(backup);
   } catch (error) {
-    if (!fs.existsSync(target) && backedUp && fs.existsSync(backup)) fs.renameSync(backup, target);
+    if (!fs.existsSync(target) && backedUp && fs.existsSync(backup)) renameWithRetry(backup, target);
     throw error;
   } finally {
-    if (fs.existsSync(temporary)) fs.rmSync(temporary, { force: true });
+    if (fs.existsSync(temporary)) removePathWithRetry(temporary);
   }
 }
 
 function atomicWriteJson(target, value) {
   atomicWriteText(target, stableJson(value));
+}
+
+function isTransientIoError(error) {
+  return TRANSIENT_IO_CODES.has(String(error?.code ?? "").toUpperCase());
+}
+
+function waitSynchronously(milliseconds) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);
+}
+
+function retryTransientIo(operation) {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return operation();
+    } catch (error) {
+      const delay = TRANSIENT_IO_RETRY_DELAYS_MS[attempt];
+      if (!isTransientIoError(error) || delay === undefined) throw error;
+      waitSynchronously(delay);
+    }
+  }
+}
+
+function removePathWithRetry(target) {
+  if (!fs.existsSync(target)) return;
+  retryTransientIo(() => fs.rmSync(target, {
+    recursive: true,
+    force: true,
+    maxRetries: 5,
+    retryDelay: 50,
+  }));
+}
+
+function renameWithRetry(source, target) {
+  retryTransientIo(() => fs.renameSync(source, target));
+}
+
+function generateIoError(error, { rollbackFailed = false } = {}) {
+  if (error?.silentOrbitGenerateError === true) return error;
+  const code = String(error?.code ?? "UNKNOWN").toUpperCase();
+  const accessHint = isTransientIoError(error)
+    ? " A local process or Windows security policy temporarily denied the file operation. Close any preview or file viewer using this project, confirm the temporary project directory is writable, and rerun generate."
+    : "";
+  const rollbackHint = rollbackFailed
+    ? " Automatic recovery could not be confirmed; keep the project directory and run doctor before retrying."
+    : " The previous dist was preserved when one existed.";
+  const wrapped = new Error(`Silent Orbit generate could not publish dist (${code}).${accessHint}${rollbackHint}`);
+  wrapped.code = code;
+  wrapped.cause = error;
+  wrapped.silentOrbitGenerateError = true;
+  return wrapped;
 }
 
 function writeReceipt(projectRoot, command, identity, value) {
@@ -367,13 +419,13 @@ function replaceJsonBundleAtomically(projectRoot, entries, transactionId) {
   const stagedRoot = path.join(transactionRoot, "staged");
   const backupRoot = path.join(transactionRoot, "backup");
   invariant(isWithin(projectRoot, transactionRoot), "file transaction escaped the project root.");
-  if (fs.existsSync(transactionRoot)) fs.rmSync(transactionRoot, { recursive: true, force: true });
+  if (fs.existsSync(transactionRoot)) removePathWithRetry(transactionRoot);
   const records = entries.map((entry) => {
     const target = resolveWritePath(projectRoot, entry.relativePath, `transaction target ${entry.relativePath}`);
     const staged = path.join(stagedRoot, entry.relativePath);
     const backup = path.join(backupRoot, entry.relativePath);
-    fs.mkdirSync(path.dirname(staged), { recursive: true });
-    fs.writeFileSync(staged, stableJson(entry.value), "utf8");
+    retryTransientIo(() => fs.mkdirSync(path.dirname(staged), { recursive: true }));
+    retryTransientIo(() => fs.writeFileSync(staged, stableJson(entry.value), "utf8"));
     return { target, staged, backup };
   });
   const replaced = [];
@@ -381,32 +433,32 @@ function replaceJsonBundleAtomically(projectRoot, entries, transactionId) {
     for (const record of records) {
       let backedUp = false;
       if (fs.existsSync(record.target)) {
-        fs.mkdirSync(path.dirname(record.backup), { recursive: true });
-        fs.renameSync(record.target, record.backup);
+        retryTransientIo(() => fs.mkdirSync(path.dirname(record.backup), { recursive: true }));
+        renameWithRetry(record.target, record.backup);
         backedUp = true;
       }
-      fs.mkdirSync(path.dirname(record.target), { recursive: true });
-      fs.renameSync(record.staged, record.target);
+      retryTransientIo(() => fs.mkdirSync(path.dirname(record.target), { recursive: true }));
+      renameWithRetry(record.staged, record.target);
       replaced.push({ ...record, backedUp });
     }
-    fs.rmSync(transactionRoot, { recursive: true, force: true });
+    removePathWithRetry(transactionRoot);
   } catch (error) {
     for (const record of [...replaced].reverse()) {
-      if (fs.existsSync(record.target)) fs.rmSync(record.target, { force: true });
+      if (fs.existsSync(record.target)) removePathWithRetry(record.target);
       if (record.backedUp && fs.existsSync(record.backup)) {
-        fs.mkdirSync(path.dirname(record.target), { recursive: true });
-        fs.renameSync(record.backup, record.target);
+        retryTransientIo(() => fs.mkdirSync(path.dirname(record.target), { recursive: true }));
+        renameWithRetry(record.backup, record.target);
       }
     }
     for (const record of records) {
       if (!fs.existsSync(record.target) && fs.existsSync(record.backup)) {
-        fs.mkdirSync(path.dirname(record.target), { recursive: true });
-        fs.renameSync(record.backup, record.target);
+        retryTransientIo(() => fs.mkdirSync(path.dirname(record.target), { recursive: true }));
+        renameWithRetry(record.backup, record.target);
       }
     }
     throw error;
   } finally {
-    if (fs.existsSync(transactionRoot)) fs.rmSync(transactionRoot, { recursive: true, force: true });
+    if (fs.existsSync(transactionRoot)) removePathWithRetry(transactionRoot);
   }
 }
 
@@ -482,7 +534,7 @@ function templateRootFor(theme) {
 function copyTemplate(target, theme) {
   const templateRoot = templateRootFor(theme);
   invariant(fs.existsSync(templateRoot), "bundled renderer template is missing.");
-  fs.cpSync(templateRoot, target, { recursive: true });
+  retryTransientIo(() => fs.cpSync(templateRoot, target, { recursive: true }));
 }
 
 function frontendHandoff({ theme, summary }) {
@@ -512,23 +564,68 @@ function frontendHandoff({ theme, summary }) {
   ].join("\n");
 }
 
-function replaceDirectoryAtomically(projectRoot, temporary, target, snapshotId) {
+function sameOutputManifest(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function publishStagedDirectory(temporary, target) {
+  try {
+    renameWithRetry(temporary, target);
+    return "rename";
+  } catch (error) {
+    if (!isTransientIoError(error) || fs.existsSync(target)) throw error;
+    try {
+      retryTransientIo(() => fs.cpSync(temporary, target, { recursive: true, errorOnExist: true, force: false }));
+      validateGeneratedDirectory(target);
+      removePathWithRetry(temporary);
+      return "copy-fallback";
+    } catch (copyError) {
+      if (fs.existsSync(target)) removePathWithRetry(target);
+      throw copyError;
+    }
+  }
+}
+
+function replaceDirectoryAtomically(projectRoot, temporary, target, snapshotId, expectedFiles) {
   const transactionRoot = path.join(projectRoot, STATE_DIR, "transactions");
-  fs.mkdirSync(transactionRoot, { recursive: true });
+  retryTransientIo(() => fs.mkdirSync(transactionRoot, { recursive: true }));
   const backup = path.join(transactionRoot, `dist-backup-${snapshotId.replace(/[^a-z0-9.-]+/gi, "-")}`);
   invariant(isWithin(projectRoot, temporary) && isWithin(projectRoot, target) && isWithin(projectRoot, backup), "generated directory replacement escaped the project root.");
-  if (fs.existsSync(backup)) fs.rmSync(backup, { recursive: true, force: true });
+  if (fs.existsSync(target)) {
+    try {
+      if (sameOutputManifest(validateGeneratedDirectory(target), expectedFiles)) {
+        removePathWithRetry(temporary);
+        return "unchanged";
+      }
+    } catch {
+      // Invalid or unreadable existing output is replaced through the recovery path below.
+    }
+  }
+  if (fs.existsSync(backup)) removePathWithRetry(backup);
+  const targetWasPresent = fs.existsSync(target);
   let backedUp = false;
+  let published = false;
   try {
-    if (fs.existsSync(target)) {
-      fs.renameSync(target, backup);
+    if (targetWasPresent) {
+      renameWithRetry(target, backup);
       backedUp = true;
     }
-    fs.renameSync(temporary, target);
-    if (backedUp) fs.rmSync(backup, { recursive: true, force: true });
+    const publishMethod = publishStagedDirectory(temporary, target);
+    published = true;
+    if (backedUp) removePathWithRetry(backup);
+    return publishMethod;
   } catch (error) {
-    if (!fs.existsSync(target) && backedUp && fs.existsSync(backup)) fs.renameSync(backup, target);
-    throw error;
+    let rollbackFailed = false;
+    try {
+      if ((published || !targetWasPresent) && fs.existsSync(target)) removePathWithRetry(target);
+      if (backedUp && fs.existsSync(backup)) {
+        if (fs.existsSync(target)) removePathWithRetry(target);
+        renameWithRetry(backup, target);
+      }
+    } catch {
+      rollbackFailed = true;
+    }
+    throw generateIoError(error, { rollbackFailed });
   }
 }
 
@@ -541,13 +638,14 @@ export function generateSilentOrbitProject({ projectDirectory = "." } = {}) {
   const temporary = path.join(projectRoot, `${STATE_DIR}-generate-${process.pid}`);
   const target = path.join(projectRoot, "dist");
   invariant(isWithin(projectRoot, temporary) && temporary !== projectRoot, "temporary output escaped the project root.");
-  if (fs.existsSync(temporary)) fs.rmSync(temporary, { recursive: true, force: true });
+  if (fs.existsSync(temporary)) removePathWithRetry(temporary);
+  let primaryError;
   try {
     copyTemplate(temporary, config.project.renderer.theme);
     atomicWriteJson(path.join(temporary, "site-data.json"), { project: config.project, siteManifest, appData });
     atomicWriteText(path.join(temporary, "frontend-handoff.md"), frontendHandoff({ theme: config.project.renderer.theme, summary: siteManifest.summary }));
     const files = validateGeneratedDirectory(temporary);
-    replaceDirectoryAtomically(projectRoot, temporary, target, librarySnapshot.snapshotId);
+    const publishMethod = replaceDirectoryAtomically(projectRoot, temporary, target, librarySnapshot.snapshotId, files);
     replaceJsonBundleAtomically(projectRoot, [
       { relativePath: PREVIOUS_SNAPSHOT_FILE, value: librarySnapshot },
     ], `generated-${librarySnapshot.snapshotId}`);
@@ -558,12 +656,22 @@ export function generateSilentOrbitProject({ projectDirectory = "." } = {}) {
       inventorySnapshotId: inventorySnapshot.snapshotId,
       librarySnapshotId: librarySnapshot.snapshotId,
       siteManifestId: createHash("sha256").update(JSON.stringify(siteManifest)).digest("hex"),
+      publishMethod,
       files,
     };
     const receiptPath = writeReceipt(projectRoot, "generate", librarySnapshot.snapshotId, receipt);
     return { projectRoot, outputDirectory: target, receipt, receiptPath, summary: siteManifest.summary };
+  } catch (error) {
+    primaryError = isTransientIoError(error) ? generateIoError(error) : error;
+    throw primaryError;
   } finally {
-    if (fs.existsSync(temporary)) fs.rmSync(temporary, { recursive: true, force: true });
+    if (fs.existsSync(temporary)) {
+      try {
+        removePathWithRetry(temporary);
+      } catch (cleanupError) {
+        if (!primaryError) throw generateIoError(cleanupError);
+      }
+    }
   }
 }
 

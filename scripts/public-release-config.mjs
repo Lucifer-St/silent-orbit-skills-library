@@ -1,6 +1,6 @@
 export const visualAssetPolicy = "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.";
 
-export const publicReleaseVersion = "0.11.0-beta.8";
+export const publicReleaseVersion = "0.11.0-beta.9";
 export const publicReleaseTag = `v${publicReleaseVersion}`;
 
 export const publicCodeownersText = [

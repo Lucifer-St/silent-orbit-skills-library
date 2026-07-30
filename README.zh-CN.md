@@ -15,7 +15,7 @@ Silent Orbit 把不断增长的 AI Skills 集合变成一个可以使用的产�
 
 ## 真人验收从这里开始
 
-只把 [`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8)
+只把 [`v0.11.0-beta.9` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9)
 这一个链接发给验收者。验收者在 Assets 下载
 `V1_RC_ONE_FILE_HANDOFF.zh-CN.md`，上传给本机 Agent，然后说
 `开始验收`；不需要自己输入命令、填写模板或接收作者本地文件。
@@ -123,7 +123,7 @@ Public Beta 不使用第三方 analytics、cookies 或行为追踪；Safari 仍�
 - [Security policy](./SECURITY.md)
 - [贡献政策](./CONTRIBUTING.md)
 
-`v0.11.0-beta.8` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
+`v0.11.0-beta.9` 的 v1 Schemas 由 `schemas/schema-lock.v1.json` 固定。
 这是 GitHub Pre-release，不是 `v1.0.0`；Production authority 仍是通过必需
 `release-gate` 的 Public `main`。
 

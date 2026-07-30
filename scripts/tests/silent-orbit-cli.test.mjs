@@ -40,6 +40,19 @@ function sourceImport(skills) {
   };
 }
 
+function prepareSingleSkillProject(parent, label) {
+  const root = path.join(parent, "project");
+  const inputFile = path.join(parent, "source.json");
+  initSilentOrbitProject({ projectDirectory: root, title: label, projectId: label });
+  writeJson(inputFile, sourceImport([
+    { name: "research-compass", visibility: "public", origin: "third-party", description: "Research sources.", trigger: "$research-compass" },
+  ]));
+  importSilentOrbitSource({ projectDirectory: root, inputFile });
+  scanSilentOrbitProject({ projectDirectory: root, generatedAt: "2026-07-29T00:00:00.000Z" });
+  analyzeSilentOrbitProject({ projectDirectory: root });
+  return root;
+}
+
 test("CLI entry point exposes the expected v0.4 commands", () => {
   const help = silentOrbitHelpText();
   for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit", "manage plan", "manage apply", "manage check-and-update"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
@@ -205,4 +218,163 @@ test("generated files and receipts remain inside the selected project root", (t)
   assert.ok(path.relative(root, generated.outputDirectory) === "dist");
   assert.ok(fs.readdirSync(parent).every((name) => ["project", "source.json"].includes(name)));
   assert.equal(fs.readdirSync(root).some((name) => name.startsWith(".silent-orbit-generate-")), false);
+});
+
+test("generate retries a transient Windows-style access denial while publishing dist", { concurrency: false }, (t) => {
+  const parent = temporaryRoot("generate-transient-eio");
+  const root = prepareSingleSkillProject(parent, "generate-transient-eio");
+  const originalRename = fs.renameSync;
+  let injected = 0;
+  t.after(() => {
+    fs.renameSync = originalRename;
+    fs.rmSync(parent, { recursive: true, force: true });
+  });
+  fs.renameSync = (source, target) => {
+    if (injected === 0 && path.basename(target) === "dist") {
+      injected += 1;
+      throw Object.assign(new Error("EIO: Access denied"), { code: "EIO", syscall: "rename" });
+    }
+    return originalRename(source, target);
+  };
+
+  const generated = generateSilentOrbitProject({ projectDirectory: root });
+  fs.renameSync = originalRename;
+
+  assert.equal(injected, 1);
+  assert.equal(generated.receipt.publishMethod, "rename");
+  assert.ok(fs.existsSync(path.join(root, "dist", "index.html")));
+  assert.deepEqual(diffSilentOrbitProject({ projectDirectory: root }).summary, { added: 0, changed: 0, removed: 0 });
+  assert.equal(fs.readdirSync(root).some((name) => name.startsWith(".silent-orbit-generate-")), false);
+});
+
+test("generate retries transient access denials while staging template and data files", { concurrency: false }, (t) => {
+  const parent = temporaryRoot("generate-staging-eio");
+  const root = prepareSingleSkillProject(parent, "generate-staging-eio");
+  const originalCopy = fs.cpSync;
+  const originalWrite = fs.writeFileSync;
+  let copyDenials = 0;
+  let writeDenials = 0;
+  t.after(() => {
+    fs.cpSync = originalCopy;
+    fs.writeFileSync = originalWrite;
+    fs.rmSync(parent, { recursive: true, force: true });
+  });
+  fs.cpSync = (source, target, options) => {
+    if (copyDenials === 0 && path.basename(target).startsWith(".silent-orbit-generate-")) {
+      copyDenials += 1;
+      throw Object.assign(new Error("EIO: Access denied"), { code: "EIO", syscall: "copyfile" });
+    }
+    return originalCopy(source, target, options);
+  };
+  fs.writeFileSync = (target, data, options) => {
+    if (writeDenials === 0 && path.basename(target).startsWith("site-data.json.tmp-")) {
+      writeDenials += 1;
+      throw Object.assign(new Error("EACCES: Access denied"), { code: "EACCES", syscall: "open" });
+    }
+    return originalWrite(target, data, options);
+  };
+
+  const generated = generateSilentOrbitProject({ projectDirectory: root });
+  fs.cpSync = originalCopy;
+  fs.writeFileSync = originalWrite;
+
+  assert.equal(copyDenials, 1);
+  assert.equal(writeDenials, 1);
+  assert.equal(generated.receipt.publishMethod, "rename");
+  assert.ok(fs.existsSync(path.join(root, "dist", "frontend-handoff.md")));
+});
+
+test("generate uses a validated copy fallback when Windows repeatedly denies directory rename", { concurrency: false }, (t) => {
+  const parent = temporaryRoot("generate-persistent-eio");
+  const root = prepareSingleSkillProject(parent, "generate-persistent-eio");
+  const originalRename = fs.renameSync;
+  let injected = 0;
+  t.after(() => {
+    fs.renameSync = originalRename;
+    fs.rmSync(parent, { recursive: true, force: true });
+  });
+  fs.renameSync = (source, target) => {
+    if (path.basename(target) === "dist") {
+      injected += 1;
+      throw Object.assign(new Error("EIO: Access denied"), { code: "EIO", syscall: "rename" });
+    }
+    return originalRename(source, target);
+  };
+
+  const generated = generateSilentOrbitProject({ projectDirectory: root });
+  fs.renameSync = originalRename;
+
+  assert.equal(injected, 6);
+  assert.equal(generated.receipt.publishMethod, "copy-fallback");
+  assert.ok(fs.existsSync(path.join(root, "dist", "site-data.json")));
+  assert.deepEqual(diffSilentOrbitProject({ projectDirectory: root }).summary, { added: 0, changed: 0, removed: 0 });
+  assert.equal(fs.readdirSync(root).some((name) => name.startsWith(".silent-orbit-generate-")), false);
+});
+
+test("persistent publish denial returns an actionable path-free error and no partial dist", { concurrency: false }, (t) => {
+  const parent = temporaryRoot("generate-denied");
+  const root = prepareSingleSkillProject(parent, "generate-denied");
+  const originalRename = fs.renameSync;
+  const originalCopy = fs.cpSync;
+  t.after(() => {
+    fs.renameSync = originalRename;
+    fs.cpSync = originalCopy;
+    fs.rmSync(parent, { recursive: true, force: true });
+  });
+  fs.renameSync = (source, target) => {
+    if (path.basename(target) === "dist") {
+      throw Object.assign(new Error("EIO: Access denied"), { code: "EIO", syscall: "rename" });
+    }
+    return originalRename(source, target);
+  };
+  fs.cpSync = (source, target, options) => {
+    if (path.basename(target) === "dist") {
+      throw Object.assign(new Error("EACCES: Access denied"), { code: "EACCES", syscall: "copyfile" });
+    }
+    return originalCopy(source, target, options);
+  };
+
+  let failure;
+  try {
+    generateSilentOrbitProject({ projectDirectory: root });
+  } catch (error) {
+    failure = error;
+  } finally {
+    fs.renameSync = originalRename;
+    fs.cpSync = originalCopy;
+  }
+
+  assert.ok(failure);
+  assert.equal(failure.code, "EACCES");
+  assert.match(failure.message, /local process or Windows security policy.*rerun generate/i);
+  assert.doesNotMatch(failure.message, new RegExp(root.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+  assert.equal(fs.existsSync(path.join(root, "dist")), false);
+  assert.equal(fs.readdirSync(root).some((name) => name.startsWith(".silent-orbit-generate-")), false);
+});
+
+test("repeated generate leaves identical dist untouched when it is already current", { concurrency: false }, (t) => {
+  const parent = temporaryRoot("generate-unchanged");
+  const root = prepareSingleSkillProject(parent, "generate-unchanged");
+  const first = generateSilentOrbitProject({ projectDirectory: root });
+  assert.equal(first.receipt.publishMethod, "rename");
+  const originalRename = fs.renameSync;
+  let distRenameAttempts = 0;
+  t.after(() => {
+    fs.renameSync = originalRename;
+    fs.rmSync(parent, { recursive: true, force: true });
+  });
+  fs.renameSync = (source, target) => {
+    if (path.basename(source) === "dist" || path.basename(target) === "dist") {
+      distRenameAttempts += 1;
+      throw Object.assign(new Error("EPERM: Access denied"), { code: "EPERM", syscall: "rename" });
+    }
+    return originalRename(source, target);
+  };
+
+  const second = generateSilentOrbitProject({ projectDirectory: root });
+  fs.renameSync = originalRename;
+
+  assert.equal(distRenameAttempts, 0);
+  assert.equal(second.receipt.publishMethod, "unchanged");
+  assert.deepEqual(second.receipt.files, first.receipt.files);
 });

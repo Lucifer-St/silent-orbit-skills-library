@@ -7,7 +7,7 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 | Surface | Phase 6B candidate | Compatibility promise |
 |---|---:|---|
-| Repository and package | `0.11.0-beta.8` | `0.11.x` beta line |
+| Repository and package | `0.11.0-beta.9` | `0.11.x` beta line |
 | CLI interface | `0.4.0` | `0.4.x` command and JSON family |
 | JSON Schemas | `v1` | exact files in `schemas/schema-lock.v1.json` |
 | Runtime | Node.js 24 | tested release runtime |
@@ -16,12 +16,11 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 This is a pre-release. It is not `v1.0.0`, and the package is not published to
 the npm registry.
 
-`0.11.0-beta.8` is the Phase 6B handoff-contract and Windows onboarding repair candidate.
-It preserves the POSIX npm-bin and first-use corrections from beta.6, moves
-Public documentation into a deterministic hierarchy, closes package-only
-Markdown link gaps, and hardens release ownership and GitHub Actions pinning.
-The CLI interface remains `0.4.0`, and every locked v1 Schema digest is
-unchanged.
+`0.11.0-beta.9` is the Phase 6B Windows generation-access repair candidate.
+It preserves the executable handoff and onboarding corrections from beta.8,
+then adds transient file-operation retries, a validated first-generation copy
+fallback, and a no-rewrite path for already-current generated output. The CLI
+interface remains `0.4.0`, and every locked v1 Schema digest is unchanged.
 
 ## Semantic versioning
 
@@ -58,7 +57,7 @@ file itself is versioned separately from the locked Schemas.
 
 ## Current migration baseline
 
-No migration is required inside the v1 family. `0.11.0-beta.8` reads and writes
+No migration is required inside the v1 family. `0.11.0-beta.9` reads and writes
 the frozen v1 contracts. It must reject an unsupported newer schema instead of
 silently coercing it.
 
