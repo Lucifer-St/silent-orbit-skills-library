@@ -1,7 +1,7 @@
 ﻿# Silent Orbit v1 RC 单文件真人验收交接包
 
-> 版本：`v0.11.0-beta.8`<br>
-> 唯一可信入口：https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8<br>
+> 版本：`v0.11.0-beta.9`<br>
+> 唯一可信入口：https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9<br>
 > 预计用时：核心验收 15–25 分钟；Docker 和真实维护另算<br>
 > 最终产物：一份可以原样发回给 Matthew 的简短隐私安全报告
 
@@ -52,7 +52,7 @@ PowerShell 脚本、作者电脑路径或另一份清单。你只做三步：
 - 把原始日志、绝对路径、Skill 名称、提示词、账号信息或本地记录上传到任何地方；
 - 代替你宣称“真人看过了”，或替你提交 GitHub Issue。
 
-`npm install ./silent-orbit-skills-library-0.11.0-beta.8.tgz` 可以按包声明解析正常的公开依赖，
+`npm install ./silent-orbit-skills-library-0.11.0-beta.9.tgz` 可以按包声明解析正常的公开依赖，
 但 Silent Orbit 本体必须来自已校验的本地 tarball，不能改成从 npm registry
 获取同名包。
 
@@ -90,7 +90,7 @@ Agent 才能执行这一批。没有这句确认，就记录为 `not-run`，不�
 
 - 用户主动上传或粘贴本文件并要求执行，只授权“核心验收”中的临时目录操作。
 - 你是执行助手，不是独立验收者。网页体验结论必须询问真人。
-- 只认 `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8`。禁止使用 `latest`、其他 tag、本地作者路径、
+- 只认 `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9`。禁止使用 `latest`、其他 tag、本地作者路径、
   其他压缩包或未发布构建。
 - 当前输入必须来自该 Release 的 `V1_RC_ONE_FILE_HANDOFF.zh-CN.md` 附件。
 - 如果 URL 不存在、不是精确 tag 页面、Release 不是公开且 immutable 的 Pre-release、
@@ -126,7 +126,7 @@ Node 不是 24、Release 不可访问或无法建立独立临时目录时，停�
 只从唯一 Release 下载：
 
 - `V1_RC_ONE_FILE_HANDOFF.zh-CN.md`
-- `silent-orbit-skills-library-0.11.0-beta.8.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.9.tgz`
 - `SHA256SUMS.txt`
 - `silent-orbit-v1-starter.source-import.json`
 - 仅在本来就使用 Docker 时，再下载 `v1-docker-smoke.sh`
@@ -139,7 +139,7 @@ CRLF / CR 统一成 LF 后逐字比较。缺失、不一致或仍有未解析模
 
 然后对本次实际下载的每个附件，都从 `SHA256SUMS.txt` 中找到**文件名完全一致且
 唯一**的那一行，计算本地 SHA256 并逐字符比较。至少必须覆盖本交接文件、
-`silent-orbit-skills-library-0.11.0-beta.8.tgz` 和 starter；实际执行 Docker 时也必须覆盖两个 Docker
+`silent-orbit-skills-library-0.11.0-beta.9.tgz` 和 starter；实际执行 Docker 时也必须覆盖两个 Docker
 附件。不得假设第一行就是 tarball，不得凭下载成功推断校验通过。
 
 不一致、缺行、重复冲突或无法计算时立即停止，报告 `checksum: FAIL`。
@@ -151,7 +151,7 @@ CRLF / CR 统一成 LF 后逐字比较。缺失、不一致或仍有未解析模
 
 ```sh
 npm init -y
-npm install ./silent-orbit-skills-library-0.11.0-beta.8.tgz
+npm install ./silent-orbit-skills-library-0.11.0-beta.9.tgz
 npx silent-orbit --version
 
 npx silent-orbit init ./my-skill-cosmos --title "我的 Skill 图书馆" --project-id my-skill-cosmos --json
@@ -299,7 +299,7 @@ node ./node_modules/silent-orbit-skills-library/scripts/create-v1-acceptance-sum
 
 ```text
 SILENT_ORBIT_RETURN_REPORT_V1
-release: v0.11.0-beta.8
+release: v0.11.0-beta.9
 independentHuman: [YES/NO]
 environment: [Windows/macOS/Linux] [x64/arm64] / Node 24
 checksum: [PASS/FAIL/NOT_RUN]

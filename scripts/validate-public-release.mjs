@@ -66,6 +66,7 @@ const requiredFiles = [
   "docs/releases/v0.11.0-beta.6.md",
   "docs/releases/v0.11.0-beta.7.md",
   "docs/releases/v0.11.0-beta.8.md",
+  "docs/releases/v0.11.0-beta.9.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "docs/policies/versioning-and-migrations.md",

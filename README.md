@@ -16,7 +16,7 @@ The public catalog currently contains **153 Skills across 9 systems and 28 libra
 ## Start independent acceptance here
 
 Send the tester only the
-[`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8).
+[`v0.11.0-beta.9` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9).
 They download `V1_RC_ONE_FILE_HANDOFF.zh-CN.md` from Assets, upload it to a
 local Agent, and say `开始验收`. They do not fill templates, type the workflow
 commands, or receive author-local files.
@@ -129,7 +129,7 @@ The public beta uses no third-party analytics, cookies, or behavior tracking. Sa
 - [Security policy](./SECURITY.md)
 - [Contribution policy](./CONTRIBUTING.md)
 
-The `v0.11.0-beta.8` v1 Schemas are locked by
+The `v0.11.0-beta.9` v1 Schemas are locked by
 `schemas/schema-lock.v1.json`. This is a GitHub Pre-release, not `v1.0.0`, and
 Production authority remains Public `main` after the required `release-gate`.
 

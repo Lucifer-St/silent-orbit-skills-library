@@ -1,7 +1,7 @@
 # Silent Orbit v1 RC 中文傻瓜验收（15–25 分钟）
 
 > **只认这一个入口：**
-> [`v0.11.0-beta.8` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8)
+> [`v0.11.0-beta.9` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9)
 >
 > 不要接收作者发来的本地路径、未发布压缩包或单独打包的 PowerShell 文件。
 > 下载后只要校验值不一致，立刻停止，不要继续安装。
@@ -22,7 +22,7 @@
 请协助我完成 Silent Orbit v1 RC 的独立真人验收。
 
 唯一可信来源是这个 GitHub Release：
-https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.8
+https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9
 
 规则：
 1. 在一个新的空目录工作，只从这个 Release 下载所需附件，禁止改用 npm registry、
@@ -63,7 +63,7 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-b
 
 遇到下面任意情况，先停下：
 
-- Release 链接或版本不是 `v0.11.0-beta.8`；
+- Release 链接或版本不是 `v0.11.0-beta.9`；
 - SHA256 不一致；
 - Node 不是 24；
 - 命令崩溃、输出空白或出现作者电脑的私有路径；
@@ -76,7 +76,7 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-b
 
 从 Release 的 **Assets** 下载：
 
-- `silent-orbit-skills-library-0.11.0-beta.8.tgz`
+- `silent-orbit-skills-library-0.11.0-beta.9.tgz`
 - `SHA256SUMS.txt`
 - `silent-orbit-v1-starter.source-import.json`
 - 如果要测 Docker，再下载 `v1-docker-smoke.sh` 和 `codex-global.config.json`
@@ -85,7 +85,7 @@ Windows PowerShell：
 
 ```powershell
 $expected = ((Get-Content .\SHA256SUMS.txt) -split '\s+')[0]
-$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.8.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
+$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.9.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
 if ($actual -ne $expected) { throw "校验失败：请停止，不要安装" }
 "校验通过：$actual"
 ```
@@ -104,12 +104,12 @@ sha256sum -c SHA256SUMS.txt
 
 ```sh
 npm init -y
-npm install ./silent-orbit-skills-library-0.11.0-beta.8.tgz
+npm install ./silent-orbit-skills-library-0.11.0-beta.9.tgz
 npx silent-orbit --version
 ```
 
 预期 CLI 版本为 `0.4.0`。Release 包版本和 CLI 接口版本是两套版本号，
-所以这里不是 `0.11.0-beta.8` 属于正常情况。这个包没有发布到 npm registry。
+所以这里不是 `0.11.0-beta.9` 属于正常情况。这个包没有发布到 npm registry。
 
 ### 3. 先做一次空库体检（约 1 分钟）
 

@@ -7,7 +7,7 @@ import {
 
 test("v1 external receipt is privacy-safe and never claims human authority", () => {
   const receipt = createV1AcceptanceReceipt({
-    packageVersion: "0.11.0-beta.8",
+    packageVersion: "0.11.0-beta.9",
     cliVersion: "0.4.0",
     nodeVersion: "24.0.0",
     platform: "linux",
@@ -27,7 +27,7 @@ test("v1 external receipt is privacy-safe and never claims human authority", () 
 
 test("v1 external receipt rejects private paths and a failed core", () => {
   const failed = createV1AcceptanceReceipt({
-    packageVersion: "0.11.0-beta.8",
+    packageVersion: "0.11.0-beta.9",
     cliVersion: "0.4.0",
     nodeVersion: "24.0.0",
     platform: "linux",

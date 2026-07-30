@@ -62,6 +62,7 @@ timestamp does not change when the note is edited.
 - [v0.11.0-beta.6 release notes](./releases/v0.11.0-beta.6.md)
 - [v0.11.0-beta.7 release notes](./releases/v0.11.0-beta.7.md)
 - [v0.11.0-beta.8 release notes](./releases/v0.11.0-beta.8.md)
+- [v0.11.0-beta.9 release notes](./releases/v0.11.0-beta.9.md)
 - [Privacy audit](./audits/privacy-audit.md)
 
 ## Historical notes
