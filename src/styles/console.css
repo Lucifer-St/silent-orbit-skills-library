@@ -2112,6 +2112,10 @@
     border-right: 0;
   }
 
+  .catalog-category-copy small {
+    letter-spacing: normal;
+  }
+
   .catalog-category-enter {
     font-size: 0;
   }

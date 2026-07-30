@@ -778,6 +778,7 @@
 
   .librarian-onboarding button {
     max-width: 128px;
+    min-height: 44px;
   }
 
   .librarian-page .librarian-galaxy-portal {

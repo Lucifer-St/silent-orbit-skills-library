@@ -54,12 +54,41 @@ function assertReadme(rootDir, fileName, { chinese = false } = {}) {
   if (!chinese && !content.includes("Privacy boundary")) throw new Error(`${fileName} is missing its privacy boundary.`);
 }
 
-function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) {
+function escapeRegexLiteral(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function assertExactTarballChecksumInstructions(content, fileName, packageVersion) {
+  const tarball = `silent-orbit-skills-library-${packageVersion}.tgz`;
+  const escapedTarball = `${escapeRegexLiteral(tarball)}$`;
+  for (const required of [
+    escapedTarball,
+    "$matches.Count -ne 1",
+    "sha256sum --check -",
+    "shasum -a 256",
+  ]) {
+    if (!content.includes(required)) throw new Error(`${fileName} is missing exact tarball checksum instruction ${required}.`);
+  }
+
+  const escapedTarballs = content.match(
+    /silent-orbit-skills-library-\d+\\\.\d+\\\.\d+-beta\\\.\d+\\\.tgz\$/g,
+  ) ?? [];
+  if (escapedTarballs.length !== 1 || escapedTarballs[0] !== escapedTarball) {
+    throw new Error(`${fileName} contains a stale, missing, or duplicate escaped tarball checksum pattern.`);
+  }
+  if (
+    /Get-Content[^\r\n]*SHA256SUMS\.txt[^\r\n]*-split\s+['"]\\s\+['"][^\r\n]*\[0\]/i.test(content)
+    || /\b(?:sha256sum\s+(?:-c|--check)|shasum\s+-a\s+256\s+(?:-c|--check))\s+(?:\.\/)?SHA256SUMS\.txt\b/i.test(content)
+  ) {
+    throw new Error(`${fileName} must not use the first checksum hash or verify a full sums file after partial asset download.`);
+  }
+}
+
+function assertGeneratorQuickstart(rootDir, fileName, packageVersion, { chinese = false } = {}) {
   const content = fs.readFileSync(path.join(rootDir, fileName), "utf8");
   for (const required of [
-    "v0.11.0-beta.9",
-    "silent-orbit-skills-library-0.11.0-beta.9.tgz",
-    "silent-orbit-skills-library-0\\.11\\.0-beta\\.8\\.tgz$",
+    `v${packageVersion}`,
+    `silent-orbit-skills-library-${packageVersion}.tgz`,
     "silent-orbit init",
     "silent-orbit import",
     "silent-orbit scan",
@@ -95,6 +124,7 @@ function assertGeneratorQuickstart(rootDir, fileName, { chinese = false } = {}) 
   }
   if (chinese && !content.includes("首次生成")) throw new Error(`${fileName} is missing its Chinese first-generation section.`);
   if (!chinese && !content.includes("First generation")) throw new Error(`${fileName} is missing its first-generation section.`);
+  assertExactTarballChecksumInstructions(content, fileName, packageVersion);
 }
 
 export function validateReadme(rootDir = projectDir) {
@@ -106,8 +136,9 @@ export function validateReadme(rootDir = projectDir) {
   }
   assertReadme(rootDir, "README.md");
   assertReadme(rootDir, "README.zh-CN.md", { chinese: true });
-  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.md");
-  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.zh-CN.md", { chinese: true });
+  const packageVersion = JSON.parse(fs.readFileSync(path.join(rootDir, "package.json"), "utf8")).version;
+  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.md", packageVersion);
+  assertGeneratorQuickstart(rootDir, "docs/guides/generator-quickstart.zh-CN.md", packageVersion, { chinese: true });
 
   const social = readPng(path.join(assetRoot, "social-preview.png"), "social-preview.png");
   if (social.width !== 1280 || social.height !== 640 || social.bytes >= 1_000_000) {

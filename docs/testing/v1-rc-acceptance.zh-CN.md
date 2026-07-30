@@ -11,7 +11,8 @@
 
 如果你要把验收完整交给另一位用户，请直接发送
 [V1 RC 单文件真人验收交接包](./v1-rc-one-file-handoff.zh-CN.md)。
-对方同意后只需把那一个文件交给自己的 Agent，最后把固定格式短报告原样发回。
+对方同意后只需把那一个文件交给自己的 Agent，最后检查固定格式短报告，并由本人
+提交 GitHub Issue Form。私下发给维护者只能用于 privacy triage，不算验收提交。
 
 ## 最省事：把下面整段交给 Codex / Claude Code / Kimi Code
 
@@ -84,19 +85,41 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-b
 Windows PowerShell：
 
 ```powershell
-$expected = ((Get-Content .\SHA256SUMS.txt) -split '\s+')[0]
-$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.9.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
+$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+if ($matches.Count -ne 1) { throw "必须且只能找到一条 $tarball 校验记录。" }
+$expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
 if ($actual -ne $expected) { throw "校验失败：请停止，不要安装" }
 "校验通过：$actual"
 ```
 
-macOS 或 Linux：
+Linux：
 
 ```sh
-sha256sum -c SHA256SUMS.txt
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
+printf '%s\n' "$checksum_line" | sha256sum --check -
 ```
 
-看到 mismatch、FAILED 或报错：**停止**。只有明确通过才进入下一步。
+macOS：
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
+expected="$(printf '%s\n' "$checksum_line" | awk '{ print tolower($1) }')"
+actual="$(shasum -a 256 "$tarball" | awk '{ print tolower($1) }')"
+[ "$actual" = "$expected" ] || { echo '校验失败：请停止，不要安装。' >&2; exit 1; }
+printf '校验通过：%s\n' "$actual"
+```
+
+这些命令只选择 tarball 文件名精确匹配且唯一的一行，因此不必为了校验 tarball
+而下载所有可选附件。看到缺行、重复行、mismatch、FAILED 或其他报错：**停止**。
+只有明确通过才进入下一步。
 
 ### 2. 从本地附件安装（约 3 分钟）
 
@@ -223,6 +246,10 @@ Windows PowerShell 可以把上面的反斜杠续行去掉，写成一整行。�
 2. 报告所有 P0/P1，包括后来成功绕过的问题；
 3. 用自己的话写观察结果；
 4. 不粘贴原始日志、机器路径、私人提示词、记忆、账号数据或 Skill 名称。
+
+私下把报告发给维护者只用于 privacy triage 或协助排障，不算 Phase 6B 验收证据。
+要完成 Phase 6B，必须由实际完成本次检查的独立用户本人提交 Issue Form，不能由
+Agent、作者或其他人代交。
 
 只有真实独立用户走完整条流程且没有未解决 P0/P1，`v1.0.0` 才能从 NO-GO
 转为可继续评估。

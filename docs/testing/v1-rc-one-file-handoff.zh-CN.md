@@ -3,7 +3,8 @@
 > 版本：`v0.11.0-beta.9`<br>
 > 唯一可信入口：https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9<br>
 > 预计用时：核心验收 15–25 分钟；Docker 和真实维护另算<br>
-> 最终产物：一份可以原样发回给 Matthew 的简短隐私安全报告
+> 最终产物：一份隐私安全短报告；私下回传只用于 privacy triage，完整 Phase 6B
+> 必须由独立用户本人提交 GitHub Issue Form
 
 ## 你不需要输入命令
 
@@ -13,7 +14,8 @@ PowerShell 脚本、作者电脑路径或另一份清单。你只做三步：
 1. 从该 Release 的 Assets 下载 `V1_RC_ONE_FILE_HANDOFF.zh-CN.md`。
 2. 把下载的整个文件上传给本机 Codex、Claude Code、Kimi Code 或其他能使用
    本地终端和浏览器的 Agent，只说一句：`开始验收`。
-3. Agent 打开网页时，你亲自回答四个“是 / 否”；最后把它生成的短报告原样发回。
+3. Agent 打开网页时，你亲自回答四个“是 / 否”；最后检查短报告，并由你本人提交
+   GitHub Issue Form。需要时可先私下发给 Matthew 做 privacy triage，但这不算验收提交。
 
 不要自己替换任何 PUBLIC_RELEASE 模板占位词，也不要让 Agent 猜版本或改用
 `latest`。如果下载后的版本、URL 或 tarball 文件名仍像占位词，立即停止。
@@ -56,11 +58,14 @@ PowerShell 脚本、作者电脑路径或另一份清单。你只做三步：
 但 Silent Orbit 本体必须来自已校验的本地 tarball，不能改成从 npm registry
 获取同名包。
 
-### 你本人只需要做两件事
+### 你本人只需要做三件事
 
 1. Agent 打开生成网页后，你亲自看一眼，并回答四个“是 / 否”：
    默认中文、能切英文、搜索筛选可用、详情可打开。
-2. 最后检查 Agent 给出的短报告，然后把报告全文原样发回给 Matthew。
+2. 最后检查 Agent 给出的短报告。若担心隐私，可先私下发给 Matthew 做 privacy
+   triage；私下回传不构成 Phase 6B 验收证据。
+3. 要完成 Phase 6B，必须由你本人从唯一 Release 页面打开 **V1 RC External
+   Acceptance** Issue Form，并亲自提交报告。Agent、作者或其他人不得代交。
 
 Docker 只有在你的日常环境本来就使用 Docker 时才测。不要为了验收安装 Docker。
 
@@ -273,6 +278,12 @@ node ./node_modules/silent-orbit-skills-library/scripts/create-v1-acceptance-sum
   --out ./silent-orbit-v1-acceptance-receipt.json
 ```
 
+Windows PowerShell 单行：
+
+```powershell
+node .\node_modules\silent-orbit-skills-library\scripts\create-v1-acceptance-summary.mjs --project .\my-skill-cosmos --docker-unmounted not-tested --docker-mounted not-tested --trusted-maintenance not-run --out .\silent-orbit-v1-acceptance-receipt.json
+```
+
 完成的项目使用 `pass`；未测 Docker 使用 `not-tested`；未获维护同意使用 `not-run`。
 
 先检查回执，只允许：
@@ -323,7 +334,9 @@ END_SILENT_ORBIT_RETURN_REPORT_V1
 ```text
 请检查上面的报告；确认无私人信息后，将从
 SILENT_ORBIT_RETURN_REPORT_V1 到 END_SILENT_ORBIT_RETURN_REPORT_V1
-的全部内容原样发回给 Matthew。无需附加日志或解释。
+的全部内容由你本人提交到唯一 Release 页面链接的 V1 RC External Acceptance
+Issue Form。若担心隐私，可以先私下发给 Matthew 做 privacy triage；私下回传
+不构成 Phase 6B 验收证据。无需附加日志或解释。
 ```
 
 用户确认报告后，可以删除本次验收创建的临时目录；不得删除其他目录。

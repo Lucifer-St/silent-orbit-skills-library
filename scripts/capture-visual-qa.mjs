@@ -523,7 +523,7 @@ async function enterLibrarianSystemHover() {
 }
 
 async function enterCatalogOverview() {
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'CATALOG')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"CATALOG\"]')?.click(); true");
   await wait(300);
   await assertPage(
     "Catalog visual state opens at functional categories",
@@ -600,7 +600,7 @@ async function enterHistoryWithOneOutcome() {
   await wait(300);
   await evaluate("document.activeElement?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); true");
   await wait(250);
-  await evaluate("[...document.querySelectorAll('.nav-button')].find((button) => button.textContent.trim() === 'HISTORY')?.click(); true");
+  await evaluate("document.querySelector('.nav-button[data-nav-label=\"HISTORY\"]')?.click(); true");
   await wait(300);
   await assertPage(
     "History visual fixture is one legal local outcome created through the record flow",

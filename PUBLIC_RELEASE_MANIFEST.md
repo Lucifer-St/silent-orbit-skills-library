@@ -1,10 +1,10 @@
 # Public release manifest
 
-- Input commit: `9c7da3e06ff6cfeabe402f8f0d482a38d008a87c`
-- Input commit timestamp: `2026-07-29T20:00:29-04:00`
+- Input commit: `515b95c326818d7fd0ebfc3242b8c004d745d799`
+- Input commit timestamp: `2026-07-30T05:10:35-04:00`
 - Payload files: 304
-- Payload bytes: 12188269
-- Canonical SHA-256 release digest: `d2320d8a384230bc5f9af355f943e572abd8e0b5be7517e6c8f3f4cf7d679657`
+- Payload bytes: 12213364
+- Canonical SHA-256 release digest: `59ef8f8f1e844cbd0db55e27a2deb0b2a34b2cb456e8709dce655434197a49cb`
 
 The canonical digest is computed from stable sorted `<sha256> <path>` lines. Manifest and receipt control files are excluded to avoid self-reference; the receipt records both manifest file hashes.
 
@@ -19,7 +19,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | .gitignore | 144 | `43e881bf9f7141c323d6d35cdeb5d842a09eedec428b9db59fb8dc4409696671` |
 | .node-version | 3 | `68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53` |
 | ASSET_LICENSE.md | 506 | `84b14e95527b5599d602897082971618b92881fb5ae840c450719de38297f797` |
-| ASSET_PROVENANCE.json | 31108 | `93a4855a95ec5868284259bc9736f38024633faa52b6b8cfc953e68d4d0a389d` |
+| ASSET_PROVENANCE.json | 31108 | `69aa68defc7784efec00cf136dc1b7f0d213357dc4843c50c21bf05023cf2ac9` |
 | CONTRIBUTING.md | 4364 | `dd4c7110d78d03292ec344f6848301c8677d4af0671c177ac77011a2d30d70b0` |
 | LICENSE | 1064 | `4cca120821b5235bc230af818edbf17bcd04f2421d49daedb905d81dcfda86a8` |
 | README.md | 9664 | `9ab850d59924a0bc9ba2aa948ae657a8ac25abf2d56fb8cda1f457d4274fa585` |
@@ -51,9 +51,9 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | data/skills.json | 87638 | `84f9ae8e1a4143850cff5ce7277596b01efd4a349575ceface865616426533cb` |
 | data/starred-skills.json | 3 | `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 | docs/README.md | 4351 | `72566a7bd6105ef947d8e317eeb0928fa4c64a3e7306382e7ab95f81c01240fe` |
-| docs/audits/privacy-audit.md | 615 | `e072e1a8b12f91bf83790932c94671b6e67700fa108e4c5c8851389dfe45700c` |
-| docs/guides/generator-quickstart.md | 8527 | `d41cc0e9b6cebe533cd94d25633165e6f01968e4fd2b410ba39a4589467a0e96` |
-| docs/guides/generator-quickstart.zh-CN.md | 7870 | `9b85850fd02e35f77051ea829cb843f796edac6552f151b51b978502717dc418` |
+| docs/audits/privacy-audit.md | 615 | `9be8af9f06e4523ca1ea3b789cdbd34e7d366562a3f5de7b5a9d927bbc779e3b` |
+| docs/guides/generator-quickstart.md | 9856 | `6129096f6199f65ddc1deefd0378eeaba1d31ebaf4722728bef187de4078ff33` |
+| docs/guides/generator-quickstart.zh-CN.md | 9250 | `33556a438e2c56325ded40686f5547671b58dc684c0e621879bb1ac76657933a` |
 | docs/guides/installation-and-upgrade.md | 3371 | `ffcefe378a2ff50be4742517890752475b29d8442c47d1cd9fbd87f684d5a2c5` |
 | docs/guides/installation-and-upgrade.zh-CN.md | 3090 | `86bf39a56563cfd6bf6686ad08234302084f28ffc9c9bf72c643110fd9a7ef5e` |
 | docs/guides/recovery.md | 2580 | `27abd8e8e2e30c2b4cac3144773fa759b4680d3a49ab6e9bddf580e143113f2a` |
@@ -70,18 +70,18 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | docs/notes/20260724-141941-generator-phase-5c-trusted-source-maintenance.md | 3781 | `a285b97bb7b60b51cac5e1b7999d989cb4aba9d94efc1b9d630689b79de7af54` |
 | docs/policies/privacy.md | 2076 | `21dc0acf0f0ca6d5d196ee18c9464f2dda0a42fb64ab0bb415d318c924c65d44` |
 | docs/policies/privacy.zh-CN.md | 1909 | `bb6f082ff1b00401f946f3ba2ec3b65e40c03e8bdff54e93df93d2b49dbe7213` |
-| docs/policies/versioning-and-migrations.md | 4193 | `4cb42eb751873b5e9d88fec12dc4b03a5ddf342833ca529e738285daaabe80a8` |
-| docs/policies/versioning-and-migrations.zh-CN.md | 3378 | `8366246ff72789991523df39b2756df9335ef16f64ae2c3c164641ffce7773d0` |
+| docs/policies/versioning-and-migrations.md | 4402 | `4182b6e80cbaaf108e9c052b84ad83266c3dc5c9fa4633c43a23c3304a3ca8e3` |
+| docs/policies/versioning-and-migrations.zh-CN.md | 3549 | `1ea3e0f7fa0b3fc282dfae09a6a423ef898cd727609d345fa6e7357d82e5cca3` |
 | docs/releases/v0.11.0-beta.5.md | 2285 | `de81cc22bc3361af51dc20c2920b4da9b78e8d6b7e54a9ae6179fc0551ce5dcc` |
 | docs/releases/v0.11.0-beta.6.md | 1898 | `8228e0189cac01b44cb5682fe43ffb3a653dc71be2d4904b80fdd99855f430f7` |
 | docs/releases/v0.11.0-beta.7.md | 2224 | `3647f0a5929677ac6f1462db748debfddf8279dba9fee4f15d3a1aed9b377dec` |
 | docs/releases/v0.11.0-beta.8.md | 2656 | `c7647fd55e9d219008649f7f26a9d32a984df1448b5a7d50aba389801d2f8a69` |
-| docs/releases/v0.11.0-beta.9.md | 2018 | `d002c3c35e3f60d2de8acb65b88332d178b3905df78d1c1f31f22cd238c0fdea` |
+| docs/releases/v0.11.0-beta.9.md | 3973 | `e937cca14275f9e85ce70d401cd50423b7fafc88a8172bd1b23d51a7aa280d03` |
 | docs/testing/beta-feedback-template.md | 884 | `f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb` |
 | docs/testing/beta-testing.md | 1742 | `cc2816cc075a0204025a6bdea9a51cd98736ebca39b298c80bf318ef53c7d44d` |
-| docs/testing/v1-rc-acceptance.md | 7483 | `ffcc048e7cb7b0dabe39d9f37c39cd9010c2a6b3f671bc5ce4a777b6e3991fb3` |
-| docs/testing/v1-rc-acceptance.zh-CN.md | 9753 | `ad5f7c09dba8040751d91a2560d855e656875bfd519d5245e15d1c3282dc5967` |
-| docs/testing/v1-rc-one-file-handoff.zh-CN.md | 13887 | `6dedddd77ea6ed597d82c3eddc9dc8793d019479e9fba53c8c306895881fa7f5` |
+| docs/testing/v1-rc-acceptance.md | 9183 | `8b393b7e6421ad4837312e69cd7d12bf752f7ef4d80d6a1046489231f110658d` |
+| docs/testing/v1-rc-acceptance.zh-CN.md | 11617 | `f2024f7e78b46cae760f8761a26f3aaeee8498d3f32d1db991a9f083cd593c51` |
+| docs/testing/v1-rc-one-file-handoff.zh-CN.md | 14806 | `1142b8e9994548967f4f30119a435da05551b937c220b30bce160895daea80ef` |
 | fixtures/phase4/external-provider.source-import.json | 676 | `6fc219a1c1680980bdf070a77a93ec95a153de5bf1ffd9154d59157b1ce8dc99` |
 | fixtures/phase4/source-managed.source-import.json | 1397 | `622e93bbeabcf9e5f50d743d9f09d73dac18f0ad5c48565ffaede8fae7eccee6` |
 | index.html | 2382 | `1dff4dcd608a85f6cdcc95800be76104679c7a146035ce149b7bcbaaf7688f72` |
@@ -173,7 +173,7 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | schemas/site-manifest.v1.schema.json | 1900 | `a015a26c4f39133df0b7abe03c9ed06d9e1fce073e1bc764e27fe5e8c7206931` |
 | schemas/source-import.v1.schema.json | 1699 | `2abbaea3cd76aa2c1d437b0113a40fd55cc112ff99f99f7db8a4001855793e62` |
 | scripts/build-alpha-preview.mjs | 2159 | `857fe9b9ae52883e15d71921d51d5b59b712987be111b31d5f09ee9164985170` |
-| scripts/capture-visual-qa.mjs | 87317 | `c61be1d5a6f1200f2b1927ce10858229bdf5f54ed359cf27e22fc94017c57e5f` |
+| scripts/capture-visual-qa.mjs | 87241 | `6dfe71b6e3085acffeacc565b26f85a9f5c65dfbe3869c955f785dc63d442556` |
 | scripts/create-v1-acceptance-summary.mjs | 4876 | `58ff1e5773b8f29084d0742e4878962d6cc7c33c2dffd8e44cf203fbb4e8c606` |
 | scripts/fixtures/v1-preflight/codex-global.config.json | 712 | `f5c08398a2f174a6817917f9dd3432ac43dd558bc92f204c86a0975ab2fc194e` |
 | scripts/fixtures/v1-preflight/docker-home/.agents/skills/v1-docker-fixture/SKILL.md | 292 | `cbbb090a1f572e16d5ce5fa4ce1f6d6e917eee3b98f9d6c8a6b8cef2d8688918` |
@@ -193,12 +193,12 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/public-data.mjs | 5528 | `7bae00b533344f3ff26c743298958989309ab66226155a7517ba03df26de6a78` |
 | scripts/public-release-config.mjs | 11126 | `bb2f942829a59d5a5108ba85a13b6939c148d6dc91015ece58c5572e375885dc` |
 | scripts/run-release-tarball-smoke.mjs | 10125 | `c1043b9e87478e900055136f2c70fad26a68f222ca5847b5e97525266eab8b38` |
-| scripts/run-v1-preflight.mjs | 7185 | `af92b93245303e3ff97bce67e62b3860a020111552524a69614eb806765a9325` |
+| scripts/run-v1-preflight.mjs | 13657 | `839532737cabe0bc1a68d58c1af7cb23a501a844b07f6f0cc96dfa3c2173bb56` |
 | scripts/silent-orbit.mjs | 11385 | `529ddf36459c3d36734125d51cb493d33d506f09a3c24c25b4bc04b0da05d44b` |
-| scripts/smoke-ui.mjs | 121373 | `389c0cf28e5b726ba96cfc903edcc605952773f59acf6d8686d511e2eef1896e` |
+| scripts/smoke-ui.mjs | 121473 | `0e03a4faf02bb472d32f7a1aaab5f045fc576542c935c8b80a4075cbf7e0d5f3` |
 | scripts/sync-data.mjs | 5529 | `a681c9f13e66040ab1f1754bd983fb1425a0d25aa5fb5bb82f93e89bb1f562d7` |
 | scripts/tests/audit-skill-cosmos.test.mjs | 2839 | `99581f194daeb72d20a1948f2bc0c169f2385960e797c6ee21f1984400e0b751` |
-| scripts/tests/build-skill-cosmos.test.mjs | 3154 | `3a996698e9a096b104f63c357df61720f26b5ec60134953848d75617b7a844ba` |
+| scripts/tests/build-skill-cosmos.test.mjs | 3986 | `3e047a2fb83ee42295a59c29f39b075d592326b2e1f18e4ae9fe901d4e7a577f` |
 | scripts/tests/font-assets.test.mjs | 2230 | `c2d8c72b096cd2eaf2d3c2955f4465e2e367d70bf44c680793b9331e82802354` |
 | scripts/tests/generator-core.test.mjs | 4082 | `72a0ad68f2e5f09f269dfa20820621d43fdb43ea03a41ad6624c20119800162b` |
 | scripts/tests/i18n-metadata.test.mjs | 5748 | `9d462f761d2635dc207be6d044b3fda37c47e43d6fe3c7a8d44021cbab5c4091` |
@@ -207,11 +207,11 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/tests/npx-skills-source-managed-evaluation.test.mjs | 22142 | `0af8b44af600ec39ad9824740bae3702b8b5bc021b184da84f3c8ea26f8ff300` |
 | scripts/tests/orbit-layout.test.mjs | 13214 | `40150ba6c225cb7c38b6018f09ba1917b848d785e3f7c03f0d184702f7132b44` |
 | scripts/tests/outcome-policy.test.mjs | 23446 | `61cc8701c4867ffa91270cde5e308e6f93e004a6a1c0ec15d8c6aa455971a887` |
-| scripts/tests/phase1e-alpha.test.mjs | 6446 | `f329f04004dff2a6ea382fa369281e9e6efa21bde21ba5963bd2b01b404e99e7` |
+| scripts/tests/phase1e-alpha.test.mjs | 6628 | `81e1def500a5d93c3281e74bf9eccad66c1ec14ea4ec5dfbebec6385b91b3189` |
 | scripts/tests/public-data.test.mjs | 3138 | `cab39607cb356ac60df310903ed668220083ac8b6efc3726417d5ef4c613a515` |
 | scripts/tests/public-maintenance.test.mjs | 1477 | `833d429d6b0236b8555247bfb6e84f77269fcd1d7e98ce0cafad038c5dddeb3a` |
 | scripts/tests/silent-orbit-cli.test.mjs | 19486 | `801526fb20d2d0ebfb38c0ec7ff3cb7552b68f4ff396b0a0142b1cf2e4c29853` |
-| scripts/tests/site-release.test.mjs | 11079 | `dbbcd0f2a5484e3fc47d3f080e10c11e9f18175458efc94e82e4dca37b90f69a` |
+| scripts/tests/site-release.test.mjs | 17607 | `d2056ba6ee6de011f47bcd5c0c6f2c6639cda0ffc6953f8b447b7fc97be0dc5c` |
 | scripts/tests/skill-health.test.mjs | 6006 | `56e10c60260711d2bb1f6015f01b7f778720c8ddb0bbcd950e81228b5040158e` |
 | scripts/tests/skill-management-cli.test.mjs | 7947 | `5b15761124e0fc6f7f0320fcc937a603069ce6afe4e5bad7062d655a3213c59a` |
 | scripts/tests/skill-management.test.mjs | 20213 | `f6a6dae85a20803629581cfbe7988d908c6f2ec06dbb940dc2f6f4404a2869ea` |
@@ -226,12 +226,12 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | scripts/validate-generator-contracts.mjs | 3165 | `3641f321c74723f5b36db2ce3f7e63ad144685bd91decaec0def8cdce1a11dcb` |
 | scripts/validate-public-assets.mjs | 6036 | `845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc` |
 | scripts/validate-public-release.mjs | 23343 | `3204d29af4753481d68557176ca9d2247faf4c358fb7df3a38cf5b4f030ec56d` |
-| scripts/validate-readme.mjs | 5607 | `7a6cb02bab2e660383dbb8224392fec89854861c4be18f460d65300215c1d633` |
+| scripts/validate-readme.mjs | 7048 | `11be33ebafea98b9da5c78e20d1e983bcb6e1bd967d71b2f4a5a96c349cc956a` |
 | skills/audit-skill-cosmos/SKILL.md | 2834 | `3a03417d05342c3d919ce525076d51456867bcf4c4d8c2219e7619347b93e70d` |
 | skills/audit-skill-cosmos/agents/openai.yaml | 251 | `34583d764cc6efff15dd21bbc0d663a751b36c2e3b83a017ea32766b91fa493c` |
 | skills/build-skill-cosmos/SKILL.md | 4548 | `ae1ea1cc1b68db0bad9b3d2dec3fe071f85225bc08b6010d4d751d378190ff0f` |
 | skills/build-skill-cosmos/agents/openai.yaml | 248 | `d685c42774faa837bbe23ecc9e9e7fae8b522f8c760f46a529c77e628835c347` |
-| skills/build-skill-cosmos/references/cli-contract.md | 3061 | `2e69edef8a8bb081a24cfec0fc8b3f9d0a3f351d5d7b38416389a7dfb5fe8dc3` |
+| skills/build-skill-cosmos/references/cli-contract.md | 3062 | `d9ac5673c7e7d6d3be03fe23dd87c8b1dc3a8ad0bc92cf9c6a9c7d7997c8e56c` |
 | skills/build-skill-cosmos/references/project-schema.md | 3950 | `08a6df6630d629edbd43b6ba4444b28954d0a673c375b8b1db5dc0543ea2e6e8` |
 | skills/build-skill-cosmos/references/review-contract.md | 2936 | `61e6b07fd05cb6b5058b600ec9b283d1452030a1aaa20a21c91c017585a55c04` |
 | skills/manage-skill-cosmos/SKILL.md | 4432 | `ab89374776c5c9f683e4bd9b0ab88540a576841af16d1659ef4684c3a916a90a` |
@@ -294,10 +294,10 @@ The canonical digest is computed from stable sorted `<sha256> <path>` lines. Man
 | src/lib/skillSearch.ts | 5073 | `f243c676c4c6a3795e201636af788a7fac7ef9a9615e2edc0524902085df2ddb` |
 | src/main.tsx | 560 | `0c4695db3b14ae0148042bada5f61748d5ea4545e915cdbf50655f6c193f63d8` |
 | src/styles.css | 33365 | `1943f0c7fb702daa64877b9d0e04f1ea3a1df5213d40600fcd5fde2bca172936` |
-| src/styles/console.css | 53018 | `6995e746875faf71f9222516b7aae574c2b71da8880677c17f7b8b7d1f8b0d51` |
+| src/styles/console.css | 53084 | `7d8ff17d11d91a1318b9dce7d27dfea9a5fe35dbaf088fb63bc3f828fd00032e` |
 | src/styles/fonts.css | 1179 | `821964ce5d47e815198bd8f969f487e3ef194235c54877da879f0fd332d34af7` |
 | src/styles/history.css | 7824 | `068700d2f37f7349b75c6d815c015a14bfa699c9e872b702f1ee4e9bbf8f4d7d` |
-| src/styles/librarian.css | 18140 | `bbe81b9cc82e431cb37b635176f90bb43a0c1c901e157d3c3c464d29a2816589` |
+| src/styles/librarian.css | 18162 | `0e9e710d9693f98d007250e69e3bcc407b1041a9501c5c10a2063260e58011d1` |
 | src/styles/one-bit.css | 884 | `99c7b5b6f240c113792155d101fc48df7762b57aec7ba28c69b5f7c6494c4346` |
 | src/styles/orbit.css | 21609 | `188bafa59661deb6eb9d384ed1543f8cf0052085f6df84b6f61c52981625ce1d` |
 | src/styles/responsive.css | 9738 | `107c48b7c2d503ed634ac6ab42af168dd4e581d57ab3828b44cb45dbdf7dd0f8` |

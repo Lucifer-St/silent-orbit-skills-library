@@ -17,21 +17,43 @@ Download these Release assets:
 - `silent-orbit-v1-starter.source-import.json`
 - `v1-docker-smoke.sh` and `codex-global.config.json` when testing Docker
 
-macOS or Linux:
-
-```sh
-sha256sum -c SHA256SUMS.txt
-```
-
 Windows PowerShell:
 
 ```powershell
-$expected = ((Get-Content .\SHA256SUMS.txt) -split '\s+')[0]
-$actual = (Get-FileHash .\silent-orbit-skills-library-0.11.0-beta.9.tgz -Algorithm SHA256).Hash.ToLowerInvariant()
+$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+if ($matches.Count -ne 1) { throw "Expected exactly one checksum entry for $tarball." }
+$expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
+$actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
 if ($actual -ne $expected) { throw "Checksum mismatch" }
 ```
 
-Stop on any checksum mismatch.
+Linux:
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
+printf '%s\n' "$checksum_line" | sha256sum --check -
+```
+
+macOS:
+
+```sh
+tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
+match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
+expected="$(printf '%s\n' "$checksum_line" | awk '{ print tolower($1) }')"
+actual="$(shasum -a 256 "$tarball" | awk '{ print tolower($1) }')"
+[ "$actual" = "$expected" ] || { echo 'Checksum mismatch.' >&2; exit 1; }
+printf 'Checksum passed: %s\n' "$actual"
+```
+
+These commands select only the exact tarball entry, so optional Release assets
+do not have to be downloaded merely to verify the tarball. Stop on a missing,
+duplicate, or mismatched entry.
 
 ## 2. Install with Node.js 24 (3 minutes)
 
@@ -165,6 +187,11 @@ Open the repository's **V1 RC External Acceptance** Issue Form from the same
 GitHub Release page. Paste the privacy-safe receipt and report every P0/P1,
 including a failure that you later worked around. Do not paste raw logs,
 machine paths, private prompts, memories, or account data.
+
+A private copy sent to the maintainer is only for privacy triage or
+troubleshooting; it is not Phase 6B evidence. To complete Phase 6B, the
+independent user who performed the checks must personally submit the Issue
+Form.
 
 `v1.0.0` remains NO-GO until a genuinely independent result completes this
 whole flow with no unresolved P0/P1.
