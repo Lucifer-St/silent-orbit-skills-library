@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "releaseVersion": "0.12.0-beta.1",
+  "cliInterfaceVersion": "0.5.0",
+  "compatibilityFamily": "customization-v2-sidecar",
+  "hashAlgorithm": "sha256",
+  "lineEnding": "LF",
+  "schemas": [
+    {
+      "path": "custom-frontend-manifest.v2.schema.json",
+      "sha256": "5669e87587662d91295b7649430374037e9946c1ee37a6a2ecfcbbd3f9088c66"
+    },
+    {
+      "path": "customization-receipt.v2.schema.json",
+      "sha256": "00f09db08ad9c9978275253caa06f0f02256630b40347275b0660b585a1efd0e"
+    },
+    {
+      "path": "customization-state.v2.schema.json",
+      "sha256": "52345b0ddd5680f5dc8d5ffe78dbad0e158ac4e4bdb32f96016215a669bc65f7"
+    },
+    {
+      "path": "design-profile.v2.schema.json",
+      "sha256": "91d1b19149b24753e2fdb8f035908f2facd4e7279a5dd7126a5cd54ec095e4d9"
+    },
+    {
+      "path": "frontend-handoff.v2.schema.json",
+      "sha256": "21676cc4f9b8734ba0d8e798d982e56866679b2c2459068859144030a2306ff7"
+    }
+  ]
+}

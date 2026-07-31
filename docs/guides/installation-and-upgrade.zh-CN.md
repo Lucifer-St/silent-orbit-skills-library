@@ -1,6 +1,6 @@
 # 安装与升级
 
-Silent Orbit `v0.11.0-beta.9` 只通过 GitHub Pre-release 分发，不得按 package
+Silent Orbit `v0.12.0-beta.1` 只通过 GitHub Pre-release 分发，不得按 package
 名称从 npm registry 安装。
 
 ## 要求
@@ -17,18 +17,18 @@ SHA-256 校验与首次生成请按 `generator-quickstart.zh-CN.md` 执行。
 项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 已有全局文件安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --global .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 silent-orbit --version
 ```
 
-预期 CLI interface version 为 `0.4.0`。升级真实项目之前备份
+预期 CLI interface version 为 `0.5.0`。升级真实项目之前备份
 `.silent-orbit/`，升级后运行 `doctor` 与 `audit`；这两个命令都不授权 mutation。
 
 ## 安装或更新全局 Agent Skills

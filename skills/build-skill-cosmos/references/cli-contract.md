@@ -9,10 +9,10 @@ Use the first available explicit, local, or installed command:
 3. In the Silent Orbit source repository, `node work/agent-os-index/scripts/silent-orbit.mjs`.
 4. In a flat public checkout, `node scripts/silent-orbit.mjs`.
 
-Verify with `--version`; require version `0.4.x` for this Skill. Do not download or install a missing CLI.
+Verify with `--version`; require version `0.5.x` for this Skill. Do not download or install a missing CLI.
 
 The CLI interface version is independent from the package/repository release
-version. For the current release, package `0.11.0-beta.9` contains CLI `0.4.0`.
+version. For the current candidate, package `0.12.0-beta.1` contains CLI `0.5.0`.
 Do not infer CLI compatibility from the package tag alone.
 
 ## Locate the project
@@ -61,4 +61,4 @@ doctor or init -> import/configure -> scan -> analyze -> review -> overrides
 -> scan/analyze as needed -> diff -> generate -> doctor
 ```
 
-`init` refuses to overwrite configuration. `scan` writes only project runtime state and receipts. `generate` validates a temporary output before atomically replacing `dist/`, then advances the diff baseline to the successful Library Snapshot. It also writes `dist/frontend-handoff.md`. None of these commands authorize deployment.
+`init` refuses to overwrite configuration. `scan` writes only project runtime state and receipts. `generate` validates a temporary output before atomically replacing `dist/`, then advances the diff baseline to the successful Library Snapshot. It writes both `dist/frontend-handoff.md` and the machine-readable `dist/frontend-handoff.v2.json`. Persistent personal aesthetics continue through `customize-skill-cosmos`; build-skill-cosmos never owns that state. None of these commands authorize deployment.

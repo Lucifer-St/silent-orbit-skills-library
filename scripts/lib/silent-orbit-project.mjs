@@ -4,7 +4,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   buildRendererViewModel,
+  createFrontendHandoffV2,
   createInventorySnapshotV1,
+  validateFrontendHandoffV2,
   validateInventorySnapshotV1,
   validateLibrarySnapshotV1,
   validateProjectConfigV1,
@@ -207,9 +209,15 @@ function outputManifest(root) {
   }));
 }
 
-function validateGeneratedDirectory(root) {
+function validateGeneratedDirectory(root, { requireFrontendHandoffV2 = false } = {}) {
   for (const name of ["index.html", "styles.css", "app.js", "site-data.json", "frontend-handoff.md"]) {
     invariant(fs.existsSync(path.join(root, name)), `generated output is missing ${name}.`);
+  }
+  const handoffV2Path = path.join(root, "frontend-handoff.v2.json");
+  if (requireFrontendHandoffV2) invariant(fs.existsSync(handoffV2Path), "generated output is missing frontend-handoff.v2.json.");
+  if (fs.existsSync(handoffV2Path)) {
+    const siteData = readJson(path.join(root, "site-data.json"), "site-data.json");
+    validateFrontendHandoffV2(readJson(handoffV2Path, "frontend-handoff.v2.json"), { siteData });
   }
   const payload = listFiles(root).filter((filePath) => /\.(?:html|css|js|json)$/i.test(filePath)).map((filePath) => fs.readFileSync(filePath, "utf8")).join("\n");
   invariant(!/(?:[A-Za-z]:\\Users\\|\/Users\/|\/home\/|file:\/\/)/i.test(payload), "generated output contains an absolute user path.");
@@ -537,7 +545,7 @@ function copyTemplate(target, theme) {
   retryTransientIo(() => fs.cpSync(templateRoot, target, { recursive: true }));
 }
 
-function frontendHandoff({ theme, summary }) {
+function frontendHandoff({ handoff }) {
   return [
     "# Frontend handoff",
     "",
@@ -548,6 +556,7 @@ function frontendHandoff({ theme, summary }) {
     "## Public inputs",
     "",
     "- `site-data.json`: runtime-safe project, SiteManifestV1, and renderer view model.",
+    "- `frontend-handoff.v2.json`: versioned machine contract for interactions, privacy, snapshot binding, and refresh-safe customization.",
     "- `site-data.json.project.renderer`: renderer identifier and default route.",
     "- Do not read `.silent-orbit/`, installed Skill bodies, local paths, usage evidence, or private maintenance state.",
     "",
@@ -558,8 +567,9 @@ function frontendHandoff({ theme, summary }) {
     "- Preserve `public` and `creator-showcase` records only; never invent publication approval.",
     "- Build into a user-selected output directory and do not overwrite this reference preview without confirmation.",
     "",
-    `Reference renderer: ${theme} (Editorial Skill Atlas functional preview)`,
-    `Reviewed public Skills: ${summary.skills}`,
+    `Reference renderer: ${handoff.renderer.id} (Editorial Skill Atlas functional preview)`,
+    `Reviewed public Skills: ${handoff.binding.summary.skills}`,
+    `Bound Library Snapshot: ${handoff.binding.librarySnapshotId}`,
     "",
   ].join("\n");
 }
@@ -635,6 +645,8 @@ export function generateSilentOrbitProject({ projectDirectory = "." } = {}) {
   const librarySnapshot = validateLibrarySnapshotV1(readJson(path.join(projectRoot, LIBRARY_FILE), LIBRARY_FILE));
   const siteManifest = validateSiteManifestV1(readJson(path.join(projectRoot, SITE_MANIFEST_FILE), SITE_MANIFEST_FILE), { projectConfig: config.project, inventorySnapshot, librarySnapshot });
   const appData = buildRendererViewModel({ librarySnapshot, generatedAt: librarySnapshot.generatedAt, sourceDir: LIBRARY_FILE });
+  const siteData = { project: config.project, siteManifest, appData };
+  const handoffV2 = createFrontendHandoffV2({ projectConfig: config.project, siteManifest });
   const temporary = path.join(projectRoot, `${STATE_DIR}-generate-${process.pid}`);
   const target = path.join(projectRoot, "dist");
   invariant(isWithin(projectRoot, temporary) && temporary !== projectRoot, "temporary output escaped the project root.");
@@ -642,9 +654,10 @@ export function generateSilentOrbitProject({ projectDirectory = "." } = {}) {
   let primaryError;
   try {
     copyTemplate(temporary, config.project.renderer.theme);
-    atomicWriteJson(path.join(temporary, "site-data.json"), { project: config.project, siteManifest, appData });
-    atomicWriteText(path.join(temporary, "frontend-handoff.md"), frontendHandoff({ theme: config.project.renderer.theme, summary: siteManifest.summary }));
-    const files = validateGeneratedDirectory(temporary);
+    atomicWriteJson(path.join(temporary, "site-data.json"), siteData);
+    atomicWriteJson(path.join(temporary, "frontend-handoff.v2.json"), handoffV2);
+    atomicWriteText(path.join(temporary, "frontend-handoff.md"), frontendHandoff({ handoff: handoffV2 }));
+    const files = validateGeneratedDirectory(temporary, { requireFrontendHandoffV2: true });
     const publishMethod = replaceDirectoryAtomically(projectRoot, temporary, target, librarySnapshot.snapshotId, files);
     replaceJsonBundleAtomically(projectRoot, [
       { relativePath: PREVIOUS_SNAPSHOT_FILE, value: librarySnapshot },
@@ -733,6 +746,18 @@ export function doctorSilentOrbitProject({ projectDirectory = "." } = {}) {
       checks.push({ id: "dist", state: "pass", message: `${files.length} generated files passed privacy validation.` });
     } catch (error) {
       checks.push({ id: "dist", state: "error", message: error.message });
+    }
+  }
+  const frontendHandoffV2Path = path.join(dist, "frontend-handoff.v2.json");
+  if (fs.existsSync(dist) && !fs.existsSync(frontendHandoffV2Path)) {
+    checks.push({ id: "frontend-handoff-v2", state: "missing", message: "Run generate to add the refresh-safe customization handoff." });
+  } else if (fs.existsSync(frontendHandoffV2Path)) {
+    try {
+      const siteData = readJson(path.join(dist, "site-data.json"), "site-data.json");
+      validateFrontendHandoffV2(readJson(frontendHandoffV2Path, "frontend-handoff.v2.json"), { siteData });
+      checks.push({ id: "frontend-handoff-v2", state: "pass", message: "FrontendHandoffV2 is current." });
+    } catch (error) {
+      checks.push({ id: "frontend-handoff-v2", state: "error", message: error.message });
     }
   }
   const status = checks.some((check) => check.state === "error") ? "error" : checks.some((check) => ["missing", "unchecked"].includes(check.state)) ? "attention" : "ok";

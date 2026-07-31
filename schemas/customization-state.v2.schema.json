@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/customization-state.v2.schema.json",
+  "title": "CustomizationStateV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "projectId", "profileRef", "createdAt", "updatedAt", "rounds", "current"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "CustomizationStateV2" },
+    "projectId": { "$ref": "#/$defs/id" },
+    "profileRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "revision"],
+      "properties": {
+        "profileId": { "$ref": "#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "rounds": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/round" }
+    },
+    "current": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["roundId", "directionId", "outputDirectory", "styleDigest"],
+          "properties": {
+            "roundId": { "$ref": "#/$defs/id" },
+            "directionId": { "$ref": "#/$defs/id" },
+            "outputDirectory": { "const": "customization/current" },
+            "styleDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "strings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 500 }
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["paper", "ink", "muted", "line", "accent"],
+      "properties": {
+        "paper": { "$ref": "#/$defs/color" },
+        "ink": { "$ref": "#/$defs/color" },
+        "muted": { "$ref": "#/$defs/color" },
+        "line": { "$ref": "#/$defs/color" },
+        "accent": { "$ref": "#/$defs/color" }
+      }
+    },
+    "color": { "type": "string", "pattern": "^#[a-fA-F0-9]{6}$" },
+    "direction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "rationale",
+        "layout",
+        "density",
+        "typography",
+        "motion",
+        "shape",
+        "palette",
+        "revision",
+        "parentDirectionId",
+        "status",
+        "createdAt"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "layout": { "enum": ["editorial-rail", "signal-grid"] },
+        "density": { "enum": ["airy", "balanced", "compact"] },
+        "typography": { "enum": ["editorial", "technical", "humanist"] },
+        "motion": { "enum": ["still", "measured", "expressive"] },
+        "shape": { "enum": ["square", "soft"] },
+        "palette": { "$ref": "#/$defs/palette" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "parentDirectionId": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/id" }]
+        },
+        "status": { "enum": ["candidate", "rejected", "superseded", "selected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "action", "directionId", "feedback", "createdAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "action": { "enum": ["keep", "adjust", "reject", "redo"] },
+        "directionId": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/id" }]
+        },
+        "feedback": { "$ref": "#/$defs/strings" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "round": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "createdAt", "status", "inheritedFeedback", "directions", "decisions"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "status": { "enum": ["open", "closed", "selected"] },
+        "inheritedFeedback": { "$ref": "#/$defs/strings" },
+        "directions": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/direction" }
+        },
+        "decisions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/decision" }
+        }
+      }
+    }
+  }
+}

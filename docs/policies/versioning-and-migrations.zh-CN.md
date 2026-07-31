@@ -3,24 +3,24 @@
 本政策适用于 Silent Orbit Public Generator、JSON contracts、`silent-orbit`
 CLI 与随包提供的 Agent Skills。
 
-## Phase 6B 候选版本
+## 候选版本
 
 | Surface | 候选版本 | 兼容承诺 |
 |---|---:|---|
-| Repository / package | `0.11.0-beta.9` | `0.11.x` beta 系列 |
-| CLI interface | `0.4.0` | `0.4.x` 命令与 JSON 系列 |
-| JSON Schemas | `v1` | 以 `schemas/schema-lock.v1.json` 为准 |
+| Repository / package | `0.12.0-beta.1` | `0.12.x` beta 系列 |
+| CLI interface | `0.5.0` | 固定 generator v1，加上 customization v2 sidecar |
+| JSON Schemas | 固定 `v1` + 新增 customization `v2` | 以两个 Schema lock 为准 |
 | Runtime | Node.js 24 | 发布门禁验证版本 |
 | Trusted manager | `skills@1.5.20` | Phase 5C 固定内容身份 |
 
 这是 Pre-release，不是 `v1.0.0`，也不会发布到 npm registry。
 
-`0.11.0-beta.9` 是 Phase 6B Windows 生成写入修复候选版本。它保留 beta.8
-的单文件验收合同、Windows 中文读取和首用引导，并为短暂文件访问拒绝增加重试、
-首轮生成的校验后复制后备，以及对已是最新的 `dist` 不再重复替换。CLI interface
-仍为 `0.4.0`，全部 v1 Schema digest 保持不变。它还修正 checksum、回传渠道
-说明，并让 bundled `build-skill-cosmos` 合同与现有 CLI `0.4.x` family 对齐；
-这些文档修复不改变 CLI interface。
+`0.12.0-beta.1` 在不改变固定 v1 generator contract 的前提下加入独立审美定制
+流程。CLI `0.5.0` 新增 `capabilities` 和
+`customize status|prepare|decide|refresh|doctor`。v2 sidecar 支持恰好两套
+结构上真正不同的方向、keep/adjust/reject/redo 历史、私有的偏好摘要，以及
+刷新时样式不漂移。旧 v1 项目仍可读取；重新运行 `generate` 后会增加
+`frontend-handoff.v2.json`，之后才可开始定制。
 
 ## SemVer 规则
 
@@ -33,7 +33,7 @@ Package 版本与 CLI interface 版本相互独立：
   minor 只增加兼容能力；patch 保持已记录的 interface；
 - 仅网站修复不要求调整 CLI version。
 
-## 固定的 v1 Schema
+## 固定的 v1 Schema 与新增 v2 sidecar
 
 `schemas/schema-lock.v1.json` 记录全部 `*.v1.schema.json` 在统一 LF 换行后的
 SHA-256。release gate 会在 Windows、macOS 与 Linux 上重新计算，并拒绝缺失、
@@ -46,13 +46,16 @@ SHA-256。release gate 会在 Windows、macOS 与 Linux 上重新计算，并拒
 
 示例与说明文字可以修正，但不能改变 Schema digest。Schema lock 自身独立版本化。
 
+`schemas/schema-lock.v2.json` 只固定审美定制与 frontend handoff sidecar，
+不会重新定义或迁移 v1 project、inventory、library 或 site-manifest 字段。
+
 ## 当前迁移基线
 
-v1 系列内部无需迁移。`0.11.0-beta.9` 读写固定的 v1 contracts。遇到不支持的
+v1 系列内部无需迁移。`0.12.0-beta.1` 继续读写固定的 v1 contracts。遇到不支持的
 新 schema 时必须停止，不能静默转换。
 
-未来 v2 迁移必须由用户显式启动并在本地完成；不得覆盖唯一副本，不得发布私有
-runtime state，也不得在新文件通过校验前报告成功。不支持后台自动迁移。
+customization v2 是 sidecar，不是 v1 migration。先显式运行 `generate` 生成
+机器 handoff，再开始定制；不会执行后台迁移。
 
 ## 弃用窗口
 
@@ -61,7 +64,7 @@ runtime state，也不得在新文件通过校验前报告成功。不支持后�
 - 删除前先发布替代方案与迁移说明；
 - 安全或隐私紧急事件可以缩短窗口，但 release notes 必须说明原因和恢复路径。
 
-`check-and-update` 是 `0.11.x` 的 canonical 名称。`check-updates` 与
+`check-and-update` 仍是 canonical 名称。`check-updates` 与
 source-managed `update` 只是同一 guarded Core 的兼容入口，目前没有删除日期。
 
 ## 能力边界

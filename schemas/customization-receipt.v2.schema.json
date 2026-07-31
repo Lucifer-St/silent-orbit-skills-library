@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/customization-receipt.v2.schema.json",
+  "title": "CustomizationReceiptV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "receiptId",
+    "command",
+    "status",
+    "projectId",
+    "profileRef",
+    "roundId",
+    "directionId",
+    "action",
+    "librarySnapshot",
+    "style",
+    "createdAt",
+    "privacy"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "CustomizationReceiptV2" },
+    "receiptId": { "$ref": "#/$defs/id" },
+    "command": { "enum": ["prepare", "decide", "refresh"] },
+    "status": { "enum": ["succeeded", "attention", "blocked", "error"] },
+    "projectId": { "$ref": "#/$defs/id" },
+    "profileRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "revision"],
+      "properties": {
+        "profileId": { "$ref": "#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "roundId": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/id" }]
+    },
+    "directionId": {
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/id" }]
+    },
+    "action": {
+      "oneOf": [
+        { "type": "null" },
+        { "enum": ["keep", "adjust", "reject", "redo"] }
+      ]
+    },
+    "librarySnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["before", "after"],
+      "properties": {
+        "before": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/snapshotRef" }]
+        },
+        "after": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/snapshotRef" }]
+        }
+      }
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["before", "after", "preserved"],
+      "properties": {
+        "before": {
+          "oneOf": [{ "type": "null" }, { "type": "string", "pattern": "^[a-f0-9]{64}$" }]
+        },
+        "after": {
+          "oneOf": [{ "type": "null" }, { "type": "string", "pattern": "^[a-f0-9]{64}$" }]
+        },
+        "preserved": {
+          "oneOf": [{ "type": "null" }, { "type": "boolean" }]
+        }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rawInterviewStored", "absolutePathsStored", "privateProjectStateProjected"],
+      "properties": {
+        "rawInterviewStored": { "const": false },
+        "absolutePathsStored": { "const": false },
+        "privateProjectStateProjected": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "snapshotRef": { "type": "string", "minLength": 1, "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:._-]*$" }
+  }
+}

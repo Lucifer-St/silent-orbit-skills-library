@@ -34,7 +34,7 @@ Orchestrate `silent-orbit` as a thin review layer. Let the CLI own scanning, nor
 6. Present the proposed public boundary and request confirmation under `review-contract.md`. Do not generate a new or changed public set before confirmation.
 7. Apply only the confirmed decisions to `silent-orbit.overrides.json`. After governance changes, rerun `scan` and `analyze`; after category or metadata-only changes, rerun `analyze`.
 8. Run `diff --json`. Explain additions, changes, and removals by stable Skill name. Treat unexpected removals as unresolved risk, not approval.
-9. Run `generate --json` only when the boundary is reviewed and no blocking error remains. Run `doctor --json` afterward and require `status: ok` for completion. Point out `dist/frontend-handoff.md` so the user can hand the public data contract to any preferred frontend Skill and visual style.
+9. Run `generate --json` only when the boundary is reviewed and no blocking error remains. Run `doctor --json` afterward and require `status: ok` for completion. Point out `dist/frontend-handoff.md` and `dist/frontend-handoff.v2.json`. When the user wants a persistent personal visual direction, hand off to the independent `customize-skill-cosmos`; do not absorb its interview or decision state into this Skill.
 
 For an unchanged existing project with an empty diff and previously reviewed decisions, refresh without asking the user to reapprove every record; still summarize the retained public boundary.
 
@@ -48,7 +48,7 @@ Report:
 - confirmed public/creator-showcase/local-only decisions;
 - diff additions, changes, removals, and unresolved risks;
 - generated Skill/category/source counts, `dist/` status, and final doctor status;
-- Reference Preview status and the optional frontend handoff, without recommending a visual theme;
+- Reference Preview status, the versioned frontend handoff, and whether the optional `customize-skill-cosmos` handoff is relevant. The preview is not an official art direction and this Skill does not choose a preferred frontend Skill;
 - explicit confirmation that real Skills and deployment systems were not modified.
 
 Stop before generation when approval is missing, a source failed unexpectedly, a removal is unexplained, privacy evidence appears, or doctor reports an error.

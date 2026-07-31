@@ -1,6 +1,6 @@
 export const visualAssetPolicy = "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.";
 
-export const publicReleaseVersion = "0.11.0-beta.9";
+export const publicReleaseVersion = "0.12.0-beta.1";
 export const publicReleaseTag = `v${publicReleaseVersion}`;
 
 export const publicCodeownersText = [
@@ -31,6 +31,7 @@ export const publicPackageFiles = Object.freeze([
   "scripts/lib/trusted-source-maintenance.mjs",
   "scripts/lib/library-analyzer.mjs",
   "scripts/lib/silent-orbit-project.mjs",
+  "scripts/lib/skill-cosmos-customization.mjs",
   "schemas",
   "templates/reference-index-v1",
   "docs/README.md",
@@ -49,6 +50,7 @@ export const publicPackageFiles = Object.freeze([
   "THIRD_PARTY_NOTICES.md",
   "skills/build-skill-cosmos",
   "skills/audit-skill-cosmos",
+  "skills/customize-skill-cosmos",
   "skills/manage-skill-cosmos",
   "skills/skills-library-maintenance",
 ]);
@@ -132,6 +134,9 @@ export const publicScriptFiles = Object.freeze([
   "tests/silent-orbit-cli.test.mjs",
   "tests/build-skill-cosmos.test.mjs",
   "tests/audit-skill-cosmos.test.mjs",
+  "tests/frontend-handoff-v2.test.mjs",
+  "tests/skill-cosmos-customization.test.mjs",
+  "tests/customize-skill-cosmos.test.mjs",
   "tests/phase1e-alpha.test.mjs",
   "tests/i18n-metadata.test.mjs",
   "tests/orbit-layout.test.mjs",
@@ -150,6 +155,7 @@ export const publicScriptFiles = Object.freeze([
   "lib/library-analyzer.mjs",
   "lib/markdown-links.mjs",
   "lib/silent-orbit-project.mjs",
+  "lib/skill-cosmos-customization.mjs",
   "lib/phase1e-alpha.mjs",
   "build-alpha-preview.mjs",
   "silent-orbit.mjs",
@@ -159,6 +165,7 @@ export const publicScriptFiles = Object.freeze([
 export const publicSkillDirectories = Object.freeze([
   "build-skill-cosmos",
   "audit-skill-cosmos",
+  "customize-skill-cosmos",
   "manage-skill-cosmos",
   "skills-library-maintenance",
 ]);

@@ -18,9 +18,11 @@ const publicDocumentPaths = Object.freeze({
   "GENERATOR_QUICKSTART.md": "docs/guides/generator-quickstart.md",
   "GENERATOR_QUICKSTART.zh-CN.md": "docs/guides/generator-quickstart.zh-CN.md",
   "RELEASE_NOTES_v0.11.0-beta.9.md": "docs/releases/v0.11.0-beta.9.md",
+  "RELEASE_NOTES_v0.12.0-beta.1.md": "docs/releases/v0.12.0-beta.1.md",
   "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
   "V1_RC_ACCEPTANCE.zh-CN.md": "docs/testing/v1-rc-acceptance.zh-CN.md",
   "V1_RC_ONE_FILE_HANDOFF.zh-CN.md": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
+  "CUSTOMIZATION_RC_ACCEPTANCE.zh-CN.md": "docs/testing/customization-rc-acceptance.zh-CN.md",
   "INSTALLATION_AND_UPGRADE.md": "docs/guides/installation-and-upgrade.md",
   "VERSIONING_AND_MIGRATIONS.md": "docs/policies/versioning-and-migrations.md",
   "PRIVACY.md": "docs/policies/privacy.md",
@@ -240,7 +242,7 @@ test("required public gates execute Agent Skill, release-asset, and native check
   );
 });
 
-test("release checksum instructions select one exact beta.9 tarball on each operating system", () => {
+test("release checksum instructions select one exact current tarball on each operating system", () => {
   const packageVersion = JSON.parse(read("package.json")).version;
   for (const fileName of [
     "GENERATOR_QUICKSTART.md",
@@ -262,7 +264,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
   const feedback = read(publicDocument("BETA_FEEDBACK_TEMPLATE.md"));
   for (const prompt of ["Most confusing", "Liked most", "Most wanted to click"]) assert.ok(feedback.includes(prompt));
-  for (const template of ["bug_report.yml", "experience_feedback.yml", "v1_rc_acceptance.yml"]) {
+  for (const template of ["bug_report.yml", "experience_feedback.yml", "v1_rc_acceptance.yml", "customization_rc_acceptance.yml"]) {
     const body = read(issueTemplate(template));
     assert.match(body, /^name:/m);
     assert.match(body, /public-beta/);
@@ -310,11 +312,24 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(beta9ReleaseNotes, /docs\/testing\/v1-rc-acceptance\.zh-CN\.md/);
   assert.match(beta9ReleaseNotes, /issues\/new\?template=v1_rc_acceptance\.yml/);
   assert.match(beta9ReleaseNotes, /private copy[\s\S]*privacy triage[\s\S]*not completed Phase 6B evidence/i);
+
+  const customizationReleaseNotes = read(publicDocument("RELEASE_NOTES_v0.12.0-beta.1.md"));
+  assert.match(customizationReleaseNotes, /CLI interface `0\.5\.0`/);
+  assert.match(customizationReleaseNotes, /exactly two functional directions/i);
+  assert.match(customizationReleaseNotes, /keep`, `adjust`, `reject`, and `redo`/);
+  assert.match(customizationReleaseNotes, /Independent-user acceptance has not started/i);
+
+  const customizationAcceptance = read(publicDocument("CUSTOMIZATION_RC_ACCEPTANCE.zh-CN.md"));
+  assert.match(customizationAcceptance, /当前未启动/);
+  assert.match(customizationAcceptance, /恰好两套/);
+  assert.match(customizationAcceptance, /调整 \/ adjust/);
+  assert.match(customizationAcceptance, /stylePreserved: true/);
+  assert.match(customizationAcceptance, /独立用户本人/);
 });
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.11.0-beta.9");
+  assert.equal(packageJson.version, "0.12.0-beta.1");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);
@@ -340,7 +355,7 @@ test("v1 schemas are frozen by the Phase 6A release lock", () => {
 
   const schemaDir = path.join(projectDir, "schemas");
   const actualNames = fs.readdirSync(schemaDir)
-    .filter((name) => name.endsWith(".schema.json"))
+    .filter((name) => name.endsWith(".v1.schema.json"))
     .sort();
   assert.deepEqual(lock.schemas.map((entry) => entry.path), actualNames);
   for (const entry of lock.schemas) {
@@ -351,6 +366,30 @@ test("v1 schemas are frozen by the Phase 6A release lock", () => {
       .update(canonicalSchema)
       .digest("hex");
     assert.equal(entry.sha256, digest, `${entry.path} changed after the v1 lock.`);
+  }
+});
+
+test("customization v2 sidecars are frozen by their independent release lock", () => {
+  const lock = JSON.parse(read("schemas/schema-lock.v2.json"));
+  assert.equal(lock.schemaVersion, 2);
+  assert.equal(lock.releaseVersion, "0.12.0-beta.1");
+  assert.equal(lock.cliInterfaceVersion, "0.5.0");
+  assert.equal(lock.compatibilityFamily, "customization-v2-sidecar");
+  assert.equal(lock.hashAlgorithm, "sha256");
+  assert.equal(lock.lineEnding, "LF");
+
+  const schemaDir = path.join(projectDir, "schemas");
+  const actualNames = fs.readdirSync(schemaDir)
+    .filter((name) => name.endsWith(".v2.schema.json"))
+    .sort();
+  assert.deepEqual(lock.schemas.map((entry) => entry.path), actualNames);
+  for (const entry of lock.schemas) {
+    const canonicalSchema = fs.readFileSync(path.join(schemaDir, entry.path), "utf8")
+      .replace(/\r\n?/g, "\n");
+    const digest = createHash("sha256")
+      .update(canonicalSchema)
+      .digest("hex");
+    assert.equal(entry.sha256, digest, `${entry.path} changed after the v2 lock.`);
   }
 });
 

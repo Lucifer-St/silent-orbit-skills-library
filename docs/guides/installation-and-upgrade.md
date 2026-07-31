@@ -1,6 +1,6 @@
 # Installation and upgrade
 
-Silent Orbit `v0.11.0-beta.9` is distributed only through the GitHub
+Silent Orbit `v0.12.0-beta.1` is distributed only through the GitHub
 Pre-release. Do not install it by package name from the npm registry.
 
 ## Requirements
@@ -18,18 +18,18 @@ first generation.
 For a project-local installation:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 For an existing global file-based installation:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --global .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 silent-orbit --version
 ```
 
-The expected CLI interface version is `0.4.0`. Back up
+The expected CLI interface version is `0.5.0`. Back up
 `.silent-orbit/` before upgrading a real generated project. Run `doctor` and
 `audit` after the upgrade; neither command authorizes a mutation.
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Customize Skill Cosmos"
+  short_description: "Build a personal, refresh-safe Silent Orbit visual direction"
+  default_prompt: "Use $customize-skill-cosmos to interview me briefly, create exactly two substantive visual directions for my generated Silent Orbit library, and preserve the selected style across data refreshes."

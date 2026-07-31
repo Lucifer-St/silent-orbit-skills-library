@@ -1,6 +1,6 @@
 # Silent Orbit Public Generator 快速开始
 
-本指南从 GitHub Pre-release 安装 `v0.11.0-beta.9` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
+本指南从 GitHub Pre-release 安装 `v0.12.0-beta.1` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
 
 ## 1. 下载并校验产物
 
@@ -14,9 +14,9 @@ Docker 使用独立 Home，默认看不到宿主 Skills。在执行 `codex-globa
 
 Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Skill 环境。
 
-从 [`v0.11.0-beta.9` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9) 下载：
+从 [`v0.12.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1) 下载：
 
-- `silent-orbit-skills-library-0.11.0-beta.9.tgz`
+- `silent-orbit-skills-library-0.12.0-beta.1.tgz`
 - `SHA256SUMS.txt`
 
 把两个文件放在同一目录。只校验文件名精确匹配 beta.9 tarball 且唯一的一行；
@@ -25,8 +25,8 @@ Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Sk
 Windows PowerShell：
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.12.0-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.12\.0-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "必须且只能找到一条 $tarball 校验记录。" }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -36,7 +36,7 @@ if ($actual -ne $expected) { throw 'Silent Orbit tarball 校验失败。' }
 Linux：
 
 ```sh
-tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -46,7 +46,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS：
 
 ```sh
-tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -61,22 +61,22 @@ printf '校验通过：%s\n' "$actual"
 优先选择项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 只有确实需要把 `silent-orbit` 放进用户 PATH 时才使用全局安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --global .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 silent-orbit --version
 ```
 
-package / repository release version 是 `0.11.0-beta.9`；当前 source 报告独立的 CLI interface version `0.4.0`，属于 `0.4.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
+package / repository release version 是 `0.12.0-beta.1`；当前 source 报告独立的 CLI interface version `0.5.0`，属于 `0.5.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
 
 ## 3. 可选 Agent Skills
 
-先阅读再安装随包提供的 Skill。`build-skill-cosmos` 是生成与公开边界复核层；
+先阅读再安装随包提供的 Skill。`build-skill-cosmos` 是生成与公开边界复核层；`customize-skill-cosmos` 负责私有审美定制流程；
 `audit-skill-cosmos` 只解释 read-only health report；`manage-skill-cosmos` 解释
 guarded management plan。这些项目级 Skills 不会自行发现或修改真实 global profile，
 也不会执行部署。
@@ -85,6 +85,8 @@ guarded management plan。这些项目级 Skills 不会自行发现或修改真�
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
 npx skills@1.5.20 add $skillSource --skill build-skill-cosmos --agent codex --copy -y
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\customize-skill-cosmos\SKILL.md')
+npx skills@1.5.20 add $skillSource --skill customize-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\audit-skill-cosmos\SKILL.md')
 npx skills@1.5.20 add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
@@ -150,7 +152,30 @@ npx silent-orbit doctor --project .\my-skill-cosmos --json
 npx silent-orbit audit --project .\my-skill-cosmos --json
 ```
 
-最终必须确认 `doctor.status` 为 `ok`。生成的 Reference Site 与 `frontend-handoff.md` 位于 `my-skill-cosmos/dist/`；私有 import、analysis、receipt 与运行时状态留在 `my-skill-cosmos/.silent-orbit/`，不得发布。
+最终必须确认 `doctor.status` 为 `ok`。生成的 Reference Site、`frontend-handoff.md` 与机器可读的 `frontend-handoff.v2.json` 位于 `my-skill-cosmos/dist/`；私有 import、analysis、receipt 与运行时状态留在 `my-skill-cosmos/.silent-orbit/`，不得发布。
+
+## 5. 可选的个性化审美定制
+
+定制以前述有效 v2 handoff 为前提。流程必须给出恰好两套结构上真正不同的可操作方向，
+通过 `保留 / keep`、`调整 / adjust`、`拒绝 / reject`、`重做 / redo` 记录明确决定；
+总结后的审美档案与回执始终私有。选中的结果写入 `customization/current/`，不会覆盖 `dist/`。
+
+```powershell
+npx silent-orbit capabilities --json
+npx silent-orbit customize status --project .\my-skill-cosmos --json
+```
+
+使用已审阅的 `customize-skill-cosmos` Skill 完成简短访谈并创建 request 文件。
+选择方向后，未来重新生成数据时可以执行：
+
+```powershell
+npx silent-orbit customize refresh --project .\my-skill-cosmos --json
+npx silent-orbit customize doctor --project .\my-skill-cosmos --json
+```
+
+只有当 refresh 仅更新 `site-data.json` 与 `frontend-handoff.v2.json`，
+同时保持选中样式 digest 不变时才算通过。这个流程不会安装、更新或删除真实 Skills，
+也不会发布或部署。
 
 ## Phase 5C trusted-source maintenance 边界
 

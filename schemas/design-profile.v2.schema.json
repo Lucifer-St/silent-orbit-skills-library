@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/design-profile.v2.schema.json",
+  "title": "DesignProfileV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "profileId", "revision", "createdAt", "updatedAt", "preferences"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "DesignProfileV2" },
+    "profileId": { "$ref": "#/$defs/id" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "references",
+        "antiReferences",
+        "qualities",
+        "density",
+        "navigation",
+        "typography",
+        "colorIntent",
+        "motion",
+        "accessibility"
+      ],
+      "properties": {
+        "references": { "$ref": "#/$defs/strings" },
+        "antiReferences": { "$ref": "#/$defs/strings" },
+        "qualities": { "$ref": "#/$defs/strings" },
+        "density": { "enum": ["airy", "balanced", "compact"] },
+        "navigation": { "enum": ["map-first", "library-first", "balanced"] },
+        "typography": { "enum": ["editorial", "technical", "humanist"] },
+        "colorIntent": { "$ref": "#/$defs/strings" },
+        "motion": { "enum": ["still", "measured", "expressive"] },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["highContrast", "reducedMotion", "mobilePriority"],
+          "properties": {
+            "highContrast": { "type": "boolean" },
+            "reducedMotion": { "type": "boolean" },
+            "mobilePriority": { "enum": ["essential", "equal", "desktop-led"] }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "strings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 240 }
+    }
+  }
+}
