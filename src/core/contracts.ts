@@ -211,6 +211,172 @@ export interface SiteManifestV1 {
   };
 }
 
+export type CustomizationDensityV2 = "airy" | "balanced" | "compact";
+export type CustomizationTypographyV2 = "editorial" | "technical" | "humanist";
+export type CustomizationMotionV2 = "still" | "measured" | "expressive";
+export type CustomizationLayoutV2 = "editorial-rail" | "signal-grid";
+export type CustomizationShapeV2 = "square" | "soft";
+export type CustomizationDecisionV2 = "keep" | "adjust" | "reject" | "redo";
+
+export interface FrontendHandoffV2 {
+  readonly schemaVersion: 2;
+  readonly kind: "FrontendHandoffV2";
+  readonly projectId: string;
+  readonly generatedAt: string;
+  readonly binding: {
+    readonly siteData: "site-data.json";
+    readonly librarySnapshotId: string;
+    readonly summary: {
+      readonly skills: number;
+      readonly libraries: number;
+      readonly categories: number;
+      readonly collections: number;
+    };
+  };
+  readonly renderer: {
+    readonly id: string;
+    readonly defaultRoute: string;
+  };
+  readonly locales: readonly ("zh-CN" | "en-US")[];
+  readonly publicVisibilities: readonly ("public" | "creator-showcase")[];
+  readonly requiredBehavior: readonly string[];
+  readonly privacy: {
+    readonly mode: "public-safe-only";
+    readonly includesLocalOnly: false;
+    readonly forbiddenInputs: readonly string[];
+  };
+  readonly refresh: {
+    readonly managedFiles: readonly ["site-data.json", "frontend-handoff.v2.json"];
+    readonly styleFilesImmutable: true;
+  };
+}
+
+export interface DesignProfileV2 {
+  readonly schemaVersion: 2;
+  readonly kind: "DesignProfileV2";
+  readonly profileId: string;
+  readonly revision: number;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+  readonly preferences: {
+    readonly references: readonly string[];
+    readonly antiReferences: readonly string[];
+    readonly qualities: readonly string[];
+    readonly density: CustomizationDensityV2;
+    readonly navigation: "map-first" | "library-first" | "balanced";
+    readonly typography: CustomizationTypographyV2;
+    readonly colorIntent: readonly string[];
+    readonly motion: CustomizationMotionV2;
+    readonly accessibility: {
+      readonly highContrast: boolean;
+      readonly reducedMotion: boolean;
+      readonly mobilePriority: "essential" | "equal" | "desktop-led";
+    };
+  };
+}
+
+export interface CustomizationDirectionV2 {
+  readonly id: string;
+  readonly label: string;
+  readonly rationale: string;
+  readonly layout: CustomizationLayoutV2;
+  readonly density: CustomizationDensityV2;
+  readonly typography: CustomizationTypographyV2;
+  readonly motion: CustomizationMotionV2;
+  readonly shape: CustomizationShapeV2;
+  readonly palette: {
+    readonly paper: string;
+    readonly ink: string;
+    readonly muted: string;
+    readonly line: string;
+    readonly accent: string;
+  };
+  readonly revision: number;
+  readonly parentDirectionId: string | null;
+  readonly status: "candidate" | "rejected" | "superseded" | "selected";
+  readonly createdAt: string;
+}
+
+export interface CustomizationStateV2 {
+  readonly schemaVersion: 2;
+  readonly kind: "CustomizationStateV2";
+  readonly projectId: string;
+  readonly profileRef: {
+    readonly profileId: string;
+    readonly revision: number;
+  };
+  readonly createdAt: string;
+  readonly updatedAt: string;
+  readonly rounds: readonly {
+    readonly id: string;
+    readonly createdAt: string;
+    readonly status: "open" | "closed" | "selected";
+    readonly inheritedFeedback: readonly string[];
+    readonly directions: readonly CustomizationDirectionV2[];
+    readonly decisions: readonly {
+      readonly id: string;
+      readonly action: CustomizationDecisionV2;
+      readonly directionId: string | null;
+      readonly feedback: readonly string[];
+      readonly createdAt: string;
+    }[];
+  }[];
+  readonly current: {
+    readonly roundId: string;
+    readonly directionId: string;
+    readonly outputDirectory: "customization/current";
+    readonly styleDigest: string;
+  } | null;
+}
+
+export interface CustomFrontendManifestV2 {
+  readonly schemaVersion: 2;
+  readonly kind: "CustomFrontendManifestV2";
+  readonly projectId: string;
+  readonly profileRef: {
+    readonly profileId: string;
+    readonly revision: number;
+  };
+  readonly roundId: string;
+  readonly directionId: string;
+  readonly librarySnapshotId: string;
+  readonly outputDirectory: string;
+  readonly managedFiles: readonly ["site-data.json", "frontend-handoff.v2.json"];
+  readonly styleDigest: string;
+  readonly status: "candidate" | "current";
+}
+
+export interface CustomizationReceiptV2 {
+  readonly schemaVersion: 2;
+  readonly kind: "CustomizationReceiptV2";
+  readonly receiptId: string;
+  readonly command: "prepare" | "decide" | "refresh" | "doctor";
+  readonly status: "succeeded" | "attention" | "blocked" | "error";
+  readonly projectId: string;
+  readonly profileRef: {
+    readonly profileId: string;
+    readonly revision: number;
+  };
+  readonly roundId: string | null;
+  readonly directionId: string | null;
+  readonly action: CustomizationDecisionV2 | null;
+  readonly librarySnapshot: {
+    readonly before: string | null;
+    readonly after: string | null;
+  };
+  readonly style: {
+    readonly before: string | null;
+    readonly after: string | null;
+    readonly preserved: boolean | null;
+  };
+  readonly createdAt: string;
+  readonly privacy: {
+    readonly rawInterviewStored: false;
+    readonly absolutePathsStored: false;
+    readonly privateProjectStateProjected: false;
+  };
+}
+
 export interface Phase1EAlphaRunV1 {
   readonly generatedAt: string;
   readonly inventorySnapshotId: string;

@@ -9,6 +9,35 @@ const SECRET_PREFIXES = [
   ["gh", "p_"].join(""),
 ];
 const LONG_SECRET_PATTERN = new RegExp(`${["s", "k-"].join("")}[A-Za-z0-9_-]{12,}`, "i");
+export const FRONTEND_HANDOFF_V2_BEHAVIORS = Object.freeze([
+  "search",
+  "category-filter",
+  "source-filter",
+  "map-navigation",
+  "library-navigation",
+  "skill-detail",
+  "url-state",
+  "history-navigation",
+  "keyboard-access",
+  "mobile-interaction",
+  "empty-state",
+  "derived-result-count",
+  "locale-switch",
+  "reduced-motion",
+]);
+export const FRONTEND_HANDOFF_V2_FORBIDDEN_INPUTS = Object.freeze([
+  ".silent-orbit",
+  "installed-skill-bodies",
+  "absolute-paths",
+  "usage-evidence",
+  "session-history",
+  "prompts",
+  "private-maintenance-state",
+]);
+export const CUSTOMIZATION_MANAGED_FILES_V2 = Object.freeze([
+  "site-data.json",
+  "frontend-handoff.v2.json",
+]);
 
 function invariant(condition, message) {
   if (!condition) throw new Error(`Generator contract violation: ${message}`);
@@ -290,6 +319,113 @@ export function validateSiteManifestV1(manifest, { projectConfig, inventorySnaps
   }
   invariant(manifest.privacy?.includesLocalOnly === false, "SiteManifestV1 cannot include local-only records.");
   return manifest;
+}
+
+export function createFrontendHandoffV2({ projectConfig, siteManifest }) {
+  validateProjectConfigV1(projectConfig);
+  validateSiteManifestV1(siteManifest, { projectConfig });
+  return validateFrontendHandoffV2({
+    schemaVersion: 2,
+    kind: "FrontendHandoffV2",
+    projectId: projectConfig.projectId,
+    generatedAt: siteManifest.generatedAt,
+    binding: {
+      siteData: "site-data.json",
+      librarySnapshotId: siteManifest.snapshotRefs.library,
+      summary: { ...siteManifest.summary },
+    },
+    renderer: {
+      id: projectConfig.renderer.theme,
+      defaultRoute: projectConfig.renderer.defaultRoute,
+    },
+    locales: [...projectConfig.locales],
+    publicVisibilities: [...projectConfig.privacy.publicVisibilities],
+    requiredBehavior: [...FRONTEND_HANDOFF_V2_BEHAVIORS],
+    privacy: {
+      mode: "public-safe-only",
+      includesLocalOnly: false,
+      forbiddenInputs: [...FRONTEND_HANDOFF_V2_FORBIDDEN_INPUTS],
+    },
+    refresh: {
+      managedFiles: [...CUSTOMIZATION_MANAGED_FILES_V2],
+      styleFilesImmutable: true,
+    },
+  }, { siteManifest });
+}
+
+export function validateFrontendHandoffV2(handoff, { siteData, siteManifest } = {}) {
+  invariant(isRecord(handoff), "FrontendHandoffV2 must be an object.");
+  validateAllowedKeys(handoff, [
+    "schemaVersion",
+    "kind",
+    "projectId",
+    "generatedAt",
+    "binding",
+    "renderer",
+    "locales",
+    "publicVisibilities",
+    "requiredBehavior",
+    "privacy",
+    "refresh",
+  ], "FrontendHandoffV2");
+  invariant(handoff.schemaVersion === 2, "FrontendHandoffV2.schemaVersion must be 2.");
+  invariant(handoff.kind === "FrontendHandoffV2", "FrontendHandoffV2.kind is invalid.");
+  invariant(typeof handoff.projectId === "string" && handoff.projectId.length > 0, "FrontendHandoffV2.projectId is required.");
+  invariant(!Number.isNaN(Date.parse(handoff.generatedAt)), "FrontendHandoffV2.generatedAt must be an ISO timestamp.");
+  invariant(isRecord(handoff.binding), "FrontendHandoffV2.binding is required.");
+  validateAllowedKeys(handoff.binding, ["siteData", "librarySnapshotId", "summary"], "FrontendHandoffV2.binding");
+  invariant(handoff.binding.siteData === "site-data.json", "FrontendHandoffV2 must bind site-data.json.");
+  invariant(typeof handoff.binding.librarySnapshotId === "string" && handoff.binding.librarySnapshotId.length > 0, "FrontendHandoffV2 library snapshot binding is required.");
+  invariant(isRecord(handoff.binding.summary), "FrontendHandoffV2 binding summary is required.");
+  validateAllowedKeys(handoff.binding.summary, ["skills", "libraries", "categories", "collections"], "FrontendHandoffV2.binding.summary");
+  for (const key of ["skills", "libraries", "categories", "collections"]) {
+    invariant(Number.isInteger(handoff.binding.summary[key]) && handoff.binding.summary[key] >= 0, `FrontendHandoffV2 ${key} summary is invalid.`);
+  }
+  invariant(isRecord(handoff.renderer), "FrontendHandoffV2.renderer is required.");
+  validateAllowedKeys(handoff.renderer, ["id", "defaultRoute"], "FrontendHandoffV2.renderer");
+  invariant(typeof handoff.renderer.id === "string" && handoff.renderer.id.length > 0, "FrontendHandoffV2 renderer id is required.");
+  invariant(typeof handoff.renderer.defaultRoute === "string" && handoff.renderer.defaultRoute.length > 0, "FrontendHandoffV2 default route is required.");
+  invariant(Array.isArray(handoff.locales) && handoff.locales.length > 0 && unique(handoff.locales).length === handoff.locales.length, "FrontendHandoffV2 locales must be unique.");
+  invariant(handoff.locales.every((locale) => LOCALES.has(locale)), "FrontendHandoffV2 contains an unsupported locale.");
+  invariant(
+    JSON.stringify([...handoff.publicVisibilities].sort()) === JSON.stringify(["creator-showcase", "public"]),
+    "FrontendHandoffV2 must preserve exactly the reviewed public visibilities.",
+  );
+  invariant(Array.isArray(handoff.requiredBehavior), "FrontendHandoffV2 requiredBehavior is required.");
+  for (const behavior of FRONTEND_HANDOFF_V2_BEHAVIORS) {
+    invariant(handoff.requiredBehavior.includes(behavior), `FrontendHandoffV2 is missing ${behavior}.`);
+  }
+  invariant(isRecord(handoff.privacy), "FrontendHandoffV2 privacy contract is required.");
+  validateAllowedKeys(handoff.privacy, ["mode", "includesLocalOnly", "forbiddenInputs"], "FrontendHandoffV2.privacy");
+  invariant(handoff.privacy.mode === "public-safe-only" && handoff.privacy.includesLocalOnly === false, "FrontendHandoffV2 privacy mode is invalid.");
+  for (const forbidden of FRONTEND_HANDOFF_V2_FORBIDDEN_INPUTS) {
+    invariant(handoff.privacy.forbiddenInputs.includes(forbidden), `FrontendHandoffV2 privacy contract is missing ${forbidden}.`);
+  }
+  invariant(isRecord(handoff.refresh), "FrontendHandoffV2 refresh contract is required.");
+  validateAllowedKeys(handoff.refresh, ["managedFiles", "styleFilesImmutable"], "FrontendHandoffV2.refresh");
+  invariant(
+    JSON.stringify(handoff.refresh.managedFiles) === JSON.stringify(CUSTOMIZATION_MANAGED_FILES_V2),
+    "FrontendHandoffV2 managed files changed.",
+  );
+  invariant(handoff.refresh.styleFilesImmutable === true, "FrontendHandoffV2 must protect style files during refresh.");
+  const boundManifest = siteManifest ?? siteData?.siteManifest;
+  if (boundManifest) {
+    validateSiteManifestV1(boundManifest);
+    invariant(handoff.projectId === boundManifest.projectId, "FrontendHandoffV2 project binding is stale.");
+    invariant(handoff.binding.librarySnapshotId === boundManifest.snapshotRefs.library, "FrontendHandoffV2 library snapshot binding is stale.");
+    invariant(JSON.stringify(handoff.binding.summary) === JSON.stringify(boundManifest.summary), "FrontendHandoffV2 summary binding is stale.");
+  }
+  if (siteData) {
+    invariant(isRecord(siteData.project) && isRecord(siteData.appData), "FrontendHandoffV2 site data is incomplete.");
+    invariant(siteData.project.projectId === handoff.projectId, "FrontendHandoffV2 site data project is stale.");
+    invariant(Array.isArray(siteData.appData.skills), "FrontendHandoffV2 site data Skills are missing.");
+    invariant(siteData.appData.skills.length === handoff.binding.summary.skills, "FrontendHandoffV2 Skill count is not membership-derived.");
+    invariant(siteData.appData.skills.every((skill) => PUBLIC_VISIBILITIES.has(skill.visibility)), "FrontendHandoffV2 site data contains a non-public record.");
+  }
+  const serialized = JSON.stringify(handoff);
+  invariant(!/(?:[A-Za-z]:\\Users\\|\/Users\/|\/home\/|file:\/\/)/i.test(serialized), "FrontendHandoffV2 contains an absolute user path.");
+  invariant(!SECRET_PREFIXES.some((prefix) => serialized.includes(prefix)) && !LONG_SECRET_PATTERN.test(serialized), "FrontendHandoffV2 contains secret-like content.");
+  return handoff;
 }
 
 export function buildRendererViewModel({ librarySnapshot, generatedAt, sourceDir }) {

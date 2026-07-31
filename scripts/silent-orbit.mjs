@@ -22,8 +22,15 @@ import {
   createTrustedSourceBatchPlanV1,
   executeTrustedSourceBatchV1,
 } from "./lib/trusted-source-maintenance.mjs";
+import {
+  decideSkillCosmosCustomizationV2,
+  doctorSkillCosmosCustomizationV2,
+  prepareSkillCosmosCustomizationV2,
+  refreshSkillCosmosCustomizationV2,
+  statusSkillCosmosCustomizationV2,
+} from "./lib/skill-cosmos-customization.mjs";
 
-export const silentOrbitVersion = "0.4.0";
+export const silentOrbitVersion = "0.5.0";
 
 function parseArguments(argv) {
   const [command = "help", ...rest] = argv;
@@ -63,6 +70,12 @@ export function silentOrbitHelpText() {
     "  silent-orbit generate [--project <directory>]",
     "  silent-orbit doctor [--project <directory>]",
     "  silent-orbit audit [--project <directory>] [--generated-at <ISO timestamp>] [--stale-after-days <days>]",
+    "  silent-orbit capabilities",
+    "  silent-orbit customize status [--project <directory>]",
+    "  silent-orbit customize prepare --request <customization-request.json> [--project <directory>]",
+    "  silent-orbit customize decide --request <decision-request.json> [--project <directory>]",
+    "  silent-orbit customize refresh [--project <directory>] [--generated-at <ISO timestamp>]",
+    "  silent-orbit customize doctor [--project <directory>]",
     "  silent-orbit manage plan --request <management-request.json>",
     "  silent-orbit manage apply --plan <management-plan.json> [--dry-run] [--confirm <exact token>]",
     "  silent-orbit manage check-and-update --request <trusted-batch-request.json> [--confirm <exact batch token>]",
@@ -82,6 +95,12 @@ function summaryFor(command, result) {
   if (command === "generate") return `Generated ${result.summary.skills} Skills in ${result.outputDirectory}; files=${result.receipt.files.length}.`;
   if (command === "doctor") return `Doctor status=${result.status}; checks=${result.checks.length}.`;
   if (command === "audit") return `Audit status=${result.status}; providers=${result.summary.providers}, Skills=${result.summary.skillIdentities}, source-failures=${result.summary.sourceFailures}, duplicates=${result.summary.duplicateIdentities}, identity-conflicts=${result.summary.identityConflicts}, versions-unknown=${result.summary.versionsUnknown}, unresolved=${result.summary.unresolved}.`;
+  if (command === "capabilities") return `CLI ${result.cliInterfaceVersion}; customization=${result.capabilities.customization.state}; contract=${result.capabilities.customization.contractFamily}.`;
+  if (command === "customize" && result.kind === "CustomizationStatusV2") return `Customization status=${result.status}; rounds=${result.rounds}; active-directions=${result.activeDirections.length}.`;
+  if (command === "customize" && result.kind === "CustomizationPrepareResultV2") return `Customization prepared; round=${result.roundId}; directions=${result.directions.length}.`;
+  if (command === "customize" && result.kind === "CustomizationDecisionResultV2") return `Customization decision=${result.action}; round=${result.roundId}; direction=${result.directionId ?? "none"}.`;
+  if (command === "customize" && result.kind === "CustomizationRefreshResultV2") return `Customization refreshed; snapshot=${result.afterSnapshot}; style-preserved=${result.stylePreserved}.`;
+  if (command === "customize" && result.kind === "CustomizationDoctorV2") return `Customization doctor status=${result.status}; checks=${result.checks.length}.`;
   if (command === "manage" && result.planId) return `Management plan=${result.planId}; capability=${result.capability.state}; executable=${result.executable}; targets=${result.targets.length}; changes=${result.changes.length}; confirm exactly: ${result.confirmation.token}`;
   if (command === "manage" && result.kind === "TrustedSourceMaintenanceReceiptV1") return `Trusted source receipt=${result.receiptId}; status=${result.status}; changed=${result.diff?.changed?.length ?? 0}; restored=${result.recovery.restored}.`;
   if (command === "manage" && result.receiptId) return `Management receipt=${result.receiptId}; status=${result.status}; dry-run=${result.dryRun}; rollback=${result.rollback.status}.`;
@@ -173,6 +192,60 @@ function runManagementCommand(options, dependencies) {
   throw new Error("silent-orbit manage requires plan, apply, or check-and-update.");
 }
 
+function customizationCapabilities() {
+  return {
+    schemaVersion: 2,
+    kind: "SilentOrbitCapabilitiesV2",
+    cliInterfaceVersion: silentOrbitVersion,
+    compatibilityFamily: "v1+customization-v2",
+    capabilities: {
+      generator: {
+        state: "supported",
+        contractFamily: "v1",
+        commands: ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit"],
+      },
+      customization: {
+        state: "supported",
+        contractFamily: "v2-sidecar",
+        commands: ["status", "prepare", "decide", "refresh", "doctor"],
+        directionCount: 2,
+        decisions: ["keep", "adjust", "reject", "redo"],
+        refreshSafe: true,
+      },
+      management: {
+        state: "host-dependent",
+        contractFamily: "v1",
+      },
+    },
+  };
+}
+
+function runCustomizationCommand(options) {
+  const action = options._[0];
+  const project = projectDirectory(options);
+  if (action === "status") return statusSkillCosmosCustomizationV2({ projectDirectory: project });
+  if (action === "prepare") {
+    return prepareSkillCosmosCustomizationV2({
+      projectDirectory: project,
+      request: readJsonFile(options.request, "Customization prepare request"),
+    });
+  }
+  if (action === "decide") {
+    return decideSkillCosmosCustomizationV2({
+      projectDirectory: project,
+      request: readJsonFile(options.request, "Customization decision request"),
+    });
+  }
+  if (action === "refresh") {
+    return refreshSkillCosmosCustomizationV2({
+      projectDirectory: project,
+      generatedAt: options["generated-at"] ?? new Date().toISOString(),
+    });
+  }
+  if (action === "doctor") return doctorSkillCosmosCustomizationV2({ projectDirectory: project });
+  throw new Error("silent-orbit customize requires status, prepare, decide, refresh, or doctor.");
+}
+
 export function runSilentOrbitCli(argv, dependencies = {}) {
   const { command, options } = parseArguments(argv);
   if (["help", "--help", "-h"].includes(command)) {
@@ -196,6 +269,8 @@ export function runSilentOrbitCli(argv, dependencies = {}) {
     if (rawStaleAfterDays !== undefined && (!Number.isFinite(staleAfterDays) || staleAfterDays < 0)) throw new Error("--stale-after-days must be a non-negative number.");
     result = auditSilentOrbitProject({ projectDirectory: projectDirectory(options), generatedAt: options["generated-at"], staleAfterDays });
   }
+  else if (command === "capabilities") result = customizationCapabilities();
+  else if (command === "customize") result = runCustomizationCommand(options);
   else if (command === "manage") result = runManagementCommand(options, dependencies);
   else throw new Error(`Unknown command ${command}. Run silent-orbit help.`);
 
@@ -203,7 +278,10 @@ export function runSilentOrbitCli(argv, dependencies = {}) {
   const managementFailure = command === "manage"
     && ((result.receiptId && !["dry-run", "succeeded"].includes(result.status))
       || result.kind === "TrustedSourceBatchUnavailable");
-  const exitCode = (["doctor", "audit"].includes(command) && result.status === "error") || managementFailure ? 1 : 0;
+  const customizationFailure = command === "customize"
+    && result.kind === "CustomizationDoctorV2"
+    && result.status === "error";
+  const exitCode = (["doctor", "audit"].includes(command) && result.status === "error") || managementFailure || customizationFailure ? 1 : 0;
   return { command, result, stdout, exitCode };
 }
 

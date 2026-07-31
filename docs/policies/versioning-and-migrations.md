@@ -5,25 +5,24 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 ## Release candidate
 
-| Surface | Phase 6B candidate | Compatibility promise |
+| Surface | Candidate | Compatibility promise |
 |---|---:|---|
-| Repository and package | `0.11.0-beta.9` | `0.11.x` beta line |
-| CLI interface | `0.4.0` | `0.4.x` command and JSON family |
-| JSON Schemas | `v1` | exact files in `schemas/schema-lock.v1.json` |
+| Repository and package | `0.12.0-beta.1` | `0.12.x` beta line |
+| CLI interface | `0.5.0` | frozen generator v1 plus additive customization v2 sidecar |
+| JSON Schemas | frozen `v1` + additive customization `v2` | exact files in both Schema locks |
 | Runtime | Node.js 24 | tested release runtime |
 | Trusted external manager | `skills@1.5.20` | exact content-addressed Phase 5C integration |
 
 This is a pre-release. It is not `v1.0.0`, and the package is not published to
 the npm registry.
 
-`0.11.0-beta.9` is the Phase 6B Windows generation-access repair candidate.
-It preserves the executable handoff and onboarding corrections from beta.8,
-then adds transient file-operation retries, a validated first-generation copy
-fallback, and a no-rewrite path for already-current generated output. The CLI
-interface remains `0.4.0`, and every locked v1 Schema digest is unchanged. It
-also repairs checksum and return-channel instructions and aligns the bundled
-`build-skill-cosmos` contract with the existing CLI `0.4.x` family; those
-documentation repairs do not change the CLI interface.
+`0.12.0-beta.1` adds a separate personal-aesthetic workflow without changing
+the frozen v1 generator contracts. CLI `0.5.0` adds `capabilities` and
+`customize status|prepare|decide|refresh|doctor`. The new v2 sidecar contracts
+support exactly two structurally distinct directions, explicit
+keep/adjust/reject/redo history, private summarized preferences, and
+refresh-safe style preservation. Existing v1 projects remain readable;
+rerunning `generate` adds `frontend-handoff.v2.json` before customization.
 
 ## Semantic versioning
 
@@ -39,7 +38,7 @@ The repository/package version and CLI interface version are independent:
   documented interface.
 - A website-only correction does not require a CLI version change.
 
-## Frozen v1 Schema family
+## Frozen v1 Schema family and additive v2 sidecars
 
 `schemas/schema-lock.v1.json` records every released `*.v1.schema.json` file and
 its SHA-256 value after canonical LF line-ending normalization. The release gate
@@ -58,16 +57,21 @@ meaning, required fields, validation behavior, or accepted values requires:
 Examples and prose may be corrected without changing a Schema digest. The lock
 file itself is versioned separately from the locked Schemas.
 
+`schemas/schema-lock.v2.json` covers only the additive customization and
+frontend handoff sidecars. Those files do not redefine or migrate any v1
+project, inventory, library, or site-manifest field. A generated project needs
+the new v2 handoff before customization, but its v1 source state remains
+unchanged.
+
 ## Current migration baseline
 
-No migration is required inside the v1 family. `0.11.0-beta.9` reads and writes
-the frozen v1 contracts. It must reject an unsupported newer schema instead of
-silently coercing it.
+No migration is required inside the v1 family. `0.12.0-beta.1` continues to
+read and write the frozen v1 contracts. It must reject an unsupported newer
+schema instead of silently coercing it.
 
-When a v2 family is introduced, migration must be explicit and local. It may
-not overwrite the only copy, publish private runtime state, or claim success
-until the new document validates. Automatic background migration is not
-supported.
+The customization v2 family is a sidecar, not a v1 migration. Run `generate`
+to create the machine handoff, then start customization explicitly. No
+background migration is performed.
 
 ## Deprecation
 
@@ -79,7 +83,7 @@ supported.
 - Security or privacy emergencies may shorten the window. The release notes
   must explain the exception and provide the safest available recovery path.
 
-`check-and-update` is canonical in `0.11.x`. The compatibility names
+`check-and-update` remains canonical. The compatibility names
 `check-updates` and source-managed `update` route to the same guarded Core and
 are not separate implementations. No removal date is scheduled.
 

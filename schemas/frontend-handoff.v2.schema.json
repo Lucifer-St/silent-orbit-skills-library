@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/frontend-handoff.v2.schema.json",
+  "title": "FrontendHandoffV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "projectId",
+    "generatedAt",
+    "binding",
+    "renderer",
+    "locales",
+    "publicVisibilities",
+    "requiredBehavior",
+    "privacy",
+    "refresh"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "FrontendHandoffV2" },
+    "projectId": { "$ref": "#/$defs/id" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["siteData", "librarySnapshotId", "summary"],
+      "properties": {
+        "siteData": { "const": "site-data.json" },
+        "librarySnapshotId": { "$ref": "#/$defs/id" },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["skills", "libraries", "categories", "collections"],
+          "properties": {
+            "skills": { "type": "integer", "minimum": 0 },
+            "libraries": { "type": "integer", "minimum": 0 },
+            "categories": { "type": "integer", "minimum": 0 },
+            "collections": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "defaultRoute"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "defaultRoute": { "$ref": "#/$defs/id" }
+      }
+    },
+    "locales": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["zh-CN", "en-US"] }
+    },
+    "publicVisibilities": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": { "enum": ["public", "creator-showcase"] }
+    },
+    "requiredBehavior": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "includesLocalOnly", "forbiddenInputs"],
+      "properties": {
+        "mode": { "const": "public-safe-only" },
+        "includesLocalOnly": { "const": false },
+        "forbiddenInputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        }
+      }
+    },
+    "refresh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["managedFiles", "styleFilesImmutable"],
+      "properties": {
+        "managedFiles": {
+          "const": ["site-data.json", "frontend-handoff.v2.json"]
+        },
+        "styleFilesImmutable": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1 }
+  }
+}

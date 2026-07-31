@@ -1,6 +1,6 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.11.0-beta.9` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.12.0-beta.1` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
 
 ## 1. Download and verify the artifact
 
@@ -16,19 +16,19 @@ interpreted as proof that the host has zero Skills.
 The hosted Silent Orbit site is browse-only. It cannot inspect or change a
 visitor's local Skill environment.
 
-Download these two assets from the [`v0.11.0-beta.9` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.11.0-beta.9):
+Download these two assets from the [`v0.12.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1):
 
-- `silent-orbit-skills-library-0.11.0-beta.9.tgz`
+- `silent-orbit-skills-library-0.12.0-beta.1.tgz`
 - `SHA256SUMS.txt`
 
-Keep both files in the same directory. Verify only the exact beta.9 tarball
+Keep both files in the same directory. Verify only the exact beta.1 tarball
 entry, and require that entry to occur exactly once.
 
 Windows PowerShell:
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.11.0-beta.9.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.11\.0-beta\.9\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.12.0-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.12\.0-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "Expected exactly one checksum entry for $tarball." }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -38,7 +38,7 @@ if ($actual -ne $expected) { throw 'Silent Orbit tarball checksum mismatch.' }
 Linux:
 
 ```sh
-tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -48,7 +48,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS:
 
 ```sh
-tarball='silent-orbit-skills-library-0.11.0-beta.9.tgz'
+tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -63,27 +63,29 @@ printf 'Checksum passed: %s\n' "$actual"
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.11.0-beta.9.tgz
+npm install --global .\silent-orbit-skills-library-0.12.0-beta.1.tgz
 silent-orbit --version
 ```
 
-The package/repository release version is `0.11.0-beta.9`; this source reports the independent CLI interface version `0.4.0` (the `0.4.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
+The package/repository release version is `0.12.0-beta.1`; this source reports the independent CLI interface version `0.5.0` (the `0.5.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional Agent Skills
 
-Review every bundled Skill before installing it. `build-skill-cosmos` is the thin generation/review layer; `audit-skill-cosmos` only interprets the read-only health report; `manage-skill-cosmos` explains guarded management plans. These project-level Skills do not independently discover or mutate a real global profile, and none deploys.
+Review every bundled Skill before installing it. `build-skill-cosmos` is the thin generation/review layer; `customize-skill-cosmos` conducts the private aesthetic workflow; `audit-skill-cosmos` only interprets the read-only health report; `manage-skill-cosmos` explains guarded management plans. These project-level Skills do not independently discover or mutate a real global profile, and none deploys.
 
 ```powershell
 $skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\build-skill-cosmos\SKILL.md')
 npx skills@1.5.20 add $skillSource --skill build-skill-cosmos --agent codex --copy -y
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\customize-skill-cosmos\SKILL.md')
+npx skills@1.5.20 add $skillSource --skill customize-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\audit-skill-cosmos\SKILL.md')
 npx skills@1.5.20 add $skillSource --skill audit-skill-cosmos --agent codex --copy -y
 Get-Content -LiteralPath (Join-Path $skillSource 'skills\manage-skill-cosmos\SKILL.md')
@@ -150,7 +152,34 @@ npx silent-orbit doctor --project .\my-skill-cosmos --json
 npx silent-orbit audit --project .\my-skill-cosmos --json
 ```
 
-Require `doctor.status` to be `ok`. The generated reference site and `frontend-handoff.md` are under `my-skill-cosmos/dist/`. Private imports, analysis, receipts, and runtime state remain under `my-skill-cosmos/.silent-orbit/` and must not be published.
+Require `doctor.status` to be `ok`. The generated reference site, `frontend-handoff.md`, and machine-readable `frontend-handoff.v2.json` are under `my-skill-cosmos/dist/`. Private imports, analysis, receipts, and runtime state remain under `my-skill-cosmos/.silent-orbit/` and must not be published.
+
+## 5. Optional personal aesthetic customization
+
+Customization requires the valid generated v2 handoff above. It presents
+exactly two structurally different functional directions, records explicit
+`keep`, `adjust`, `reject`, or `redo` decisions, and keeps its summarized
+profile and receipts private. Selected output is written to
+`customization/current/`; it never overwrites `dist/`.
+
+```powershell
+npx silent-orbit capabilities --json
+npx silent-orbit customize status --project .\my-skill-cosmos --json
+```
+
+Use the reviewed `customize-skill-cosmos` Skill to conduct the short interview
+and create request files. After keeping a direction, a later data regeneration
+can be synchronized with:
+
+```powershell
+npx silent-orbit customize refresh --project .\my-skill-cosmos --json
+npx silent-orbit customize doctor --project .\my-skill-cosmos --json
+```
+
+Refresh is accepted only when it changes `site-data.json` and
+`frontend-handoff.v2.json` while preserving the selected style digest. This
+workflow does not install, update, or remove Skills and does not publish or
+deploy.
 
 `doctor` checks project integrity. `audit` checks only read-only Skill library health and does not write inventory or receipts. Missing version or freshness evidence stays `unknown`; add `--stale-after-days <days>` only when you intentionally supply that explicit Snapshot-age policy.
 

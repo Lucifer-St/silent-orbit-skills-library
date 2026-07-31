@@ -53,10 +53,32 @@ function prepareSingleSkillProject(parent, label) {
   return root;
 }
 
-test("CLI entry point exposes the expected v0.4 commands", () => {
+test("CLI entry point exposes the expected v0.5 commands and customization capability", () => {
   const help = silentOrbitHelpText();
-  for (const command of ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit", "manage plan", "manage apply", "manage check-and-update"]) assert.match(help, new RegExp(`silent-orbit ${command}`));
-  assert.equal(silentOrbitVersion, "0.4.0");
+  for (const command of [
+    "init",
+    "import",
+    "scan",
+    "analyze",
+    "diff",
+    "generate",
+    "doctor",
+    "audit",
+    "capabilities",
+    "customize status",
+    "customize prepare",
+    "customize decide",
+    "customize refresh",
+    "customize doctor",
+    "manage plan",
+    "manage apply",
+    "manage check-and-update",
+  ]) assert.match(help, new RegExp(`silent-orbit ${command}`));
+  assert.equal(silentOrbitVersion, "0.5.0");
+  const capabilities = runSilentOrbitCli(["capabilities", "--json"]);
+  assert.equal(capabilities.exitCode, 0);
+  assert.equal(capabilities.result.capabilities.customization.contractFamily, "v2-sidecar");
+  assert.equal(capabilities.result.capabilities.customization.directionCount, 2);
 });
 
 test("CLI entrypoint resolves an npm-style symlink before comparing module identity", (t) => {
@@ -180,7 +202,9 @@ test("fresh project completes init, import, scan, analyze, diff, generate, and d
   assert.ok(fs.existsSync(path.join(root, "dist", "index.html")));
   assert.ok(fs.existsSync(path.join(root, "dist", "site-data.json")));
   assert.ok(fs.existsSync(path.join(root, "dist", "frontend-handoff.md")));
+  assert.ok(fs.existsSync(path.join(root, "dist", "frontend-handoff.v2.json")));
   assert.match(fs.readFileSync(path.join(root, "dist", "frontend-handoff.md"), "utf8"), /preferred frontend Skill and visual style/);
+  assert.match(fs.readFileSync(path.join(root, "dist", "frontend-handoff.md"), "utf8"), /frontend-handoff\.v2\.json/);
   assert.doesNotMatch(fs.readFileSync(path.join(root, "dist", "site-data.json"), "utf8"), /private-helper|waiting-for-review|[A-Za-z]:\\Users\\/i);
   assert.equal(fs.readFileSync(sentinel, "utf8"), "unchanged");
   assert.equal(doctorSilentOrbitProject({ projectDirectory: root }).status, "ok");

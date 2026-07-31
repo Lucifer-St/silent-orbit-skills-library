@@ -186,7 +186,7 @@ try {
     ? runWindowsShim(binPath, args, { cwd: consumerRoot, json })
     : run(binPath, args, { cwd: consumerRoot, json });
   const cliVersion = cli(["--version"], { json: false });
-  if (cliVersion !== "0.4.0") throw new Error(`Expected CLI 0.4.0, received ${cliVersion || "<empty>"}.`);
+  if (cliVersion !== "0.5.0") throw new Error(`Expected CLI 0.5.0, received ${cliVersion || "<empty>"}.`);
 
   cli(["init", projectRoot, "--title", "Silent Orbit v1 package smoke", "--project-id", "v1-package-smoke", "--json"]);
   const initialDoctor = cli(["doctor", "--project", projectRoot, "--json"]);

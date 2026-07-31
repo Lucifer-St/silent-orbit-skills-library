@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/custom-frontend-manifest.v2.schema.json",
+  "title": "CustomFrontendManifestV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "projectId",
+    "profileRef",
+    "roundId",
+    "directionId",
+    "librarySnapshotId",
+    "outputDirectory",
+    "managedFiles",
+    "styleDigest",
+    "status"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "CustomFrontendManifestV2" },
+    "projectId": { "$ref": "#/$defs/id" },
+    "profileRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "revision"],
+      "properties": {
+        "profileId": { "$ref": "#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "roundId": { "$ref": "#/$defs/id" },
+    "directionId": { "$ref": "#/$defs/id" },
+    "librarySnapshotId": { "$ref": "#/$defs/snapshotRef" },
+    "outputDirectory": { "type": "string", "minLength": 1 },
+    "managedFiles": { "const": ["site-data.json", "frontend-handoff.v2.json"] },
+    "styleDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "status": { "enum": ["candidate", "current"] }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "snapshotRef": { "type": "string", "minLength": 1, "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:._-]*$" }
+  }
+}
