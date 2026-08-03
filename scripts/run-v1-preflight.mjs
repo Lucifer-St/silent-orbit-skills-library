@@ -234,6 +234,7 @@ function runReleaseAssetsContract() {
     const tarball = `silent-orbit-skills-library-${packageVersion}.tgz`;
     const payloads = [
       "PUBLIC_RELEASE_RECEIPT.md",
+      "SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md",
       "V1_RC_ONE_FILE_HANDOFF.zh-CN.md",
       "codex-global.config.json",
       "silent-orbit-v1-starter.source-import.json",

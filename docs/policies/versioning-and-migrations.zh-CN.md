@@ -7,13 +7,30 @@ CLI 与随包提供的 Agent Skills。
 
 | Surface | 候选版本 | 兼容承诺 |
 |---|---:|---|
-| Repository / package | `0.12.0-beta.1` | `0.12.x` beta 系列 |
-| CLI interface | `0.5.0` | 固定 generator v1，加上 customization v2 sidecar |
-| JSON Schemas | 固定 `v1` + 新增 customization `v2` | 以两个 Schema lock 为准 |
+| Repository / package | `0.13.0-beta.1` | `0.13.x` beta 系列 |
+| CLI interface | `0.6.0` | 固定 generator v1 与 customization v2，加上 experience v3 |
+| JSON Schemas | 固定 `v1` + 固定新增 `v2` + 新增 `v3` | 以三个 Schema lock 为准 |
 | Runtime | Node.js 24 | 发布门禁验证版本 |
 | Trusted manager | `skills@1.5.20` | Phase 5C 固定内容身份 |
 
 这是 Pre-release，不是 `v1.0.0`，也不会发布到 npm registry。
+
+### v0.13.0-beta.1 新增式修复候选版
+
+本 prerelease 在已发布 beta.1 之上提供 CLI `0.6.0` 的兼容新增，不修改 beta.1 的 tag、
+资产或历史说明。它保留全部 frozen v1 schema 和 v2 schema digest，新增明确版本化的
+`CustomizationExperienceV3`、`CustomizationOnboardingV3`、
+`CustomizationInterviewV3` companion 与带版本的独立新手真人报告 schema，
+统一由独立 `schema-lock.v3.json` 固定。
+
+CLI `0.6.0` 新增只读 preflight、明确同意后的项目级 setup、持久化逐题 interview、
+`prepare --from-interview` 与自然语言 `respond`。旧 v2 request/状态/manifest/handoff
+保持可读；v3 文件不塞入 v2 schema，也不静默迁移旧状态。旧项目在第一次使用新手
+流程时先 preflight；只有用户同意才创建项目内 onboarding sidecar。拒绝时不迁移、
+不写入。
+原有 `capabilities` 默认响应继续保持固定的 `SilentOrbitCapabilitiesV2`；需要新增
+能力的调用方显式使用 `capabilities --contract v3`，取得 additive
+`SilentOrbitCapabilitiesV3`。
 
 `0.12.0-beta.1` 在不改变固定 v1 generator contract 的前提下加入独立审美定制
 流程。CLI `0.5.0` 新增 `capabilities` 和
@@ -49,9 +66,14 @@ SHA-256。release gate 会在 Windows、macOS 与 Linux 上重新计算，并拒
 `schemas/schema-lock.v2.json` 只固定审美定制与 frontend handoff sidecar，
 不会重新定义或迁移 v1 project、inventory、library 或 site-manifest 字段。
 
+`schemas/schema-lock.v3.json` 固定上述三个 additive newcomer companion 与
+`novice-human-test-report.v1` schema。
+它明确声明 `changesV1: false`、`changesV2: false`；任何未来不兼容变化必须新增
+schema 版本和迁移策略，不能覆盖 v3 或偷改 v2。
+
 ## 当前迁移基线
 
-v1 系列内部无需迁移。`0.12.0-beta.1` 继续读写固定的 v1 contracts。遇到不支持的
+v1 系列内部无需迁移。`0.13.0-beta.1` 继续读写固定的 v1 contracts。遇到不支持的
 新 schema 时必须停止，不能静默转换。
 
 customization v2 是 sidecar，不是 v1 migration。先显式运行 `generate` 生成

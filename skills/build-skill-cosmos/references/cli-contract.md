@@ -9,11 +9,13 @@ Use the first available explicit, local, or installed command:
 3. In the Silent Orbit source repository, `node work/agent-os-index/scripts/silent-orbit.mjs`.
 4. In a flat public checkout, `node scripts/silent-orbit.mjs`.
 
-Verify with `--version`; require version `0.5.x` for this Skill. Do not download or install a missing CLI.
+Verify with `--version`; require version `0.6.x` for this unreleased local candidate. Do not download or install a missing CLI.
 
 The CLI interface version is independent from the package/repository release
-version. For the current candidate, package `0.12.0-beta.1` contains CLI `0.5.0`.
-Do not infer CLI compatibility from the package tag alone.
+version. In this prerelease, package `0.13.0-beta.1` contains CLI `0.6.0`;
+this describes the local candidate only. The already-published
+`v0.12.0-beta.1` asset remains CLI `0.5.0` and must not be relabeled or
+rewritten. Do not infer CLI compatibility from the package tag alone.
 
 ## Locate the project
 

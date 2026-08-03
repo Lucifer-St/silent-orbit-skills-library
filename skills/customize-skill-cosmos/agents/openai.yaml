@@ -1,4 +1,4 @@
 interface:
   display_name: "Customize Skill Cosmos"
-  short_description: "Build a personal, refresh-safe Silent Orbit visual direction"
-  default_prompt: "Use $customize-skill-cosmos to interview me briefly, create exactly two substantive visual directions for my generated Silent Orbit library, and preserve the selected style across data refreshes."
+  short_description: "用生活化逐题访谈定制安全、可刷新的 Silent Orbit"
+  default_prompt: "Use $customize-skill-cosmos. 先用白话做只读环境预检，缺条件时说明原因和项目内改动并等我明确同意；随后一次只问我一个生活化问题，允许我说不知道或返回修改。请整理成可确认的理解，再创建恰好两个真正不同且可操作的方向，并区分换皮、调整与结构重做。不要全局安装、发布或部署。"

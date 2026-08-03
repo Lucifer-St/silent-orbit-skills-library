@@ -20,6 +20,7 @@ const ROUNDS_ROOT = path.join(OUTPUT_ROOT, "rounds");
 const CURRENT_ROOT = path.join(OUTPUT_ROOT, "current");
 const MANIFEST_FILE = "custom-frontend.manifest.json";
 const DIRECTION_FILE = "direction-preview.json";
+const EXPERIENCE_FILE = "customization-experience.v3.json";
 const STYLE_FILE = "customization.css";
 const FRONTEND_HANDOFF_FILE = "frontend-handoff.v2.json";
 const SITE_DATA_FILE = "site-data.json";
@@ -63,6 +64,35 @@ function stableJson(value) {
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
+}
+
+function preferredViewForProfile(profile) {
+  return profile.preferences.navigation === "library-first" ? "library" : "map";
+}
+
+function stableId(namespace, value) {
+  return `${namespace}-${sha256(`${namespace}\0${value}`).slice(0, 12)}`;
+}
+
+function structureDigest(structure) {
+  return sha256(stableJson(structure));
+}
+
+function materialStructureDigest(structure) {
+  const groups = structure.groups.map((group) => ({
+    ...group,
+    skillNames: [...group.skillNames].sort((left, right) => left.localeCompare(right, "en")),
+  })).sort((left, right) => left.id.localeCompare(right.id, "en"));
+  const nodes = [...structure.nodes].sort((left, right) => left.id.localeCompare(right.id, "en"));
+  const edges = [...structure.edges].sort((left, right) => left.id.localeCompare(right.id, "en"));
+  return sha256(stableJson({
+    groupingStrategy: structure.groupingStrategy,
+    layoutStrategy: structure.layoutStrategy,
+    world: structure.world,
+    groups,
+    nodes,
+    edges,
+  }));
 }
 
 function portableId(value, label) {
@@ -206,7 +236,7 @@ function listFiles(root) {
 }
 
 function styleDigest(root) {
-  const excluded = new Set([...CUSTOMIZATION_MANAGED_FILES_V2, MANIFEST_FILE]);
+  const excluded = new Set([...CUSTOMIZATION_MANAGED_FILES_V2, MANIFEST_FILE, EXPERIENCE_FILE]);
   const hash = createHash("sha256");
   for (const target of listFiles(root)) {
     const relative = path.relative(root, target).split(path.sep).join("/");
@@ -228,6 +258,8 @@ function validatePublicOutput(root) {
     .map((target) => fs.readFileSync(target, "utf8"))
     .join("\n");
   invariant(!PRIVATE_PATTERN.test(payload), "custom frontend contains private path or secret-like evidence.");
+  const experiencePath = path.join(root, EXPERIENCE_FILE);
+  if (fs.existsSync(experiencePath)) validateCustomizationExperienceV3(readJson(experiencePath, EXPERIENCE_FILE));
   return true;
 }
 
@@ -491,6 +523,223 @@ function generatedInputs(projectRoot) {
   return { dist, siteData, handoff };
 }
 
+function feedbackSignals(feedback = []) {
+  const value = normalizedText(feedback.join(" "));
+  const signals = [];
+  if (/(node|节点|拥挤|太挤|spacing|space)/i.test(value)) signals.push("node-spacing");
+  if (/(edge|link|line|连线|关系|meaning)/i.test(value)) signals.push("edge-meaning");
+  if (/(group|organ|cluster|分组|组织|分类)/i.test(value)) signals.push("grouping");
+  if (/(map|地图|topology|结构|重做|redo|redesign)/i.test(value)) signals.push("map-redesign");
+  return signals.length ? signals : ["general-organization"];
+}
+
+function normalizedText(value) {
+  return String(value ?? "").normalize("NFKC").toLowerCase();
+}
+
+function publicSkillModel(siteData) {
+  const appData = siteData.appData;
+  const categoryBySkill = new Map();
+  for (const [category, names] of Object.entries(appData.categorySkillNames ?? {})) {
+    for (const name of names) if (!categoryBySkill.has(name)) categoryBySkill.set(name, category);
+  }
+  const sourceByKey = new Map((appData.libraries ?? []).map((source) => [source.key, source.title ?? source.label ?? source.key]));
+  return (appData.skills ?? []).map((skill) => ({
+    name: safeString(skill.name, "public Skill name", 240),
+    category: safeString(categoryBySkill.get(skill.name) ?? skill.category ?? "Uncategorized", "public category", 240),
+    source: safeString(sourceByKey.get(skill.library_key) ?? skill.library_title ?? "Unknown source", "public source", 240),
+  })).sort((left, right) => left.name.localeCompare(right.name, "en"));
+}
+
+function groupPosition(strategy, index, count, layoutPhase) {
+  if (["chapter-orbit", "source-constellation"].includes(strategy)) {
+    const angle = ((Math.PI * 2) / Math.max(1, count)) * index - Math.PI / 2 + layoutPhase * 0.7;
+    return {
+      x: Math.round(600 + Math.cos(angle) * 390 - 190),
+      y: Math.round(400 + Math.sin(angle) * 255 - 82),
+      width: 380,
+      height: 164,
+    };
+  }
+  const columns = strategy === "source-grid" ? 3 : 2;
+  const width = columns === 3 ? 330 : 500;
+  const gap = columns === 3 ? 55 : 90;
+  return {
+    x: Math.round(45 + (layoutPhase - 0.5) * 32 + (index % columns) * (width + gap)),
+    y: Math.round(48 + layoutPhase * 24 + Math.floor(index / columns) * 226),
+    width,
+    height: 178,
+  };
+}
+
+function layoutStrategyFor(direction, structuralGeneration) {
+  invariant(Number.isSafeInteger(structuralGeneration) && structuralGeneration >= 1, "structuralGeneration must be a positive integer.");
+  const densityAlternate = direction.density === "airy";
+  const alternate = structuralGeneration % 2 === 0 ? !densityAlternate : densityAlternate;
+  if (direction.layout === "signal-grid") return alternate ? "source-constellation" : "source-grid";
+  return alternate ? "chapter-orbit" : "reading-lanes";
+}
+
+export function createCustomizationExperienceV3({ siteData, profile, roundId, direction, inheritedFeedback = [], structuralGeneration = 1 }) {
+  validateDesignProfileV2(profile);
+  validateMaterialDirection(direction, "CustomizationExperienceV3.direction");
+  const signals = feedbackSignals(inheritedFeedback);
+  const skills = publicSkillModel(siteData);
+  const groupingStrategy = direction.layout === "signal-grid" ? "source-clusters" : "category-chapters";
+  const layoutStrategy = layoutStrategyFor(direction, structuralGeneration);
+  const baseLayoutPhase = ({ "reading-lanes": 0.25, "chapter-orbit": 0.75, "source-grid": 0.35, "source-constellation": 0.65 })[layoutStrategy];
+  const layoutPhase = Number(((baseLayoutPhase + (structuralGeneration - 1) * 0.071) % 1).toFixed(8));
+  const groupKey = groupingStrategy === "source-clusters" ? "source" : "category";
+  const grouped = new Map();
+  for (const skill of skills) {
+    const label = skill[groupKey];
+    if (!grouped.has(label)) grouped.set(label, []);
+    grouped.get(label).push(skill.name);
+  }
+  if (grouped.size === 0) grouped.set("No public Skills yet", []);
+  const orderedLabels = [...grouped.keys()].sort((left, right) => left.localeCompare(right, "en"));
+  const groups = orderedLabels.map((label, index) => {
+    const id = stableId("group", `${groupingStrategy}\0${label}`);
+    return {
+      id,
+      label,
+      kind: groupKey,
+      skillNames: [...grouped.get(label)].sort((left, right) => left.localeCompare(right, "en")),
+      ...groupPosition(layoutStrategy, index, orderedLabels.length, layoutPhase),
+    };
+  });
+  const groupBySkill = new Map(groups.flatMap((group) => group.skillNames.map((name) => [name, group])));
+  const nodes = skills.map((skill, index) => {
+    const group = groupBySkill.get(skill.name);
+    const memberIndex = group.skillNames.indexOf(skill.name);
+    const columns = ["reading-lanes", "source-grid"].includes(layoutStrategy) ? 3 : 2;
+    const startX = columns === 3 ? 45 : 235;
+    return {
+      id: stableId("skill", skill.name),
+      skillName: skill.name,
+      groupId: group.id,
+      x: startX + (memberIndex % columns) * 380,
+      y: 168 + Math.floor(memberIndex / columns) * 104 + (index % 2),
+    };
+  });
+  const nodeByName = new Map(nodes.map((node) => [node.skillName, node]));
+  const edges = groups.flatMap((group) => group.skillNames.map((skillName) => ({
+    id: stableId("edge", `${group.id}\0${skillName}`),
+    source: group.id,
+    target: nodeByName.get(skillName).id,
+    kind: "public-membership",
+  })));
+  const worldHeight = Math.max(
+    800,
+    ...groups.map((group) => group.y + group.height + 60),
+    ...nodes.map((node) => node.y + 140),
+  );
+  const structure = {
+    source: "public-site-data",
+    groupingStrategy,
+    layoutStrategy,
+    layoutPhase,
+    edgePolicy: "public-membership-only",
+    world: { width: 1200, height: worldHeight },
+    groups,
+    nodes,
+    edges,
+  };
+  return validateCustomizationExperienceV3({
+    schemaVersion: 3,
+    kind: "CustomizationExperienceV3",
+    profileRef: { profileId: profile.profileId, revision: profile.revision },
+    roundId,
+    directionId: direction.id,
+    preferredView: preferredViewForProfile(profile),
+    runtimeViewPolicy: "explicit-url-over-preference",
+    refreshPolicy: "rederive-from-public-site-data",
+    feedbackSignals: signals,
+    structure,
+    structureDigest: structureDigest(structure),
+  });
+}
+
+export function validateCustomizationExperienceV3(experience) {
+  validateAllowedKeys(experience, [
+    "schemaVersion",
+    "kind",
+    "profileRef",
+    "roundId",
+    "directionId",
+    "preferredView",
+    "runtimeViewPolicy",
+    "refreshPolicy",
+    "feedbackSignals",
+    "structure",
+    "structureDigest",
+  ], "CustomizationExperienceV3");
+  invariant(experience.schemaVersion === 3 && experience.kind === "CustomizationExperienceV3", "CustomizationExperienceV3 identity is invalid.");
+  validateAllowedKeys(experience.profileRef, ["profileId", "revision"], "CustomizationExperienceV3.profileRef");
+  portableId(experience.profileRef.profileId, "CustomizationExperienceV3.profileRef.profileId");
+  invariant(Number.isInteger(experience.profileRef.revision) && experience.profileRef.revision >= 1, "CustomizationExperienceV3 profile revision is invalid.");
+  portableId(experience.roundId, "CustomizationExperienceV3.roundId");
+  portableId(experience.directionId, "CustomizationExperienceV3.directionId");
+  invariant(new Set(["map", "library"]).has(experience.preferredView), "CustomizationExperienceV3 preferred view is invalid.");
+  invariant(experience.runtimeViewPolicy === "explicit-url-over-preference", "CustomizationExperienceV3 runtime view policy is invalid.");
+  invariant(experience.refreshPolicy === "rederive-from-public-site-data", "CustomizationExperienceV3 refresh policy is invalid.");
+  safeStrings(experience.feedbackSignals, "CustomizationExperienceV3.feedbackSignals");
+  validateAllowedKeys(experience.structure, ["source", "groupingStrategy", "layoutStrategy", "layoutPhase", "edgePolicy", "world", "groups", "nodes", "edges"], "CustomizationExperienceV3.structure");
+  invariant(experience.structure.source === "public-site-data", "CustomizationExperienceV3 structure source widened beyond public data.");
+  invariant(new Set(["category-chapters", "source-clusters"]).has(experience.structure.groupingStrategy), "CustomizationExperienceV3 grouping strategy is invalid.");
+  invariant(new Set(["reading-lanes", "chapter-orbit", "source-grid", "source-constellation"]).has(experience.structure.layoutStrategy), "CustomizationExperienceV3 layout strategy is invalid.");
+  invariant(Number.isFinite(experience.structure.layoutPhase) && experience.structure.layoutPhase >= 0 && experience.structure.layoutPhase <= 1, "CustomizationExperienceV3 layout phase is invalid.");
+  invariant(experience.structure.edgePolicy === "public-membership-only", "CustomizationExperienceV3 edge policy is invalid.");
+  validateAllowedKeys(experience.structure.world, ["width", "height"], "CustomizationExperienceV3.structure.world");
+  invariant(Number.isFinite(experience.structure.world.width) && Number.isFinite(experience.structure.world.height), "CustomizationExperienceV3 world is invalid.");
+  invariant(Array.isArray(experience.structure.groups) && experience.structure.groups.length > 0, "CustomizationExperienceV3 needs groups.");
+  invariant(Array.isArray(experience.structure.nodes), "CustomizationExperienceV3 nodes are invalid.");
+  invariant(Array.isArray(experience.structure.edges), "CustomizationExperienceV3 edges are invalid.");
+  const groupIds = new Set();
+  const nodeIds = new Set();
+  const skillNames = new Set();
+  for (const group of experience.structure.groups) {
+    validateAllowedKeys(group, ["id", "label", "kind", "skillNames", "x", "y", "width", "height"], "CustomizationExperienceV3 group");
+    portableId(group.id, "CustomizationExperienceV3 group id");
+    invariant(!groupIds.has(group.id), "CustomizationExperienceV3 group ids must be unique.");
+    groupIds.add(group.id);
+    safeString(group.label, "CustomizationExperienceV3 group label", 240);
+    invariant(new Set(["category", "source"]).has(group.kind), "CustomizationExperienceV3 group kind is invalid.");
+    safeStrings(group.skillNames, "CustomizationExperienceV3 group skill names");
+    for (const key of ["x", "y", "width", "height"]) invariant(Number.isFinite(group[key]), `CustomizationExperienceV3 group ${key} is invalid.`);
+  }
+  for (const node of experience.structure.nodes) {
+    validateAllowedKeys(node, ["id", "skillName", "groupId", "x", "y"], "CustomizationExperienceV3 node");
+    portableId(node.id, "CustomizationExperienceV3 node id");
+    invariant(!nodeIds.has(node.id), "CustomizationExperienceV3 node ids must be unique.");
+    nodeIds.add(node.id);
+    safeString(node.skillName, "CustomizationExperienceV3 node skill name", 240);
+    invariant(!skillNames.has(node.skillName), "CustomizationExperienceV3 Skill nodes must be unique.");
+    skillNames.add(node.skillName);
+    invariant(groupIds.has(node.groupId), "CustomizationExperienceV3 node references a missing group.");
+    invariant(Number.isFinite(node.x) && Number.isFinite(node.y), "CustomizationExperienceV3 node position is invalid.");
+  }
+  for (const edge of experience.structure.edges) {
+    validateAllowedKeys(edge, ["id", "source", "target", "kind"], "CustomizationExperienceV3 edge");
+    portableId(edge.id, "CustomizationExperienceV3 edge id");
+    invariant(groupIds.has(edge.source) && nodeIds.has(edge.target), "CustomizationExperienceV3 edge endpoints are invalid.");
+    invariant(edge.kind === "public-membership", "CustomizationExperienceV3 edge kind is invalid.");
+  }
+  invariant(/^[a-f0-9]{64}$/.test(experience.structureDigest), "CustomizationExperienceV3 structure digest is invalid.");
+  invariant(experience.structureDigest === structureDigest(experience.structure), "CustomizationExperienceV3 structure digest is stale.");
+  invariant(!PRIVATE_PATTERN.test(JSON.stringify(experience)), "CustomizationExperienceV3 contains private path or secret-like evidence.");
+  return experience;
+}
+
+export function assertStructuralRedesignV3(previousExperiences, nextExperiences) {
+  invariant(Array.isArray(nextExperiences) && nextExperiences.length === 2, "redesign must create exactly two structure-bearing directions.");
+  const previous = new Set((previousExperiences ?? []).map((experience) => materialStructureDigest(validateCustomizationExperienceV3(experience).structure)));
+  const next = nextExperiences.map((experience) => materialStructureDigest(validateCustomizationExperienceV3(experience).structure));
+  invariant(new Set(next).size === 2, "redesign produced two styles over the same graph structure.");
+  invariant(next.every((digest) => !previous.has(digest)), "redesign reused a previous material graph structure; CSS or layoutPhase-only change is not redesign.");
+  return true;
+}
+
 function typographyCss(direction) {
   if (direction.typography === "technical") {
     return {
@@ -673,11 +922,18 @@ ${layout}
 `;
 }
 
-function patchedIndex(source, direction) {
+function patchedIndex(source, direction, preferredView) {
   invariant(source.includes("</head>") && source.includes("<body>"), "reference renderer index contract changed.");
-  return source
+  let output = source
     .replace("</head>", `    <link rel="stylesheet" href="./${STYLE_FILE}" />\n  </head>`)
     .replace("<body>", `<body data-custom-layout="${direction.layout}" data-custom-density="${direction.density}">`);
+  if (preferredView === "library") {
+    output = output
+      .replace('data-view="map"', 'data-view="library"')
+      .replace('data-view-target="map" aria-pressed="true"', 'data-view-target="map" aria-pressed="false"')
+      .replace('data-view-target="library" aria-pressed="false"', 'data-view-target="library" aria-pressed="true"');
+  }
+  return output;
 }
 
 function directionPreview(direction) {
@@ -712,14 +968,25 @@ function manifestFor({ projectId, profileRef, roundId, direction, handoff, outpu
   });
 }
 
-function materializeDirection({ projectRoot, target, projectId, profileRef, roundId, direction, siteData, handoff, outputDirectory }) {
+function materializeDirection({ projectRoot, target, projectId, profile, profileRef, roundId, direction, siteData, handoff, outputDirectory, inheritedFeedback = [], experienceOverride = null, structuralGeneration = 1 }) {
   invariant(fs.existsSync(REFERENCE_TEMPLATE), "bundled reference renderer template is missing.");
   invariant(!fs.existsSync(target), "direction preview already exists.");
   retryTransientIo(() => fs.cpSync(REFERENCE_TEMPLATE, target, { recursive: true, errorOnExist: true, force: false }));
   try {
-    atomicWriteText(path.join(target, "index.html"), patchedIndex(fs.readFileSync(path.join(target, "index.html"), "utf8"), direction));
+    const experience = experienceOverride
+      ? validateCustomizationExperienceV3({
+        ...structuredClone(experienceOverride),
+        profileRef: { ...profileRef },
+        roundId,
+        directionId: direction.id,
+        preferredView: preferredViewForProfile(profile),
+        feedbackSignals: ["restyle"],
+      })
+      : createCustomizationExperienceV3({ siteData, profile, roundId, direction, inheritedFeedback, structuralGeneration });
+    atomicWriteText(path.join(target, "index.html"), patchedIndex(fs.readFileSync(path.join(target, "index.html"), "utf8"), direction, experience.preferredView));
     atomicWriteText(path.join(target, STYLE_FILE), customizationCss(direction));
     atomicWriteJson(path.join(target, DIRECTION_FILE), directionPreview(direction));
+    atomicWriteJson(path.join(target, EXPERIENCE_FILE), experience);
     atomicWriteJson(path.join(target, SITE_DATA_FILE), siteData);
     atomicWriteJson(path.join(target, FRONTEND_HANDOFF_FILE), handoff);
     const digest = styleDigest(target);
@@ -736,7 +1003,7 @@ function materializeDirection({ projectRoot, target, projectId, profileRef, roun
     atomicWriteJson(path.join(target, MANIFEST_FILE), manifest);
     validatePublicOutput(target);
     invariant(styleDigest(target) === manifest.styleDigest, "candidate style digest changed during materialization.");
-    return manifest;
+    return { manifest, experience };
   } catch (error) {
     removePath(target);
     throw error;
@@ -858,19 +1125,29 @@ export function prepareSkillCosmosCustomizationV2({ projectDirectory = ".", requ
     for (const direction of round.directions) {
       const relative = previewDirectory(round.id, direction.id);
       const stagedTarget = path.join(stagingRound, direction.id);
-      const manifest = materializeDirection({
+      const materialized = materializeDirection({
         projectRoot,
         target: stagedTarget,
         projectId: handoff.projectId,
+        profile,
         profileRef,
         roundId: round.id,
         direction,
         siteData,
         handoff,
         outputDirectory: relative,
+        structuralGeneration: 1,
       });
-      previews.push({ id: direction.id, label: direction.label, previewDirectory: relative.split(path.sep).join("/"), styleDigest: manifest.styleDigest });
+      previews.push({
+        id: direction.id,
+        label: direction.label,
+        previewDirectory: relative.split(path.sep).join("/"),
+        preferredView: materialized.experience.preferredView,
+        styleDigest: materialized.manifest.styleDigest,
+        structureDigest: materialized.experience.structureDigest,
+      });
     }
+    invariant(new Set(previews.map((preview) => preview.structureDigest)).size === 2, "customization directions must have different graph structures, not only different styles.");
     retryTransientIo(() => fs.mkdirSync(path.dirname(roundTarget), { recursive: true }));
     renamePath(stagingRound, roundTarget);
     atomicWriteJson(resolveProjectPath(projectRoot, PROFILE_FILE, "design profile"), profile);
@@ -959,7 +1236,7 @@ function updateProfileForRedo(existing, replacement, createdAt) {
 
 export function decideSkillCosmosCustomizationV2({ projectDirectory = ".", request } = {}) {
   const projectRoot = resolveProjectRoot(projectDirectory);
-  validateAllowedKeys(request, ["schemaVersion", "generatedAt", "action", "directionId", "feedback", "direction", "directions", "profile"], "customize decide request");
+  validateAllowedKeys(request, ["schemaVersion", "generatedAt", "action", "directionId", "feedback", "direction", "directions", "profile", "changeKind"], "customize decide request");
   invariant(request.schemaVersion === 2, "customize decide request schemaVersion must be 2.");
   const createdAt = timestamp(request.generatedAt, "customize decide request.generatedAt");
   invariant(new Set(["keep", "adjust", "reject", "redo"]).has(request.action), "customize decide action is invalid.");
@@ -978,6 +1255,8 @@ export function decideSkillCosmosCustomizationV2({ projectDirectory = ".", reque
     direction.status = "rejected";
   } else if (request.action === "adjust") {
     const parent = candidateDirection(round, directionId);
+    const changeKind = request.changeKind ?? "adjust";
+    invariant(new Set(["restyle", "adjust"]).has(changeKind), "adjust changeKind must be restyle or adjust.");
     invariant(feedback.length > 0, "adjust requires concise feedback.");
     invariant(request.direction, "adjust requires a revised direction.");
     const revised = materialDirection(request.direction, {
@@ -996,17 +1275,24 @@ export function decideSkillCosmosCustomizationV2({ projectDirectory = ".", reque
     }
     const relative = previewDirectory(round.id, revised.id);
     const target = resolveProjectPath(projectRoot, relative, "adjusted direction preview");
-    manifest = materializeDirection({
+    const parentExperiencePath = resolveProjectPath(projectRoot, path.join(previewDirectory(round.id, parent.id), EXPERIENCE_FILE), "parent experience");
+    const experienceOverride = changeKind === "restyle" && fs.existsSync(parentExperiencePath)
+      ? validateCustomizationExperienceV3(readJson(parentExperiencePath, EXPERIENCE_FILE))
+      : null;
+    const materialized = materializeDirection({
       projectRoot,
       target,
       projectId: state.projectId,
+      profile,
       profileRef: state.profileRef,
       roundId: round.id,
       direction: revised,
       siteData,
       handoff,
       outputDirectory: relative,
+      experienceOverride,
     });
+    manifest = materialized.manifest;
     createdPreview = relative;
     directionId = revised.id;
   } else if (request.action === "redo") {
@@ -1023,22 +1309,32 @@ export function decideSkillCosmosCustomizationV2({ projectDirectory = ".", reque
     invariant(!state.rounds.some((candidate) => candidate.id === nextRound.id), "redo round id already exists.");
     const roundTarget = resolveProjectPath(projectRoot, path.join(ROUNDS_ROOT, nextRound.id), "redo round");
     const stagingRound = resolveProjectPath(projectRoot, path.join(OUTPUT_ROOT, `.redo-${nextRound.id}-${process.pid}`), "redo staging");
+    const previousExperiences = round.directions.map((direction) => {
+      const target = resolveProjectPath(projectRoot, path.join(previewDirectory(round.id, direction.id), EXPERIENCE_FILE), "previous experience");
+      return fs.existsSync(target) ? validateCustomizationExperienceV3(readJson(target, EXPERIENCE_FILE)) : null;
+    }).filter(Boolean);
+    const nextExperiences = [];
     if (fs.existsSync(stagingRound)) removePath(stagingRound);
     try {
       for (const direction of nextRound.directions) {
         const relative = previewDirectory(nextRound.id, direction.id);
-        materializeDirection({
+        const materialized = materializeDirection({
           projectRoot,
           target: path.join(stagingRound, direction.id),
           projectId: state.projectId,
+          profile,
           profileRef: state.profileRef,
           roundId: nextRound.id,
           direction,
           siteData,
           handoff,
           outputDirectory: relative,
+          inheritedFeedback: nextRound.inheritedFeedback,
+          structuralGeneration: state.rounds.length + 1,
         });
+        nextExperiences.push(materialized.experience);
       }
+      assertStructuralRedesignV3(previousExperiences, nextExperiences);
       retryTransientIo(() => fs.mkdirSync(path.dirname(roundTarget), { recursive: true }));
       renamePath(stagingRound, roundTarget);
     } catch (error) {
@@ -1096,11 +1392,152 @@ export function decideSkillCosmosCustomizationV2({ projectDirectory = ".", reque
   };
 }
 
+export function classifyCustomizationFeedbackV3(text) {
+  const value = normalizedText(safeString(text, "customization feedback", 500));
+  const redesignPattern = /(重做|重新设计|redo|redesign|节点.*(?:挤|乱)|连线.*(?:没意义|不对|混乱)|换.*(?:组织|分组|地图)|拓扑|信息架构)/iu;
+  const negatedRedesign = /(?:不要|不用|无需|不必|别)(?:再|进行)?[^。；;,，]{0,6}(?:重做|重新设计|redo|redesign|换.*(?:组织|分组|地图)|拓扑|信息架构)/iu;
+  const requestsRedesign = value.split(/[。；;,，！？!?]+/u).some((clause) => redesignPattern.test(clause) && !negatedRedesign.test(clause));
+  if (requestsRedesign) {
+    return {
+      changeKind: "redesign",
+      action: "redo",
+      explanation: "你是在要求改变地图的组织方式；会重新生成分组、节点、连线和布局，并保留旧轮次。",
+      feedbackSummary: "重做地图组织：重新生成分组、节点、连线和布局。",
+    };
+  }
+  if (/(颜色|配色|字体|字重|圆角|边框|阴影|细节|color|font|typeface|restyle)/iu.test(value)
+      && !/(结构|布局|分组|节点|连线|组织|layout|group|node|edge)/iu.test(value)) {
+    return {
+      changeKind: "restyle",
+      action: "adjust",
+      explanation: "你是在调整表面观感；会保留地图结构，只改颜色、字体或细节。",
+      feedbackSummary: "调整颜色、字体和表面细节，保留地图结构。",
+    };
+  }
+  return {
+    changeKind: "adjust",
+    action: "adjust",
+    explanation: "你是在当前组织方式上做调整；会保留本轮方向并生成一个可回退的子版本。",
+    feedbackSummary: "在当前组织方式上调整间距和阅读节奏。",
+  };
+}
+
+function directionSpecsFromProfile(profile, generation) {
+  const preferences = profile.preferences;
+  const firstLayout = preferences.navigation === "map-first" ? "signal-grid" : "editorial-rail";
+  const secondLayout = firstLayout === "signal-grid" ? "editorial-rail" : "signal-grid";
+  const suffix = `r${profile.revision}-g${generation}`;
+  const firstShape = preferences.typography === "humanist" ? "soft" : "square";
+  return [
+    {
+      id: `${profile.profileId}-calm-${suffix}`,
+      label: "安静日常",
+      rationale: "回应你最新的白话反馈，并重新组织公开安全的地图结构。",
+      layout: firstLayout,
+      density: preferences.density,
+      typography: preferences.typography,
+      motion: preferences.accessibility.reducedMotion ? "still" : preferences.motion,
+      shape: firstShape,
+      palette: { paper: "#f7f5ef", ink: "#171714", muted: "#65635c", line: "#d6d1c5", accent: "#396a61" },
+    },
+    {
+      id: `${profile.profileId}-signal-${suffix}`,
+      label: "清晰信号",
+      rationale: "用另一种分组和布局验证新的组织方式，不复用上一轮拓扑。",
+      layout: secondLayout,
+      density: preferences.density === "compact" ? "airy" : "compact",
+      typography: preferences.typography === "technical" ? "editorial" : "technical",
+      motion: preferences.accessibility.reducedMotion ? "still" : preferences.motion === "still" ? "measured" : "still",
+      shape: firstShape === "soft" ? "square" : "soft",
+      palette: { paper: "#f2f4f7", ink: "#111820", muted: "#586574", line: "#c4ccd5", accent: "#b44b2a" },
+    },
+  ];
+}
+
+function revisedDirectionForFeedback(parent, interpretation, generatedAt) {
+  const suffix = sha256(stableJson({ parent: parent.id, generatedAt, changeKind: interpretation.changeKind })).slice(0, 8);
+  const palette = { ...parent.palette };
+  palette.accent = palette.accent.toLowerCase() === "#396a61" ? "#7a3f69" : "#396a61";
+  const base = {
+    layout: parent.layout,
+    density: parent.density,
+    typography: parent.typography,
+    motion: parent.motion,
+    shape: parent.shape,
+    palette,
+  };
+  if (interpretation.changeKind === "restyle") {
+    return {
+      ...base,
+      id: `${parent.id}-restyle-${suffix}`,
+      label: `${parent.label} · 细节版`,
+      rationale: "保留原有地图结构，只调整颜色、字体和表面细节。",
+      typography: parent.typography === "humanist" ? "editorial" : "humanist",
+      palette,
+    };
+  }
+  return {
+    ...base,
+    id: `${parent.id}-adjust-${suffix}`,
+    label: `${parent.label} · 调整版`,
+    rationale: "保留当前组织方式，调整间距、节奏和操作反馈。",
+    density: parent.density === "balanced" ? "airy" : "balanced",
+    motion: parent.motion === "expressive" ? "measured" : parent.motion,
+    palette,
+  };
+}
+
+export function respondSkillCosmosCustomizationV3({ projectDirectory = ".", request } = {}) {
+  validateAllowedKeys(request, ["schemaVersion", "generatedAt", "text", "directionId"], "customize respond request");
+  invariant(request.schemaVersion === 3, "customize respond request schemaVersion must be 3.");
+  const generatedAt = timestamp(request.generatedAt, "customize respond request.generatedAt");
+  const interpretation = classifyCustomizationFeedbackV3(request.text);
+  const projectRoot = resolveProjectRoot(projectDirectory);
+  const { profile, state } = loadCustomization(projectRoot);
+  const round = openRound(state);
+  let result;
+  if (interpretation.changeKind === "redesign") {
+    result = decideSkillCosmosCustomizationV2({
+      projectDirectory: projectRoot,
+      request: {
+        schemaVersion: 2,
+        generatedAt,
+        action: "redo",
+        feedback: [interpretation.feedbackSummary],
+        directions: directionSpecsFromProfile(profile, state.rounds.length + 1),
+      },
+    });
+  } else {
+    const directionId = request.directionId ?? round.directions.find((direction) => direction.status === "candidate")?.id;
+    const parent = candidateDirection(round, directionId);
+    result = decideSkillCosmosCustomizationV2({
+      projectDirectory: projectRoot,
+      request: {
+        schemaVersion: 2,
+        generatedAt,
+        action: "adjust",
+        changeKind: interpretation.changeKind,
+        directionId: parent.id,
+        feedback: [interpretation.feedbackSummary],
+        direction: revisedDirectionForFeedback(parent, interpretation, generatedAt),
+      },
+    });
+  }
+  return {
+    ...result,
+    schemaVersion: 3,
+    kind: "CustomizationNaturalResponseV3",
+    changeKind: interpretation.changeKind,
+    interpretedAction: interpretation.action,
+    explanation: interpretation.explanation,
+  };
+}
+
 export function refreshSkillCosmosCustomizationV2({ projectDirectory = ".", generatedAt } = {}) {
   const projectRoot = resolveProjectRoot(projectDirectory);
   const createdAt = timestamp(generatedAt, "customize refresh generatedAt");
   const { siteData, handoff } = generatedInputs(projectRoot);
-  const { state } = loadCustomization(projectRoot);
+  const { profile, state } = loadCustomization(projectRoot);
   invariant(state.current, "no direction has been kept; refresh has no current frontend.");
   const current = resolveProjectPath(projectRoot, CURRENT_ROOT, "current frontend");
   validatePublicOutput(current);
@@ -1109,12 +1546,35 @@ export function refreshSkillCosmosCustomizationV2({ projectDirectory = ".", gene
   invariant(manifest.directionId === state.current.directionId && manifest.roundId === state.current.roundId, "current frontend and private state disagree.");
   const beforeStyle = styleDigest(current);
   invariant(beforeStyle === manifest.styleDigest && beforeStyle === state.current.styleDigest, "current style digest is stale; refresh stopped without writing.");
+  const experiencePath = path.join(current, EXPERIENCE_FILE);
+  const beforeExperience = fs.existsSync(experiencePath)
+    ? validateCustomizationExperienceV3(readJson(experiencePath, EXPERIENCE_FILE))
+    : null;
+  const selectedRound = state.rounds.find((round) => round.id === state.current.roundId);
+  const selectedDirection = selectedRound?.directions.find((direction) => direction.id === state.current.directionId);
+  invariant(selectedRound && selectedDirection, "current direction history is missing.");
   const staged = resolveProjectPath(projectRoot, path.join(OUTPUT_ROOT, `.refresh-${process.pid}`), "refresh staging");
   if (fs.existsSync(staged)) removePath(staged);
   retryTransientIo(() => fs.cpSync(current, staged, { recursive: true, errorOnExist: true, force: false }));
   try {
     atomicWriteJson(path.join(staged, SITE_DATA_FILE), siteData);
     atomicWriteJson(path.join(staged, FRONTEND_HANDOFF_FILE), handoff);
+    let nextExperience = null;
+    if (beforeExperience) {
+      const beforeSkillNames = beforeExperience.structure.nodes.map((node) => node.skillName).sort((left, right) => left.localeCompare(right, "en"));
+      const nextSkillNames = publicSkillModel(siteData).map((skill) => skill.name);
+      nextExperience = JSON.stringify(beforeSkillNames) === JSON.stringify(nextSkillNames)
+        ? validateCustomizationExperienceV3(structuredClone(beforeExperience))
+        : createCustomizationExperienceV3({
+          siteData,
+          profile,
+          roundId: selectedRound.id,
+          direction: selectedDirection,
+          inheritedFeedback: selectedRound.inheritedFeedback,
+          structuralGeneration: state.rounds.findIndex((candidate) => candidate.id === selectedRound.id) + 1,
+        });
+      atomicWriteJson(path.join(staged, EXPERIENCE_FILE), nextExperience);
+    }
     const nextManifest = validateCustomFrontendManifestV2({
       ...manifest,
       librarySnapshotId: handoff.binding.librarySnapshotId,
@@ -1149,6 +1609,9 @@ export function refreshSkillCosmosCustomizationV2({ projectDirectory = ".", gene
       afterSnapshot: handoff.binding.librarySnapshotId,
       styleDigest: afterStyle,
       stylePreserved: true,
+      structureBefore: beforeExperience?.structureDigest ?? null,
+      structureAfter: nextExperience?.structureDigest ?? null,
+      structureRefreshed: Boolean(beforeExperience && nextExperience && beforeExperience.structureDigest !== nextExperience.structureDigest),
       receipt,
     };
   } finally {
@@ -1252,4 +1715,5 @@ export const skillCosmosCustomizationFiles = Object.freeze({
   rounds: ROUNDS_ROOT,
   current: CURRENT_ROOT,
   manifest: MANIFEST_FILE,
+  experience: EXPERIENCE_FILE,
 });

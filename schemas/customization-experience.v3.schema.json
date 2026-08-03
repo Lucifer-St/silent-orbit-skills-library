@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.dev/schemas/customization-experience.v3.schema.json",
+  "title": "CustomizationExperienceV3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "profileRef",
+    "roundId",
+    "directionId",
+    "preferredView",
+    "runtimeViewPolicy",
+    "refreshPolicy",
+    "feedbackSignals",
+    "structure",
+    "structureDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 3 },
+    "kind": { "const": "CustomizationExperienceV3" },
+    "profileRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "revision"],
+      "properties": {
+        "profileId": { "$ref": "#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "roundId": { "$ref": "#/$defs/id" },
+    "directionId": { "$ref": "#/$defs/id" },
+    "preferredView": { "enum": ["map", "library"] },
+    "runtimeViewPolicy": { "const": "explicit-url-over-preference" },
+    "refreshPolicy": { "const": "rederive-from-public-site-data" },
+    "feedbackSignals": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 240 }
+    },
+    "structure": { "$ref": "#/$defs/structure" },
+    "structureDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+    "structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "groupingStrategy", "layoutStrategy", "layoutPhase", "edgePolicy", "world", "groups", "nodes", "edges"],
+      "properties": {
+        "source": { "const": "public-site-data" },
+        "groupingStrategy": { "enum": ["category-chapters", "source-clusters"] },
+        "layoutStrategy": { "enum": ["reading-lanes", "chapter-orbit", "source-grid", "source-constellation"] },
+        "layoutPhase": { "type": "number", "minimum": 0, "maximum": 1 },
+        "edgePolicy": { "const": "public-membership-only" },
+        "world": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "number", "exclusiveMinimum": 0 },
+            "height": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
+        "groups": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "label", "kind", "skillNames", "x", "y", "width", "height"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "label": { "type": "string", "minLength": 1, "maxLength": 240 },
+              "kind": { "enum": ["category", "source"] },
+              "skillNames": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 240 } },
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "width": { "type": "number", "exclusiveMinimum": 0 },
+              "height": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "skillName", "groupId", "x", "y"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "skillName": { "type": "string", "minLength": 1, "maxLength": 240 },
+              "groupId": { "$ref": "#/$defs/id" },
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "source", "target", "kind"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "source": { "$ref": "#/$defs/id" },
+              "target": { "$ref": "#/$defs/id" },
+              "kind": { "const": "public-membership" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

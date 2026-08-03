@@ -1,10 +1,10 @@
 # Public Release candidate receipt
 
-- Input commit: `372b05fb18efae8ebf70cb9d066da8703b186b11`
-- Input commit timestamp: `2026-07-31T16:19:36-04:00`
-- Canonical release digest: `b495d0e7bb52f2aa73141ff8910bb1d8469e3c52f22b161cd70de79ad568c912`
-- JSON manifest SHA-256: `970466c9e171f582e3e1aab03aa20dfb6080c49e9237ab30343961a68a685a83`
-- Markdown manifest SHA-256: `d1eea98dcde27a620ecbedadb358a850e98d43d8d852ab264c43fc2c5b39daa1`
+- Input commit: `dfc0580e62f252681765b7f703fa24307c33ab46`
+- Input commit timestamp: `2026-08-03T09:27:50-04:00`
+- Canonical release digest: `06901fe0d94e0115c23aec0eed3872f5313c6fb240d2f49de0035d0b832ab8f4`
+- JSON manifest SHA-256: `d8779d1b393a9e020faeef0173f0c93e5e69b81522b1f42f474a5c57858ce04d`
+- Markdown manifest SHA-256: `024c0fe4bc4a7d09ccb9a93fbcd00d76a16104d377a050a1872cc09a0a400d23`
 - Export boundary: allowlisted current snapshot only; no Private Git history
 - Repository visibility action: none
 - Pull request or merge action: none

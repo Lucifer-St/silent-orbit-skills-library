@@ -16,8 +16,8 @@ The public catalog currently contains **153 Skills across 9 systems and 28 libra
 ## Start independent acceptance here
 
 Send the tester only the
-[`v0.12.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1).
-They download `V1_RC_ONE_FILE_HANDOFF.zh-CN.md` from Assets, upload it to a
+[`v0.13.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1).
+They download `SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md` from Assets, upload it to a
 local Agent, and say `开始验收`. They do not fill templates, type the workflow
 commands, or receive author-local files.
 

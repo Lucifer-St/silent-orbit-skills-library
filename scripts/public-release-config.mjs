@@ -1,6 +1,6 @@
 export const visualAssetPolicy = "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.";
 
-export const publicReleaseVersion = "0.12.0-beta.1";
+export const publicReleaseVersion = "0.13.0-beta.1";
 export const publicReleaseTag = `v${publicReleaseVersion}`;
 
 export const publicCodeownersText = [
@@ -23,6 +23,8 @@ export const publicCodeownersText = [
 export const publicPackageFiles = Object.freeze([
   "scripts/silent-orbit.mjs",
   "scripts/create-v1-acceptance-summary.mjs",
+  "scripts/customization-browser-smoke.mjs",
+  "scripts/validate-novice-human-report.mjs",
   "scripts/lib/generator-contracts.mjs",
   "scripts/lib/source-adapters.mjs",
   "scripts/lib/skill-health.mjs",
@@ -32,6 +34,7 @@ export const publicPackageFiles = Object.freeze([
   "scripts/lib/library-analyzer.mjs",
   "scripts/lib/silent-orbit-project.mjs",
   "scripts/lib/skill-cosmos-customization.mjs",
+  "scripts/lib/customization-onboarding.mjs",
   "schemas",
   "templates/reference-index-v1",
   "docs/README.md",
@@ -105,6 +108,8 @@ export const publicSourceFiles = Object.freeze([
 
 export const publicScriptFiles = Object.freeze([
   "capture-visual-qa.mjs",
+  "customization-browser-smoke.mjs",
+  "validate-novice-human-report.mjs",
   "create-v1-acceptance-summary.mjs",
   "project-layout.mjs",
   "public-data.mjs",
@@ -120,6 +125,7 @@ export const publicScriptFiles = Object.freeze([
   "validate-public-release.mjs",
   "validate-readme.mjs",
   "tests/font-assets.test.mjs",
+  "tests/novice-human-test-pack.test.mjs",
   "tests/generator-core.test.mjs",
   "tests/source-of-truth-boundary.test.mjs",
   "tests/source-adapters.test.mjs",
@@ -135,6 +141,8 @@ export const publicScriptFiles = Object.freeze([
   "tests/build-skill-cosmos.test.mjs",
   "tests/audit-skill-cosmos.test.mjs",
   "tests/frontend-handoff-v2.test.mjs",
+  "tests/customization-v3-contracts.test.mjs",
+  "tests/customization-onboarding.test.mjs",
   "tests/skill-cosmos-customization.test.mjs",
   "tests/customize-skill-cosmos.test.mjs",
   "tests/phase1e-alpha.test.mjs",
@@ -156,6 +164,7 @@ export const publicScriptFiles = Object.freeze([
   "lib/markdown-links.mjs",
   "lib/silent-orbit-project.mjs",
   "lib/skill-cosmos-customization.mjs",
+  "lib/customization-onboarding.mjs",
   "lib/phase1e-alpha.mjs",
   "build-alpha-preview.mjs",
   "silent-orbit.mjs",

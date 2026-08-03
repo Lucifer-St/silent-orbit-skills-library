@@ -53,7 +53,7 @@ function prepareSingleSkillProject(parent, label) {
   return root;
 }
 
-test("CLI entry point exposes the expected v0.5 commands and customization capability", () => {
+test("CLI 0.6 preserves frozen capabilities v2 and exposes novice customization through additive v3", () => {
   const help = silentOrbitHelpText();
   for (const command of [
     "init",
@@ -65,8 +65,12 @@ test("CLI entry point exposes the expected v0.5 commands and customization capab
     "doctor",
     "audit",
     "capabilities",
+    "customize preflight",
+    "customize setup",
+    "customize interview",
     "customize status",
     "customize prepare",
+    "customize respond",
     "customize decide",
     "customize refresh",
     "customize doctor",
@@ -74,11 +78,26 @@ test("CLI entry point exposes the expected v0.5 commands and customization capab
     "manage apply",
     "manage check-and-update",
   ]) assert.match(help, new RegExp(`silent-orbit ${command}`));
-  assert.equal(silentOrbitVersion, "0.5.0");
-  const capabilities = runSilentOrbitCli(["capabilities", "--json"]);
+  assert.equal(silentOrbitVersion, "0.6.0");
+  const frozen = runSilentOrbitCli(["capabilities", "--json"]);
+  assert.equal(frozen.exitCode, 0);
+  assert.deepEqual(frozen.result, {
+    schemaVersion: 2,
+    kind: "SilentOrbitCapabilitiesV2",
+    cliInterfaceVersion: "0.6.0",
+    compatibilityFamily: "v1+customization-v2",
+    capabilities: {
+      generator: { state: "supported", contractFamily: "v1", commands: ["init", "import", "scan", "analyze", "diff", "generate", "doctor", "audit"] },
+      customization: { state: "supported", contractFamily: "v2-sidecar", commands: ["status", "prepare", "decide", "refresh", "doctor"], directionCount: 2, decisions: ["keep", "adjust", "reject", "redo"], refreshSafe: true },
+      management: { state: "host-dependent", contractFamily: "v1" },
+    },
+  });
+  const capabilities = runSilentOrbitCli(["capabilities", "--contract", "v3", "--json"]);
   assert.equal(capabilities.exitCode, 0);
-  assert.equal(capabilities.result.capabilities.customization.contractFamily, "v2-sidecar");
+  assert.equal(capabilities.result.kind, "SilentOrbitCapabilitiesV3");
+  assert.equal(capabilities.result.capabilities.customization.contractFamily, "v2-sidecar+experience-v3");
   assert.equal(capabilities.result.capabilities.customization.directionCount, 2);
+  assert.deepEqual(capabilities.result.capabilities.customization.changeKinds, ["restyle", "adjust", "redesign"]);
 });
 
 test("CLI entrypoint resolves an npm-style symlink before comparing module identity", (t) => {
