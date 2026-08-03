@@ -1,7 +1,7 @@
 # Silent Orbit v1 RC 中文傻瓜验收（15–25 分钟）
 
 > **只认这一个入口：**
-> [`v0.12.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1)
+> [`v0.13.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1)
 >
 > 不要接收作者发来的本地路径、未发布压缩包或单独打包的 PowerShell 文件。
 > 下载后只要校验值不一致，立刻停止，不要继续安装。
@@ -23,7 +23,7 @@
 请协助我完成 Silent Orbit v1 RC 的独立真人验收。
 
 唯一可信来源是这个 GitHub Release：
-https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1
+https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1
 
 规则：
 1. 在一个新的空目录工作，只从这个 Release 下载所需附件，禁止改用 npm registry、
@@ -64,7 +64,7 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-b
 
 遇到下面任意情况，先停下：
 
-- Release 链接或版本不是 `v0.12.0-beta.1`；
+- Release 链接或版本不是 `v0.13.0-beta.1`；
 - SHA256 不一致；
 - Node 不是 24；
 - 命令崩溃、输出空白或出现作者电脑的私有路径；
@@ -77,7 +77,7 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-b
 
 从 Release 的 **Assets** 下载：
 
-- `silent-orbit-skills-library-0.12.0-beta.1.tgz`
+- `silent-orbit-skills-library-0.13.0-beta.1.tgz`
 - `SHA256SUMS.txt`
 - `silent-orbit-v1-starter.source-import.json`
 - 如果要测 Docker，再下载 `v1-docker-smoke.sh` 和 `codex-global.config.json`
@@ -85,8 +85,8 @@ https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-b
 Windows PowerShell：
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.12.0-beta.1.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.12\.0-beta\.1\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.13.0-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "必须且只能找到一条 $tarball 校验记录。" }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -97,7 +97,7 @@ if ($actual -ne $expected) { throw "校验失败：请停止，不要安装" }
 Linux：
 
 ```sh
-tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -107,7 +107,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS：
 
 ```sh
-tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -127,12 +127,12 @@ printf '校验通过：%s\n' "$actual"
 
 ```sh
 npm init -y
-npm install ./silent-orbit-skills-library-0.12.0-beta.1.tgz
+npm install ./silent-orbit-skills-library-0.13.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
-预期 CLI 版本为 `0.5.0`。Release 包版本和 CLI 接口版本是两套版本号，
-所以这里不是 `0.12.0-beta.1` 属于正常情况。这个包没有发布到 npm registry。
+预期 CLI 版本为 `0.6.0`。Release 包版本和 CLI 接口版本是两套版本号，
+所以这里不是 `0.13.0-beta.1` 属于正常情况。这个包没有发布到 npm registry。
 
 ### 3. 先做一次空库体检（约 1 分钟）
 

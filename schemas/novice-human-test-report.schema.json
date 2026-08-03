@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://silent-orbit.example/schemas/novice-human-test-report.v1.schema.json",
+  "title": "Silent Orbit Novice Human Test Report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "packVersion", "release", "releaseAsset", "releaseAssetSha256", "testedAt", "testerId", "independent", "environment", "tasks", "issues", "humanSummary", "verdict", "contactAllowed", "evidence"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "SilentOrbitNoviceHumanTestReport" },
+    "packVersion": { "const": "1.0.0" },
+    "release": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+-beta\\.[0-9]+$" },
+    "releaseAsset": { "type": "string", "pattern": "^silent-orbit-skills-library-[0-9]+\\.[0-9]+\\.[0-9]+-beta\\.[0-9]+\\.tgz$" },
+    "releaseAssetSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "testedAt": { "type": "string", "format": "date-time" },
+    "testerId": { "type": "string", "pattern": "^tester-[a-z0-9-]{6,40}$" },
+    "independent": { "type": "boolean" },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "arch", "cpu", "shell", "node", "npm", "git", "browser", "network", "disk", "targetPermission", "agentTerminal", "agentFiles", "agentNetwork", "desktop", "mobile390"],
+      "properties": {
+        "os": { "enum": ["Windows", "macOS", "Linux"] },
+        "arch": { "enum": ["x64", "arm64", "other"] },
+        "cpu": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "shell": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "node": { "type": "string", "pattern": "^(?:v24\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?|NOT_AVAILABLE)$" },
+        "npm": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "git": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "browser": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "network": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "disk": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "targetPermission": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "agentTerminal": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "agentFiles": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "agentNetwork": { "enum": ["PASS", "BLOCKED", "NOT_TESTED"] },
+        "desktop": { "enum": ["PASS", "FAIL", "NOT_TESTED"] },
+        "mobile390": { "enum": ["PASS", "FAIL", "NOT_TESTED"] }
+      }
+    },
+    "tasks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preflight", "consentGate", "install", "sourceSelection", "init", "importOrConfigure", "scan", "analyze", "diff", "generate", "doctor", "interview", "interviewBackEdit", "compareTwoDirections", "preferredView", "runtimeSwitch", "adjustOrReject", "keep", "refreshRecovery", "failureRecovery", "redoTopology", "readability", "keyboard", "bilingual", "privacyBoundary"],
+      "properties": {
+        "preflight": { "$ref": "#/$defs/result" }, "consentGate": { "$ref": "#/$defs/result" }, "install": { "$ref": "#/$defs/result" }, "sourceSelection": { "$ref": "#/$defs/result" }, "init": { "$ref": "#/$defs/result" }, "importOrConfigure": { "$ref": "#/$defs/result" }, "scan": { "$ref": "#/$defs/result" }, "analyze": { "$ref": "#/$defs/result" }, "diff": { "$ref": "#/$defs/result" }, "generate": { "$ref": "#/$defs/result" }, "doctor": { "$ref": "#/$defs/result" }, "interview": { "$ref": "#/$defs/result" }, "interviewBackEdit": { "$ref": "#/$defs/result" }, "compareTwoDirections": { "$ref": "#/$defs/result" }, "preferredView": { "$ref": "#/$defs/result" }, "runtimeSwitch": { "$ref": "#/$defs/result" }, "adjustOrReject": { "$ref": "#/$defs/result" }, "keep": { "$ref": "#/$defs/result" }, "refreshRecovery": { "$ref": "#/$defs/result" }, "failureRecovery": { "$ref": "#/$defs/result" }, "redoTopology": { "$ref": "#/$defs/result" }, "readability": { "$ref": "#/$defs/result" }, "keyboard": { "$ref": "#/$defs/result" }, "bilingual": { "$ref": "#/$defs/result" }, "privacyBoundary": { "$ref": "#/$defs/result" }
+      }
+    },
+    "issues": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["category", "severity", "summary"], "properties": { "category": { "enum": ["productIssue", "executorIssue", "environmentBlocked"] }, "severity": { "enum": ["P0", "P1", "P2"] }, "summary": { "type": "string", "minLength": 1, "maxLength": 400 } } } },
+    "humanSummary": { "type": "string", "minLength": 1, "maxLength": 1200 },
+    "verdict": { "enum": ["PASS", "FAIL", "INCOMPLETE"] },
+    "contactAllowed": { "type": "boolean" },
+    "evidence": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["name", "sha256"], "properties": { "name": { "type": "string", "pattern": "^[A-Za-z0-9._-]{1,100}$" }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } } }
+  },
+  "$defs": { "result": { "type": "object", "additionalProperties": false, "required": ["status", "minutes", "note"], "properties": { "status": { "enum": ["PASS", "FAIL", "NOT_TESTED", "BLOCKED"] }, "minutes": { "type": "integer", "minimum": 0, "maximum": 600 }, "note": { "type": "string", "maxLength": 400 } } } }
+}

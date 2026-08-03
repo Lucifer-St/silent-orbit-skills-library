@@ -69,6 +69,7 @@ const requiredFiles = [
   "docs/releases/v0.11.0-beta.8.md",
   "docs/releases/v0.11.0-beta.9.md",
   "docs/releases/v0.12.0-beta.1.md",
+  "docs/releases/v0.13.0-beta.1.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "docs/policies/versioning-and-migrations.md",
@@ -76,6 +77,7 @@ const requiredFiles = [
   "docs/testing/v1-rc-acceptance.md",
   "docs/testing/v1-rc-acceptance.zh-CN.md",
   "docs/testing/customization-rc-acceptance.zh-CN.md",
+  "docs/testing/silent-orbit-novice-human-test-pack.zh-CN.template.md",
   "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
   "docs/README.md",
   "index.html",
@@ -84,6 +86,8 @@ const requiredFiles = [
   "package.json",
   "schemas/schema-lock.v1.json",
   "schemas/schema-lock.v2.json",
+  "schemas/schema-lock.v3.json",
+  "schemas/novice-human-test-report.schema.json",
   "scripts/prepare-v1-release-assets.mjs",
   "tsconfig.json",
   "vite.config.ts",
@@ -353,10 +357,8 @@ function assertHandoffContract(rootDir) {
   for (const expected of [
     `v${publicReleaseVersion}`,
     `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v${publicReleaseVersion}`,
-    `silent-orbit-skills-library-${publicReleaseVersion}.tgz`,
-    "V1_RC_ONE_FILE_HANDOFF.zh-CN.md",
-    "开始验收",
-    "SILENT_ORBIT_RETURN_REPORT_V1",
+    "旧版 v1 RC 单文件交接说明",
+    "SILENT_ORBIT_NOVICE_REPORT_JSON",
   ]) {
     if (!content.includes(expected)) throw new Error(`Public one-file handoff is missing ${expected}.`);
   }
@@ -364,6 +366,23 @@ function assertHandoffContract(rootDir) {
     throw new Error("Public one-file handoff contains an unresolved template token.");
   }
   if (content.includes("\r")) throw new Error("Public one-file handoff must use LF line endings.");
+}
+
+export function assertNovicePackTemplate(rootDir) {
+  const content = fs.readFileSync(path.join(rootDir, "docs", "testing", "silent-orbit-novice-human-test-pack.zh-CN.template.md"), "utf8");
+  for (const expected of ["一次只问一个", "portable/project-local Node 24", "不得默认全局安装", "Customization Issue Form 等价回执", "SILENT_ORBIT_NOVICE_REPORT_JSON"]) {
+    if (!content.includes(expected)) throw new Error(`Novice human test pack template is missing ${expected}.`);
+  }
+  for (const token of ["{{PUBLIC_TARBALL_SHA256}}", "{{PUBLIC_TARBALL_URL}}"] ) {
+    if (!content.includes(token)) throw new Error(`Novice human test pack template is missing build token ${token}.`);
+  }
+  for (const expected of [`v${publicReleaseVersion}`, `silent-orbit-skills-library-${publicReleaseVersion}.tgz`, `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v${publicReleaseVersion}`]) {
+    if (!content.includes(expected)) throw new Error(`Novice human test pack template is missing release binding ${expected}.`);
+  }
+  const unresolved = content.match(/{{[^{}\r\n]+}}/g) ?? [];
+  if (JSON.stringify([...new Set(unresolved)].sort()) !== JSON.stringify(["{{PUBLIC_TARBALL_SHA256}}", "{{PUBLIC_TARBALL_URL}}"].sort())) {
+    throw new Error("Novice human test pack template contains an unexpected build token.");
+  }
 }
 
 export function assertLocalMarkdownLinks(rootDir) {
@@ -477,6 +496,7 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   assertDataBoundary(resolvedRoot);
   assertPackageContract(resolvedRoot);
   assertHandoffContract(resolvedRoot);
+  assertNovicePackTemplate(resolvedRoot);
   assertLocalMarkdownLinks(resolvedRoot);
   assertGitAttributesContract(resolvedRoot);
   assertCodeownersContract(resolvedRoot);

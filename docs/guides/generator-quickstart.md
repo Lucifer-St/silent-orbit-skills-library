@@ -1,6 +1,8 @@
 # Silent Orbit Public Generator Quickstart
 
-This guide installs the `v0.12.0-beta.1` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+This guide installs the `v0.13.0-beta.1` GitHub Pre-release artifact and creates a minimal reviewed Skill library. The package is not published to the npm registry.
+
+For independent novice testing, send only `SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md` from that Release to the tester. The Agent-hosted pack performs preflight, consent-gated project setup, the one-question interview, two-direction comparison, preferred-view persistence, topology-changing redo, and a privacy-safe equivalent receipt.
 
 ## 1. Download and verify the artifact
 
@@ -16,9 +18,9 @@ interpreted as proof that the host has zero Skills.
 The hosted Silent Orbit site is browse-only. It cannot inspect or change a
 visitor's local Skill environment.
 
-Download these two assets from the [`v0.12.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.12.0-beta.1):
+Download these two assets from the [`v0.13.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1):
 
-- `silent-orbit-skills-library-0.12.0-beta.1.tgz`
+- `silent-orbit-skills-library-0.13.0-beta.1.tgz`
 - `SHA256SUMS.txt`
 
 Keep both files in the same directory. Verify only the exact beta.1 tarball
@@ -27,8 +29,8 @@ entry, and require that entry to occur exactly once.
 Windows PowerShell:
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.12.0-beta.1.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.12\.0-beta\.1\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.13.0-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "Expected exactly one checksum entry for $tarball." }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -38,7 +40,7 @@ if ($actual -ne $expected) { throw 'Silent Orbit tarball checksum mismatch.' }
 Linux:
 
 ```sh
-tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -48,7 +50,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS:
 
 ```sh
-tarball='silent-orbit-skills-library-0.12.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -63,18 +65,18 @@ printf 'Checksum passed: %s\n' "$actual"
 Project-local installation is the safer default:
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.12.0-beta.1.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.13.0-beta.1.tgz
 npx silent-orbit --version
 ```
 
 Use a global installation only when you want `silent-orbit` on your user PATH:
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.12.0-beta.1.tgz
+npm install --global .\silent-orbit-skills-library-0.13.0-beta.1.tgz
 silent-orbit --version
 ```
 
-The package/repository release version is `0.12.0-beta.1`; this source reports the independent CLI interface version `0.5.0` (the `0.5.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
+The package/repository release version is `0.13.0-beta.1`; this source reports the independent CLI interface version `0.6.0` (the `0.6.x` compatibility family). A package patch does not automatically change the CLI interface. Change the CLI version only when commands, arguments, or JSON contracts change.
 
 ## 3. Optional Agent Skills
 
@@ -156,29 +158,49 @@ Require `doctor.status` to be `ok`. The generated reference site, `frontend-hand
 
 ## 5. Optional personal aesthetic customization
 
-Customization requires the valid generated v2 handoff above. It presents
-exactly two structurally different functional directions, records explicit
-`keep`, `adjust`, `reject`, or `redo` decisions, and keeps its summarized
-profile and receipts private. Selected output is written to
-`customization/current/`; it never overwrites `dist/`.
+> `v0.13.0-beta.1` publishes the additive newcomer sequence on CLI `0.6.x`.
+> It does not rewrite the historical beta.1 tag/assets, and internal rehearsal
+> is not independent-human acceptance.
+
+Customization requires the valid v2 handoff above. Run the read-only preflight
+before an interview. It explains what is ready, what is missing, why it is
+needed, the one project file setup would write, and the global/system areas it
+will not touch. A project setup requires the exact confirmation token.
 
 ```powershell
-npx silent-orbit capabilities --json
-npx silent-orbit customize status --project .\my-skill-cosmos --json
+npx silent-orbit capabilities --contract v3 --json
+npx silent-orbit customize preflight --project .\my-skill-cosmos --json
+# Only after the user understands and explicitly consents:
+npx silent-orbit customize setup --project .\my-skill-cosmos --confirm '<exact preflight token>' --json
+npx silent-orbit customize interview start --project .\my-skill-cosmos --json
 ```
 
-Use the reviewed `customize-skill-cosmos` Skill to conduct the short interview
-and create request files. After keeping a direction, a later data regeneration
-can be synchronized with:
+The zero-to-review entry is: “Use `$customize-skill-cosmos`; start with the
+read-only preflight, ask one everyday question at a time, let me skip or go
+back, show what you understood, then give me exactly two functional options.”
+The Skill uses `interview answer/back/review/confirm`; it never asks a newcomer
+to choose professional fields. After confirmation:
+
+```powershell
+npx silent-orbit customize prepare --project .\my-skill-cosmos --from-interview --json
+```
+
+The preferred navigation controls first open, refresh, mobile, and kept output
+without overriding an intentional runtime switch. Restyle, bounded adjustment,
+and structural redesign are distinct. Redesign must change nodes, groups,
+edges, or layout strategy; a CSS-only difference fails. After keeping a
+direction, synchronize a later data regeneration with:
 
 ```powershell
 npx silent-orbit customize refresh --project .\my-skill-cosmos --json
 npx silent-orbit customize doctor --project .\my-skill-cosmos --json
 ```
 
-Refresh is accepted only when it changes `site-data.json` and
-`frontend-handoff.v2.json` while preserving the selected style digest. This
-workflow does not install, update, or remove Skills and does not publish or
+Refresh is accepted only when the frozen-v2 data allowlist is updated, the v3
+public-safe structure is rederived, preferred view is preserved, and the style
+digest stays unchanged. Commands, JSON, schemas, and digests are advanced
+diagnostics, not the default newcomer experience. This workflow does not
+install, update, or remove Skills and does not publish or
 deploy.
 
 `doctor` checks project integrity. `audit` checks only read-only Skill library health and does not write inventory or receipts. Missing version or freshness evidence stays `unknown`; add `--stale-after-days <days>` only when you intentionally supply that explicit Snapshot-age policy.

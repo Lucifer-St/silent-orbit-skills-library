@@ -19,6 +19,7 @@ const publicDocumentPaths = Object.freeze({
   "GENERATOR_QUICKSTART.zh-CN.md": "docs/guides/generator-quickstart.zh-CN.md",
   "RELEASE_NOTES_v0.11.0-beta.9.md": "docs/releases/v0.11.0-beta.9.md",
   "RELEASE_NOTES_v0.12.0-beta.1.md": "docs/releases/v0.12.0-beta.1.md",
+  "RELEASE_NOTES_v0.13.0-beta.1.md": "docs/releases/v0.13.0-beta.1.md",
   "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
   "V1_RC_ACCEPTANCE.zh-CN.md": "docs/testing/v1-rc-acceptance.zh-CN.md",
   "V1_RC_ONE_FILE_HANDOFF.zh-CN.md": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
@@ -222,11 +223,13 @@ test("tracked Netlify configuration defines one safe and consistent build", () =
 test("required public gates execute Agent Skill, release-asset, and native checksum contracts", () => {
   const workflow = read(publicWorkflow("public-release-gate.yml"));
   const preflight = read("scripts/run-v1-preflight.mjs");
+  const packageScripts = JSON.parse(read("package.json")).scripts;
 
   assert.match(workflow, /npm run preflight:v1 -- --mode public-core/);
   assert.match(workflow, /matrix:[\s\S]*windows-latest[\s\S]*ubuntu-latest[\s\S]*macos-latest/);
   assert.match(workflow, /npm run preflight:v1 -- --mode package-smoke/);
   assert.match(preflight, /\["public-mvp", \["run", "test:mvp"\]\]/);
+  assert.match(packageScripts["test:mvp"], /npm run smoke:customization-browser/u);
   assert.match(preflight, /\["agent-skill-contract", \["run", "test:agent-skill"\]\]/);
   assert.match(preflight, /if \(publicRepository\) runReleaseAssetsContract\(\)/);
   assert.match(preflight, /checksumRows\.some\(\(row\) => row === null\)/);
@@ -291,22 +294,9 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.doesNotMatch(v1AcceptanceZh, /短报告原样发回/);
 
   const oneFileHandoffZh = read(publicDocument("V1_RC_ONE_FILE_HANDOFF.zh-CN.md"));
-  assert.match(oneFileHandoffZh, /单文件真人验收交接包/);
-  assert.match(oneFileHandoffZh, /你不需要输入命令/);
-  assert.match(oneFileHandoffZh, /开始验收/);
-  assert.match(oneFileHandoffZh, /V1_RC_ONE_FILE_HANDOFF\.zh-CN\.md/);
-  assert.match(oneFileHandoffZh, /UTF-8/);
-  assert.match(oneFileHandoffZh, /我同意执行这一批可信来源维护/);
-  assert.match(oneFileHandoffZh, /SILENT_ORBIT_RETURN_REPORT_V1/);
-  assert.match(oneFileHandoffZh, /handoffContract: \[PASS\/FAIL\/NOT_RUN\]/);
-  assert.match(oneFileHandoffZh, /不得附加原始日志/);
-  assert.match(
-    oneFileHandoffZh,
-    /Windows PowerShell 单行：[\s\S]*create-v1-acceptance-summary\.mjs --project \.\\my-skill-cosmos[\s\S]*--out \.\\silent-orbit-v1-acceptance-receipt\.json/,
-  );
-  assert.match(oneFileHandoffZh, /私下回传[\s\S]*只用于 privacy triage[\s\S]*不构成 Phase 6B 验收证据/);
-  assert.match(oneFileHandoffZh, /独立用户本人提交 GitHub Issue Form/);
-
+  assert.match(oneFileHandoffZh, /旧版 v1 RC 单文件交接说明/);
+  assert.match(oneFileHandoffZh, /SILENT_ORBIT_NOVICE_REPORT_JSON/);
+  assert.match(oneFileHandoffZh, /SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK\.zh-CN\.md/);
   const beta9ReleaseNotes = read(publicDocument("RELEASE_NOTES_v0.11.0-beta.9.md"));
   assert.match(beta9ReleaseNotes, /releases\/download\/(?:\{\{PUBLIC_RELEASE_TAG\}\}|v0\.11\.0-beta\.9)\/V1_RC_ONE_FILE_HANDOFF\.zh-CN\.md/);
   assert.match(beta9ReleaseNotes, /docs\/testing\/v1-rc-acceptance\.zh-CN\.md/);
@@ -319,17 +309,24 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(customizationReleaseNotes, /keep`, `adjust`, `reject`, and `redo`/);
   assert.match(customizationReleaseNotes, /Independent-user acceptance has not started/i);
 
+  const noviceReleaseNotes = read(publicDocument("RELEASE_NOTES_v0.13.0-beta.1.md"));
+  assert.match(noviceReleaseNotes, /`v0\.13\.0-beta\.1`/);
+  assert.match(noviceReleaseNotes, /releases\/download\/v0\.13\.0-beta\.1\/SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK\.zh-CN\.md/);
+  assert.match(noviceReleaseNotes, /releases\/download\/v0\.13\.0-beta\.1\/silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz/);
+
   const customizationAcceptance = read(publicDocument("CUSTOMIZATION_RC_ACCEPTANCE.zh-CN.md"));
-  assert.match(customizationAcceptance, /当前未启动/);
+  assert.match(customizationAcceptance, /v0\.13\.0-beta\.1/);
+  assert.match(customizationAcceptance, /只读预检[\s\S]*preflight/);
+  assert.match(customizationAcceptance, /精确确认 token[\s\S]*拒绝时没有写入[\s\S]*没有全局安装、系统配置或扫描无关目录/u);
+  assert.match(customizationAcceptance, /一次只看到一个生活化问题/);
   assert.match(customizationAcceptance, /恰好两套/);
-  assert.match(customizationAcceptance, /调整 \/ adjust/);
-  assert.match(customizationAcceptance, /stylePreserved: true/);
-  assert.match(customizationAcceptance, /独立用户本人/);
-});
+  assert.match(customizationAcceptance, /节点位置、分组、边集合或布局策略/);
+  assert.match(customizationAcceptance, /只改 CSS 记为失败[\s\S]*layoutPhase[\s\S]*也记为失败/u);
+  assert.match(customizationAcceptance, /Issue Form 等价回执/);});
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.12.0-beta.1");
+  assert.equal(packageJson.version, "0.13.0-beta.1");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);

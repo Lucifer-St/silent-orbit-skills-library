@@ -92,6 +92,7 @@ if (packageJson.name !== "silent-orbit-skills-library" || packageJson.version !=
 requireFile(rootDir, "PUBLIC_RELEASE_MANIFEST.json");
 
 const handoffSource = requireFile(rootDir, "docs/testing/v1-rc-one-file-handoff.zh-CN.md");
+const novicePackTemplateSource = requireFile(rootDir, "docs/testing/silent-orbit-novice-human-test-pack.zh-CN.template.md");
 const handoffBytes = fs.readFileSync(handoffSource);
 if (handoffBytes.subarray(0, 3).toString("hex") !== "efbbbf") {
   throw new Error("Public handoff must be UTF-8 with BOM.");
@@ -128,9 +129,52 @@ if (packRecord?.filename !== expectedTarball) {
   throw new Error(`npm pack produced ${packRecord?.filename ?? "<unknown>"}; expected ${expectedTarball}.`);
 }
 
+const tarballSha256 = sha256(path.join(outputDir, expectedTarball));
+const releaseTag = `v${publicReleaseVersion}`;
+const releaseUrl = `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/${releaseTag}`;
+const novicePackName = "SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md";
+const novicePackTemplate = fs.readFileSync(novicePackTemplateSource, "utf8");
+const fixedNovicePackBindings = [
+  {
+    token: "{{PUBLIC_RELEASE_TAG}}",
+    lines: [`- Release：\`${releaseTag}\``, `  "release": "${releaseTag}",`],
+  },
+  {
+    token: "{{PUBLIC_RELEASE_URL}}",
+    lines: [`- Release 页面：${releaseUrl}`],
+  },
+  {
+    token: "{{PUBLIC_TARBALL_FILE}}",
+    lines: [`- 安装资产：\`${expectedTarball}\``, `  "releaseAsset": "${expectedTarball}",`],
+  },
+];
+const novicePackTemplateLines = novicePackTemplate.split(/\r?\n/u);
+for (const binding of fixedNovicePackBindings) {
+  if (novicePackTemplate.includes(binding.token)) {
+    throw new Error(`Novice human test pack template still contains fixed token ${binding.token}.`);
+  }
+  for (const expectedLine of binding.lines) {
+    const occurrences = novicePackTemplateLines.filter((line) => line === expectedLine).length;
+    if (occurrences !== 1) {
+      throw new Error(`Novice human test pack template must contain exactly one fixed binding line: ${expectedLine}`);
+    }
+  }
+}
+const novicePackBindings = new Map([
+  ["{{PUBLIC_TARBALL_URL}}", `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/download/${releaseTag}/${expectedTarball}`],
+  ["{{PUBLIC_TARBALL_SHA256}}", tarballSha256],
+]);
+for (const token of novicePackBindings.keys()) {
+  if (!novicePackTemplate.includes(token)) throw new Error(`Novice human test pack template is missing required token ${token}.`);
+}
+const novicePack = [...novicePackBindings].reduce((content, [token, value]) => content.replaceAll(token, value), novicePackTemplate);
+if (novicePack.includes("{{")) throw new Error("Novice human test pack contains an unresolved template token.");
+fs.writeFileSync(path.join(outputDir, novicePackName), novicePack, "utf8");
+
 const assetNames = [
   ...copyInputs.map(([, target]) => target),
   expectedTarball,
+  novicePackName,
 ].sort((left, right) => left.localeCompare(right, "en"));
 for (const name of assetNames) requireFile(outputDir, name);
 const hashes = Object.fromEntries(assetNames.map((name) => [name, sha256(path.join(outputDir, name))]));
@@ -150,4 +194,6 @@ process.stdout.write(`${JSON.stringify({
   sha256: hashes,
   handoffContract: "pass",
   handoffUtf8Bom: "pass",
+  novicePack: novicePackName,
+  novicePackReleaseBinding: "pass",
 }, null, 2)}\n`);

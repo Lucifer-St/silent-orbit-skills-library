@@ -1,7 +1,7 @@
 # Privacy audit
 
-- Input commit: `372b05fb18efae8ebf70cb9d066da8703b186b11`
-- Stable input time: `2026-07-31T16:19:36-04:00`
+- Input commit: `96a6976986350e8dd96a8ca02c4e332cb645fc69`
+- Stable input time: `2026-08-03T09:13:13-04:00`
 - Published Skills: 153
 - Allowed visibility classes: `public`, `creator-showcase`
 - Local-only records: 0

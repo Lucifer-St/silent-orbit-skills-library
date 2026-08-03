@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 3,
+  "releaseStatus": "prerelease",
+  "releaseVersion": "0.13.0-beta.1",
+  "basedOnRelease": "0.12.0-beta.1",
+  "cliInterfaceVersion": "0.6.0",
+  "compatibilityFamily": "customization-experience-v3-companion",
+  "migration": {
+    "changesV1": false,
+    "changesV2": false,
+    "existingV2Projects": "remain-readable",
+    "upgradePath": "run read-only preflight, confirm project-only onboarding, then complete or resume the novice interview; a redesign creates v3 structure-bearing candidates without rewriting v2 history"
+  },
+  "hashAlgorithm": "sha256",
+  "lineEnding": "LF",
+  "schemas": [
+    {
+      "path": "customization-experience.v3.schema.json",
+      "sha256": "40deccd0663bae16de91dda14e1d2744ed59a5077d97ff675bc5355d93997870"
+    },
+    {
+      "path": "customization-interview.v3.schema.json",
+      "sha256": "9bab7872a0906378ba1f032f022eb390c198670139cbdbf8c0fc60d8879d9473"
+    },
+    {
+      "path": "customization-onboarding.v3.schema.json",
+      "sha256": "34efdea940ee32bf90713a77d24ff06162a23eb58244bf9beeca61e66beab7a0"
+    },
+    {
+      "path": "novice-human-test-report.schema.json",
+      "sha256": "86bd31c3e3916547fab7acdeb134add730ed46ff711eb670822dfb9ea92054fb"
+    }
+  ]
+}

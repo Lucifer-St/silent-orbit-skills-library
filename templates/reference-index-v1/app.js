@@ -132,9 +132,11 @@ const categoryTranslations = {
 
 const state = {
   data: null,
+  experience: null,
   locale: "zh-CN",
   supportedLocales: ["zh-CN", "en-US"],
   view: "map",
+  preferredView: "map",
   query: "",
   category: "",
   source: "",
@@ -238,6 +240,18 @@ function model() {
   return { skills, categories, sources };
 }
 
+function customStructure() {
+  return state.experience?.structure?.source === "public-site-data" ? state.experience.structure : null;
+}
+
+function customGroupForSkill(skillName) {
+  return customStructure()?.groups.find((group) => group.skillNames.includes(skillName)) ?? null;
+}
+
+function mapGroupLabel(group) {
+  return group?.kind === "category" ? categoryFor(group.label) : group?.label ?? "";
+}
+
 function matchesQuery(skill) {
   const query = normalized(state.query);
   return !query || normalized([
@@ -260,7 +274,7 @@ function filteredSkills({ ignoreCategory = false, ignoreSource = false } = {}) {
 
 function hashState({ replace = false } = {}) {
   const params = new URLSearchParams();
-  if (state.view !== "map") params.set("view", state.view);
+  if (state.view !== state.preferredView) params.set("view", state.view);
   if (state.query) params.set("q", state.query);
   if (state.category) params.set("category", state.category);
   if (state.source) params.set("source", state.source);
@@ -272,7 +286,8 @@ function hashState({ replace = false } = {}) {
 
 function restoreHash() {
   const params = new URLSearchParams(location.hash.slice(1));
-  state.view = params.get("view") === "library" ? "library" : "map";
+  const requestedView = params.get("view");
+  state.view = ["map", "library"].includes(requestedView) ? requestedView : state.preferredView;
   state.query = params.get("q") ?? "";
   state.category = params.get("category") ?? "";
   state.source = params.get("source") ?? "";
@@ -425,7 +440,7 @@ function openSkill(name, { updateHistory = true } = {}) {
   if (!skill) return;
   state.previousFocus = document.activeElement;
   state.skill = skill.name;
-  if (state.view === "map") state.mapFocus = skill.categoryName;
+  if (state.view === "map") state.mapFocus = customGroupForSkill(skill.name)?.id ?? skill.categoryName;
   if (updateHistory) hashState();
   render();
   requestAnimationFrame(() => {
@@ -497,6 +512,23 @@ function activateMapNode(group, callback) {
 }
 
 function overviewGeometry() {
+  const structure = customStructure();
+  if (structure) {
+    if (mobileViewport.matches) {
+      return {
+        width: 390,
+        height: Math.max(1050, structure.groups.length * 205 + 32),
+        cards: structure.groups.map((group, index) => ({ ...group, x: 24, y: 26 + index * 205, width: 342, height: 164 })),
+        edges: [],
+      };
+    }
+    return {
+      width: structure.world.width,
+      height: structure.world.height,
+      cards: structure.groups.map((group) => ({ ...group })),
+      edges: [],
+    };
+  }
   if (mobileViewport.matches) {
     return {
       width: 390,
@@ -533,26 +565,34 @@ function renderOverview(viewport) {
   const geometry = overviewGeometry();
   const { categories } = model();
   const visible = filteredSkills();
-  geometry.edges.slice(0, Math.max(0, categories.length - 1)).forEach((pathValue) => {
+  const structure = customStructure();
+  const mapGroups = structure?.groups ?? categories.map((category) => ({
+    id: category,
+    label: category,
+    kind: "category",
+    skillNames: model().skills.filter((skill) => skill.categoryName === category).map((skill) => skill.name),
+  }));
+  geometry.edges.slice(0, Math.max(0, mapGroups.length - 1)).forEach((pathValue) => {
     viewport.append(svgElement("path", { d: pathValue, class: "taxonomy-edge" }));
   });
 
-  categories.forEach((category, index) => {
+  mapGroups.forEach((mapGroup, index) => {
     const card = geometry.cards[index] ?? geometry.cards.at(-1);
-    const skills = visible.filter((skill) => skill.categoryName === category);
+    const skills = visible.filter((skill) => mapGroup.skillNames.includes(skill.name));
+    const label = mapGroupLabel(mapGroup);
     const group = svgElement("g", {
       class: `map-node category-spread${skills.length ? "" : " is-empty"}`,
       tabindex: "0",
       role: "treeitem",
       "aria-label": state.locale === "zh-CN"
-        ? `${categoryFor(category)}，${skills.length} 个匹配 Skills`
-        : `${category}, ${skills.length} matching Skills`,
+        ? `${label}，${skills.length} 个匹配 Skills`
+        : `${label}, ${skills.length} matching Skills`,
       transform: `translate(${card.x} ${card.y})`,
     });
     group.append(svgElement("rect", { class: "chapter-hit", width: card.width, height: card.height }));
     svgText(group, `0${index + 1}`, 0, 18, "chapter-number");
     svgText(group, state.locale === "zh-CN" ? `${skills.length} 个 Skills` : `${skills.length} Skills`, card.width, 18, "chapter-count", { "text-anchor": "end" });
-    wrappedSvgText(group, categoryFor(category), {
+    wrappedSvgText(group, label, {
       x: 0,
       y: 62,
       maximumCharacters: mobileViewport.matches ? 26 : 34,
@@ -583,7 +623,7 @@ function renderOverview(viewport) {
         { "text-anchor": "end" },
       );
     }
-    activateMapNode(group, () => enterCategory(category));
+    activateMapNode(group, () => enterCategory(mapGroup.id));
     viewport.append(group);
   });
   byId("map-context").textContent = state.locale === "zh-CN"
@@ -592,7 +632,10 @@ function renderOverview(viewport) {
 }
 
 function renderCategory(viewport, category) {
-  const skills = filteredSkills().filter((skill) => skill.categoryName === category);
+  const structure = customStructure();
+  const mapGroup = structure?.groups.find((group) => group.id === category) ?? null;
+  const label = mapGroup ? mapGroupLabel(mapGroup) : categoryFor(category);
+  const skills = filteredSkills().filter((skill) => mapGroup ? mapGroup.skillNames.includes(skill.name) : skill.categoryName === category);
   const mobile = mobileViewport.matches;
   const width = mobile ? 390 : 1200;
   const columns = mobile ? 1 : 3;
@@ -603,10 +646,11 @@ function renderCategory(viewport, category) {
   const rowHeight = mobile ? 116 : 104;
   const nodeHeight = mobile ? 98 : 86;
   const rows = Math.max(1, Math.ceil(skills.length / columns));
-  const worldHeight = Math.max(mobile ? 1000 : 800, startY + rows * rowHeight + 70);
+  const structureNodes = new Map((structure?.nodes ?? []).map((node) => [node.skillName, node]));
+  const worldHeight = Math.max(mobile ? 1000 : 800, startY + rows * rowHeight + 70, ...skills.map((skill) => (structureNodes.get(skill.name)?.y ?? 0) + 140));
 
   viewport.append(svgElement("rect", { x: 20, y: 26, width: width - 40, height: 106, class: "focus-band" }));
-  wrappedSvgText(viewport, categoryFor(category), {
+  wrappedSvgText(viewport, label, {
     x: 42,
     y: 78,
     maximumCharacters: mobile ? 22 : 42,
@@ -626,12 +670,12 @@ function renderCategory(viewport, category) {
     svgText(viewport, t("noMatchingMap"), 42, 230, "map-empty-title");
     svgText(viewport, t("reopenChapter"), 42, 268, "map-empty-copy");
     byId("map-context").textContent = state.locale === "zh-CN"
-      ? `${categoryFor(category)} · 0 个匹配 Skills`
-      : `${category} · 0 matching Skills`;
+      ? `${label} · 0 个匹配 Skills`
+      : `${label} · 0 matching Skills`;
     return { worldHeight };
   }
 
-  for (let column = 0; column < columns; column += 1) {
+  for (let column = 0; column < columns && (!structure || mobile); column += 1) {
     const x = startX + column * (columnWidth + gap);
     viewport.append(svgElement("line", { x1: x, y1: startY - 10, x2: x, y2: worldHeight - 42, class: "column-rule" }));
   }
@@ -639,8 +683,9 @@ function renderCategory(viewport, category) {
   skills.forEach((skill, index) => {
     const column = mobile ? 0 : index % columns;
     const row = mobile ? index : Math.floor(index / columns);
-    const x = startX + column * (columnWidth + gap);
-    const y = startY + row * rowHeight;
+    const plannedNode = !mobile ? structureNodes.get(skill.name) : null;
+    const x = plannedNode?.x ?? startX + column * (columnWidth + gap);
+    const y = plannedNode?.y ?? startY + row * rowHeight;
     const active = state.skill === skill.name;
     const group = svgElement("g", {
       class: `map-node map-skill-node${active ? " is-active" : ""}`,
@@ -663,9 +708,29 @@ function renderCategory(viewport, category) {
     viewport.append(group);
     state.mapNodes.set(skill.name, { x, y, width: columnWidth, height: nodeHeight });
   });
+  if (structure && skills.length) {
+    const edgeLayer = svgElement("g", { class: "structure-edges", "aria-hidden": "true" });
+    const groupsById = new Map(structure.groups.map((group) => [group.id, group]));
+    const structureNodesById = new Map(structure.nodes.map((node) => [node.id, node]));
+    for (const edge of structure.edges) {
+      const source = groupsById.get(edge.source);
+      const plannedTarget = structureNodesById.get(edge.target);
+      const node = plannedTarget ? state.mapNodes.get(plannedTarget.skillName) : null;
+      if (!source || !node) continue;
+      const sourceX = Math.min(width - 24, Math.max(24, source.x + source.width / 2));
+      edgeLayer.append(svgElement("path", {
+        d: `M ${sourceX} 132 L ${node.x + node.width / 2} ${node.y}`,
+        class: "taxonomy-edge",
+        "data-edge-id": edge.id,
+        "data-edge-source": edge.source,
+        "data-edge-target": edge.target,
+      }));
+    }
+    viewport.prepend(edgeLayer);
+  }
   byId("map-context").textContent = state.locale === "zh-CN"
-    ? `${categoryFor(category)} · ${skills.length} 个匹配 Skills`
-    : `${category} · ${skills.length} matching Skills`;
+    ? `${label} · ${skills.length} 个匹配 Skills`
+    : `${label} · ${skills.length} matching Skills`;
   return { worldHeight };
 }
 
@@ -673,7 +738,13 @@ function renderMap() {
   const viewport = byId("map-viewport");
   viewport.replaceChildren();
   state.mapNodes = new Map();
-  const validFocus = model().categories.includes(state.mapFocus) ? state.mapFocus : "";
+  const structure = customStructure();
+  let validFocus = "";
+  if (structure) {
+    if (structure.groups.some((group) => group.id === state.mapFocus)) validFocus = state.mapFocus;
+  } else if (model().categories.includes(state.mapFocus)) {
+    validFocus = state.mapFocus;
+  }
   if (state.mapFocus && !validFocus) state.mapFocus = "";
   if (validFocus) renderCategory(viewport, validFocus);
   else renderOverview(viewport);
@@ -700,8 +771,15 @@ function animateViewBox(target, animate = true) {
   requestAnimationFrame(frame);
 }
 
-function overviewViewBox() { return mobileViewport.matches ? [0, 0, 390, 1050] : [0, 0, 1200, 800]; }
-function focusOverviewViewBox() { return mobileViewport.matches ? [0, 0, 390, 1000] : [0, 0, 1200, 800]; }
+function overviewViewBox() {
+  const geometry = overviewGeometry();
+  return [0, 0, geometry.width, geometry.height];
+}
+function focusOverviewViewBox() {
+  if (mobileViewport.matches) return [0, 0, 390, 1000];
+  const structure = customStructure();
+  return structure ? [0, 0, structure.world.width, structure.world.height] : [0, 0, 1200, 800];
+}
 
 function enterCategory(category) {
   state.mapFocus = category;
@@ -760,7 +838,7 @@ function clearFilters() {
 
 function switchView(view) {
   state.view = view;
-  if (view === "map" && state.category) state.mapFocus = state.category;
+  if (view === "map" && state.category && !customStructure()) state.mapFocus = state.category;
   hashState();
   render();
   if (view === "map") requestAnimationFrame(() => {
@@ -868,9 +946,25 @@ function bindEvents() {
 }
 
 async function start() {
-  const response = await fetch("./site-data.json", { cache: "no-store" });
+  const experienceRequest = document.body.dataset.customLayout
+    ? fetch("./customization-experience.v3.json", { cache: "no-store" })
+    : Promise.resolve(null);
+  const [response, experienceResponse] = await Promise.all([
+    fetch("./site-data.json", { cache: "no-store" }),
+    experienceRequest,
+  ]);
   if (!response.ok) throw new Error(`site-data.json returned ${response.status}`);
-  state.data = await response.json();
+  const [siteData, experience] = await Promise.all([
+    response.json(),
+    experienceResponse?.ok ? experienceResponse.json() : Promise.resolve(null),
+  ]);
+  state.data = siteData;
+  if (experienceResponse?.ok) {
+    if (experience?.kind === "CustomizationExperienceV3" && ["map", "library"].includes(experience.preferredView)) {
+      state.experience = experience;
+      state.preferredView = experience.preferredView;
+    }
+  }
   resolveLocale();
   applyLocale();
   updateProjectIdentity();

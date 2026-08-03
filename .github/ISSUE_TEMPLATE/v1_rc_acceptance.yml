@@ -5,7 +5,7 @@ labels: ["public-beta"]
 body:
   - type: markdown
     attributes:
-      value: "只使用 v0.12.0-beta.1 GitHub Pre-release 的公开清单。请勿提交原始日志、绝对路径、Skill 名称、提示词、私人记忆或账号数据。"
+      value: "只使用 v0.13.0-beta.1 GitHub Pre-release 的公开清单。请勿提交原始日志、绝对路径、Skill 名称、提示词、私人记忆或账号数据。"
   - type: checkboxes
     id: independence
     attributes:
@@ -29,7 +29,7 @@ body:
       options:
         - label: Release 文件校验值与 SHA256SUMS.txt 一致。
           required: true
-        - label: 本地 tarball 安装成功，CLI 0.5.0 可启动。
+        - label: 本地 tarball 安装成功，CLI 0.6.0 可启动。
           required: true
         - label: 第一次 doctor 给出了可理解、可行动的结果。
           required: true

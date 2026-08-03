@@ -5,7 +5,7 @@ labels: ["public-beta"]
 body:
   - type: markdown
     attributes:
-      value: "只有 Release operator 激活 v0.12.0-beta.1 的独立验收后才提交。请勿上传原始日志、绝对路径、Skill 名称、提示词、审美访谈原文、private state、receipt 或账号数据。"
+      value: "本表绑定 v0.13.0-beta.1 / CLI 0.6.x。也可把单文件测试包生成且通过 validator 的 independent 报告直接发回项目所有者，作为本表的等价回执；这不代表已创建 GitHub Issue。请勿上传原始日志、绝对路径、Skill 名称、提示词、审美访谈原文、private state、receipt 或账号数据。"
   - type: checkboxes
     id: independence
     attributes:
@@ -27,15 +27,23 @@ body:
     attributes:
       label: 核心结果
       options:
-        - label: tarball SHA-256 通过，package 0.12.0-beta.1 与 CLI 0.5.0 一致。
+        - label: tarball SHA-256、package 版本与 operator 公布的新候选版一致，CLI 为 0.6.x。
           required: true
         - label: 生成结果包含有效 frontend-handoff.v2.json。
+          required: true
+        - label: 访谈前只读 preflight 用白话解释条件和边界；没有同意时未安装或写入，同意后只做项目级设置并复检。
+          required: true
+        - label: 访谈一次只问一个生活化问题，允许不知道/跳过/返回修改，确认页默认不暴露专业字段。
           required: true
         - label: 我看到了恰好两套功能完整、至少两个结构维度不同的方向。
           required: true
         - label: 两套方向都通过地图、目录、搜索、筛选、详情、双语、桌面与手机检查。
           required: true
         - label: 我至少执行了一次 adjust 或 reject，并最终执行 keep。
+          required: true
+        - label: 我的目录/地图首选真实控制首次打开、刷新、约 390px 手机与 keep 后默认视图；主动切换不会被立刻重置。
+          required: true
+        - label: 我执行了结构重做；新轮次改变了节点、分组、边或布局策略，不是只换 CSS。
           required: true
         - label: 决定历史被保留，current 只在 keep 后出现。
           required: true
