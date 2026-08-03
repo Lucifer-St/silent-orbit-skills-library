@@ -8,7 +8,10 @@ import { fileURLToPath } from "node:url";
 import { validateNoviceHumanReport } from "../validate-novice-human-report.mjs";
 
 const root = path.dirname(path.dirname(path.dirname(fileURLToPath(import.meta.url))));
-const template = fs.readFileSync(path.join(root, "docs/public-release/SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.template.md"), "utf8");
+const privateTemplatePath = path.join(root, "docs/public-release/SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.template.md");
+const publicTemplatePath = path.join(root, "docs/testing/silent-orbit-novice-human-test-pack.zh-CN.template.md");
+const usesPrivateTemplate = fs.existsSync(privateTemplatePath);
+const template = fs.readFileSync(usesPrivateTemplate ? privateTemplatePath : publicTemplatePath, "utf8");
 const sha = "a".repeat(64);
 const tasks = Object.fromEntries([
   "preflight", "consentGate", "install", "sourceSelection", "init", "importOrConfigure", "scan", "analyze", "diff", "generate", "doctor",
@@ -23,12 +26,20 @@ function report(overrides = {}) { return `<!-- SILENT_ORBIT_NOVICE_REPORT_JSON\n
 
 test("single-file novice pack is plain-language, consent-gated, topology-aware, and privacy explicit", () => {
   const expectedTokens = new Map([
-    ["{{PUBLIC_RELEASE_TAG}}", 3],
-    ["{{PUBLIC_RELEASE_URL}}", 1],
-    ["{{PUBLIC_TARBALL_FILE}}", 5],
     ["{{PUBLIC_TARBALL_URL}}", 1],
     ["{{PUBLIC_TARBALL_SHA256}}", 4],
   ]);
+  if (usesPrivateTemplate) {
+    expectedTokens.set("{{PUBLIC_RELEASE_TAG}}", 3);
+    expectedTokens.set("{{PUBLIC_RELEASE_URL}}", 1);
+    expectedTokens.set("{{PUBLIC_TARBALL_FILE}}", 5);
+  } else {
+    assert.equal(template.includes("{{PUBLIC_RELEASE_TAG}}"), false);
+    assert.equal(template.includes("{{PUBLIC_RELEASE_URL}}"), false);
+    assert.equal(template.includes("{{PUBLIC_TARBALL_FILE}}"), false);
+    assert.match(template, /v0\.13\.0-beta\.1/u);
+    assert.match(template, /silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz/u);
+  }
   for (const [token, count] of expectedTokens) assert.equal(template.split(token).length - 1, count, `${token} occurrence count`);
   assert.match(template, /一次只问一个|不确定\/跳过也可以/u);
   assert.match(template, /portable\/project-local Node 24/u);
