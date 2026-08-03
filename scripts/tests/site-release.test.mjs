@@ -232,6 +232,7 @@ test("required public gates execute Agent Skill, release-asset, and native check
   assert.match(packageScripts["test:mvp"], /npm run smoke:customization-browser/u);
   assert.match(preflight, /\["agent-skill-contract", \["run", "test:agent-skill"\]\]/);
   assert.match(preflight, /if \(publicRepository\) runReleaseAssetsContract\(\)/);
+  assert.match(preflight, /"SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK\.zh-CN\.md"/);
   assert.match(preflight, /checksumRows\.some\(\(row\) => row === null\)/);
   assert.match(preflight, /documented-checksum-windows/);
   assert.match(preflight, /documented-checksum-linux/);
