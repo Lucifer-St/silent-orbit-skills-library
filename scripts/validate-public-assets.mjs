@@ -58,7 +58,7 @@ function readPng(bytes, relativePath) {
   };
 }
 
-export function validatePublicAssets(rootDir = projectDir) {
+export function validatePublicAssets(rootDir = projectDir, { quiet = false } = {}) {
   const provenancePath = path.join(rootDir, "ASSET_PROVENANCE.json");
   if (!fs.existsSync(provenancePath)) throw new Error("ASSET_PROVENANCE.json is required.");
   const provenance = JSON.parse(fs.readFileSync(provenancePath, "utf8"));
@@ -111,7 +111,7 @@ export function validatePublicAssets(rootDir = projectDir) {
   }
 
   const report = { files: records.length, pngs: pngCount, c2paEmbedded: c2paCount };
-  console.log(`Public asset validation passed. files=${report.files} pngs=${report.pngs} c2paEmbedded=${report.c2paEmbedded}`);
+  if (!quiet) console.log(`Public asset validation passed. files=${report.files} pngs=${report.pngs} c2paEmbedded=${report.c2paEmbedded}`);
   return report;
 }
 

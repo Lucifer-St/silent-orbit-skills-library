@@ -5,14 +5,18 @@
 Use the first available explicit, local, or installed command:
 
 1. A CLI path supplied by the user.
-2. `silent-orbit` available on `PATH`.
-3. In the Silent Orbit source repository,
+2. A project-local package already present in the current workspace: invoke
+   `node node_modules/silent-orbit-skills-library/scripts/silent-orbit.mjs`.
+   Search upward only to the workspace root; never invoke an auto-installing
+   `npx` fallback or download a missing package.
+3. `silent-orbit` available on `PATH`.
+4. In the Silent Orbit source repository,
    `node work/agent-os-index/scripts/silent-orbit.mjs`.
-4. In a flat public checkout, `node scripts/silent-orbit.mjs`.
+5. In a flat public checkout, `node scripts/silent-orbit.mjs`.
 
 The published `v0.12.0-beta.1` CLI remains `0.5.x`. The additive newcomer
-prerelease `v0.13.0-beta.1` requires CLI `0.6.x`; never relabel or rewrite the
-historical tag. Verify with `--version`, then run:
+prerelease `v0.13.1-beta.1` requires CLI `0.6.x`; never relabel or rewrite the
+historical tag. Verify with `--version` and require version `0.6.x`, then run:
 
 ```text
 silent-orbit capabilities --contract v3 --json

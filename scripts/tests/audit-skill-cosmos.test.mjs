@@ -37,6 +37,8 @@ test("audit-skill-cosmos is a concise skill-creator package", () => {
   const shortDescription = agentYaml.match(/short_description: "([^"]+)"/)?.[1] ?? "";
   assert.ok(shortDescription.length >= 25 && shortDescription.length <= 64);
   assert.match(agentYaml, /default_prompt: "Use \$audit-skill-cosmos /);
+  assert.match(frontmatter[1], /HealthReportV1/);
+  assert.match(frontmatter[1], /skills-library-maintenance/);
 });
 
 test("the Agent Skill only explains CLI audit evidence and never implements or performs mutation", () => {
@@ -50,5 +52,8 @@ test("the Agent Skill only explains CLI audit evidence and never implements or p
   }
   assert.match(markdown, /Do not run `scan`, `analyze`, `diff`, `generate`, or `doctor`/);
   assert.match(markdown, /Never claim that everything is updated/);
+  assert.match(markdown, /node node_modules\/silent-orbit-skills-library\/scripts\/silent-orbit\.mjs/);
+  assert.match(markdown, /require version `0\.6\.x`/);
+  assert.match(markdown, /never invoke an auto-installing `npx` fallback/);
   assert.equal(collectFiles(skillDir).some((file) => /\.(?:js|mjs|py|ps1|sh)$/i.test(file)), false);
 });

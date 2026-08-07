@@ -4,9 +4,16 @@ description: Explain Silent Orbit Provider results and ManagementPlanV1 output, 
 ---
 # Manage Skill Cosmos
 
-Act only as an explanation and confirmation wrapper around the `silent-orbit`
-CLI. Keep capability checks, digests, backup, rescan, verification, rollback,
-and receipts in Core or the host-injected Provider.
+Act only as an explanation and confirmation wrapper around the `silent-orbit` CLI.
+Keep capability checks, digests, backup, rescan, verification, rollback, and receipts in Core or the host-injected Provider.
+
+## Resolve the CLI
+
+Use the first available command without downloading anything: a user-supplied CLI path; the already-installed project-local
+`node node_modules/silent-orbit-skills-library/scripts/silent-orbit.mjs` found between the current directory and workspace root;
+`silent-orbit` on `PATH`; the source-repository `node work/agent-os-index/scripts/silent-orbit.mjs`; or the flat-checkout `node scripts/silent-orbit.mjs`.
+Verify with `--version` and require version `0.6.x`. Otherwise stop; never invoke an auto-installing `npx` fallback. Use the resolved command below.
+
 ## Trusted-source check-and-update
 
 For a reviewed Phase 5C batch, invoke:
@@ -15,9 +22,8 @@ For a reviewed Phase 5C batch, invoke:
 silent-orbit manage check-and-update --request <trusted-batch-request.json> --json
 ```
 
-The host owns the pinned manager, profile, private recovery root, rescan,
-Library/Obsidian sync, and verification. Report exact names, GitHub sources,
-before hashes, exclusions, and the single batch token. Then invoke:
+The host owns the pinned manager, profile, private recovery root, rescan, Library/Obsidian sync, and verification.
+Report exact names, GitHub sources, before hashes, exclusions, and the single batch token. Then invoke:
 
 ```text
 silent-orbit manage check-and-update --request <trusted-batch-request.json> --confirm "<exact batch token>" --json
@@ -32,21 +38,15 @@ this command and the private `skills-library-maintenance` host.
    and the go/no-go result.
 2. Treat `no-go`, `unknown`, and `unsupported` as hard read-only stops.
 3. Never promote a Provider, invent evidence, or bypass a blocker.
-4. For Phase 5B, native `check` aliases the mutation path and requires one
-   marked disposable profile plus one exact source-managed Skill.
-5. State all execution exceptions: trusted external writes have no independent
-   staging or native Phase 5A transaction guarantee.
-6. Phase 5C allows one batch approval, a lightweight before-snapshot, rescan,
-   and failure-only restore; it excludes Plugin, System, deletion, and unknown
-   sources.
+4. For Phase 5B, native `check` aliases the mutation path and requires one marked disposable profile plus one exact source-managed Skill.
+5. State all execution exceptions: trusted external writes have no independent staging or native Phase 5A transaction guarantee.
+6. Phase 5C allows one batch approval, a lightweight before-snapshot, rescan, and failure-only restore; it excludes Plugin, System, deletion, and unknown sources.
 
 ## Review the plan
 
 1. Invoke `silent-orbit manage plan --request <request.json> --json`.
-2. Explain capability state, evidence IDs, execution mode, targets, digest
-   preconditions, impact, backup, verification, rollback, and blockers.
-3. Require a host-injected Provider. The standalone CLI registry is empty and
-   must not auto-connect to a real global Skill root.
+2. Explain capability state, evidence IDs, execution mode, targets, digest preconditions, impact, backup, verification, rollback, and blockers.
+3. Require a host-injected Provider. The standalone CLI registry is empty and must not auto-connect to a real global Skill root.
 4. Treat `unknown`, `unsupported`, `no-update`, or `executable: false` as a
    read-only stop.
 5. Preserve private plan JSON, IDs, digests, targets, evidence, and tokens.

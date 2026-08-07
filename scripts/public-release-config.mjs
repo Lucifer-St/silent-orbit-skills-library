@@ -1,6 +1,6 @@
 export const visualAssetPolicy = "Excluded from the MIT License. No permission for reuse is granted. Rights are reserved to the extent recognized by applicable law.";
 
-export const publicReleaseVersion = "0.13.0-beta.1";
+export const publicReleaseVersion = "0.13.1-beta.1";
 export const publicReleaseTag = `v${publicReleaseVersion}`;
 
 export const publicCodeownersText = [
@@ -24,6 +24,7 @@ export const publicPackageFiles = Object.freeze([
   "scripts/silent-orbit.mjs",
   "scripts/create-v1-acceptance-summary.mjs",
   "scripts/customization-browser-smoke.mjs",
+  "scripts/validate-agent-skills.mjs",
   "scripts/validate-novice-human-report.mjs",
   "scripts/lib/generator-contracts.mjs",
   "scripts/lib/source-adapters.mjs",
@@ -109,6 +110,7 @@ export const publicSourceFiles = Object.freeze([
 export const publicScriptFiles = Object.freeze([
   "capture-visual-qa.mjs",
   "customization-browser-smoke.mjs",
+  "validate-agent-skills.mjs",
   "validate-novice-human-report.mjs",
   "create-v1-acceptance-summary.mjs",
   "project-layout.mjs",
@@ -139,6 +141,7 @@ export const publicScriptFiles = Object.freeze([
   "tests/library-analyzer.test.mjs",
   "tests/silent-orbit-cli.test.mjs",
   "tests/build-skill-cosmos.test.mjs",
+  "tests/validate-agent-skills.test.mjs",
   "tests/audit-skill-cosmos.test.mjs",
   "tests/frontend-handoff-v2.test.mjs",
   "tests/customization-v3-contracts.test.mjs",

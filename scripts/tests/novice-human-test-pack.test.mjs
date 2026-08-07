@@ -22,7 +22,7 @@ const environment = {
   os: "Windows", arch: "x64", cpu: "x64 desktop CPU", shell: "PowerShell", node: "v24.14.0", npm: "11.6.2", git: "2.50.0", browser: "Chromium",
   network: "PASS", disk: "PASS", targetPermission: "PASS", agentTerminal: "PASS", agentFiles: "PASS", agentNetwork: "PASS", desktop: "PASS", mobile390: "PASS",
 };
-function report(overrides = {}) { return `<!-- SILENT_ORBIT_NOVICE_REPORT_JSON\n${JSON.stringify({ schemaVersion: 1, kind: "SilentOrbitNoviceHumanTestReport", packVersion: "1.0.0", release: "v0.13.0-beta.1", releaseAsset: "silent-orbit-skills-library-0.13.0-beta.1.tgz", releaseAssetSha256: sha, testedAt: "2026-08-03T12:00:00.000Z", testerId: "tester-abcdef", independent: true, environment, tasks, issues: [], humanSummary: "新手确认流程清楚，默认视图和重做地图均符合预期。", verdict: "PASS", contactAllowed: false, evidence: [], ...overrides }, null, 2)}\nEND_SILENT_ORBIT_NOVICE_REPORT_JSON -->`; }
+function report(overrides = {}) { return `<!-- SILENT_ORBIT_NOVICE_REPORT_JSON\n${JSON.stringify({ schemaVersion: 1, kind: "SilentOrbitNoviceHumanTestReport", packVersion: "1.0.0", release: "v0.13.1-beta.1", releaseAsset: "silent-orbit-skills-library-0.13.1-beta.1.tgz", releaseAssetSha256: sha, testedAt: "2026-08-03T12:00:00.000Z", testerId: "tester-abcdef", independent: true, environment, tasks, issues: [], humanSummary: "新手确认流程清楚，默认视图和重做地图均符合预期。", verdict: "PASS", contactAllowed: false, evidence: [], ...overrides }, null, 2)}\nEND_SILENT_ORBIT_NOVICE_REPORT_JSON -->`; }
 
 test("single-file novice pack is plain-language, consent-gated, topology-aware, and privacy explicit", () => {
   const expectedTokens = new Map([
@@ -37,8 +37,8 @@ test("single-file novice pack is plain-language, consent-gated, topology-aware, 
     assert.equal(template.includes("{{PUBLIC_RELEASE_TAG}}"), false);
     assert.equal(template.includes("{{PUBLIC_RELEASE_URL}}"), false);
     assert.equal(template.includes("{{PUBLIC_TARBALL_FILE}}"), false);
-    assert.match(template, /v0\.13\.0-beta\.1/u);
-    assert.match(template, /silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz/u);
+    assert.match(template, /v0\.13\.1-beta\.1/u);
+    assert.match(template, /silent-orbit-skills-library-0\.13\.1-beta\.1\.tgz/u);
   }
   for (const [token, count] of expectedTokens) assert.equal(template.split(token).length - 1, count, `${token} occurrence count`);
   assert.match(template, /一次只问一个|不确定\/跳过也可以/u);
@@ -53,7 +53,7 @@ test("single-file novice pack is plain-language, consent-gated, topology-aware, 
 });
 
 test("report validator binds exact release fields and rejects internal rehearsals, extra payloads, secrets, and private paths", (t) => {
-  const expected = { release: "v0.13.0-beta.1", asset: "silent-orbit-skills-library-0.13.0-beta.1.tgz", sha256: sha, requireIndependent: true };
+  const expected = { release: "v0.13.1-beta.1", asset: "silent-orbit-skills-library-0.13.1-beta.1.tgz", sha256: sha, requireIndependent: true };
   const windowsUserPath = ["C:", "Users", "name", "secret"].join("\\");
   const lowercaseWindowsUserPath = ["c:", "users", "name", "secret"].join("\\");
   const windowsTempPath = ["D:", "temp", "evidence.txt"].join("\\");

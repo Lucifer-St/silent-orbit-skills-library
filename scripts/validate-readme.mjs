@@ -127,7 +127,7 @@ function assertGeneratorQuickstart(rootDir, fileName, packageVersion, { chinese 
   assertExactTarballChecksumInstructions(content, fileName, packageVersion);
 }
 
-export function validateReadme(rootDir = projectDir) {
+export function validateReadme(rootDir = projectDir, { quiet = false } = {}) {
   const assetRoot = path.join(rootDir, "assets", "readme");
   for (const fileName of readmeAssets) {
     if (!fs.statSync(path.join(assetRoot, fileName), { throwIfNoEntry: false })?.isFile()) {
@@ -148,7 +148,7 @@ export function validateReadme(rootDir = projectDir) {
     const screenshot = readPng(path.join(assetRoot, fileName), fileName);
     if (screenshot.width < 320 || screenshot.height < 320) throw new Error(`${fileName} is too small to prove the product UI.`);
   }
-  console.log(`README validation passed. files=4 assets=${readmeAssets.length}`);
+  if (!quiet) console.log(`README validation passed. files=4 assets=${readmeAssets.length}`);
   return { readmes: 4, assets: readmeAssets.length };
 }
 

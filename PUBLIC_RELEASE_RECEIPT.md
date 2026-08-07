@@ -1,13 +1,32 @@
-# Public Release candidate receipt
+# Public Release completion receipt
 
-- Input commit: `dfc0580e62f252681765b7f703fa24307c33ab46`
-- Input commit timestamp: `2026-08-03T09:27:50-04:00`
-- Canonical release digest: `06901fe0d94e0115c23aec0eed3872f5313c6fb240d2f49de0035d0b832ab8f4`
-- JSON manifest SHA-256: `d8779d1b393a9e020faeef0173f0c93e5e69b81522b1f42f474a5c57858ce04d`
-- Markdown manifest SHA-256: `024c0fe4bc4a7d09ccb9a93fbcd00d76a16104d377a050a1872cc09a0a400d23`
+- Public Release status: GO
+- Input commit: `960d8cb5de4f5a99b848ed47c08437d9eb1b711f`
+- Input commit timestamp: `2026-08-07T03:48:27-04:00`
+- Canonical release digest: `6b85c32dd79d3c5f4498bb7f3461d868e90f53309f463c5e1f68e6994af962bf`
+- JSON manifest SHA-256: `a6716557544b961a71cf86f00d735c9a6530d81a6056ef5be0c5f2dd28862041`
+- Markdown manifest SHA-256: `54c12305dd51b5ccfeecbc41a1d33108a85f233bff5b2e22d11b59745b6a5485`
+- Payload: 339 files / 12597188 bytes
+- Production bundles: `index-BkobVKMl.css`, `index-DQJPEK8T.js`
+
+## Fresh-RC verification
+
+- `npm ci`: PASS, pinned dependency install
+- `npm run validate:data`: PASS
+- `npm run validate:assets`: PASS
+- `npm run validate:skills`: PASS
+- `npm run validate:public-release`: PASS before and after build/QA
+- `npm run test:mvp`: PASS
+- `npx tsc --noEmit`: PASS
+- `npm run build`: PASS
+- `npm run smoke:ui`: PASS, zero browser console/runtime errors
+- `npm run qa:visual`: PASS, 22/22 desktop/mobile states
+
+## Release boundary
+
 - Export boundary: allowlisted current snapshot only; no Private Git history
-- Repository visibility action: none
-- Pull request or merge action: none
-- Netlify action: none
+- Repository visibility, default branch, branch protection, PR, merge, and tag actions: none
+- Netlify site, configuration, and deploy actions: none
+- Private maintenance, Obsidian, and usage-write actions: none
 
-The RC generator completed its deterministic file, data, privacy, provenance, license, and manifest checks. The release remains a handoff candidate until its fresh-install build, test, smoke, and visual commands are executed by the release operator.
+This deterministic receipt is written only after every fresh-RC gate exits successfully.

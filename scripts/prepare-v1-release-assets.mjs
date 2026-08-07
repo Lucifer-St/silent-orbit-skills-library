@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { publicReleaseVersion } from "./public-release-config.mjs";
+import { assertFinalizedReleaseReceipt, validatePublicRelease } from "./validate-public-release.mjs";
 
 const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
@@ -83,13 +84,14 @@ if (!requestedOutput) {
 const rootDir = path.resolve(option("--root") ?? projectDir);
 const outputDir = path.resolve(requestedOutput);
 if (outputDir === rootDir) throw new Error("Release asset output cannot be the Public repository root.");
-assertEmptyOutput(outputDir);
 
 const packageJson = JSON.parse(fs.readFileSync(requireFile(rootDir, "package.json"), "utf8"));
 if (packageJson.name !== "silent-orbit-skills-library" || packageJson.version !== publicReleaseVersion) {
   throw new Error(`Expected Public package silent-orbit-skills-library@${publicReleaseVersion}.`);
 }
-requireFile(rootDir, "PUBLIC_RELEASE_MANIFEST.json");
+const manifest = JSON.parse(fs.readFileSync(requireFile(rootDir, "PUBLIC_RELEASE_MANIFEST.json"), "utf8"));
+validatePublicRelease(rootDir, { repositoryAware: fs.existsSync(path.join(rootDir, ".git")), quiet: true });
+assertFinalizedReleaseReceipt(rootDir, manifest);
 
 const handoffSource = requireFile(rootDir, "docs/testing/v1-rc-one-file-handoff.zh-CN.md");
 const novicePackTemplateSource = requireFile(rootDir, "docs/testing/silent-orbit-novice-human-test-pack.zh-CN.template.md");
@@ -109,6 +111,8 @@ for (const expected of [
 if (handoffText.includes("{{")) {
   throw new Error("Public handoff contains an unresolved template token.");
 }
+
+assertEmptyOutput(outputDir);
 
 const copyInputs = [
   ["docs/testing/v1-rc-one-file-handoff.zh-CN.md", "V1_RC_ONE_FILE_HANDOFF.zh-CN.md"],

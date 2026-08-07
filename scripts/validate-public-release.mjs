@@ -70,6 +70,7 @@ const requiredFiles = [
   "docs/releases/v0.11.0-beta.9.md",
   "docs/releases/v0.12.0-beta.1.md",
   "docs/releases/v0.13.0-beta.1.md",
+  "docs/releases/v0.13.1-beta.1.md",
   "SECURITY.md",
   "THIRD_PARTY_NOTICES.md",
   "docs/policies/versioning-and-migrations.md",
@@ -89,6 +90,7 @@ const requiredFiles = [
   "schemas/schema-lock.v3.json",
   "schemas/novice-human-test-report.schema.json",
   "scripts/prepare-v1-release-assets.mjs",
+  "scripts/validate-agent-skills.mjs",
   "tsconfig.json",
   "vite.config.ts",
   "public/robots.txt",
@@ -113,9 +115,9 @@ function walk(rootDir, relativeDir = "", { includeGenerated = false, repositoryA
     .sort((left, right) => left.name.localeCompare(right.name, "en"))
     .flatMap((entry) => {
       const relativePath = relativeDir ? `${relativeDir}/${entry.name}` : entry.name;
+      if (!relativeDir && repositoryAware && entry.name === ".git") return [];
       if (entry.isSymbolicLink()) throw new Error(`Symbolic links are forbidden: ${relativePath}`);
       if (entry.isDirectory()) {
-        if (!relativeDir && repositoryAware && entry.name === ".git") return [];
         if (!relativeDir && entry.name === "node_modules") return [];
         if (!includeGenerated && !relativeDir && generatedRoots.has(entry.name)) return [];
         return walk(rootDir, relativePath, { includeGenerated, repositoryAware });
@@ -222,6 +224,52 @@ function assertManifest(rootDir, { repositoryAware = false } = {}) {
   return manifest;
 }
 
+export function assertFinalizedReleaseReceipt(rootDir, manifest = readJson(rootDir, "PUBLIC_RELEASE_MANIFEST.json")) {
+  const receiptPath = path.join(rootDir, "PUBLIC_RELEASE_RECEIPT.md");
+  const receipt = fs.readFileSync(receiptPath, "utf8");
+  const manifestJsonHash = sha256(fs.readFileSync(path.join(rootDir, "PUBLIC_RELEASE_MANIFEST.json")));
+  const manifestMarkdownHash = sha256(fs.readFileSync(path.join(rootDir, "PUBLIC_RELEASE_MANIFEST.md")));
+  const goRows = receipt.match(/^- Public Release status: GO$/gm) ?? [];
+  if (goRows.length !== 1) {
+    throw new Error("Public release requires exactly one finalized GO receipt status.");
+  }
+  for (const expected of [
+    "# Public Release completion receipt",
+    `- Input commit: \`${manifest.inputCommit}\``,
+    `- Input commit timestamp: \`${manifest.inputCommitTimestamp}\``,
+    `- Canonical release digest: \`${manifest.releaseDigest}\``,
+    `- JSON manifest SHA-256: \`${manifestJsonHash}\``,
+    `- Markdown manifest SHA-256: \`${manifestMarkdownHash}\``,
+    `- Payload: ${manifest.fileCount} files / ${manifest.totalBytes} bytes`,
+    "## Fresh-RC verification",
+    "- `npm ci`: PASS, pinned dependency install",
+    "- `npm run validate:data`: PASS",
+    "- `npm run validate:assets`: PASS",
+    "- `npm run validate:skills`: PASS",
+    "- `npm run validate:public-release`: PASS before and after build/QA",
+    "- `npm run test:mvp`: PASS",
+    "- `npx tsc --noEmit`: PASS",
+    "- `npm run build`: PASS",
+    "- `npm run smoke:ui`: PASS, zero browser console/runtime errors",
+    "- `npm run qa:visual`: PASS, 22/22 desktop/mobile states",
+    "## Release boundary",
+    "- Export boundary: allowlisted current snapshot only; no Private Git history",
+    "- Repository visibility, default branch, branch protection, PR, merge, and tag actions: none",
+    "- Netlify site, configuration, and deploy actions: none",
+    "- Private maintenance, Obsidian, and usage-write actions: none",
+    "This deterministic receipt is written only after every fresh-RC gate exits successfully.",
+  ]) {
+    if (!receipt.includes(expected)) throw new Error(`Finalized Public release receipt is missing ${expected}.`);
+  }
+  if (!/^- Production bundles: (?=.*`index-[^`]+\.css`)(?=.*`index-[^`]+\.js`).+$/m.test(receipt)) {
+    throw new Error("Finalized Public release receipt is missing production CSS/JS bundle evidence.");
+  }
+  if (/candidate receipt|remains a handoff candidate/i.test(receipt)) {
+    throw new Error("Candidate receipt cannot be published as a finalized Public release asset.");
+  }
+  return receipt;
+}
+
 function readJson(rootDir, relativePath) {
   return JSON.parse(fs.readFileSync(path.join(rootDir, ...relativePath.split("/")), "utf8"));
 }
@@ -324,7 +372,7 @@ function assertDataBoundary(rootDir) {
 function assertPackageContract(rootDir) {
   const packageJson = readJson(rootDir, "package.json");
   const expectedScripts = [
-    "validate:data", "validate:assets", "validate:public-release", "validate:public-repository", "validate:readme",
+    "validate:data", "validate:assets", "validate:skills", "validate:public-release", "validate:public-repository", "validate:readme",
     "test:management", "test:mvp", "build", "smoke:ui", "qa:visual",
   ];
   for (const script of expectedScripts) {
@@ -378,6 +426,10 @@ export function assertNovicePackTemplate(rootDir) {
   }
   for (const expected of [`v${publicReleaseVersion}`, `silent-orbit-skills-library-${publicReleaseVersion}.tgz`, `https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v${publicReleaseVersion}`]) {
     if (!content.includes(expected)) throw new Error(`Novice human test pack template is missing release binding ${expected}.`);
+  }
+  const releaseBindingLines = content.match(/^- Release：`[^`]+`$/gm) ?? [];
+  if (JSON.stringify(releaseBindingLines) !== JSON.stringify([`- Release：\`v${publicReleaseVersion}\``])) {
+    throw new Error("Novice human test pack template must contain exactly one fixed binding line.");
   }
   const unresolved = content.match(/{{[^{}\r\n]+}}/g) ?? [];
   if (JSON.stringify([...new Set(unresolved)].sort()) !== JSON.stringify(["{{PUBLIC_TARBALL_SHA256}}", "{{PUBLIC_TARBALL_URL}}"].sort())) {
@@ -485,7 +537,7 @@ function assertGitAttributesContract(rootDir) {
   }
 }
 
-export function validatePublicRelease(rootDir = projectDir, { repositoryAware = false } = {}) {
+export function validatePublicRelease(rootDir = projectDir, { repositoryAware = false, quiet = false } = {}) {
   const resolvedRoot = path.resolve(rootDir);
   if (!fs.statSync(resolvedRoot, { throwIfNoEntry: false })?.isDirectory()) {
     throw new Error(`Public RC root does not exist: ${resolvedRoot}`);
@@ -493,6 +545,7 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   assertRequiredFiles(resolvedRoot);
   assertForbiddenPaths(resolvedRoot, { repositoryAware });
   const manifest = assertManifest(resolvedRoot, { repositoryAware });
+  if (repositoryAware) assertFinalizedReleaseReceipt(resolvedRoot, manifest);
   assertDataBoundary(resolvedRoot);
   assertPackageContract(resolvedRoot);
   assertHandoffContract(resolvedRoot);
@@ -502,8 +555,8 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
   assertCodeownersContract(resolvedRoot);
   assertPrivacyAndSecrets(resolvedRoot, { repositoryAware });
   assertWorkflowContract(resolvedRoot);
-  const assets = validatePublicAssets(resolvedRoot);
-  const readme = validateReadme(resolvedRoot);
+  const assets = validatePublicAssets(resolvedRoot, { quiet });
+  const readme = validateReadme(resolvedRoot, { quiet });
   const result = {
     inputCommit: manifest.inputCommit,
     files: manifest.fileCount,
@@ -512,7 +565,7 @@ export function validatePublicRelease(rootDir = projectDir, { repositoryAware = 
     assets: assets.files,
     readmes: readme.readmes,
   };
-  console.log(`Public release validation passed. files=${result.files} bytes=${result.bytes} digest=${result.releaseDigest}`);
+  if (!quiet) console.log(`Public release validation passed. files=${result.files} bytes=${result.bytes} digest=${result.releaseDigest}`);
   return result;
 }
 

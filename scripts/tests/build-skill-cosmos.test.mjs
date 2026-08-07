@@ -77,4 +77,6 @@ test("the bundled Skill advertises the current package and CLI compatibility", (
     "package and CLI versions in the bundled Skill must match the release",
   );
   assert.doesNotMatch(contract, /require version `0\.1\.x`|package `0\.9\.0-beta\.1`/);
+  assert.match(contract, /node node_modules\/silent-orbit-skills-library\/scripts\/silent-orbit\.mjs/);
+  assert.match(contract, /do not run `npx` in a way that[\s\S]*download a missing package/);
 });

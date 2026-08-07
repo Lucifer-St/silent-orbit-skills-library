@@ -13,10 +13,57 @@ Silent Orbit turns a growing AI Skills collection into a navigable product: sear
 
 The public catalog currently contains **153 Skills across 9 systems and 28 libraries**.
 
+## The problem
+
+AI Skills accumulate faster than people can understand or govern them. Names and folders alone do not answer the practical questions: **Which Skill fits this task? Where did it come from? What is safe to publish? Can I personalize the experience without changing my real Skills or losing the next data refresh?**
+
+## What this beta delivers
+
+Silent Orbit combines a local-first React product with a versioned Node.js toolkit:
+
+- a bilingual, deterministic intent search and **System → Library → Skill** catalog;
+- provenance and privacy boundaries before installation or trust;
+- browser-local Outcomes with no account, analytics, or backend sync;
+- deterministic Private-to-Public export with manifests, hashes, schema locks, and rollback evidence;
+- five bundled Agent Skills: `build-skill-cosmos`, `audit-skill-cosmos`, `customize-skill-cosmos`, `manage-skill-cosmos`, and `skills-library-maintenance`.
+
+## Engineering evidence
+
+- **153 Skills · 28 Libraries · 9 systems · 36 active global Skills** in the governed catalog.
+- **220+ automated tests and contract checks**, plus a **22-state** desktop/mobile visual QA matrix.
+- Node.js 24 package smoke on **Windows, Linux, and macOS**, with a separate mounted/unmounted Docker contract.
+- **React 19, TypeScript, Vite, Node.js 24, GitHub Actions, and Netlify** from interface through release.
+- A single production path: Private source → deterministic Public Export → required GitHub check → Git-connected Netlify Production.
+
+This is a GitHub **Pre-release**, not `v1.0.0`. Automated checks, author UAT, and Agent rehearsals are engineering evidence—not independent-human acceptance. The v1 gate stays open until a release-bound independent report passes with no unresolved P0/P1 findings.
+
+## Customize your library
+
+Install the release tarball locally as described in the [Generator Quickstart](./docs/guides/generator-quickstart.md), review the Skill, then add only the project-level customization layer:
+
+```powershell
+$skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\customize-skill-cosmos\SKILL.md')
+npx skills@1.5.20 add $skillSource --skill customize-skill-cosmos --agent codex --copy -y
+```
+
+Start with: **“Use `$customize-skill-cosmos`; begin with the read-only preflight, then ask me one everyday question at a time.”**
+
+```mermaid
+flowchart LR
+  A["customize preflight<br/>read-only"] --> B["Exact project-only consent<br/>when setup is needed"]
+  B --> C["One everyday<br/>question at a time"]
+  C --> D["Exactly two<br/>functional directions"]
+  D --> E["Keep / Restyle /<br/>Adjust / Redesign"]
+  E --> F["refresh + doctor<br/>style-preservation proof"]
+```
+
+The workflow stores normalized summaries rather than raw interview answers, keeps previous rounds immutable, rejects CSS-only “redesigns,” and never installs, updates, or publishes real Skills.
+
 ## Start independent acceptance here
 
 Send the tester only the
-[`v0.13.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1).
+[`v0.13.1-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.1-beta.1).
 They download `SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md` from Assets, upload it to a
 local Agent, and say `开始验收`. They do not fill templates, type the workflow
 commands, or receive author-local files.
@@ -37,9 +84,9 @@ The Public Generator is distributed only as the verified GitHub Pre-release tarb
 - Node.js 24 is the v1 runtime baseline. A different major version requires an
   explicit compatibility decision and gate update.
 
-## Phase 1E Alpha Preview
+## Historical Phase 1E alpha evidence
 
-The Draft PR also builds a separate **44-Skill Reference Preview** from a pinned independent environment. It keeps the interactive Skill map as a primary way to explore the collection: a white canvas, black relationship lines, category clusters, restrained pan/zoom, and spatial focus transitions. A compact Library view uses the same search, filters, selection, and URL state.
+The repository preserves a pinned **44-Skill Reference Preview** from Phase 1E as historical acceptance evidence. It is not built for current pull requests or Production; every Deploy Preview now uses the same current 153-Skill production build. The archived renderer demonstrated a white canvas, black relationship lines, category clusters, restrained pan/zoom, spatial focus transitions, and a compact Library view sharing search, filters, selection, and URL state.
 
 This Reference Renderer is a functional starting point, not an official visual theme. Generated projects include `frontend-handoff.md` so users can retain the public data, keyboard behavior, deep links, and privacy boundary while rebuilding the interface with any visual style and frontend Skill they prefer.
 
@@ -47,7 +94,7 @@ This Reference Renderer is a functional starting point, not an official visual t
 - [Phase 2B dogfood and source-of-truth boundary](./docs/notes/20260722-100249-generator-phase-2b-dogfooding-source-of-truth-boundary.md)
 - [Install and first-use guide](./docs/guides/generator-quickstart.md)
 - The Alpha receipt explicitly records `humanFeedback: false`; it proves a fixed independent environment, not external-user feedback.
-- Production remains the reviewed 153-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
+- Production and Deploy Preview both use the reviewed 153-Skill site. The Alpha is historical acceptance evidence, not a second catalog source or Production replacement.
 
 ## See the library
 

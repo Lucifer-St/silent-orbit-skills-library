@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "inputCommit": "dfc0580e62f252681765b7f703fa24307c33ab46",
-  "inputCommitTimestamp": "2026-08-03T09:27:50-04:00",
+  "inputCommit": "960d8cb5de4f5a99b848ed47c08437d9eb1b711f",
+  "inputCommitTimestamp": "2026-08-07T03:48:27-04:00",
   "releaseDigestAlgorithm": "sha256",
-  "releaseDigest": "06901fe0d94e0115c23aec0eed3872f5313c6fb240d2f49de0035d0b832ab8f4",
-  "fileCount": 336,
-  "totalBytes": 12559071,
+  "releaseDigest": "6b85c32dd79d3c5f4498bb7f3461d868e90f53309f463c5e1f68e6994af962bf",
+  "fileCount": 339,
+  "totalBytes": 12597188,
   "excludedControlFiles": [
     "PUBLIC_RELEASE_MANIFEST.json",
     "PUBLIC_RELEASE_MANIFEST.md",
@@ -30,7 +30,7 @@
     {
       "path": ".github/ISSUE_TEMPLATE/customization_rc_acceptance.yml",
       "bytes": 3803,
-      "sha256": "153180eaf821add7cc40a664a3dc1c99032be2ab4763ddb8b42af2e337082356"
+      "sha256": "d63b963661aa98882f533ed49537ae24b2de1211bd12569ef8ac0f6bb7642880"
     },
     {
       "path": ".github/ISSUE_TEMPLATE/experience_feedback.yml",
@@ -40,7 +40,7 @@
     {
       "path": ".github/ISSUE_TEMPLATE/v1_rc_acceptance.yml",
       "bytes": 3378,
-      "sha256": "02584f5840a2df6c9de70f0761eee35b1bea223253c70471b23347c6d9da93b7"
+      "sha256": "31fb30e1f4795ffff23a35c5d2b57b28fabca86b69f86bf31d1bde935ed35190"
     },
     {
       "path": ".github/workflows/public-release-gate.yml",
@@ -65,12 +65,12 @@
     {
       "path": "ASSET_PROVENANCE.json",
       "bytes": 31108,
-      "sha256": "5bf3f6c7f5344baab828cc927b60afad7be29d17e8909ae73b4c7ff83e846051"
+      "sha256": "2b29b10e095a8e20a1a0eab1d3ce52f272517aabf354f29c26a236643d2e21e4"
     },
     {
       "path": "CONTRIBUTING.md",
       "bytes": 4364,
-      "sha256": "238d11eda9b347b216c7334b42e02625c14e8c29114a5f5d554309b656588613"
+      "sha256": "675f66f50684490182e125c7d6397145b4bea67c107206aef2aa4b96b0134076"
     },
     {
       "path": "LICENSE",
@@ -79,13 +79,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 9677,
-      "sha256": "b0e6b8b349d132a9e46cdfbfd18de9e80c3b3978fdfd84b17fd48641359c8998"
+      "bytes": 12760,
+      "sha256": "75d57b12d73126022d646798b094b7fb0545658eb53395054b3be875bb7625a1"
     },
     {
       "path": "README.zh-CN.md",
-      "bytes": 9064,
-      "sha256": "c9fa93bdfe6166547c2a027c7b2ab050e946ecc3474661702a8bcf7ab9406a94"
+      "bytes": 12167,
+      "sha256": "08a09541a9bd65b5bb3f03e14561ca737a0fc29f68fddb4b78a58b5dbe6d9ff1"
     },
     {
       "path": "SECURITY.md",
@@ -219,33 +219,33 @@
     },
     {
       "path": "docs/README.md",
-      "bytes": 4702,
-      "sha256": "413cd92d4ae5aaec0caddee059a67434c91e3f0aed88a4b6d10272eae85d818e"
+      "bytes": 4765,
+      "sha256": "79e984e708f474ec552fd924d311c239c910d82610a021bc4e22b1fc9448d122"
     },
     {
       "path": "docs/audits/privacy-audit.md",
       "bytes": 615,
-      "sha256": "e30beac7edc08abd2371b47ef80fee3b75c78d8219ddd95c9ce425c827722c73"
+      "sha256": "39a72540a530808883b4293a3ac68cdc410b259ea57880ba4317f139282e9e4d"
     },
     {
       "path": "docs/guides/generator-quickstart.md",
-      "bytes": 12781,
-      "sha256": "a7e517e06517fedcb2c179e420ba10fe0f6f9b2e7f0f047590953e0388194d52"
+      "bytes": 12758,
+      "sha256": "5af6199b1c429dd37396551f8e141aee5df4f8d8c599f8fbcccb8c562f9ddeea"
     },
     {
       "path": "docs/guides/generator-quickstart.zh-CN.md",
-      "bytes": 12328,
-      "sha256": "8705985c822052a1aa63dcabc0c636d89c76be0a4d31af8a47f3606d0c17e060"
+      "bytes": 12292,
+      "sha256": "7f3233e65488e6652ddee788b78f69de1fe225508a876748f03345d7e47d3cbe"
     },
     {
       "path": "docs/guides/installation-and-upgrade.md",
       "bytes": 3371,
-      "sha256": "0ee34ed1b4eab061410c1351876dc17127b03a874696088a130a96c151dd8281"
+      "sha256": "22be410448202ae476ea610ccce93991514856b9f0a6ef3c15540525b60759ed"
     },
     {
       "path": "docs/guides/installation-and-upgrade.zh-CN.md",
       "bytes": 3090,
-      "sha256": "31c7f2832a90e255d89f78f696107aa85e69911ef1c3b35d68875c82f47578fe"
+      "sha256": "d44ad25e3a2b596b1d61410158e5e1607c5a50f00063d4d0bed8dc12d7fab90e"
     },
     {
       "path": "docs/guides/recovery.md",
@@ -319,13 +319,13 @@
     },
     {
       "path": "docs/policies/versioning-and-migrations.md",
-      "bytes": 6109,
-      "sha256": "383577892e11ad9dee95ffd95dc580652f54dffb38516db5b7c6a29a94c667b6"
+      "bytes": 6695,
+      "sha256": "3eb13f7c7b943e69e569701a89d5254b185d960afd64cfffab3bcdebdbf58451"
     },
     {
       "path": "docs/policies/versioning-and-migrations.zh-CN.md",
-      "bytes": 5040,
-      "sha256": "da4acc8ee1df04d482efa6824200a0b6ad00c784eb501a543d4a24b56b995be6"
+      "bytes": 5587,
+      "sha256": "14ad3a6e7bda43fe70a8559eed2d166a04844e572b9e262b32c637005b27fc4b"
     },
     {
       "path": "docs/releases/v0.11.0-beta.5.md",
@@ -363,6 +363,11 @@
       "sha256": "65cb25d6d094f42279bdccb539b004609ceee40a6785f39b7e92b20c2b2e384a"
     },
     {
+      "path": "docs/releases/v0.13.1-beta.1.md",
+      "bytes": 2211,
+      "sha256": "2ccd913c22a025de0b90f9a7832ea69e4189c2df500b3c5d464e85bfd742c067"
+    },
+    {
       "path": "docs/testing/beta-feedback-template.md",
       "bytes": 884,
       "sha256": "f62bb45f322e26cfcf9c35037de82a2d42e59deeb93ec7a4d95edc1cb4b8b5eb"
@@ -375,27 +380,27 @@
     {
       "path": "docs/testing/customization-rc-acceptance.zh-CN.md",
       "bytes": 5380,
-      "sha256": "de1e7e7b06b7e94052140b2d668f24f59f6643e7b6c108159435b3a37e76c08c"
+      "sha256": "4ac901514cdfa99541b063816719956499143706635ec0ad4b20c2e0c0d0cd52"
     },
     {
       "path": "docs/testing/silent-orbit-novice-human-test-pack.zh-CN.template.md",
       "bytes": 10586,
-      "sha256": "66997579732130376ef0cc5362d1f3321eee9ba7fe5c329aad8a7aadc5b06a1e"
+      "sha256": "b54c750aba14bc0be351577986f29580fb5d6677b852d1d912ca718fe49f18b9"
     },
     {
       "path": "docs/testing/v1-rc-acceptance.md",
       "bytes": 9183,
-      "sha256": "0ef101313e638651bff7db5ee408c940368b4529a48b2905c4a0ca46173e8e20"
+      "sha256": "2d221c7b14561f9285954d6cdbab97827521260a2de48c86294c8a96040ae4ac"
     },
     {
       "path": "docs/testing/v1-rc-acceptance.zh-CN.md",
       "bytes": 11617,
-      "sha256": "262746ded50047e86ed02a39a1087edfc6ecd036ace75fab72491279babf37fb"
+      "sha256": "c7672dd3ca64d385e8fb089acccc1813dcd602c428a4c84ebe8d310713d7057b"
     },
     {
       "path": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
       "bytes": 1007,
-      "sha256": "8a3010cf0ad4160692636187f3c0306f395313695b9bcd9c35012298616f501d"
+      "sha256": "518f58950be2f31bba4bc7ee898b1c8e325ab39737b833677c3f8076974aaa0d"
     },
     {
       "path": "fixtures/phase4/external-provider.source-import.json",
@@ -414,18 +419,18 @@
     },
     {
       "path": "netlify.toml",
-      "bytes": 1388,
-      "sha256": "e589f97fa5dfd58f94bb4e83a603302a89fd9f954e3cdaf0b53e08ed4bd8a543"
+      "bytes": 1477,
+      "sha256": "7d666339b9a88ce97084d83b4e0c6481a3d90020d1466c942832042bcdffa956"
     },
     {
       "path": "package-lock.json",
       "bytes": 60660,
-      "sha256": "9107978a78880d3105e021087a259e3f4a657e643349c5125fddd50baf76ed9b"
+      "sha256": "7565f74fd449cb3c991c1a46bba01d94d3bb481dda62d0fd557917c300f6d583"
     },
     {
       "path": "package.json",
-      "bytes": 5409,
-      "sha256": "ff149e33cf8cb67225a2e461ad7bdcb0068e6a9e71c45c0ea6dfbeb576cad164"
+      "bytes": 5587,
+      "sha256": "96802836ed8aafb4c92ab265641c3135b3e2cff507667a7ba8875d6030111276"
     },
     {
       "path": "public/assets/branding/favicon.svg",
@@ -999,8 +1004,8 @@
     },
     {
       "path": "scripts/prepare-v1-release-assets.mjs",
-      "bytes": 8053,
-      "sha256": "05537d488fe971689d838074733db24a9415d3d1e492352ce24ee7b400f66c1f"
+      "bytes": 8369,
+      "sha256": "a58d731ad8d306b2f53da4bd295178d2cbce21c4de90ebc072d750214cefbb9a"
     },
     {
       "path": "scripts/project-layout.mjs",
@@ -1014,8 +1019,8 @@
     },
     {
       "path": "scripts/public-release-config.mjs",
-      "bytes": 11792,
-      "sha256": "524d2bb446674ea68bb3391774c139365570ca807f23ef4f66c9b0002f37fd31"
+      "bytes": 11904,
+      "sha256": "704b032c6586dc51b1a567cf948a148d05bfa259646a6d6038137a338a6ca5f7"
     },
     {
       "path": "scripts/run-release-tarball-smoke.mjs",
@@ -1024,8 +1029,8 @@
     },
     {
       "path": "scripts/run-v1-preflight.mjs",
-      "bytes": 14465,
-      "sha256": "b6f73f1e58b082c029fa2c2664ae9e26e6f01d7087e2394d717ecab084249e41"
+      "bytes": 14664,
+      "sha256": "76dc9d9d61885ce7bc5f37f8d353d673ba55f50d4d9a9c03b06442aa3bea36a3"
     },
     {
       "path": "scripts/silent-orbit.mjs",
@@ -1044,13 +1049,13 @@
     },
     {
       "path": "scripts/tests/audit-skill-cosmos.test.mjs",
-      "bytes": 2839,
-      "sha256": "99581f194daeb72d20a1948f2bc0c169f2385960e797c6ee21f1984400e0b751"
+      "bytes": 3186,
+      "sha256": "848a08c044afe07c0623a9215de2fd7dcf0f5153503b647420e7b7e00f640a19"
     },
     {
       "path": "scripts/tests/build-skill-cosmos.test.mjs",
-      "bytes": 3986,
-      "sha256": "3e047a2fb83ee42295a59c29f39b075d592326b2e1f18e4ae9fe901d4e7a577f"
+      "bytes": 4183,
+      "sha256": "cf3fee1668686b8aa642d0a538e307b95a5af97b4c1093641e987d0ac0f36db1"
     },
     {
       "path": "scripts/tests/customization-onboarding.test.mjs",
@@ -1100,7 +1105,7 @@
     {
       "path": "scripts/tests/novice-human-test-pack.test.mjs",
       "bytes": 9202,
-      "sha256": "84d36ea5bfa7392712a809a0575f3b57fad8cf3a877c7869fbc6640176fed642"
+      "sha256": "f27d5af89dcc1324a32de1fb0ff8c4c67f6ffaf96cc9c58d6ff228c758e98335"
     },
     {
       "path": "scripts/tests/npx-skills-source-managed-evaluation.test.mjs",
@@ -1139,8 +1144,8 @@
     },
     {
       "path": "scripts/tests/site-release.test.mjs",
-      "bytes": 20218,
-      "sha256": "1dbcebf7747668ddeec9ab15c4a1a426a0447410a9a061fa80b28b04266d27de"
+      "bytes": 24629,
+      "sha256": "fb5eee2196ef3383ec5c4d78d87c7086ea10db9a88031dc3b693a7607820687b"
     },
     {
       "path": "scripts/tests/skill-cosmos-customization.test.mjs",
@@ -1174,8 +1179,8 @@
     },
     {
       "path": "scripts/tests/source-of-truth-boundary.test.mjs",
-      "bytes": 4424,
-      "sha256": "911ce64853a158dc4dc07e255675fcb592757d3cfdcf5b3428329481db9a75e3"
+      "bytes": 5149,
+      "sha256": "0376acabff8104b93a1abecece095f8e36e9c5826c63b75cb5da7fc8bf581c07"
     },
     {
       "path": "scripts/tests/sync-data.test.mjs",
@@ -1193,9 +1198,19 @@
       "sha256": "1ada497a519f989582688a433ad3f58281621ada6597c0ab89216d37ce813766"
     },
     {
+      "path": "scripts/tests/validate-agent-skills.test.mjs",
+      "bytes": 5218,
+      "sha256": "644b352c86357fcf3a3950d10f70d67f9669102115cec16791c8f1301e0515ca"
+    },
+    {
       "path": "scripts/v1-docker-smoke.sh",
       "bytes": 3187,
       "sha256": "29d330dc065eb0ab85daf394a616060d2e7544efd95727950a41437bcb94d2c4"
+    },
+    {
+      "path": "scripts/validate-agent-skills.mjs",
+      "bytes": 11626,
+      "sha256": "51ad44d6093c80a30eb892ee9a5b9694167344b3282e1a48b2e13b394cbada1e"
     },
     {
       "path": "scripts/validate-data.mjs",
@@ -1214,28 +1229,28 @@
     },
     {
       "path": "scripts/validate-public-assets.mjs",
-      "bytes": 6036,
-      "sha256": "845b54b0117f375ce991447ea62c34e553a072fea41081ac94e0ec772c1b43fc"
+      "bytes": 6072,
+      "sha256": "16206d071f206e3d6cd47aafcd25b7f8054202816636318ee0ea5a86e8888d69"
     },
     {
       "path": "scripts/validate-public-release.mjs",
-      "bytes": 25034,
-      "sha256": "a608844316acd6ea974f2cd003085008787a0196ec479f304546f5fa11a20672"
+      "bytes": 28133,
+      "sha256": "40f00eea0082857142cb13c1de8e518bfdd7bad82b3afd900cd673dd730909f3"
     },
     {
       "path": "scripts/validate-readme.mjs",
-      "bytes": 7048,
-      "sha256": "11be33ebafea98b9da5c78e20d1e983bcb6e1bd967d71b2f4a5a96c349cc956a"
+      "bytes": 7084,
+      "sha256": "1a6b244932f8080842e58b1911068e86ccdceb48d6588a2c3f2b4f80e91a005b"
     },
     {
       "path": "skills/audit-skill-cosmos/SKILL.md",
-      "bytes": 2834,
-      "sha256": "3a03417d05342c3d919ce525076d51456867bcf4c4d8c2219e7619347b93e70d"
+      "bytes": 3557,
+      "sha256": "e73bc6c7f46ff5eb9be60caafa6c80ed0abdf825a7c650de8ab4c460464a0971"
     },
     {
       "path": "skills/audit-skill-cosmos/agents/openai.yaml",
-      "bytes": 251,
-      "sha256": "34583d764cc6efff15dd21bbc0d663a751b36c2e3b83a017ea32766b91fa493c"
+      "bytes": 273,
+      "sha256": "c20c2c1458f0230bc898207fc2f4738bbe6355aa6245154e6b8ae1a1de77df45"
     },
     {
       "path": "skills/build-skill-cosmos/SKILL.md",
@@ -1249,13 +1264,13 @@
     },
     {
       "path": "skills/build-skill-cosmos/references/cli-contract.md",
-      "bytes": 3397,
-      "sha256": "e585736f577a7bf0ba9cecaf86f9b68de633c1a719256ccf89eb356c32f3d82b"
+      "bytes": 3604,
+      "sha256": "9bc20579f7d8d78e6f2c7cf571ad4fde61d9751c58f95416797f5fa28915998f"
     },
     {
       "path": "skills/build-skill-cosmos/references/project-schema.md",
-      "bytes": 3950,
-      "sha256": "08a6df6630d629edbd43b6ba4444b28954d0a673c375b8b1db5dc0543ea2e6e8"
+      "bytes": 4022,
+      "sha256": "a5e43966f238d627ee4775d7ed782e01a89f86cb26170069821e582d96f72af9"
     },
     {
       "path": "skills/build-skill-cosmos/references/review-contract.md",
@@ -1274,8 +1289,8 @@
     },
     {
       "path": "skills/customize-skill-cosmos/references/cli-contract.md",
-      "bytes": 4048,
-      "sha256": "28fb303a424ba5bacf18e861afd49f90ba91fbee1cac35e3fb0865de956d126d"
+      "bytes": 4355,
+      "sha256": "e9479ccb112d05a6209cb043bb9908b27c5a81cad4d52dd73b791640e6e03e02"
     },
     {
       "path": "skills/customize-skill-cosmos/references/direction-review-contract.md",
@@ -1294,8 +1309,8 @@
     },
     {
       "path": "skills/manage-skill-cosmos/SKILL.md",
-      "bytes": 4432,
-      "sha256": "ab89374776c5c9f683e4bd9b0ab88540a576841af16d1659ef4684c3a916a90a"
+      "bytes": 4993,
+      "sha256": "8a79eaeedff0a6af5b4ead00a34712d9e902ac19045881295d46df0572f28046"
     },
     {
       "path": "skills/manage-skill-cosmos/agents/openai.yaml",
@@ -1304,8 +1319,8 @@
     },
     {
       "path": "skills/skills-library-maintenance/SKILL.md",
-      "bytes": 7942,
-      "sha256": "9b2a16499e4280b50bd551258a96c4e13a884b4c175e943c917481ad01addd7a"
+      "bytes": 8044,
+      "sha256": "9c225ff783b31f35ee332589872a85b332d09f74b45df2d3f9652c1ed288e2ac"
     },
     {
       "path": "skills/skills-library-maintenance/agents/openai.yaml",

@@ -291,10 +291,12 @@ function runCore({ publicRepository }) {
       ["validate-public-assets", ["run", "validate:assets"]],
       ["validate-public-repository", ["run", "validate:public-repository"]],
       ["validate-public-readme", ["run", "validate:readme"]],
+      ["validate-agent-skills", ["run", "validate:skills"]],
       ["public-mvp", ["run", "test:mvp"]],
     ]
     : [];
   commands.push(
+    ["validate-agent-skills", ["run", "validate:skills"]],
     ["adapter-regressions", ["run", "test:adapters"]],
     ["cli-regressions", ["run", "test:cli"]],
     ["agent-skill-contract", ["run", "test:agent-skill"]],
@@ -339,6 +341,7 @@ if (mode === "package-smoke") {
   runCore({ publicRepository: false });
   runNpm(["run", "test:public-release"], { label: "deterministic-double-public-export" });
   runNpm(["run", "export:public"], { label: "materialize-public-rc" });
+  runNpm(["run", "finalize:public-release"], { label: "finalize-public-rc" });
   runNpm(["run", "validate:public-release"], { label: "validate-public-rc" });
   withPreparedReleaseAssets(({ outputDir, tarball, tarballName, handoff }) => {
     runDocumentedChecksumSmoke(outputDir, tarballName);

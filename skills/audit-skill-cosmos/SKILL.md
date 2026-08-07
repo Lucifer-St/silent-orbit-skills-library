@@ -1,11 +1,22 @@
 ---
 name: audit-skill-cosmos
-description: Explain a Silent Orbit read-only Skill library health audit, including provider failures, presence, duplicates, identity or version conflicts, update channels, evidence freshness, and unresolved states, then suggest safe next diagnostic steps. Use when a user asks to audit, check, interpret, or troubleshoot the health of a configured Skill cosmos/library without changing installed Skills or project outputs.
+description: Explain a supplied Silent Orbit HealthReportV1 or run a read-only health audit for an existing configured Silent Orbit project, including provider failures, presence, duplicates, identity or version conflicts, update channels, evidence freshness, and unresolved states. Use for project-scoped health interpretation without changing installed Skills or project outputs. Do not use for live global Skill discovery, installs, removals, updates, Web Library or Obsidian drift, or lifecycle reconciliation; those belong to skills-library-maintenance.
 ---
 
 # Audit Skill Cosmos
 
 Interpret `HealthReportV1` as a thin explanation layer. Let `silent-orbit audit` own provider discovery, normalization, evidence, privacy filtering, and deterministic health logic.
+
+## Resolve the CLI
+
+Use the first available command without downloading anything: a user-supplied
+CLI path; the already-installed project-local
+`node node_modules/silent-orbit-skills-library/scripts/silent-orbit.mjs`
+found between the current directory and workspace root; `silent-orbit` on
+`PATH`; the source-repository `node work/agent-os-index/scripts/silent-orbit.mjs`;
+or the flat-checkout `node scripts/silent-orbit.mjs`. Verify with `--version`
+and require version `0.6.x`. If none exists, report the missing prerequisite
+and stop; never invoke an auto-installing `npx` fallback.
 
 ## Obtain the report
 

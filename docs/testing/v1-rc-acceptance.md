@@ -1,6 +1,6 @@
 # Silent Orbit v1 RC independent acceptance (15–25 minutes)
 
-Use only the [`v0.13.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1).
+Use only the [`v0.13.1-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.1-beta.1).
 That one page is the authoritative handoff. Do not accept a local path, an
 unpublished archive, or a separately sent PowerShell bundle.
 
@@ -12,7 +12,7 @@ conversation are not external acceptance.
 
 Download these Release assets:
 
-- `silent-orbit-skills-library-0.13.0-beta.1.tgz`
+- `silent-orbit-skills-library-0.13.1-beta.1.tgz`
 - `SHA256SUMS.txt`
 - `silent-orbit-v1-starter.source-import.json`
 - `v1-docker-smoke.sh` and `codex-global.config.json` when testing Docker
@@ -20,8 +20,8 @@ Download these Release assets:
 Windows PowerShell:
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.13.0-beta.1.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.13.1-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.1-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "Expected exactly one checksum entry for $tarball." }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -31,7 +31,7 @@ if ($actual -ne $expected) { throw "Checksum mismatch" }
 Linux:
 
 ```sh
-tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.1-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -41,7 +41,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS:
 
 ```sh
-tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.1-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "Expected exactly one checksum entry for $tarball." >&2; exit 1; }
@@ -61,7 +61,7 @@ In a new empty directory:
 
 ```sh
 npm init -y
-npm install ./silent-orbit-skills-library-0.13.0-beta.1.tgz
+npm install ./silent-orbit-skills-library-0.13.1-beta.1.tgz
 npx silent-orbit --version
 ```
 
@@ -115,13 +115,13 @@ From the Release asset directory on macOS or Linux:
 
 ```sh
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=unmounted \
-  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.13.0-beta.1.tgz",dst=/input/release.tgz,readonly \
+  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.13.1-beta.1.tgz",dst=/input/release.tgz,readonly \
   --mount type=bind,src="$PWD/codex-global.config.json",dst=/fixture/codex-global.config.json,readonly \
   --mount type=bind,src="$PWD/v1-docker-smoke.sh",dst=/runner/v1-docker-smoke.sh,readonly \
   node:24-bookworm-slim sh /runner/v1-docker-smoke.sh
 
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=mounted \
-  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.13.0-beta.1.tgz",dst=/input/release.tgz,readonly \
+  --mount type=bind,src="$PWD/silent-orbit-skills-library-0.13.1-beta.1.tgz",dst=/input/release.tgz,readonly \
   --mount type=bind,src="$PWD/codex-global.config.json",dst=/fixture/codex-global.config.json,readonly \
   --mount type=bind,src="$PWD/v1-docker-smoke.sh",dst=/runner/v1-docker-smoke.sh,readonly \
   --mount type=bind,src="$HOME/.agents",dst=/tmp/home/.agents,readonly \
@@ -134,12 +134,12 @@ On Windows PowerShell, use the same two commands with absolute bind sources:
 $assets = (Get-Location).Path
 $agents = Join-Path $env:USERPROFILE ".agents"
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=unmounted `
-  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.13.0-beta.1.tgz,dst=/input/release.tgz,readonly" `
+  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.13.1-beta.1.tgz,dst=/input/release.tgz,readonly" `
   --mount "type=bind,src=$assets\codex-global.config.json,dst=/fixture/codex-global.config.json,readonly" `
   --mount "type=bind,src=$assets\v1-docker-smoke.sh,dst=/runner/v1-docker-smoke.sh,readonly" `
   node:24-bookworm-slim sh /runner/v1-docker-smoke.sh
 docker run --rm -e HOME=/tmp/home -e SILENT_ORBIT_SCENARIO=mounted `
-  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.13.0-beta.1.tgz,dst=/input/release.tgz,readonly" `
+  --mount "type=bind,src=$assets\silent-orbit-skills-library-0.13.1-beta.1.tgz,dst=/input/release.tgz,readonly" `
   --mount "type=bind,src=$assets\codex-global.config.json,dst=/fixture/codex-global.config.json,readonly" `
   --mount "type=bind,src=$assets\v1-docker-smoke.sh,dst=/runner/v1-docker-smoke.sh,readonly" `
   --mount "type=bind,src=$agents,dst=/tmp/home/.agents,readonly" `

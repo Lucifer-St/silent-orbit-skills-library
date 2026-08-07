@@ -6,15 +6,23 @@ import { fileURLToPath } from "node:url";
 import { publicPackageFiles, publicScriptFiles, publicSourceFiles } from "../public-release-config.mjs";
 
 const projectDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const repositoryRoot = path.resolve(projectDir, "..", "..");
 const packageJson = JSON.parse(fs.readFileSync(path.join(projectDir, "package.json"), "utf8"));
+const isPrivateSource = packageJson.name === "agent-os-skill-map";
+const isPublicPackage = packageJson.name === "silent-orbit-skills-library";
+const repositoryRoot = isPrivateSource ? path.resolve(projectDir, "..", "..") : projectDir;
 const read = (relative) => fs.readFileSync(path.join(projectDir, ...relative.split("/")), "utf8");
 
 test("the installable package owns only public Core, Schemas, CLI, Agent Skill, docs, and reference renderer", () => {
+  assert.equal(
+    isPrivateSource || isPublicPackage,
+    true,
+    `Unrecognized package identity: ${packageJson.name}.`,
+  );
   const privateSourceFiles = [
     "scripts/silent-orbit.mjs",
     "scripts/create-v1-acceptance-summary.mjs",
     "scripts/customization-browser-smoke.mjs",
+    "scripts/validate-agent-skills.mjs",
     "scripts/validate-novice-human-report.mjs",
     "scripts/lib/generator-contracts.mjs",
     "scripts/lib/source-adapters.mjs",
@@ -48,9 +56,9 @@ test("the installable package owns only public Core, Schemas, CLI, Agent Skill, 
   ];
   assert.deepEqual(
     packageJson.files,
-    packageJson.name === "silent-orbit-skills-library" ? publicPackageFiles : privateSourceFiles,
+    isPublicPackage ? publicPackageFiles : privateSourceFiles,
   );
-  assert.equal(packageJson.version, "0.13.0-beta.1");
+  assert.equal(packageJson.version, "0.13.1-beta.1");
   assert.equal(packageJson.devDependencies.skills, "1.5.20");
   assert.equal(packageJson.bin["silent-orbit"], "scripts/silent-orbit.mjs");
   assert.equal(packageJson.files.some((entry) => /alpha\/phase1e|silent-orbit-v1|outputs|obsidian|receipt/i.test(entry)), false);
@@ -73,11 +81,25 @@ test("Private inventory, curation, Outcomes, usage, Obsidian, and run evidence a
     publicSourceFiles.some(({ source, target }) => /outputs\/data|\.dogfood|obsidian|phase2b-dogfood-receipt/i.test(`${source}\n${target}`)),
     false,
   );
-  const privateLayout = fs.existsSync(path.join(repositoryRoot, "outputs", "data", "skills.json"));
-  if (privateLayout) {
-    assert.equal(fs.existsSync(path.join(projectDir, "scripts", "lib", "phase2b-private-library.mjs")), true);
-    assert.equal(fs.existsSync(path.join(projectDir, "scripts", "run-phase2b-dogfood.mjs")), true);
-    assert.match(fs.readFileSync(path.join(repositoryRoot, ".gitignore"), "utf8"), /work\/agent-os-index\/\.dogfood\//);
+  if (isPrivateSource) {
+    const privateLayout = fs.existsSync(path.join(repositoryRoot, "outputs", "data", "skills.json"));
+    if (privateLayout) {
+      assert.equal(fs.existsSync(path.join(projectDir, "scripts", "lib", "phase2b-private-library.mjs")), true);
+      assert.equal(fs.existsSync(path.join(projectDir, "scripts", "run-phase2b-dogfood.mjs")), true);
+      assert.match(fs.readFileSync(path.join(repositoryRoot, ".gitignore"), "utf8"), /work\/agent-os-index\/\.dogfood\//);
+    }
+  } else {
+    for (const privateOnlyPath of [
+      "scripts/lib/phase2b-private-library.mjs",
+      "scripts/run-phase2b-dogfood.mjs",
+      "outputs/data/skills.json",
+    ]) {
+      assert.equal(
+        fs.existsSync(path.join(projectDir, ...privateOnlyPath.split("/"))),
+        false,
+        `${privateOnlyPath} must stay outside a Public checkout.`,
+      );
+    }
   }
 });
 
