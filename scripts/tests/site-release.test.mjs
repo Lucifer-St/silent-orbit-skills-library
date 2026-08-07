@@ -20,6 +20,7 @@ const publicDocumentPaths = Object.freeze({
   "RELEASE_NOTES_v0.11.0-beta.9.md": "docs/releases/v0.11.0-beta.9.md",
   "RELEASE_NOTES_v0.12.0-beta.1.md": "docs/releases/v0.12.0-beta.1.md",
   "RELEASE_NOTES_v0.13.0-beta.1.md": "docs/releases/v0.13.0-beta.1.md",
+  "RELEASE_NOTES_v0.13.1-beta.1.md": "docs/releases/v0.13.1-beta.1.md",
   "V1_RC_ACCEPTANCE.md": "docs/testing/v1-rc-acceptance.md",
   "V1_RC_ACCEPTANCE.zh-CN.md": "docs/testing/v1-rc-acceptance.zh-CN.md",
   "V1_RC_ONE_FILE_HANDOFF.zh-CN.md": "docs/testing/v1-rc-one-file-handoff.zh-CN.md",
@@ -117,6 +118,84 @@ test("production metadata uses the exact public canonical and social assets", ()
   assert.doesNotMatch(html, /data:,|localhost|example\.com/i);
 });
 
+test("portfolio-first READMEs expose product value, engineering proof, and the honest beta gate", () => {
+  const packageName = JSON.parse(read("package.json")).name;
+  assert.ok(
+    ["agent-os-skill-map", "silent-orbit-skills-library"].includes(packageName),
+    `README contract does not recognize package ${packageName}.`,
+  );
+  const isPrivateSource = packageName === "agent-os-skill-map";
+  const privateReadme = isPrivateSource ? read("README.md") : null;
+  const english = read(isPrivateSource ? "docs/public-release/README.template.md" : "README.md");
+  const chinese = read(
+    isPrivateSource ? "docs/public-release/README.zh-CN.template.md" : "README.zh-CN.md",
+  );
+  const bundledSkills = [
+    "build-skill-cosmos",
+    "audit-skill-cosmos",
+    "customize-skill-cosmos",
+    "manage-skill-cosmos",
+    "skills-library-maintenance",
+  ];
+
+  const portfolioReadmes = [
+    ...(privateReadme == null ? [] : [["private README", privateReadme]]),
+    [isPrivateSource ? "English public README template" : "English public README", english],
+    [isPrivateSource ? "Chinese public README template" : "Chinese public README", chinese],
+  ];
+
+  for (const [label, content] of portfolioReadmes) {
+    for (const token of [
+      "220+",
+      "22-state",
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Node.js 24",
+      "GitHub Actions",
+      "Netlify",
+      "customize preflight",
+      "```mermaid",
+      "npx skills@1.5.20 add",
+      "$customize-skill-cosmos",
+      ...bundledSkills,
+    ]) {
+      assert.ok(content.includes(token), `${label} is missing portfolio evidence ${token}.`);
+    }
+    assert.match(content, /Windows[、,/ ]+Linux[、,/ ]+(?:and )?macOS/i);
+    assert.match(content, /Pre-release|Public Beta/i);
+    assert.match(content, /not `v1\.0\.0`|不是 `v1\.0\.0`/i);
+    assert.match(content, /independent|独立/);
+  }
+
+  for (const [label, publicReadme] of [
+    [isPrivateSource ? "English public README template" : "English public README", english],
+    [isPrivateSource ? "Chinese public README template" : "Chinese public README", chinese],
+  ]) {
+    const siteSummary = isPrivateSource ? null : JSON.parse(read("data/site-manifest.json")).summary;
+    const maintenance = isPrivateSource ? null : JSON.parse(read("data/maintenance-status.json"));
+    const governedCatalogTokens = isPrivateSource
+      ? ["{{SKILL_COUNT}}", "{{LIBRARY_COUNT}}", "{{SYSTEM_COUNT}}", "36"]
+      : [siteSummary.skills, siteSummary.libraries, siteSummary.categories, maintenance.publicGlobalSkills]
+        .map(String);
+    for (const token of governedCatalogTokens) {
+      assert.ok(publicReadme.includes(token), `${label} is missing governed catalog evidence ${token}.`);
+    }
+    assert.match(publicReadme, /Deploy Preview/);
+    assert.doesNotMatch(publicReadme, /Draft PR (?:also|另外).*44-Skill/);
+    if (!isPrivateSource) assert.doesNotMatch(publicReadme, /{{[A-Z_]+}}/);
+  }
+
+  if (privateReadme != null) {
+    for (const token of ["153 Skills", "28 Libraries", "9 Categories", "36 active global Skills"]) {
+      assert.ok(privateReadme.includes(token), `private README is missing current baseline ${token}.`);
+    }
+    assert.doesNotMatch(privateReadme, /141 Skills|21 active global Skills|各 10 个 state|共 20 张截图/);
+  }
+  assert.match(english, /## The problem[\s\S]*## What this beta delivers[\s\S]*## Engineering evidence/);
+  assert.match(chinese, /## 它解决的问题[\s\S]*## 这个 Beta 交付了什么[\s\S]*## 工程证据/);
+});
+
 test("full UI smoke drives localized controls through stable hooks", () => {
   const smoke = read("scripts/smoke-ui.mjs");
   const visualQa = read("scripts/capture-visual-qa.mjs");
@@ -211,6 +290,9 @@ test("tracked Netlify configuration defines one safe and consistent build", () =
   assert.match(config, /publish\s*=\s*"dist"/);
   assert.match(config, /\[context\.production\]/);
   assert.match(config, /\[context\.deploy-preview\]/);
+  assert.match(config, /\[context\.deploy-preview\][\s\S]*command\s*=\s*"npm run build"/);
+  assert.doesNotMatch(config, /\[context\.deploy-preview\][\s\S]*build:alpha-preview/);
+  assert.match(config, /from\s*=\s*"\/data\/private-skills\.json"[\s\S]*status\s*=\s*404[\s\S]*force\s*=\s*true/);
   assert.match(config, /from\s*=\s*"\/\*"[\s\S]*to\s*=\s*"\/index\.html"[\s\S]*status\s*=\s*200/);
   for (const header of ["X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy", "X-Frame-Options", "Content-Security-Policy"]) {
     assert.ok(config.includes(header), `netlify.toml is missing ${header}`);
@@ -231,6 +313,8 @@ test("required public gates execute Agent Skill, release-asset, and native check
   assert.match(preflight, /\["public-mvp", \["run", "test:mvp"\]\]/);
   assert.match(packageScripts["test:mvp"], /npm run smoke:customization-browser/u);
   assert.match(preflight, /\["agent-skill-contract", \["run", "test:agent-skill"\]\]/);
+  assert.match(preflight, /\["validate-agent-skills", \["run", "validate:skills"\]\]/);
+  assert.match(preflight, /\["run", "finalize:public-release"\]/);
   assert.match(preflight, /if \(publicRepository\) runReleaseAssetsContract\(\)/);
   assert.match(preflight, /"SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK\.zh-CN\.md"/);
   assert.match(preflight, /checksumRows\.some\(\(row\) => row === null\)/);
@@ -315,8 +399,14 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
   assert.match(noviceReleaseNotes, /releases\/download\/v0\.13\.0-beta\.1\/SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK\.zh-CN\.md/);
   assert.match(noviceReleaseNotes, /releases\/download\/v0\.13\.0-beta\.1\/silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz/);
 
+  const hardeningReleaseNotes = read(publicDocument("RELEASE_NOTES_v0.13.1-beta.1.md"));
+  assert.match(hardeningReleaseNotes, /finalized `Public Release status: GO` receipt/);
+  assert.match(hardeningReleaseNotes, /five bundled Agent Skills/i);
+  assert.match(hardeningReleaseNotes, /project-local installation/i);
+  assert.match(hardeningReleaseNotes, /v1\.0\.0` remains NO-GO/);
+
   const customizationAcceptance = read(publicDocument("CUSTOMIZATION_RC_ACCEPTANCE.zh-CN.md"));
-  assert.match(customizationAcceptance, /v0\.13\.0-beta\.1/);
+  assert.match(customizationAcceptance, /v0\.13\.1-beta\.1/);
   assert.match(customizationAcceptance, /只读预检[\s\S]*preflight/);
   assert.match(customizationAcceptance, /精确确认 token[\s\S]*拒绝时没有写入[\s\S]*没有全局安装、系统配置或扫描无关目录/u);
   assert.match(customizationAcceptance, /一次只看到一个生活化问题/);
@@ -327,7 +417,7 @@ test("public beta materials cover tasks, severity, privacy, and both issue forms
 
 test("beta version, root-safe Vite base, and publication handoff are explicit", () => {
   const packageJson = JSON.parse(read("package.json"));
-  assert.equal(packageJson.version, "0.13.0-beta.1");
+  assert.equal(packageJson.version, "0.13.1-beta.1");
   const vite = read("vite.config.ts");
   assert.match(vite, /base:\s*"\/"/);
   assert.match(vite, /copy-social-preview/);

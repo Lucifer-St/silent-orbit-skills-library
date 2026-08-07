@@ -72,7 +72,7 @@ Generated RC files are outputs; never hand-patch them to make a migration pass.
 ## Package and CLI versions
 
 The package/repository release version and CLI interface version are
-independent. For the current source, the package is `0.13.0-beta.1` while
+independent. For the current source, the package is `0.13.1-beta.1` while
 `silent-orbit --version` reports `0.6.0`. Apply the SemVer and deprecation
 policy in `docs/policies/versioning-and-migrations.md`; document every
 compatibility change in release notes.

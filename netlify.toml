@@ -9,10 +9,16 @@
   command = "npm run build"
 
 [context.deploy-preview]
-  command = "npm run build:alpha-preview"
+  command = "npm run build"
 
 [context.branch-deploy]
   command = "npm run build"
+
+[[redirects]]
+  from = "/data/private-skills.json"
+  to = "/index.html"
+  status = 404
+  force = true
 
 [[redirects]]
   from = "/*"

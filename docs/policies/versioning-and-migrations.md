@@ -7,7 +7,7 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 | Surface | Candidate | Compatibility promise |
 |---|---:|---|
-| Repository and package | `0.13.0-beta.1` | `0.13.x` beta line |
+| Repository and package | `0.13.1-beta.1` | `0.13.x` beta line |
 | CLI interface | `0.6.0` | frozen generator v1 and customization v2 plus additive experience v3 |
 | JSON Schemas | frozen `v1` + frozen additive `v2` + additive `v3` | exact files in all Schema locks |
 | Runtime | Node.js 24 | tested release runtime |
@@ -15,6 +15,18 @@ the `silent-orbit` CLI, and the bundled Agent Skills.
 
 This is a pre-release. It is not `v1.0.0`, and the package is not published to
 the npm registry.
+
+### v0.13.1-beta.1 release-chain hardening candidate
+
+This prerelease replaces the immutable `v0.13.0-beta.1` candidate with a new
+version whose release receipt is finalized before assets are prepared. It adds
+fail-closed Agent Skill validation, project-local CLI discovery, explicit
+audit-versus-maintenance routing, production-parity deploy previews, and
+portfolio-facing release documentation.
+
+The package patch does not change the CLI interface or JSON contracts. CLI
+`0.6.0`, frozen v1/v2 contracts, and additive v3 contracts remain compatible;
+no project migration is required.
 
 ### v0.13.0-beta.1 additive repair candidate
 
@@ -89,7 +101,7 @@ it may not overwrite v3 or silently mutate v2.
 
 ## Current migration baseline
 
-No migration is required inside the v1 family. `0.13.0-beta.1` continues to
+No migration is required inside the v1 family. `0.13.1-beta.1` continues to
 read and write the frozen v1 contracts. It must reject an unsupported newer
 schema instead of silently coercing it.
 

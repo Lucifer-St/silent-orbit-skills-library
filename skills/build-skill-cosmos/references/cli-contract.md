@@ -5,15 +5,19 @@
 Use the first available explicit, local, or installed command:
 
 1. A CLI path supplied by the user.
-2. `silent-orbit` available on `PATH`.
-3. In the Silent Orbit source repository, `node work/agent-os-index/scripts/silent-orbit.mjs`.
-4. In a flat public checkout, `node scripts/silent-orbit.mjs`.
+2. A project-local package already present in the current workspace: invoke
+   `node node_modules/silent-orbit-skills-library/scripts/silent-orbit.mjs`.
+   Search upward only to the workspace root; do not run `npx` in a way that
+   may download a missing package.
+3. `silent-orbit` available on `PATH`.
+4. In the Silent Orbit source repository, `node work/agent-os-index/scripts/silent-orbit.mjs`.
+5. In a flat public checkout, `node scripts/silent-orbit.mjs`.
 
-Verify with `--version`; require version `0.6.x` for this unreleased local candidate. Do not download or install a missing CLI.
+Verify with `--version`; require version `0.6.x` for this prerelease. Do not download or install a missing CLI.
 
 The CLI interface version is independent from the package/repository release
-version. In this prerelease, package `0.13.0-beta.1` contains CLI `0.6.0`;
-this describes the local candidate only. The already-published
+version. In this prerelease, package `0.13.1-beta.1` contains CLI `0.6.0`.
+The already-published
 `v0.12.0-beta.1` asset remains CLI `0.5.0` and must not be relabeled or
 rewritten. Do not infer CLI compatibility from the package tag alone.
 

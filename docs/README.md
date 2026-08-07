@@ -58,7 +58,7 @@ timestamp does not change when the note is edited.
 - [V1 RC independent acceptance](./testing/v1-rc-acceptance.md)
 - [V1 RC acceptance (简体中文傻瓜版)](./testing/v1-rc-acceptance.zh-CN.md)
 - [V1 RC 单文件真人验收交接包（简体中文）](./testing/v1-rc-one-file-handoff.zh-CN.md)
-- [v0.13.0-beta.1 个性化审美定制独立用户验收清单](./testing/customization-rc-acceptance.zh-CN.md)
+- [v0.13.1-beta.1 个性化审美定制独立用户验收清单](./testing/customization-rc-acceptance.zh-CN.md)
 - [独立新手单文件测试包构建模板](./testing/silent-orbit-novice-human-test-pack.zh-CN.template.md)
 - [v0.11.0-beta.5 release notes](./releases/v0.11.0-beta.5.md)
 - [v0.11.0-beta.6 release notes](./releases/v0.11.0-beta.6.md)
@@ -67,6 +67,7 @@ timestamp does not change when the note is edited.
 - [v0.11.0-beta.9 release notes](./releases/v0.11.0-beta.9.md)
 - [v0.12.0-beta.1 release notes](./releases/v0.12.0-beta.1.md)
 - [v0.13.0-beta.1 release notes](./releases/v0.13.0-beta.1.md)
+- [v0.13.1-beta.1 release notes](./releases/v0.13.1-beta.1.md)
 - [Privacy audit](./audits/privacy-audit.md)
 
 ## Historical notes

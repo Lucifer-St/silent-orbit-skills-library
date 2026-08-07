@@ -13,9 +13,56 @@ Silent Orbit 把不断增长的 AI Skills 集合变成一个可以使用的产�
 
 当前公开目录包含 **153 个 Skills、9 个功能系统和 28 个 Libraries**。
 
+## 它解决的问题
+
+AI Skills 的增长速度往往快于人理解和治理它们的速度。只有名称和文件夹，无法回答真正影响使用的问题：**当前任务该选哪个 Skill？它来自哪里？哪些内容可以公开？能否在不修改真实 Skills、也不丢失下一次数据刷新的前提下完成个性化？**
+
+## 这个 Beta 交付了什么
+
+Silent Orbit 把一个本地优先的 React 产品与版本化 Node.js 工具链组合在一起：
+
+- 确定性的双语意图搜索与 **System → Library → Skill** 目录；
+- 在安装或信任前呈现来源、权限和隐私边界；
+- 无账号、无 analytics、无后端同步的浏览器本地 Outcomes；
+- 带 manifest、hash、schema lock 与回滚证据的确定性 Private-to-Public 导出；
+- 五个随包 Agent Skills：`build-skill-cosmos`、`audit-skill-cosmos`、`customize-skill-cosmos`、`manage-skill-cosmos`、`skills-library-maintenance`。
+
+## 工程证据
+
+- 受治理目录包含 **153 Skills · 28 Libraries · 9 个功能系统 · 36 个 active global Skills**。
+- **220+ 项自动化测试与合同检查**，以及覆盖桌面与移动端的 **22-state** 视觉 QA 矩阵。
+- Node.js 24 package smoke 覆盖 **Windows、Linux、macOS**，并单独验证 Docker 挂载与未挂载边界。
+- 技术栈为 **React 19、TypeScript、Vite、Node.js 24、GitHub Actions、Netlify**。
+- 唯一生产链为：Private source → deterministic Public Export → GitHub required check → Git-connected Netlify Production。
+
+当前仍是 GitHub **Pre-release**，不是 `v1.0.0`。自动化检查、作者 UAT 与 Agent 演练属于工程证据，不等于独立真人验收；只有与 Release 正确绑定、且没有未解决 P0/P1 的独立报告才能关闭 v1 human gate。
+
+## 定制自己的 Skills Library
+
+先按 [Generator 快速开始](./docs/guides/generator-quickstart.zh-CN.md) 在项目中安装 Release tarball，审阅 Skill，再只添加项目级个性化层：
+
+```powershell
+$skillSource = (Resolve-Path -LiteralPath .\node_modules\silent-orbit-skills-library).Path
+Get-Content -LiteralPath (Join-Path $skillSource 'skills\customize-skill-cosmos\SKILL.md')
+npx skills@1.5.20 add $skillSource --skill customize-skill-cosmos --agent codex --copy -y
+```
+
+入口提示词：**“使用 `$customize-skill-cosmos`；先做只读预检，然后一次只问我一个生活化问题。”**
+
+```mermaid
+flowchart LR
+  A["customize preflight<br/>只读检查"] --> B["缺条件时取得<br/>项目级精确同意"]
+  B --> C["一次一个<br/>生活化问题"]
+  C --> D["恰好两个<br/>可操作方向"]
+  D --> E["保留 / 换皮 /<br/>调整 / 结构重做"]
+  E --> F["refresh + doctor<br/>样式保持验证"]
+```
+
+流程只保存归一化摘要而不是原始访谈答案；旧 rounds 保持不可变，CSS-only 的“结构重做”会被拒绝，也不会安装、更新或发布真实 Skills。
+
 ## 真人验收从这里开始
 
-只把 [`v0.13.0-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1)
+只把 [`v0.13.1-beta.1` GitHub Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.1-beta.1)
 这一个链接发给验收者。验收者在 Assets 下载
 `SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md`，上传给本机 Agent，然后说
 `开始验收`；不需要自己输入命令、填写模板或接收作者本地文件。
@@ -31,9 +78,9 @@ Public Generator 只通过已验证的 GitHub Pre-release tarball 分发，不�
 - Hosted 站点只用于浏览，不能检查、安装、更新或删除访客电脑上的 Skills。
 - Node.js 24 是 v1 运行时基线；改变 major version 必须重新做兼容决策并更新门禁。
 
-## Phase 1E Alpha Preview
+## 历史 Phase 1E Alpha 证据
 
-Draft PR 另外构建一份来自固定独立环境的 **44-Skill Reference Preview**。交互式 Skill 地图仍是主要卖点：白底、黑色关系线、Category 聚类、克制的平移缩放与空间聚焦动画；紧凑的 Library 视图与地图共享搜索、筛选、选中项和 URL 状态。
+仓库保留一份来自 Phase 1E 固定独立环境的 **44-Skill Reference Preview**，仅作为历史验收证据。当前 PR 与 Production 都不会再构建它；每个 Deploy Preview 都使用与 Production 相同的 153-Skill 当前构建。归档 renderer 曾验证白底、黑色关系线、Category 聚类、克制的平移缩放、空间聚焦动画，以及与地图共享搜索、筛选、选中项和 URL 状态的紧凑 Library 视图。
 
 Reference Renderer 只是可用的功能底稿，不是官方美术主题。生成项目会包含 `frontend-handoff.md`，用户可以保留公开数据、键盘交互、深链和隐私边界，同时使用自己喜欢的视觉风格与 frontend Skill 重做界面。
 
@@ -41,7 +88,7 @@ Reference Renderer 只是可用的功能底稿，不是官方美术主题。生�
 - [Phase 2B dogfood 与 source-of-truth boundary](./docs/notes/20260722-100249-generator-phase-2b-dogfooding-source-of-truth-boundary.md)
 - [安装与首次使用指南](./docs/guides/generator-quickstart.zh-CN.md)
 - Alpha receipt 明确记录 `humanFeedback: false`；它证明固定独立环境，而不冒充真实外部用户反馈。
-- Production 保持经复核的 153-Skill 站点。Alpha 只是历史 acceptance evidence，不是第二个 catalog source，也不替代 Production。
+- Production 与 Deploy Preview 都使用经复核的 153-Skill 站点。Alpha 只是历史 acceptance evidence，不是第二个 catalog source，也不替代 Production。
 
 ## 先看真实产品
 

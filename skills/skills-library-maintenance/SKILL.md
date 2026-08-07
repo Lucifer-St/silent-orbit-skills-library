@@ -1,6 +1,6 @@
 ---
 name: skills-library-maintenance
-description: Scan, reconcile, and maintain the user's Skills Library after global Skill installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use whenever a request installs, removes, updates, audits, or reconciles global Codex Skills, or asks about Skills Library drift, lifecycle history, monthly usage, or update status.
+description: Scan, reconcile, and maintain the user's live global Codex Skills surface after installs, removals, updates, repairs, renames, or source changes; generate private monthly usage snapshots; check update channels; and synchronize the canonical Web Library data with the private Obsidian library. Use for global installation state, Web Library or Obsidian drift, lifecycle history, monthly usage, publication, or update status. Do not use only to interpret a supplied HealthReportV1 or a configured Silent Orbit project's read-only health; those belong to audit-skill-cosmos.
 ---
 
 # Skills Library Maintenance

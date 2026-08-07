@@ -7,13 +7,23 @@ CLI 与随包提供的 Agent Skills。
 
 | Surface | 候选版本 | 兼容承诺 |
 |---|---:|---|
-| Repository / package | `0.13.0-beta.1` | `0.13.x` beta 系列 |
+| Repository / package | `0.13.1-beta.1` | `0.13.x` beta 系列 |
 | CLI interface | `0.6.0` | 固定 generator v1 与 customization v2，加上 experience v3 |
 | JSON Schemas | 固定 `v1` + 固定新增 `v2` + 新增 `v3` | 以三个 Schema lock 为准 |
 | Runtime | Node.js 24 | 发布门禁验证版本 |
 | Trusted manager | `skills@1.5.20` | Phase 5C 固定内容身份 |
 
 这是 Pre-release，不是 `v1.0.0`，也不会发布到 npm registry。
+
+### v0.13.1-beta.1 发布链加固候选版
+
+本 prerelease 用新版本替代已不可变的 `v0.13.0-beta.1` 候选版，确保发布回执完成
+finalize 后才准备资产。它新增 fail-closed Agent Skill 校验、项目本地 CLI 发现、
+audit 与 maintenance 的明确路由、与 Production 一致的 Deploy Preview，以及面向
+作品集展示的发布文档。
+
+本次 package patch 不改变 CLI interface 或 JSON contract。CLI `0.6.0`、固定的
+v1/v2 contracts 与 additive v3 contracts 保持兼容，项目无需迁移。
 
 ### v0.13.0-beta.1 新增式修复候选版
 
@@ -73,7 +83,7 @@ schema 版本和迁移策略，不能覆盖 v3 或偷改 v2。
 
 ## 当前迁移基线
 
-v1 系列内部无需迁移。`0.13.0-beta.1` 继续读写固定的 v1 contracts。遇到不支持的
+v1 系列内部无需迁移。`0.13.1-beta.1` 继续读写固定的 v1 contracts。遇到不支持的
 新 schema 时必须停止，不能静默转换。
 
 customization v2 是 sidecar，不是 v1 migration。先显式运行 `generate` 生成

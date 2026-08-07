@@ -3,9 +3,9 @@
 把这个文件完整交给一个能使用本机终端、文件、网络和浏览器的 Agent，然后只说：**开始测试**。新手不需要先读技术文档，也不用手抄命令。
 
 - Pack：`silent-orbit-novice-human-test-pack/1.0.0`
-- Release：`v0.13.0-beta.1`
-- Release 页面：https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1
-- 安装资产：`silent-orbit-skills-library-0.13.0-beta.1.tgz`
+- Release：`v0.13.1-beta.1`
+- Release 页面：https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.1-beta.1
+- 安装资产：`silent-orbit-skills-library-0.13.1-beta.1.tgz`
 - 安装资产下载：{{PUBLIC_TARBALL_URL}}
 - 安装资产 SHA256：`{{PUBLIC_TARBALL_SHA256}}`
 - 支持：Windows / macOS / Linux，Node.js 24.x
@@ -35,7 +35,7 @@ Agent 会先只读检查电脑是否具备测试条件，并告诉你已有、�
 
 ### 2. 下载、校验与隔离安装
 
-在新隔离目录中从精确 URL 下载 `silent-orbit-skills-library-0.13.0-beta.1.tgz` 和 `SHA256SUMS.txt`。计算本地 SHA256，必须同时等于本文件中的 `{{PUBLIC_TARBALL_SHA256}}`，并在 manifest 中找到文件名完全一致且唯一的一行；不一致立即停止。然后仅在隔离目录执行项目级 `npm init -y` 与 `npm install ./silent-orbit-skills-library-0.13.0-beta.1.tgz`。
+在新隔离目录中从精确 URL 下载 `silent-orbit-skills-library-0.13.1-beta.1.tgz` 和 `SHA256SUMS.txt`。计算本地 SHA256，必须同时等于本文件中的 `{{PUBLIC_TARBALL_SHA256}}`，并在 manifest 中找到文件名完全一致且唯一的一行；不一致立即停止。然后仅在隔离目录执行项目级 `npm init -y` 与 `npm install ./silent-orbit-skills-library-0.13.1-beta.1.tgz`。
 
 ### 3. 选择公开样例或自己的来源
 
@@ -75,8 +75,8 @@ Agent 会先只读检查电脑是否具备测试条件，并告诉你已有、�
   "schemaVersion": 1,
   "kind": "SilentOrbitNoviceHumanTestReport",
   "packVersion": "1.0.0",
-  "release": "v0.13.0-beta.1",
-  "releaseAsset": "silent-orbit-skills-library-0.13.0-beta.1.tgz",
+  "release": "v0.13.1-beta.1",
+  "releaseAsset": "silent-orbit-skills-library-0.13.1-beta.1.tgz",
   "releaseAssetSha256": "{{PUBLIC_TARBALL_SHA256}}",
   "testedAt": "2026-01-01T00:00:00.000Z",
   "testerId": "tester-random123",
@@ -97,7 +97,7 @@ END_SILENT_ORBIT_NOVICE_REPORT_JSON -->
 用安装包内的 validator 对报告执行 release、asset、SHA256 和独立性校验；Agent 应自动运行下面的命令，不让新手手抄：
 
 ```sh
-node ./node_modules/silent-orbit-skills-library/scripts/validate-novice-human-report.mjs --report ./silent-orbit-novice-human-report.md --expected-release v0.13.0-beta.1 --expected-asset silent-orbit-skills-library-0.13.0-beta.1.tgz --expected-sha256 {{PUBLIC_TARBALL_SHA256}} --require-independent
+node ./node_modules/silent-orbit-skills-library/scripts/validate-novice-human-report.mjs --report ./silent-orbit-novice-human-report.md --expected-release v0.13.1-beta.1 --expected-asset silent-orbit-skills-library-0.13.1-beta.1.tgz --expected-sha256 {{PUBLIC_TARBALL_SHA256}} --require-independent
 ```
 
 校验失败仍要把报告交回，verdict 设为 `FAIL` 或 `INCOMPLETE`，不可删掉问题。受试者最终只需把这一份报告文件发回 Matthew。

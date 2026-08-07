@@ -12,7 +12,8 @@ Treat the CLI's bundled JSON Schemas as authoritative. Edit only the documented 
 ├─ library.snapshot.json          # reviewed public model
 ├─ site-manifest.json             # public generation manifest
 └─ dist/                          # local Map + Library reference preview
-   └─ frontend-handoff.md         # public-safe handoff to a frontend Skill
+   ├─ frontend-handoff.md         # human-readable public-safe handoff
+   └─ frontend-handoff.v2.json    # machine-readable public-safe handoff
 ```
 
 Never publish `.silent-orbit/`. It may contain imports, private Inventory, analysis reports, previous snapshots, transactions, and receipts.

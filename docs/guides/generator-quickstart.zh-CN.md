@@ -1,6 +1,6 @@
 # Silent Orbit Public Generator 快速开始
 
-本指南从 GitHub Pre-release 安装 `v0.13.0-beta.1` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
+本指南从 GitHub Pre-release 安装 `v0.13.1-beta.1` 产物，并生成一个经过公开边界复核的最小 Skill Library。本包不发布到 npm registry。
 
 独立新手测试只需发送该 Release 的 `SILENT_ORBIT_NOVICE_HUMAN_TEST_PACK.zh-CN.md`。Agent 会主持只读 preflight、同意门、逐题访谈、两方向比较、首选视图保持、真实结构重做，并生成隐私安全的 Issue Form 等价回执。
 
@@ -16,9 +16,9 @@ Docker 使用独立 Home，默认看不到宿主 Skills。在执行 `codex-globa
 
 Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Skill 环境。
 
-从 [`v0.13.0-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.0-beta.1) 下载：
+从 [`v0.13.1-beta.1` Pre-release](https://github.com/Lucifer-St/silent-orbit-skills-library/releases/tag/v0.13.1-beta.1) 下载：
 
-- `silent-orbit-skills-library-0.13.0-beta.1.tgz`
+- `silent-orbit-skills-library-0.13.1-beta.1.tgz`
 - `SHA256SUMS.txt`
 
 把两个文件放在同一目录。只校验文件名精确匹配 beta.9 tarball 且唯一的一行；
@@ -27,8 +27,8 @@ Hosted Silent Orbit 站点只用于浏览，不能检查或修改访客本地 Sk
 Windows PowerShell：
 
 ```powershell
-$tarball = 'silent-orbit-skills-library-0.13.0-beta.1.tgz'
-$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.0-beta\.1\.tgz$' })
+$tarball = 'silent-orbit-skills-library-0.13.1-beta.1.tgz'
+$matches = @(Get-Content -LiteralPath .\SHA256SUMS.txt | Where-Object { $_ -match '^(?<hash>[0-9A-Fa-f]{64})\s+\*?silent-orbit-skills-library-0\.13\.1-beta\.1\.tgz$' })
 if ($matches.Count -ne 1) { throw "必须且只能找到一条 $tarball 校验记录。" }
 $expected = ([regex]::Match($matches[0], '^[0-9A-Fa-f]{64}').Value).ToLowerInvariant()
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath ".\$tarball").Hash.ToLowerInvariant()
@@ -38,7 +38,7 @@ if ($actual -ne $expected) { throw 'Silent Orbit tarball 校验失败。' }
 Linux：
 
 ```sh
-tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.1-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -48,7 +48,7 @@ printf '%s\n' "$checksum_line" | sha256sum --check -
 macOS：
 
 ```sh
-tarball='silent-orbit-skills-library-0.13.0-beta.1.tgz'
+tarball='silent-orbit-skills-library-0.13.1-beta.1.tgz'
 checksum_line="$(awk -v name="$tarball" '$2 == name || $2 == "*" name { print }' SHA256SUMS.txt)"
 match_count="$(printf '%s\n' "$checksum_line" | awk 'NF { count += 1 } END { print count + 0 }')"
 [ "$match_count" -eq 1 ] || { echo "必须且只能找到一条 $tarball 校验记录。" >&2; exit 1; }
@@ -63,18 +63,18 @@ printf '校验通过：%s\n' "$actual"
 优先选择项目级安装：
 
 ```powershell
-npm install --save-dev .\silent-orbit-skills-library-0.13.0-beta.1.tgz
+npm install --save-dev .\silent-orbit-skills-library-0.13.1-beta.1.tgz
 npx silent-orbit --version
 ```
 
 只有确实需要把 `silent-orbit` 放进用户 PATH 时才使用全局安装：
 
 ```powershell
-npm install --global .\silent-orbit-skills-library-0.13.0-beta.1.tgz
+npm install --global .\silent-orbit-skills-library-0.13.1-beta.1.tgz
 silent-orbit --version
 ```
 
-package / repository release version 是 `0.13.0-beta.1`；当前 source 报告独立的 CLI interface version `0.6.0`，属于 `0.6.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
+package / repository release version 是 `0.13.1-beta.1`；当前 source 报告独立的 CLI interface version `0.6.0`，属于 `0.6.x` compatibility family。package 的 patch 更新不会自动改变 CLI version；只有命令、参数或 JSON contract 变化时才调整 CLI version。
 
 ## 3. 可选 Agent Skills
 
@@ -158,7 +158,7 @@ npx silent-orbit audit --project .\my-skill-cosmos --json
 
 ## 5. 可选的个性化审美定制
 
-> `v0.13.0-beta.1` 已通过 CLI `0.6.x` 发布新增式逐题新手流程；它不改写历史
+> `v0.13.1-beta.1` 已通过 CLI `0.6.x` 发布新增式逐题新手流程；它不改写历史
 > beta.1 的 tag 或资产，也不能把内部演练当成独立真人验收。
 
 定制以前述有效 v2 handoff 为前提。正式访谈前先运行只读预检：它只解释已有条件、
@@ -210,6 +210,6 @@ Phase 5C 支持 host 注入的 `skills@1.5.20` check-and-update，一次批准�
 
 ## 发布边界
 
-Public repository 保留 44-Skill NVIDIA Alpha 作为历史固定验收夹具，但它不属于 installable Generator package，也不是 Production 内容。Git-connected Netlify Deploy Preview 通过 `npm run build:alpha-preview` 构建该夹具；Production 通过 `npm run build` 使用经复核的 153-Skill projection，可编辑的个人 inventory 与 curation 只保留在 Private。
+Public repository 保留 44-Skill NVIDIA Alpha 作为历史固定验收夹具，但它不属于 installable Generator package、当前 PR Preview 或 Production 内容。Git-connected Netlify Deploy Preview 与 Production 都通过 `npm run build` 使用经复核的 153-Skill projection；可编辑的个人 inventory 与 curation 只保留在 Private。
 
 旧的 Phase 4A/4B 名称属于 **Website Release Track**，不是 Generator phase。Website Release Phase 4A 是 public beta launch；Website Release Phase 4B 仍需要外部真人证据。Generator 使用独立的 Phase 1A-1E、Phase 2A 与 Phase 2B 序列。
